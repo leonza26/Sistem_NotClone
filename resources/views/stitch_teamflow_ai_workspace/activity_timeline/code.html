@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(245, 250, 251, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5fafb;
+            color: #171d1e;
+        }
+        h1, h2, h3, .display-text {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#dee3e4",
+                        "inverse-on-surface": "#edf2f3",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#ff9035",
+                        "outline-variant": "#c0c8cb",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#051f25",
+                        "surface-container-low": "#eff4f5",
+                        "primary": "#316574",
+                        "surface-dim": "#d6dbdc",
+                        "surface-container-high": "#e4e9ea",
+                        "outline": "#70787b",
+                        "inverse-surface": "#2c3132",
+                        "surface": "#f5fafb",
+                        "inverse-primary": "#9bcee0",
+                        "surface-container": "#eaeff0",
+                        "on-secondary-fixed-variant": "#334a51",
+                        "on-primary-fixed-variant": "#134d5c",
+                        "on-primary-fixed": "#001f27",
+                        "tertiary-fixed-dim": "#ffb785",
+                        "background": "#f5fafb",
+                        "on-surface-variant": "#40484b",
+                        "on-tertiary-fixed": "#301400",
+                        "on-background": "#171d1e",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#084755",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#316574",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#4b6269",
+                        "secondary-fixed": "#cee7ef",
+                        "tertiary-fixed": "#ffdcc6",
+                        "primary-fixed": "#b7ebfd",
+                        "secondary-container": "#cbe4ec",
+                        "tertiary": "#954a00",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#4f666e",
+                        "primary-fixed-dim": "#9bcee0",
+                        "secondary-fixed-dim": "#b2cbd3",
+                        "primary-container": "#81b4c5",
+                        "surface-container-highest": "#dee3e4",
+                        "surface-bright": "#f5fafb",
+                        "on-surface": "#171d1e",
+                        "on-tertiary-container": "#683200"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-slate-50 dark:bg-slate-900 flex flex-col py-6 px-4 z-50">
+<div class="mb-10 px-2">
+<h1 class="text-lg font-bold tracking-tight text-teal-900 dark:text-teal-100">Architectural Curator</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 mt-1">Production Workspace</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="folder_copy">folder_copy</span>
+<span class="text-sm">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="text-sm">Tasks</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-sm">Notes &amp; Docs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-teal-800 dark:text-teal-300 font-semibold border-r-2 border-teal-600 dark:border-teal-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors rounded-l-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="pulse">pulse_alert</span>
+<span class="text-sm">Activity</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="text-sm">AI Assistant</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 space-y-2 border-t border-slate-200 dark:border-slate-800">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="text-sm">Support</span>
+</a>
+<div class="flex items-center gap-3 px-3 py-4 mt-2 bg-slate-200/30 dark:bg-slate-800/30 rounded-xl">
+<img alt="Workspace Icon" class="w-8 h-8 rounded-full bg-teal-100" data-alt="close-up portrait of a professional minimalist avatar placeholder with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBziN--fw8gdklWTx-2-WCpNi7tGnLTgqExxd0C-mMijOJDQLDXVDlMIxMfvyLHFhbW5XvLbN5pUgFBEDhYUd2XmiJ98aAkzFlfrzYGO_sdQqSzNZDKKFLNUiGVPCN9MBKMIByxhgDif--XfOBOWVItLpvqNzgPZtOzG6q3iNtgI27l1RYR_VOGTZSW16kvQb002EXTuv9g-kwcAVCg2qH-2TwSqaxrpCpUnnUzF3CLMP_EQ4WAimQtuaR-zBOScDw06LeDaRXCM0o"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate text-on-surface">Alex Rivera</p>
+<p class="text-[10px] text-slate-500 truncate">Lead Curator</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar Component -->
+<header class="flex justify-between items-center h-16 w-full px-8 ml-64 docked full-width top-0 sticky z-40 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl transition-all duration-300">
+<div class="flex items-center gap-8">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-0 rounded-full text-sm w-64 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search activities..." type="text"/>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-teal-600" href="#">Workspaces</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-teal-600" href="#">Recent</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-teal-600" href="#">Templates</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-600 hover:text-teal-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-600 hover:text-teal-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
+<img alt="User Avatar" class="w-8 h-8 rounded-full ring-2 ring-primary-container" data-alt="minimalist professional user profile picture with clean background and neutral tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBUTIu8bjahfLWADo03R4862Tf2Q0Wh09zBRnK4Mu1Yy0kIzVJHubGHsWxYZAFAFkGcp-2eITkJYo0zIK3EaSIrJLdo-VCCz9JTZE0uvYydpvHLkfSn-LLu5uM6TzjoyF5hmIvTAYoEYboNlXo0mfx8Er2bnk8HNZ18ccGOCFInClAEkgqgK5G6VoGl5Z7gubeBizdqjONsytlsixWuYCHoqElCC6yS8KtySzuA7ahapftBidm0vy8VvjDuBw3vFWJOsoQGqzXimU"/>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 p-12 min-h-screen">
+<div class="max-w-4xl mx-auto">
+<!-- Header Section -->
+<div class="mb-12">
+<div class="flex items-center gap-2 mb-4">
+<span class="text-xs font-semibold tracking-widest text-primary uppercase">Workspace</span>
+<span class="w-1 h-1 rounded-full bg-primary-fixed"></span>
+<span class="text-xs font-semibold tracking-widest text-on-surface-variant uppercase">Stream</span>
+</div>
+<h2 class="text-5xl font-extrabold tracking-tight text-on-surface mb-4">Activity Timeline</h2>
+<p class="text-lg text-on-surface-variant leading-relaxed max-w-2xl">
+                    A curated flow of updates and milestones across your production environment.
+                </p>
+</div>
+<!-- Bento Layout Activity Grid (Asymmetric) -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Main Timeline Canvas -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl p-8 relative overflow-hidden">
+<!-- Vertical Line -->
+<div class="absolute left-12 top-0 bottom-0 w-[1px] bg-surface-container"></div>
+<div class="space-y-12 relative">
+<!-- Timeline Group: Today -->
+<div>
+<h3 class="ml-16 text-xs font-bold text-primary-container tracking-widest uppercase mb-8">Today</h3>
+<!-- Activity Item 1 -->
+<div class="relative flex gap-6 items-start group">
+<div class="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]" data-icon="add_task">add_task</span>
+</div>
+<div class="flex-1 pt-1">
+<div class="flex justify-between items-start mb-2">
+<p class="text-on-surface font-semibold">
+<span class="text-primary hover:underline cursor-pointer">Marcus Thorne</span> 
+                                            created <span class="font-bold">Q4 Project Roadmap</span>
+</p>
+<span class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">10:24 AM</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 transition-all group-hover:scale-[0.99] duration-200">
+<p class="text-sm text-on-surface-variant leading-snug">Added 12 new milestones and assigned structural leads for the architectural phase.</p>
+<div class="mt-3 flex gap-2">
+<span class="px-2 py-1 bg-surface-container text-[10px] font-bold rounded text-slate-500">PLANNING</span>
+<span class="px-2 py-1 bg-surface-container text-[10px] font-bold rounded text-slate-500">Q4-2024</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="relative flex gap-6 items-start mt-10 group">
+<div class="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-secondary-container text-primary shadow-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit_note">edit_note</span>
+</div>
+<div class="flex-1 pt-1">
+<div class="flex justify-between items-start mb-2">
+<p class="text-on-surface font-semibold">
+<span class="text-primary hover:underline cursor-pointer">Sarah Jenkins</span> 
+                                            updated <span class="font-bold">Style Guide v2.4</span>
+</p>
+<span class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">09:15 AM</span>
+</div>
+<div class="p-2 border-l-4 border-primary-container ml-1">
+<p class="text-sm italic text-on-surface-variant">"Refined the tonal layering tokens to include atmospheric teals for the curation dashboard."</p>
+</div>
+</div>
+</div>
+<!-- Activity Item 3 (Image Upload) -->
+<div class="relative flex gap-6 items-start mt-10 group">
+<div class="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant shadow-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="image">image</span>
+</div>
+<div class="flex-1 pt-1">
+<div class="flex justify-between items-start mb-2">
+<p class="text-on-surface font-semibold">
+<span class="text-primary hover:underline cursor-pointer">Elena Rossi</span> 
+                                            uploaded <span class="font-bold">4 Curation Assets</span>
+</p>
+<span class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">08:30 AM</span>
+</div>
+<div class="grid grid-cols-4 gap-2 mt-2">
+<div class="aspect-square bg-slate-100 rounded-lg overflow-hidden ring-1 ring-inset ring-black/5">
+<img alt="Asset 1" class="w-full h-full object-cover" data-alt="architectural sketch of a modern pavilion with clean lines and soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5Avw1w64vUrwEC2wnnxExHjXQxZYs1Ejmxdhz8NLTdoBiM3x-t7d5e8WCdjiowq_PtIPiRC7-wGQBJuFE0pCcUu-sA1nY6xIJM9o9BWWveRcGgKfFCw7vNcWM5qKfv_5Let1ZuXNQA0Ymub_fkglKPmvHljXNP7JnrshvqLRR02ADUKWspEPRPukQ7gNA0KS__rm_5-0Xl1F1LKwu8ViAPfgpKidWP4nCpq_zcAvuVehHCWQDsHeKSIFfbrNvqWDZnmKnIeMKGVs"/>
+</div>
+<div class="aspect-square bg-slate-100 rounded-lg overflow-hidden ring-1 ring-inset ring-black/5">
+<img alt="Asset 2" class="w-full h-full object-cover" data-alt="macro texture photo of brushed limestone with soft neutral lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUbea4OTCsKp0ij6WqqOw-33nZsUaRlK6bLY7ya-YuQHNxzmqovzc6ErBE8JDZVSmQ3Wo-EISg74lkytX4xxwG9donP-l8uUB24HhnAmC6FttDu7zXXA9NvjSWsUseu3nyLiZ-UVaJeds8oOfYGWCjfeq8tAvyAbHkRJoiydQf4nwXljWw4JvVnJfDeZHL_zKRerGkRrHqljbHRbMUgtISF0jeuEeEbZVQoWUEnNtFJQUaBYCOll9qNxzwmtoBT1GL-AsYMzjjbM4"/>
+</div>
+<div class="aspect-square bg-slate-100 rounded-lg overflow-hidden ring-1 ring-inset ring-black/5">
+<img alt="Asset 3" class="w-full h-full object-cover" data-alt="minimalist interior design concept with large windows and natural wood elements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDX33W3zfisePdyV-5DN7wxjJ8GB2rsnbsNWWdPZ7Jfnjsdi-jaKW-HH5r8pmXtkgvDNU75pvg6v9fF6rxKtVQKZ98t5LE-agXZLGDCayl28oer_Za8ZVMygnrWkKv0vQZcIx58tfHkiauvcAYU9eC_mjcGAAEItHpGXZV-DGLBZBAKKmOJhRd4ZabwaEwmjxP-pPeXK4zBZ7qKYT9Ea0XKiCHIujmT0llj314AkvMrDzr2-YQr_A8FhSC-IakUQOYaRd5ome1nOU"/>
+</div>
+<div class="aspect-square bg-slate-100 rounded-lg overflow-hidden ring-1 ring-inset ring-black/5 flex items-center justify-center text-xs font-bold text-slate-400">
+                                            +1
+                                        </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Group: Yesterday -->
+<div>
+<h3 class="ml-16 text-xs font-bold text-slate-400 tracking-widest uppercase mb-8">Yesterday</h3>
+<!-- Activity Item 4 -->
+<div class="relative flex gap-6 items-start group">
+<div class="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="smart_toy">smart_toy</span>
+</div>
+<div class="flex-1 pt-1">
+<div class="flex justify-between items-start mb-2">
+<p class="text-on-surface font-semibold">
+<span class="text-primary font-bold">AI Assistant</span> 
+                                            optimized <span class="font-bold">Project Metadata</span>
+</p>
+<span class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">4:50 PM</span>
+</div>
+<div class="bg-surface-container-low/50 rounded-lg p-3 border border-dashed border-outline-variant/30">
+<p class="text-sm text-on-surface-variant italic">Automated tagging completed for 45 files in "Production Workspace".</p>
+</div>
+</div>
+</div>
+<!-- Activity Item 5 -->
+<div class="relative flex gap-6 items-start mt-10 group">
+<div class="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-error-container text-error">
+<span class="material-symbols-outlined text-[20px]" data-icon="flag">flag</span>
+</div>
+<div class="flex-1 pt-1">
+<div class="flex justify-between items-start mb-2">
+<p class="text-on-surface font-semibold">
+<span class="text-primary hover:underline cursor-pointer">Marcus Thorne</span> 
+                                            flagged <span class="font-bold text-error">Critical Delay</span>
+</p>
+<span class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">1:12 PM</span>
+</div>
+<p class="text-sm text-on-surface-variant">Vendor approval pending for Site Phase A. Re-assigned to Sarah for follow-up.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Contextual Sidebar / Stats -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Insights Card -->
+<div class="bg-gradient-to-br from-primary to-primary-container rounded-xl p-8 text-white shadow-xl shadow-primary/10">
+<h4 class="text-sm font-bold uppercase tracking-widest opacity-80 mb-6">Weekly Pulse</h4>
+<div class="space-y-6">
+<div>
+<p class="text-4xl font-extrabold">142</p>
+<p class="text-xs font-medium opacity-70 mt-1 uppercase tracking-tight">Total Activities</p>
+</div>
+<div class="h-[2px] bg-white/20 w-full"></div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-xl font-bold">24</p>
+<p class="text-[10px] opacity-70 uppercase">Tasks Created</p>
+</div>
+<div>
+<p class="text-xl font-bold">89</p>
+<p class="text-[10px] opacity-70 uppercase">Files Curated</p>
+</div>
+<div>
+<p class="text-xl font-bold">2.4h</p>
+<p class="text-[10px] opacity-70 uppercase">Avg Response</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Team Status List (No Borders) -->
+<div class="bg-surface-container-high/40 rounded-xl p-6">
+<h4 class="text-xs font-bold text-on-surface uppercase tracking-widest mb-6 px-2">Live Collaborators</h4>
+<div class="space-y-2">
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img class="w-8 h-8 rounded-full bg-secondary-container" data-alt="portrait of an elegant professional in a creative studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPyPJFqD1IdEAyUr7fj2bCBG4vhlRJvuKir1lh3xSQ8piy4rfbkC36DyL9jTAmXIplcxruBrPuhG1RA0nYWd3nrJSkb1rebdVJ5MHztYm4jEw9dCyMCEak4T3o4jB5nq5xmYwoVfnZeKLYX-7eDVkJtNPtggDGVbBuk74ywm554z1j1O9RcWxFsBky0gfWtXNDTPZ81eMLXMZWK_tjq9lpYVXlrio4Jevc7HL-9ek2bo4mfEfLgL2sXEVY49Oa52uUElNRXj2mW4w"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-surface rounded-full"></span>
+</div>
+<span class="text-sm font-semibold text-on-surface">Marcus Thorne</span>
+</div>
+<span class="text-[10px] text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">Curating</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img class="w-8 h-8 rounded-full bg-primary-fixed" data-alt="close-up of a creative designer working in a bright modern office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0Dw3bQvsTdybFK29tpwLLkK7F2MF79bImMjsQdsq4TpbhE_JtK7uMgCrJ2QcLZyY6keVzPQvU9TyVbJrWN7W9X82iHuNQwFQd4o6TciBD_rWuW9W_NbPjbWB_ZmRj-5wk-m5067O94WM0fpy2BQkiejVM6_3hfadC_4wWTdt9SFRLmiZO_8BXSGCFbP6zxaTLGoigzQp2TE0mU0rDWI6i_2zY2S78lRHwydM4q4nGYjJNaisNBphxXXGP9vriKxLJBWdbs_arZCE"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-surface rounded-full"></span>
+</div>
+<span class="text-sm font-semibold text-on-surface">Sarah Jenkins</span>
+</div>
+<span class="text-[10px] text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">Writing</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img class="w-8 h-8 rounded-full bg-tertiary-fixed" data-alt="professional woman in a stylish workspace with soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYM8SpQO0nV3930UW59uOzaEzsQ5Wg7i1FxondpEwsV3PoUBXxEqkk-t2_c6HAWDayXR2ie70m1Nz71Jxqm80IqHyGvqd2WeIZcprDMzUf6gskszLTgg_qcfyQjX-dDpcGWD53_eYadU-bIXsxXbyOayyyW8hYF5U4OyuUjTtuJygyW86OTb4WP7uRy8r209dPfN1xQZ0sih_oEVuUYqrQ85SaGTkETLwEG1drsY1WtV7aMo9onGTCdYA4QWgOhuNIMjfkOYF2QvY"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-slate-300 border-2 border-surface rounded-full"></span>
+</div>
+<span class="text-sm font-semibold text-on-surface opacity-60">Elena Rossi</span>
+</div>
+<span class="text-[10px] text-slate-400">Away</span>
+</div>
+</div>
+</div>
+<!-- Filter / Filter Actions -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/10">
+<h4 class="text-xs font-bold text-on-surface uppercase tracking-widest mb-4">Filters</h4>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 bg-primary text-white rounded-full text-xs font-semibold">Everything</button>
+<button class="px-3 py-1.5 bg-surface-container text-on-surface-variant rounded-full text-xs font-medium hover:bg-surface-container-high">Tasks</button>
+<button class="px-3 py-1.5 bg-surface-container text-on-surface-variant rounded-full text-xs font-medium hover:bg-surface-container-high">Assets</button>
+<button class="px-3 py-1.5 bg-surface-container text-on-surface-variant rounded-full text-xs font-medium hover:bg-surface-container-high">Mentions</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

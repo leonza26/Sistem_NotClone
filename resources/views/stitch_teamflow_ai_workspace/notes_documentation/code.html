@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Architectural Curator | Notes &amp; Docs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#dee3e4",
+                    "inverse-on-surface": "#edf2f3",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#ff9035",
+                    "outline-variant": "#c0c8cb",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#051f25",
+                    "surface-container-low": "#eff4f5",
+                    "primary": "#316574",
+                    "surface-dim": "#d6dbdc",
+                    "surface-container-high": "#e4e9ea",
+                    "outline": "#70787b",
+                    "inverse-surface": "#2c3132",
+                    "surface": "#f5fafb",
+                    "inverse-primary": "#9bcee0",
+                    "surface-container": "#eaeff0",
+                    "on-secondary-fixed-variant": "#334a51",
+                    "on-primary-fixed-variant": "#134d5c",
+                    "on-primary-fixed": "#001f27",
+                    "tertiary-fixed-dim": "#ffb785",
+                    "background": "#f5fafb",
+                    "on-surface-variant": "#40484b",
+                    "on-tertiary-fixed": "#301400",
+                    "on-background": "#171d1e",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#084755",
+                    "on-tertiary-fixed-variant": "#713700",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#316574",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#4b6269",
+                    "secondary-fixed": "#cee7ef",
+                    "tertiary-fixed": "#ffdcc6",
+                    "primary-fixed": "#b7ebfd",
+                    "secondary-container": "#cbe4ec",
+                    "tertiary": "#954a00",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#4f666e",
+                    "primary-fixed-dim": "#9bcee0",
+                    "secondary-fixed-dim": "#b2cbd3",
+                    "primary-container": "#81b4c5",
+                    "surface-container-highest": "#dee3e4",
+                    "surface-bright": "#f5fafb",
+                    "on-surface": "#171d1e",
+                    "on-tertiary-container": "#683200"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface overflow-hidden">
+<!-- Global SideNavBar -->
+<nav class="bg-slate-50 dark:bg-slate-900 h-screen w-64 fixed left-0 top-0 border-r-0 flex flex-col py-6 px-4 z-50">
+<div class="mb-10 px-2">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm">architecture</span>
+</div>
+<div>
+<h1 class="text-lg font-bold tracking-tight text-teal-900 dark:text-teal-100">Architectural Curator</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Production Workspace</p>
+</div>
+</div>
+</div>
+<div class="space-y-1 flex-grow">
+<!-- Navigation Items Mapping -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">folder_copy</span>
+<span class="text-sm">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="text-sm">Tasks</span>
+</a>
+<!-- Active Tab: Notes & Docs -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-teal-800 dark:text-teal-300 font-semibold border-r-2 border-teal-600 dark:border-teal-400 bg-slate-200/30 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-sm">Notes &amp; Docs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">pulse_alert</span>
+<span class="text-sm">Activity</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="text-sm">AI Assistant</span>
+</a>
+</div>
+<div class="mt-auto space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="text-sm">Support</span>
+</a>
+</div>
+</nav>
+<!-- Global TopNavBar -->
+<header class="bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl flex justify-between items-center h-16 w-[calc(100%-16rem)] ml-64 px-8 sticky top-0 z-40">
+<div class="flex items-center gap-6 flex-grow">
+<div class="flex items-center gap-2 text-on-surface-variant text-sm font-medium">
+<span>Workspaces</span>
+<span class="w-[2px] h-[2px] rounded-full bg-primary-fixed"></span>
+<span class="text-teal-700 dark:text-teal-400 font-bold">Recent</span>
+<span class="w-[2px] h-[2px] rounded-full bg-primary-fixed"></span>
+<span>Templates</span>
+</div>
+<div class="relative w-full max-w-md ml-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary/50 transition-all" placeholder="Search workspace..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-5">
+<button class="text-slate-600 hover:text-teal-600 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-600 hover:text-teal-600 transition-colors">
+<span class="material-symbols-outlined">history</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden cursor-pointer ring-2 ring-transparent hover:ring-primary/30 transition-all">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="professional portrait of a creative director in a minimalist studio setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuCjnqa80LA0EW4SLO7i4hfxjnJF0I8N1Y6rMpO3FX3f5aOXFi8gtGDKqcvw0hYnHv5tgucqGR7Bfdd6drH4QFKolwRNBcVrryjrZ8pwT35GWKXxz-IcgVohRqbRPAilPVG_geUqsczvswENaL_oKwtJSHlwdjXM228M10hZAhGrCiy4X2JaRIpUWD07mtpK1dXbdXH7XZM54Na-8ZY6DeVluHwBPyICDeHVd-MsXoy0EsF7xS-C_j--GwA97-0WKQ_7HccVFsLng"/>
+</div>
+</div>
+</header>
+<main class="ml-64 flex h-[calc(100vh-4rem)]">
+<!-- Left Inner Sidebar (Notes Navigation) -->
+<aside class="w-72 bg-surface-container-low flex flex-col p-6 overflow-y-auto">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Private Docs</h3>
+<button class="w-6 h-6 rounded flex items-center justify-center hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-semibold text-sm cursor-pointer shadow-sm">
+<span class="material-symbols-outlined text-sm">description</span>
+<span>Getting Started</span>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant text-sm cursor-pointer group">
+<span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">folder</span>
+<span>Design Assets</span>
+<span class="material-symbols-outlined text-xs ml-auto text-slate-300">chevron_right</span>
+</div>
+<div class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant text-sm cursor-pointer group">
+<span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">folder</span>
+<span>Meeting Notes</span>
+<span class="material-symbols-outlined text-xs ml-auto text-slate-300">chevron_right</span>
+</div>
+<div class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant text-sm cursor-pointer group">
+<span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">description</span>
+<span>Project Roadmap</span>
+</div>
+<div class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant text-sm cursor-pointer group">
+<span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">description</span>
+<span>Brand Guidelines</span>
+</div>
+</div>
+<div class="pt-6">
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Shared</h3>
+<div class="space-y-1">
+<div class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant text-sm cursor-pointer group">
+<span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary" style="font-variation-settings: 'FILL' 1;">group</span>
+<span>Team Handbook</span>
+</div>
+<div class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant text-sm cursor-pointer group">
+<span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">description</span>
+<span>Client Onboarding</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-6">
+<div class="bg-primary/5 rounded-xl p-4">
+<p class="text-xs text-primary font-semibold mb-1">Workspace Storage</p>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-2">6.5 GB of 10 GB used</p>
+</div>
+</div>
+</aside>
+<!-- Main Editor Area -->
+<section class="flex-grow bg-surface-container-lowest overflow-y-auto relative">
+<!-- Floating Editor Toolbar (Glassmorphism) -->
+<div class="sticky top-0 w-full glass-nav bg-white/60 px-12 py-3 flex items-center justify-between z-10">
+<div class="flex items-center gap-4 text-slate-400">
+<button class="hover:text-primary transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">format_bold</span>
+</button>
+<button class="hover:text-primary transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">format_italic</span>
+</button>
+<button class="hover:text-primary transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">format_list_bulleted</span>
+</button>
+<button class="hover:text-primary transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">link</span>
+</button>
+<div class="w-px h-4 bg-surface-container-high mx-2"></div>
+<button class="hover:text-primary transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">image</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs text-slate-400">Saved 2m ago</span>
+<button class="text-xs font-bold uppercase tracking-widest text-primary px-3 py-1.5 hover:bg-primary/10 rounded-lg transition-colors">Share</button>
+</div>
+</div>
+<!-- Content Canvas -->
+<div class="max-w-3xl mx-auto py-16 px-12 animate-in fade-in duration-700">
+<!-- Page Cover Image -->
+<div class="w-full h-48 rounded-2xl mb-12 overflow-hidden">
+<img alt="Modern Workspace" class="w-full h-full object-cover" data-alt="high-angle shot of a minimalist architecture office with large windows, warm wooden furniture, and clean concrete walls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfyIxdnGPYuGT2mMrtr5pxVDNIgYKaY9mzL37VU_8tWzIBxCSl5o1P9yzrBN5Q8tfg8fl2F-qmkehjp8HolRTVPR5VJXdAcp_ZP2l6NfNNeETNQnOf-775un_ogJpdg7oInLdqN75er3wietQXu7J6HekRy48bxwe4hHWZVqn5y39SUfdUt7YJAjtyJMSKh2AGjw-TFFU837zBlC66e8Ve9zWn8Y8JnIThFZHzSnlYz_AynO0bwAbpheQYCUkEQMKdqLD6siQGUzk"/>
+</div>
+<div class="space-y-8">
+<header>
+<h1 class="text-5xl font-extrabold tracking-tight text-on-surface mb-4">Getting Started</h1>
+<p class="text-lg text-on-surface-variant font-medium leading-relaxed">Welcome to the Architectural Curator workspace. This document will help you navigate your new curated environment.</p>
+</header>
+<div class="prose prose-slate max-w-none">
+<h2 class="text-2xl font-bold text-on-surface mt-10 mb-4 border-l-4 border-primary pl-4">Core Principles</h2>
+<p class="text-on-surface-variant leading-relaxed mb-4">
+                            Our workspace is built on the philosophy of **Mental Clarity**. We believe that information should be displayed with editorial precision, avoiding the clutter of traditional task managers.
+                        </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+<div class="p-6 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-primary mb-3" style="font-variation-settings: 'FILL' 1;">architecture</span>
+<h4 class="font-bold text-on-surface mb-2">Architectural Integrity</h4>
+<p class="text-sm text-on-surface-variant">Focus on the structural hierarchy of your data. Use nesting and tonal layers to define importance.</p>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-primary mb-3" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h4 class="font-bold text-on-surface mb-2">AI-Driven Insights</h4>
+<p class="text-sm text-on-surface-variant">Our AI assistant curates your notes into actionable summaries and project timelines automatically.</p>
+</div>
+</div>
+<h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Initial Tasks</h2>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<button class="mt-1 w-5 h-5 rounded border border-outline-variant flex items-center justify-center hover:bg-primary-container/20">
+<span class="material-symbols-outlined text-[14px] text-transparent">check</span>
+</button>
+<span class="text-on-surface-variant">Connect your cloud storage in **Settings &gt; Integrations**</span>
+</li>
+<li class="flex items-start gap-3">
+<button class="mt-1 w-5 h-5 rounded border-2 border-primary bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-white">check</span>
+</button>
+<span class="text-on-surface-variant line-through opacity-50">Create your first project workspace</span>
+</li>
+<li class="flex items-start gap-3">
+<button class="mt-1 w-5 h-5 rounded border border-outline-variant flex items-center justify-center hover:bg-primary-container/20">
+<span class="material-symbols-outlined text-[14px] text-transparent">check</span>
+</button>
+<span class="text-on-surface-variant">Invite your team members via the top breadcrumb link</span>
+</li>
+</ul>
+<div class="mt-12 p-8 bg-surface text-on-surface-variant rounded-2xl border-l-4 border-tertiary-container relative overflow-hidden">
+<div class="relative z-10">
+<p class="italic text-lg font-medium">"Architecture is the learned game, correct and magnificent, of forms assembled in the light."</p>
+<p class="text-xs uppercase tracking-widest mt-4 font-bold">— Le Corbusier</p>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5">
+<span class="material-symbols-outlined text-9xl">format_quote</span>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mt-12 mb-4">Documentation Standards</h3>
+<p class="text-on-surface-variant leading-relaxed mb-6">
+                            When writing documentation for the curated workspace, adhere to our brand's typography scale:
+                        </p>
+<div class="space-y-2 text-sm">
+<div class="flex items-center justify-between py-2 border-b border-surface-container-high">
+<span class="font-bold text-on-surface">Page Titles</span>
+<span class="text-on-surface-variant">Manrope, 2.75rem (display-md)</span>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-surface-container-high">
+<span class="font-bold text-on-surface">Section Headers</span>
+<span class="text-on-surface-variant">Inter, 1.375rem (title-lg)</span>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-surface-container-high">
+<span class="font-bold text-on-surface">Body Text</span>
+<span class="text-on-surface-variant">Inter, 0.875rem (body-md)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Page Footer -->
+<footer class="mt-20 pt-8 border-t border-surface-container-high flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="flex -space-x-2">
+<img alt="Collaborator" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest" data-alt="close-up portrait of a woman smiling with soft natural lighting and blurred greenery in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHjWX3t4_2KixBPLUOfRlKipO7SKSg51Cqu1WpXRbxbp3E2O9RY40eyV_-kwVBVpxIrhZIl9xqM_w7vjr4bIlsZ60lB1k2xWH9IsZ-5LBKxq07tUgGX0yt-x2C-n26Ydo93fvkarXemUmLQG2tKUaxNqmQzwMHuy7yCb_0IQoe2EUgP27tZxuNxICjkL7JfGFc4Vaxu3eGBfTfxNlf5KwuUxpmLN4tGZYdNGFFf2G9gVrFFcVZ4MOFHdSfc2kxcxlWfRsF3Q0-QkA"/>
+<img alt="Collaborator" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest" data-alt="headshot of a man with glasses looking at the camera in a modern office interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAFQKgxabVm0q85UuFXPbAKQ5ezVYosqpNM28V-NpG_r9akb7L34pwhfvOw_Oirxj44wrK5cMDx0eFKgoXL90F6pFIyBnoUaZ_A_z5Oqx6JB1MFxwvcwf9VeK7b_fMCGIvPZbSvpO1_S7-WRD0rB7sWNXHexCb3xFD-0VXuOMxwL-VN2TMVXRfJb4YQVQmex3fD4jDdVdDOxGdJIoPsuuhSuApCKAsUptk4hUTOKq2jb_-563s79X8kj_pE6g2WOKAwGK_bByfwpU"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-primary-fixed flex items-center justify-center text-[10px] font-bold text-on-primary-fixed">+4</div>
+</div>
+<span class="text-xs text-on-surface-variant">Last edited by **Sarah Chen** today at 2:45 PM</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container-low rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-sm">more_horiz</span>
+</button>
+</div>
+</footer>
+</div>
+</section>
+<!-- Right Side Context Panel (Asymmetric Editorial Element) -->
+<aside class="w-16 bg-surface-container-lowest border-l border-surface-container-low flex flex-col items-center py-6 gap-6">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-white shadow-lg hover:scale-105 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+<div class="w-8 h-[1px] bg-surface-container-high"></div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">star</span>
+</button>
+</aside>
+</main>
+</body></html>
