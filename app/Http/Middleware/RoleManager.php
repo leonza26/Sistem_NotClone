@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
+
+class RoleManager
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  Closure(Request): (Response)  $next
+     */
+    public function handle(Request $request, Closure $next, $role): Response
+    {
+
+        // mengecek apakaha tidak ada  autentikasi
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+
+        // menegcek apakah ada autentikasi login berdasarkana role
+        $authUserRole = Auth::user()->role;
+
+        switch ($role) {
+            case 'admin';
+                if ($authUserRole == 0) {
+                    return $next($request);
+                }
+                break;
+
+            case 'owner';
+                if ($authUserRole == 1) {
+                    return $next($request);
+                }
+                break;
+
+            case 'member';
+                if ($authUserRole == 2) {
+                    return $next($request);
+                }
+                break;
+        }
+
+
+        // mengarahkan role ke halaman route
+        switch ($authUserRole) {
+            case 0;
+                return redirect()->route('admin');
+
+            case 1;
+                return redirect()->route('owner');
+
+            case 2;
+                return redirect()->route('member');
+        }
+    }
+}
