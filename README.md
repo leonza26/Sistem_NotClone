@@ -1,62 +1,144 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚀 Flowral — Private AI Project Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Flowral adalah platform **project management & knowledge system berbasis AI** yang dirancang untuk tim kecil, startup, dan developer yang ingin memiliki sistem kerja **private, fleksibel, dan scalable** tanpa bergantung pada tools berbayar seperti Notion.
 
-## About Laravel
+> Built with ❤️ using Laravel 12, TailwindCSS, AlpineJS, and AI Integration
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🗂️ Workspace Management
 
-## Learning Laravel
+* Multi-workspace support
+* Invite & manage team members
+* Role-based access (Owner, Admin, Member)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 📁 Project & Task Management
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* Create and manage projects
+* Kanban board (Todo, In Progress, Done)
+* Assign tasks to team members
+* Due date & status tracking
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### 📝 Notes & Documentation
 
-## Agentic Development
+* Rich text editor (Notion-like)
+* Organized documentation per workspace
+* Centralized knowledge system
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 👥 Collaboration
+
+* Comment system on tasks & notes
+* Activity tracking
+* Team productivity visibility
+
+### 🤖 AI Assistant (Coming Soon)
+
+* Generate tasks from ideas
+* Auto summarize notes
+* Smart workflow suggestions
+
+---
+
+## 🧱 Tech Stack
+
+* **Backend**: Laravel 12
+* **Frontend**: TailwindCSS + AlpineJS
+* **Database**: MySQL / PostgreSQL
+* **AI Integration**: OpenAI / Google Gemini
+* **Deployment**: Docker (planned)
+
+---
+
+## 📸 Preview
+
+> UI powered by Google Stitch & refined with AI
+
+* Dashboard overview
+* Task Kanban board
+* Notes & documentation system
+* AI Assistant interface
+
+---
+
+## 🧠 Vision
+
+Flowral dibuat untuk menjadi:
+
+> **"A seamless flow of work, ideas, and collaboration in one intelligent system."**
+
+Tidak hanya sebagai clone Notion, tetapi sebagai:
+
+* Sistem kerja internal tim
+* Knowledge base terpusat
+* AI-powered productivity tools
+
+---
+
+## ⚙️ Installation
 
 ```bash
-composer require laravel/boost --dev
+git clone https://github.com/your-repo/flowral.git
 
-php artisan boost:install
+cd flowral
+
+composer install
+
+cp .env.example .env
+
+php artisan key:generate
+
+php artisan migrate
+
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## 📁 Project Structure
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+app/
+ ├── Modules/
+ │    ├── Auth/
+ │    ├── Workspace/
+ │    ├── Project/
+ │    ├── Task/
+ │    ├── Note/
+ │    ├── AI/
+ │    └── Activity/
+```
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🛣️ Roadmap
 
-## Security Vulnerabilities
+* [x] UI Design (Google Stitch)
+* [ ] Core Backend (Workspace, Project, Task)
+* [ ] Collaboration System
+* [ ] Notes & Documentation
+* [ ] AI Integration
+* [ ] Deployment (Docker + Cloud)
+* [ ] Mobile Friendly UI
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🤝 Contributing
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Saat ini project masih dalam tahap pengembangan internal.
+Kontribusi akan dibuka setelah versi stabil pertama dirilis.
 
-## Project Clone Notion
+---
 
-Sistem Notion clone akan dibuat pada project ini, nantinya setiap task, activity di handel di aplikasi ini dan tidak membutuhkan notion berbayar
+## 📄 License
+
+This project is open-sourced under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+Developed by **Leon**
+
+> Building scalable systems with AI & modern web technologies 🚀
