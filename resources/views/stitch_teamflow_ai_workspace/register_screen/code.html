@@ -1,253 +1,309 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Register | Lumina Workspace</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "inverse-on-surface": "#edf2f3",
-                    "tertiary-fixed": "#ffdcc6",
-                    "surface-container": "#eaeff0",
-                    "on-surface-variant": "#40484b",
-                    "primary-fixed": "#b7ebfd",
-                    "on-primary-container": "#084755",
-                    "secondary-fixed": "#cee7ef",
-                    "surface-bright": "#f5fafb",
-                    "surface-dim": "#d6dbdc",
-                    "secondary": "#4b6269",
-                    "surface-container-lowest": "#ffffff",
-                    "tertiary": "#954a00",
-                    "on-primary-fixed-variant": "#134d5c",
-                    "inverse-primary": "#9bcee0",
-                    "on-tertiary-fixed": "#301400",
-                    "on-primary": "#ffffff",
-                    "surface-variant": "#dee3e4",
-                    "surface-container-low": "#eff4f5",
-                    "surface-tint": "#316574",
-                    "on-tertiary-container": "#683200",
-                    "primary-container": "#81b4c5",
-                    "on-secondary-fixed-variant": "#334a51",
-                    "outline-variant": "#c0c8cb",
-                    "on-background": "#171d1e",
-                    "tertiary-container": "#ff9035",
-                    "on-secondary-container": "#4f666e",
-                    "on-error-container": "#93000a",
-                    "on-tertiary-fixed-variant": "#713700",
-                    "surface": "#f5fafb",
-                    "on-secondary": "#ffffff",
-                    "surface-container-high": "#e4e9ea",
-                    "on-primary-fixed": "#001f27",
-                    "on-error": "#ffffff",
-                    "error": "#ba1a1a",
-                    "inverse-surface": "#2c3132",
-                    "background": "#f5fafb",
-                    "secondary-container": "#cbe4ec",
-                    "outline": "#70787b",
-                    "primary-fixed-dim": "#9bcee0",
-                    "primary": "#316574",
-                    "error-container": "#ffdad6",
-                    "on-surface": "#171d1e",
-                    "on-secondary-fixed": "#051f25",
-                    "surface-container-highest": "#dee3e4",
-                    "tertiary-fixed-dim": "#ffb785",
-                    "on-tertiary": "#ffffff",
-                    "secondary-fixed-dim": "#b2cbd3"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "fontFamily": {
-                    "headline": ["Manrope"],
-                    "body": ["Inter"],
-                    "label": ["Inter"]
-            }
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Register | Lumina Workspace</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Material Symbols -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-on-surface": "#edf2f3",
+            "tertiary-fixed": "#ffdcc6",
+            "surface-container": "#eaeff0",
+            "on-surface-variant": "#40484b",
+            "primary-fixed": "#b7ebfd",
+            "on-primary-container": "#084755",
+            "secondary-fixed": "#cee7ef",
+            "surface-bright": "#f5fafb",
+            "surface-dim": "#d6dbdc",
+            "secondary": "#4b6269",
+            "surface-container-lowest": "#ffffff",
+            "tertiary": "#954a00",
+            "on-primary-fixed-variant": "#134d5c",
+            "inverse-primary": "#9bcee0",
+            "on-tertiary-fixed": "#301400",
+            "on-primary": "#ffffff",
+            "surface-variant": "#dee3e4",
+            "surface-container-low": "#eff4f5",
+            "surface-tint": "#316574",
+            "on-tertiary-container": "#683200",
+            "primary-container": "#81b4c5",
+            "on-secondary-fixed-variant": "#334a51",
+            "outline-variant": "#c0c8cb",
+            "on-background": "#171d1e",
+            "tertiary-container": "#ff9035",
+            "on-secondary-container": "#4f666e",
+            "on-error-container": "#93000a",
+            "on-tertiary-fixed-variant": "#713700",
+            "surface": "#f5fafb",
+            "on-secondary": "#ffffff",
+            "surface-container-high": "#e4e9ea",
+            "on-primary-fixed": "#001f27",
+            "on-error": "#ffffff",
+            "error": "#ba1a1a",
+            "inverse-surface": "#2c3132",
+            "background": "#f5fafb",
+            "secondary-container": "#cbe4ec",
+            "outline": "#70787b",
+            "primary-fixed-dim": "#9bcee0",
+            "primary": "#316574",
+            "error-container": "#ffdad6",
+            "on-surface": "#171d1e",
+            "on-secondary-fixed": "#051f25",
+            "surface-container-highest": "#dee3e4",
+            "tertiary-fixed-dim": "#ffb785",
+            "on-tertiary": "#ffffff",
+            "secondary-fixed-dim": "#b2cbd3"
           },
-        }
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          }
+        },
       }
-    </script>
-<style>
-      .material-symbols-outlined {
-        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        display: inline-block;
-        vertical-align: middle;
-      }
-      .editorial-gradient {
-        background: linear-gradient(135deg, #316574 0%, #81b4c5 100%);
-      }
-      .glass-panel {
-        background: rgba(245, 250, 251, 0.7);
-        backdrop-filter: blur(12px);
-      }
-    </style>
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .editorial-gradient {
+      background: linear-gradient(135deg, #316574 0%, #81b4c5 100%);
+    }
+
+    .glass-panel {
+      background: rgba(245, 250, 251, 0.7);
+      backdrop-filter: blur(12px);
+    }
+  </style>
 </head>
+
 <body class="bg-surface font-body text-on-surface min-h-screen flex flex-col">
-<!-- Top Navigation Anchor (Manual suppression check: Login/Register usually has minimal nav) -->
-<header class="w-full top-0 left-0 z-50 bg-[#f5fafb] flex justify-between items-center px-8 md:px-12 py-6 max-w-[1440px] mx-auto">
-<div class="text-2xl font-bold text-[#316574] tracking-tighter font-headline">
-            Architectur
+  <!-- Top Navigation Anchor (Manual suppression check: Login/Register usually has minimal nav) -->
+  <header
+    class="w-full top-0 left-0 z-50 bg-[#f5fafb] flex justify-between items-center px-8 md:px-12 py-6 max-w-[1440px] mx-auto">
+    <div class="text-2xl font-bold text-[#316574] tracking-tighter font-headline">
+      Architectur
+    </div>
+    <div class="flex items-center gap-4">
+      <span class="text-slate-500 font-medium hidden md:block">Already have an account?</span>
+      <a class="text-[#316574] font-bold border-b-2 border-[#316574] transition-all hover:opacity-80 active:opacity-60"
+        href="#">Log In</a>
+    </div>
+  </header>
+  <main class="flex-grow flex items-center justify-center p-4 md:p-8">
+    <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <!-- Branding & Testimonial Column (The Editorial Side) -->
+      <div class="lg:col-span-5 flex flex-col justify-center space-y-10 pr-0 lg:pr-12">
+        <div class="space-y-4">
+          <h1 class="font-headline text-4xl md:text-5xl font-extrabold tracking-tight text-primary leading-tight">
+            Design your <br />workflow with <br /><span class="text-tertiary-container">Architectur.</span>
+          </h1>
+          <p class="text-on-surface-variant text-lg max-w-md">
+            The world’s first editorial-grade workspace designed for clarity, focus, and architectural precision.
+          </p>
         </div>
-<div class="flex items-center gap-4">
-<span class="text-slate-500 font-medium hidden md:block">Already have an account?</span>
-<a class="text-[#316574] font-bold border-b-2 border-[#316574] transition-all hover:opacity-80 active:opacity-60" href="#">Log In</a>
-</div>
-</header>
-<main class="flex-grow flex items-center justify-center p-4 md:p-8">
-<div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-<!-- Branding & Testimonial Column (The Editorial Side) -->
-<div class="lg:col-span-5 flex flex-col justify-center space-y-10 pr-0 lg:pr-12">
-<div class="space-y-4">
-<h1 class="font-headline text-4xl md:text-5xl font-extrabold tracking-tight text-primary leading-tight">
-                        Design your <br/>workflow with <br/><span class="text-tertiary-container">Architectur.</span>
-</h1>
-<p class="text-on-surface-variant text-lg max-w-md">
-                        The world’s first editorial-grade workspace designed for clarity, focus, and architectural precision.
-                    </p>
-</div>
-<!-- Feature Points (Asymmetric Layout) -->
-<div class="space-y-6">
-<div class="flex items-start gap-4 p-4 rounded-xl surface-container-low transition-all hover:bg-surface-container">
-<div class="w-12 h-12 rounded-lg editorial-gradient flex items-center justify-center text-white shrink-0">
-<span class="material-symbols-outlined" data-icon="task_alt">task_alt</span>
-</div>
-<div>
-<h3 class="font-headline font-bold text-primary">Tasks</h3>
-<p class="text-sm text-on-surface-variant">Prioritize with intentional negative space and hierarchy.</p>
-</div>
-</div>
-<div class="flex items-start gap-4 p-4 rounded-xl surface-container-low ml-4 lg:ml-8 transition-all hover:bg-surface-container">
-<div class="w-12 h-12 rounded-lg bg-tertiary-container flex items-center justify-center text-white shrink-0">
-<span class="material-symbols-outlined" data-icon="description">description</span>
-</div>
-<div>
-<h3 class="font-headline font-bold text-primary">Docs</h3>
-<p class="text-sm text-on-surface-variant">Editorial layouts that make reading and writing a pleasure.</p>
-</div>
-</div>
-<div class="flex items-start gap-4 p-4 rounded-xl surface-container-low transition-all hover:bg-surface-container">
-<div class="w-12 h-12 rounded-lg editorial-gradient flex items-center justify-center text-white shrink-0">
-<span class="material-symbols-outlined" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
-</div>
-<div>
-<h3 class="font-headline font-bold text-primary">AI</h3>
-<p class="text-sm text-on-surface-variant">Intelligent curation that organizes your thoughts instantly.</p>
-</div>
-</div>
-</div>
-<!-- Social Proof / Testimonial -->
-<div class="pt-6">
-<div class="glass-panel p-6 rounded-2xl border border-white/40 shadow-sm italic text-on-surface-variant relative">
-<span class="material-symbols-outlined absolute -top-4 -left-2 text-primary/20 text-5xl select-none" data-icon="format_quote">format_quote</span>
-                        "Architectur changed how our studio manages projects. It's not just a tool; it's a digital sanctuary for our ideas."
-                        <div class="mt-4 not-italic flex items-center gap-3">
-<img alt="" class="w-8 h-8 rounded-full" data-alt="close-up portrait of a professional woman with a warm smile in a brightly lit office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvJLK7-ZIuO56tDHbuVWvuUN7xFawJb3vh8WO-P8QE0rHGBK5M44MiNwylYB5iTLUDoHIoBRHbwlSSZvIdA5MIdE5zd_lCADKCZlD2vE2qsZsGe-fkjalvDkvgwQ2aKVwBpRXUs49T9yjQXguXDSIyYiIg3ru-VtAB7h19NQgrKBzO7eDSgA8VKU5axZMSAVRy5LSw14wjxD2PGGSZoMhChU-aaE2AnVoBitu1GTKj8t8LE5qSWdvI-0u4EgLeLaLx3jITqbQUghE"/>
-<span class="text-sm font-bold text-primary">Elena Rossi, Creative Director</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Registration Form Column -->
-<div class="lg:col-span-7 flex items-center">
-<div class="bg-surface-container-lowest p-8 md:p-12 rounded-[2rem] w-full shadow-[0_20px_40px_-10px_rgba(40,43,42,0.06)] border border-outline-variant/10">
-<div class="mb-10">
-<h2 class="font-headline text-3xl font-bold text-primary">Create Account</h2>
-<p class="text-on-surface-variant mt-2">Join 10,000+ curators building the future.</p>
-</div>
-<form class="space-y-6">
-<!-- Full Name -->
-<div class="space-y-2">
-<label class="block text-xs font-bold uppercase tracking-widest text-primary font-label" for="name">Full Name</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="person">person</span>
-<input class="w-full pl-12 pr-4 py-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/50 transition-all text-on-surface placeholder:text-outline" id="name" name="name" placeholder="Johnathan Doe" type="text"/>
-</div>
-</div>
-<!-- Work Email -->
-<div class="space-y-2">
-<label class="block text-xs font-bold uppercase tracking-widest text-primary font-label" for="email">Work Email</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="mail">mail</span>
-<input class="w-full pl-12 pr-4 py-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/50 transition-all text-on-surface placeholder:text-outline" id="email" name="email" placeholder="john@company.com" type="email"/>
-</div>
-</div>
-<!-- Password -->
-<div class="space-y-2">
-<label class="block text-xs font-bold uppercase tracking-widest text-primary font-label" for="password">Password</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="lock">lock</span>
-<input class="w-full pl-12 pr-12 py-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/50 transition-all text-on-surface placeholder:text-outline" id="password" name="password" placeholder="••••••••" type="password"/>
-<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" type="button">
-<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
-</button>
-</div>
-<p class="text-[10px] text-outline-variant italic">Must be at least 12 characters with one symbol.</p>
-</div>
-<!-- Terms & Conditions -->
-<div class="flex items-start gap-3 py-2">
-<div class="flex items-center h-5">
-<input class="h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary" id="terms" name="terms" type="checkbox"/>
-</div>
-<div class="text-sm">
-<label class="text-on-surface-variant leading-relaxed" for="terms">
-                                    I agree to the <a class="text-primary font-bold hover:underline" href="#">Terms of Service</a> and <a class="text-primary font-bold hover:underline" href="#">Privacy Policy</a>.
-                                </label>
-</div>
-</div>
-<!-- Submit Button -->
-<button class="w-full editorial-gradient text-on-primary font-headline font-bold py-4 rounded-xl shadow-lg hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-2 group" type="submit">
-                            Create Account
-                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
-</button>
-<!-- Alternative Sign Ups -->
-<div class="relative py-4">
-<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline-variant/30"></div></div>
-<div class="relative flex justify-center text-xs uppercase"><span class="bg-surface-container-lowest px-4 text-outline font-label tracking-widest">Or sign up with</span></div>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<button class="flex items-center justify-center gap-2 py-3 px-4 bg-surface-container-low rounded-xl font-bold text-sm text-primary hover:bg-surface-container transition-colors" type="button">
-<img alt="" class="w-5 h-5" data-alt="google logo icon for social login integration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNaB05Rp5nohBW5w9FUBppkp-QnL_VFYETM19jiluJEpvxG6ciXYopZkbuRrUlk3WZwOSXFwWnrtC_tj8JuJ8rxKU3YRqKLjISIdhSoEaoih3dB-eMaTmjT7ARpKt4kxB5jI8FCu5xZA8q8qEde9YDYLCgse1Me3Eg_PS-i1ZoW1fUTie1bMXK9sCMn8A_RjTRLBrj8FSnp8AEKdk_y1Z77ZrjTrvjehYC7Jz7EHgBxiBTXozZ1dwOruy97iTqOz-uuZU1_R_XtQg"/>
-                                Google
-                            </button>
-<button class="flex items-center justify-center gap-2 py-3 px-4 bg-surface-container-low rounded-xl font-bold text-sm text-primary hover:bg-surface-container transition-colors" type="button">
-<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
-                                GitHub
-                            </button>
-</div>
-</form>
-</div>
-</div>
-</div>
-</main>
-<!-- Footer Anchor -->
-<footer class="w-full bg-[#f5fafb] border-t border-slate-200 dark:border-slate-800">
-<div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 w-full max-w-[1440px] mx-auto">
-<div class="font-manrope font-bold text-[#316574] mb-4 md:mb-0">
-                Architectur Curator
+        <!-- Feature Points (Asymmetric Layout) -->
+        <div class="space-y-6">
+          <div
+            class="flex items-start gap-4 p-4 rounded-xl surface-container-low transition-all hover:bg-surface-container">
+            <div class="w-12 h-12 rounded-lg editorial-gradient flex items-center justify-center text-white shrink-0">
+              <span class="material-symbols-outlined" data-icon="task_alt">task_alt</span>
             </div>
-<div class="flex gap-8 items-center text-slate-500 font-inter text-sm tracking-wide">
-<a class="hover:text-[#316574] transition-colors" href="#">Privacy Policy</a>
-<a class="hover:text-[#316574] transition-colors" href="#">Terms of Service</a>
-<a class="hover:text-[#316574] transition-colors" href="#">Cookie Policy</a>
-</div>
-<div class="text-slate-500 font-inter text-sm mt-4 md:mt-0">
-                © 2024 Architectur Curator. All rights reserved.
+            <div>
+              <h3 class="font-headline font-bold text-primary">Tasks</h3>
+              <p class="text-sm text-on-surface-variant">Prioritize with intentional negative space and hierarchy.</p>
             </div>
-</div>
-</footer>
-</body></html>
+          </div>
+          <div
+            class="flex items-start gap-4 p-4 rounded-xl surface-container-low ml-4 lg:ml-8 transition-all hover:bg-surface-container">
+            <div
+              class="w-12 h-12 rounded-lg bg-tertiary-container flex items-center justify-center text-white shrink-0">
+              <span class="material-symbols-outlined" data-icon="description">description</span>
+            </div>
+            <div>
+              <h3 class="font-headline font-bold text-primary">Docs</h3>
+              <p class="text-sm text-on-surface-variant">Editorial layouts that make reading and writing a pleasure.</p>
+            </div>
+          </div>
+          <div
+            class="flex items-start gap-4 p-4 rounded-xl surface-container-low transition-all hover:bg-surface-container">
+            <div class="w-12 h-12 rounded-lg editorial-gradient flex items-center justify-center text-white shrink-0">
+              <span class="material-symbols-outlined" data-icon="auto_awesome"
+                style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+            </div>
+            <div>
+              <h3 class="font-headline font-bold text-primary">AI</h3>
+              <p class="text-sm text-on-surface-variant">Intelligent curation that organizes your thoughts instantly.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Social Proof / Testimonial -->
+        <div class="pt-6">
+          <div
+            class="glass-panel p-6 rounded-2xl border border-white/40 shadow-sm italic text-on-surface-variant relative">
+            <span class="material-symbols-outlined absolute -top-4 -left-2 text-primary/20 text-5xl select-none"
+              data-icon="format_quote">format_quote</span>
+            "Architectur changed how our studio manages projects. It's not just a tool; it's a digital sanctuary for our
+            ideas."
+            <div class="mt-4 not-italic flex items-center gap-3">
+              <img alt="" class="w-8 h-8 rounded-full"
+                data-alt="close-up portrait of a professional woman with a warm smile in a brightly lit office setting"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvJLK7-ZIuO56tDHbuVWvuUN7xFawJb3vh8WO-P8QE0rHGBK5M44MiNwylYB5iTLUDoHIoBRHbwlSSZvIdA5MIdE5zd_lCADKCZlD2vE2qsZsGe-fkjalvDkvgwQ2aKVwBpRXUs49T9yjQXguXDSIyYiIg3ru-VtAB7h19NQgrKBzO7eDSgA8VKU5axZMSAVRy5LSw14wjxD2PGGSZoMhChU-aaE2AnVoBitu1GTKj8t8LE5qSWdvI-0u4EgLeLaLx3jITqbQUghE" />
+              <span class="text-sm font-bold text-primary">Elena Rossi, Creative Director</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Registration Form Column -->
+      <div class="lg:col-span-7 flex items-center">
+        <div
+          class="bg-surface-container-lowest p-8 md:p-12 rounded-[2rem] w-full shadow-[0_20px_40px_-10px_rgba(40,43,42,0.06)] border border-outline-variant/10">
+          <div class="mb-10">
+            <h2 class="font-headline text-3xl font-bold text-primary">Create Account</h2>
+            <p class="text-on-surface-variant mt-2">Join 10,000+ curators building the future.</p>
+          </div>
+          <form class="space-y-6">
+            <!-- Full Name -->
+            <div class="space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-widest text-primary font-label" for="name">Full
+                Name</label>
+              <div class="relative">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline"
+                  data-icon="person">person</span>
+                <input
+                  class="w-full pl-12 pr-4 py-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/50 transition-all text-on-surface placeholder:text-outline"
+                  id="name" name="name" placeholder="Johnathan Doe" type="text" />
+              </div>
+            </div>
+            <!-- Work Email -->
+            <div class="space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-widest text-primary font-label" for="email">Work
+                Email</label>
+              <div class="relative">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline"
+                  data-icon="mail">mail</span>
+                <input
+                  class="w-full pl-12 pr-4 py-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/50 transition-all text-on-surface placeholder:text-outline"
+                  id="email" name="email" placeholder="john@company.com" type="email" />
+              </div>
+            </div>
+            <!-- Password -->
+            <div class="space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-widest text-primary font-label"
+                for="password">Password</label>
+              <div class="relative">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline"
+                  data-icon="lock">lock</span>
+                <input
+                  class="w-full pl-12 pr-12 py-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/50 transition-all text-on-surface placeholder:text-outline"
+                  id="password" name="password" placeholder="••••••••" type="password" />
+                <button
+                  class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors"
+                  type="button">
+                  <span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+                </button>
+              </div>
+              <p class="text-[10px] text-outline-variant italic">Must be at least 12 characters with one symbol.</p>
+            </div>
+            <!-- Terms & Conditions -->
+            <div class="flex items-start gap-3 py-2">
+              <div class="flex items-center h-5">
+                <input class="h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary" id="terms"
+                  name="terms" type="checkbox" />
+              </div>
+              <div class="text-sm">
+                <label class="text-on-surface-variant leading-relaxed" for="terms">
+                  I agree to the <a class="text-primary font-bold hover:underline" href="#">Terms of Service</a> and <a
+                    class="text-primary font-bold hover:underline" href="#">Privacy Policy</a>.
+                </label>
+              </div>
+            </div>
+            <!-- Submit Button -->
+            <button
+              class="w-full editorial-gradient text-on-primary font-headline font-bold py-4 rounded-xl shadow-lg hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-2 group"
+              type="submit">
+              Create Account
+              <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform"
+                data-icon="arrow_forward">arrow_forward</span>
+            </button>
+            <!-- Alternative Sign Ups -->
+            <div class="relative py-4">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-outline-variant/30"></div>
+              </div>
+              <div class="relative flex justify-center text-xs uppercase"><span
+                  class="bg-surface-container-lowest px-4 text-outline font-label tracking-widest">Or sign up
+                  with</span></div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <button
+                class="flex items-center justify-center gap-2 py-3 px-4 bg-surface-container-low rounded-xl font-bold text-sm text-primary hover:bg-surface-container transition-colors"
+                type="button">
+                <img alt="" class="w-5 h-5" data-alt="google logo icon for social login integration"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNaB05Rp5nohBW5w9FUBppkp-QnL_VFYETM19jiluJEpvxG6ciXYopZkbuRrUlk3WZwOSXFwWnrtC_tj8JuJ8rxKU3YRqKLjISIdhSoEaoih3dB-eMaTmjT7ARpKt4kxB5jI8FCu5xZA8q8qEde9YDYLCgse1Me3Eg_PS-i1ZoW1fUTie1bMXK9sCMn8A_RjTRLBrj8FSnp8AEKdk_y1Z77ZrjTrvjehYC7Jz7EHgBxiBTXozZ1dwOruy97iTqOz-uuZU1_R_XtQg" />
+                Google
+              </button>
+              <button
+                class="flex items-center justify-center gap-2 py-3 px-4 bg-surface-container-low rounded-xl font-bold text-sm text-primary hover:bg-surface-container transition-colors"
+                type="button">
+                <span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+                GitHub
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Footer Anchor -->
+  <footer class="w-full bg-[#f5fafb] border-t border-slate-200 dark:border-slate-800">
+    <div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 w-full max-w-[1440px] mx-auto">
+      <div class="font-manrope font-bold text-[#316574] mb-4 md:mb-0">
+        Architectur Curator
+      </div>
+      <div class="flex gap-8 items-center text-slate-500 font-inter text-sm tracking-wide">
+        <a class="hover:text-[#316574] transition-colors" href="#">Privacy Policy</a>
+        <a class="hover:text-[#316574] transition-colors" href="#">Terms of Service</a>
+        <a class="hover:text-[#316574] transition-colors" href="#">Cookie Policy</a>
+      </div>
+      <div class="text-slate-500 font-inter text-sm mt-4 md:mt-0">
+        © 2024 Architectur Curator. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
