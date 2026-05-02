@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Login | Floral</title>
+    <title>Login | Flowral</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
@@ -42,7 +42,7 @@
                         <span class="material-symbols-outlined text-white"
                             style="font-variation-settings: 'FILL' 1;">architecture</span>
                     </div>
-                    <span class="font-headline font-extrabold text-2xl tracking-tighter text-primary">Floral</span>
+                    <span class="font-headline font-extrabold text-2xl tracking-tighter text-primary">Flowral</span>
                 </div>
                 <h1 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2">Selamat Datang kembali
                 </h1>
@@ -196,7 +196,7 @@
     </main>
     <footer
         class="fixed bottom-0 left-0 w-full md:w-[45%] p-6 flex justify-between items-center text-[10px] font-label font-bold text-outline uppercase tracking-widest">
-        <span>© 2026 FLORAL</span>
+        <span>© 2026 Flowral</span>
         <div class="flex gap-4">
             <a class="hover:text-primary transition-colors" href="#">PRIVACY</a>
             <a class="hover:text-primary transition-colors" href="#">TERMS</a>

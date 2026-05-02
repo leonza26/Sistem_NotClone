@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Register | Floral</title>
+    <title>Register | Flowral</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
@@ -44,7 +44,7 @@
     <header
         class="w-full top-0 left-0 z-50 bg-[#f5fafb] flex justify-between items-center px-8 md:px-12 py-6 max-w-[1440px] mx-auto">
         <div class="text-2xl font-bold text-[#316574] tracking-tighter font-headline">
-            Floral
+            Flowral
         </div>
         <div class="flex items-center gap-4">
             <span class="text-slate-500 font-medium hidden md:block">Sudah punya akun?</span>
@@ -59,10 +59,12 @@
                 <div class="space-y-4">
                     <h1
                         class="font-headline text-4xl md:text-5xl font-extrabold tracking-tight text-primary leading-tight">
-                        Rancang workflow <br /> tim Anda dengan<br /><span class="text-tertiary-container">Floral.</span>
+                        Rancang workflow <br /> tim Anda dengan<br /><span
+                            class="text-tertiary-container">Flowral.</span>
                     </h1>
                     <p class="text-on-surface-variant text-lg max-w-md">
-                        Flowral adalah workspace modern berbasis AI yang membantu Anda mengelola tugas, ide, dan dokumentasi dalam satu sistem yang terstruktur dan efisien.
+                        Flowral adalah workspace modern berbasis AI yang membantu Anda mengelola tugas, ide, dan
+                        dokumentasi dalam satu sistem yang terstruktur dan efisien.
                     </p>
                 </div>
                 <!-- Feature Points (Asymmetric Layout) -->
@@ -113,7 +115,7 @@
                         <span
                             class="material-symbols-outlined absolute -top-4 -left-2 text-primary/20 text-5xl select-none"
                             data-icon="format_quote">format_quote</span>
-                        "Floral changed how our studio manages projects. It's not just a tool; it's a digital
+                        "Flowral changed how our studio manages projects. It's not just a tool; it's a digital
                         sanctuary for our
                         ideas."
                         <div class="mt-4 not-italic flex items-center gap-3">
@@ -136,8 +138,8 @@
                     </div>
 
                     {{-- register form --}}
-                    <form class="space-y-6">
-
+                    <form class="space-y-6" method="POST" action="{{ route('register') }}">
+                        @csrf
                         <!-- Full Name -->
                         <div class="space-y-2">
                             <label class="block text-xs font-bold uppercase tracking-widest text-primary font-label"
@@ -297,7 +299,7 @@
 </body>
 
 </html>
-{{-- 
+{{--
 <form method="POST" action="{{ route('register') }}">
     @csrf
 

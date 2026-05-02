@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Architectural Curator</title>
+    <title>Flowral | Workspace</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
@@ -34,7 +34,7 @@
 <body class="font-body antialiased flex flex-col min-h-screen">
     <!-- TopAppBar Component -->
     <x-landing.navbar></x-landing.navbar>
-    
+
     <!-- Hero Section -->
     <x-landing.main></x-landing.main>
 

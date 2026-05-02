@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminMainController;
 use App\Http\Controllers\LandingPage\LandingPageController;
+use App\Http\Controllers\member\Dashboard\DashboardMainController;
+use App\Http\Controllers\member\Projects\projectsMainController;
+use App\Http\Controllers\Owner\OwnerMainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\member\Tasks\TaskMainController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -9,36 +14,37 @@ Route::controller(LandingPageController::class)->group(function () {
     Route::get('/', 'index')->name('landing.page');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-
 // admin routes
 Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () {
     Route::prefix('admin')->group(function () {
         // Category
-        Route::controller(MasterCategoryController::class)->group(function () {
+        Route::controller(AdminMainController::class)->group(function () {
             // create data category
             Route::post('/store/category', 'storecat')->name('store.cat');
         });
     });
 });
 
-// Seller routes
-Route::middleware(['auth', 'verified', 'rolemanager:vendor'])->group(function () {
-    Route::prefix('vendor')->group(function () {
-        Route::controller(SellerMainController::class)->group(function () {
-            Route::get('/dashboard', 'index')->name('vendor');
+// Owner routes
+Route::middleware(['auth', 'verified', 'rolemanager:owner'])->group(function () {
+    Route::prefix('owner')->group(function () {
+        Route::controller(OwnerMainController::class)->group(function () {
+            Route::get('/owner', 'index')->name('owner.dashboard');
         });
     });
 });
 
-// Customer routes
-Route::middleware(['auth', 'verified', 'rolemanager:customer'])->group(function () {
-    Route::prefix('user')->group(function () {
-        Route::controller(CustomerMainController::class)->group(function () {
-            Route::get('/dashboard', 'index')->name('user');
+// Member routes
+Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function () {
+    Route::prefix('member')->group(function () {
+        Route::controller(DashboardMainController::class)->group(function () {
+            Route::get('/dashboard', 'index')->name('member');
+        });
+        Route::controller(projectsMainController::class)->group(function () {
+            Route::get('/projects', 'projects')->name('member.projects');
+        });
+        Route::controller(TaskMainController::class)->group(function () {
+            Route::get('/tasks', 'tasks')->name('member.tasks');
         });
     });
 });
