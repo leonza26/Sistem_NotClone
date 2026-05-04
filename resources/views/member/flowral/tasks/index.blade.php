@@ -1,6 +1,6 @@
 <x-member-layout>
     <!-- Canvas -->
-    <div class=" max-w-7xl">
+    <div class="px-10 pb-12 max-w-7xl">
         <!-- Editorial Header -->
         <div class="flex justify-between items-end mb-12">
             <div>

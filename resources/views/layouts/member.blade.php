@@ -44,18 +44,7 @@
     <!-- TopNavBar Anchor -->
     <x-item.header></x-item.header>
     <!-- Main Content Canvas -->
-    <main class="ml-64 pt-24 px-10 pb-12 min-h-screen">
-        <!-- Header Section -->
-        <header class="mb-12 max-w-6xl">
-            <div
-                class="flex items-center gap-2 text-on-surface-variant text-[11px] font-semibold uppercase tracking-wider mb-4">
-                <span>Workspace</span>
-                <span class="w-1 h-1 rounded-full bg-primary-fixed"></span>
-                <span>Dashboard</span>
-                <span class="w-1 h-1 rounded-full bg-primary-fixed"></span>
-                <span class="text-primary font-bold">Overview</span>
-            </div>
-        </header>
+    <main class="ml-64 pt-24 min-h-screen">
         <!-- Bento Grid Layout -->
         {{ $slot }}
     </main>

@@ -4,9 +4,10 @@ use App\Http\Controllers\Admin\AdminMainController;
 use App\Http\Controllers\LandingPage\LandingPageController;
 use App\Http\Controllers\member\Dashboard\DashboardMainController;
 use App\Http\Controllers\member\Projects\projectsMainController;
+use App\Http\Controllers\member\Tasks\TaskMainController;
+use App\Http\Controllers\member\Notes\NoteMainController;
 use App\Http\Controllers\Owner\OwnerMainController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\member\Tasks\TaskMainController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -45,6 +46,9 @@ Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function ()
         });
         Route::controller(TaskMainController::class)->group(function () {
             Route::get('/tasks', 'tasks')->name('member.tasks');
+        });
+        Route::controller(NoteMainController::class)->group(function () {
+            Route::get('/notes', 'notes')->name('member.notes');
         });
     });
 });

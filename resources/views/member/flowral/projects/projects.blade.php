@@ -1,6 +1,6 @@
 <!-- Page Content -->
 <x-member-layout>
-    <div class=" max-w-7xl">
+    <div class="px-10 pb-12 max-w-7xl">
         <!-- Breadcrumbs & Title -->
         <div class="mb-12">
             <nav class="flex items-center gap-2 text-on-surface-variant mb-4">
