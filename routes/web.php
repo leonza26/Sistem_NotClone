@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminMainController;
+use App\Http\Controllers\member\AI\AIMainController;
 use App\Http\Controllers\LandingPage\LandingPageController;
+use App\Http\Controllers\member\Activity\ActivityMainController;
 use App\Http\Controllers\member\Dashboard\DashboardMainController;
+use App\Http\Controllers\member\Notes\NoteMainController;
 use App\Http\Controllers\member\Projects\projectsMainController;
 use App\Http\Controllers\member\Tasks\TaskMainController;
-use App\Http\Controllers\member\Notes\NoteMainController;
 use App\Http\Controllers\Owner\OwnerMainController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +51,12 @@ Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function ()
         });
         Route::controller(NoteMainController::class)->group(function () {
             Route::get('/notes', 'notes')->name('member.notes');
+        });
+        Route::controller(ActivityMainController::class)->group(function () {
+            Route::get('/activity', 'activity')->name('member.activity');
+        });
+        Route::controller(AIMainController::class)->group(function () {
+            Route::get('/ai', 'ai')->name('member.ai');
         });
     });
 });

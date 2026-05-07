@@ -65,7 +65,7 @@
                     <input
                         class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/50 focus:bg-surface-container-lowest transition-all text-sm outline-none placeholder:text-outline"
                         id="email" placeholder="name@company.com" type="email" :value="old('email')" required
-                        autofocus autocomplete="username" />
+                        autofocus autocomplete="username" name="email" />
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
@@ -86,7 +86,7 @@
                         <input
                             class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/50 focus:bg-surface-container-lowest transition-all text-sm outline-none placeholder:text-outline"
                             id="password" placeholder="••••••••" type="password" :value="old('password')" required
-                            autocomplete="current-password" />
+                            autocomplete="current-password" name="password" />
                         <button
                             class="absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant hover:text-primary transition-colors"
                             type="button">

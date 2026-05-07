@@ -38,6 +38,9 @@ return new class extends Migration
         });
     }
 
+    // email : muhammadleonza11@gmail.com
+    // password : l30nz426
+
     /**
      * Reverse the migrations.
      */

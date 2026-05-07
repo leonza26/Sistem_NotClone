@@ -1,7 +1,8 @@
 <x-member-layout>
     <div class="flex h-[calc(100vh-4rem)]">
         <!-- Left Inner Sidebar (Notes Navigation) -->
-        <aside class="w-72 bg-surface-container-low flex flex-col p -6 overflow-y-auto">
+        <aside
+            class="w-72 bg-surface-container-low flex flex-col p-6 overflow-y-auto border-r border-surface-container-high">
             <div class="flex items-center justify-between mb-6">
                 <h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">
                     Private Docs

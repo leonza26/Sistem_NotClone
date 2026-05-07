@@ -40,7 +40,7 @@
 
 <body class="bg-surface font-body text-on-surface overflow-x-hidden">
     <!-- SideNavBar Anchor -->
-    <x-item.navbar></x-item.navbar>
+    <x-item.sidebar></x-item.sidebar>
     <!-- TopNavBar Anchor -->
     <x-item.header></x-item.header>
     <!-- Main Content Canvas -->
