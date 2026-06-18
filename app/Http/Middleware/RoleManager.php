@@ -27,19 +27,19 @@ class RoleManager
         $authUserRole = Auth::user()->role;
 
         switch ($role) {
-            case 'admin';
+            case 'admin':
                 if ($authUserRole == 0) {
                     return $next($request);
                 }
                 break;
 
-            case 'owner';
+            case 'owner':
                 if ($authUserRole == 1) {
                     return $next($request);
                 }
                 break;
 
-            case 'member';
+            case 'member':
                 if ($authUserRole == 2) {
                     return $next($request);
                 }
@@ -49,13 +49,13 @@ class RoleManager
 
         // mengarahkan role ke halaman route
         switch ($authUserRole) {
-            case 0;
+            case 0: 
                 return redirect()->route('admin');
 
-            case 1;
+            case 1:
                 return redirect()->route('owner');
 
-            case 2;
+            case 2:
                 return redirect()->route('member');
         }
     }

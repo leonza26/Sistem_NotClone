@@ -14,7 +14,7 @@
                 A curated flow of updates and milestones across your
                 production environment.
             </p>
-        </div>
+        </div>w
         <!-- Bento Layout Activity Grid (Asymmetric) -->
         <div class="grid grid-cols-12 gap-8">
             <!-- Main Timeline Canvas -->
