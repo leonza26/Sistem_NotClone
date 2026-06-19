@@ -1,4 +1,8 @@
-<x-member-layout>
+@extends('layouts.member')
+
+@section('title', 'Dashboard')
+
+@section('content')
     <div class="px-10 pb-12">
         <header class="max-w-6xl">
             <div
@@ -96,8 +100,7 @@
                     <div
                         class="group flex items-center justify-between p-4 rounded-lg hover:bg-surface-container-low transition-all">
                         <div class="flex items-center gap-4">
-                            <div
-                                class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
                                 <span class="material-symbols-outlined text-primary"
                                     data-icon="architecture">architecture</span>
                             </div>
@@ -127,10 +130,8 @@
                     <div
                         class="group flex items-center justify-between p-4 rounded-lg hover:bg-surface-container-low transition-all">
                         <div class="flex items-center gap-4">
-                            <div
-                                class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary"
-                                    data-icon="edit_note">edit_note</span>
+                            <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary" data-icon="edit_note">edit_note</span>
                             </div>
                             <div>
                                 <h5 class="text-sm font-semibold text-on-surface">
@@ -155,8 +156,7 @@
                     <div
                         class="group flex items-center justify-between p-4 rounded-lg hover:bg-surface-container-low transition-all">
                         <div class="flex items-center gap-4">
-                            <div
-                                class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
                                 <span class="material-symbols-outlined text-primary"
                                     data-icon="account_tree">account_tree</span>
                             </div>
@@ -216,8 +216,8 @@
                         <div class="relative pl-8">
                             <div
                                 class="absolute left-0 top-1 w-6 h-6 rounded-full bg-secondary-container ring-4 ring-surface-container-low flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-[14px]"
-                                    data-icon="chat_bubble" data-weight="fill"
+                                <span class="material-symbols-outlined text-primary text-[14px]" data-icon="chat_bubble"
+                                    data-weight="fill"
                                     style="font-variation-settings: &quot;FILL&quot; 1">chat_bubble</span>
                             </div>
                             <p class="text-xs leading-relaxed">
@@ -237,8 +237,8 @@
                         <div class="relative pl-8">
                             <div
                                 class="absolute left-0 top-1 w-6 h-6 rounded-full bg-tertiary-fixed ring-4 ring-surface-container-low flex items-center justify-center">
-                                <span class="material-symbols-outlined text-tertiary text-[14px]"
-                                    data-icon="person_add" data-weight="fill"
+                                <span class="material-symbols-outlined text-tertiary text-[14px]" data-icon="person_add"
+                                    data-weight="fill"
                                     style="font-variation-settings: &quot;FILL&quot; 1">person_add</span>
                             </div>
                             <p class="text-xs leading-relaxed">
@@ -291,5 +291,4 @@
             </div>
         </div>
     </div>
-
-</x-member-layout>
+@endsection

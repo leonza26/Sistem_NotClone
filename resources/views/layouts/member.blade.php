@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>@yield('title', 'member')</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
@@ -16,7 +17,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    @vite('resources/css/app.css', 'resources/js/app.js')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         .material-symbols-outlined {
             font-variation-settings:
@@ -40,13 +41,12 @@
 
 <body class="bg-surface font-body text-on-surface overflow-x-hidden">
     <!-- SideNavBar Anchor -->
-    <x-item.sidebar></x-item.sidebar>
+    @include('components.member.sidebar')
     <!-- TopNavBar Anchor -->
-    <x-item.header></x-item.header>
+    @include('components.member.header')
     <!-- Main Content Canvas -->
     <main class="ml-64 pt-24 min-h-screen">
-        <!-- Bento Grid Layout -->
-        {{ $slot }}
+        @yield('content')
     </main>
 
     <!-- Floating Action Button (FAB) -->

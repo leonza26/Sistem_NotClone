@@ -1,4 +1,8 @@
-<x-member-layout>
+@extends('layouts.member')
+
+@section('title', 'Tasks')
+
+@section('content')
     <!-- Canvas -->
     <div class="px-10 pb-12 max-w-7xl">
         <!-- Editorial Header -->
@@ -54,8 +58,7 @@
                                 <span
                                     class="bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">Research</span>
                                 <button class="opacity-0 group-hover:opacity-100 transition-opacity text-slate-300">
-                                    <span class="material-symbols-outlined"
-                                        data-icon="drag_indicator">drag_indicator</span>
+                                    <span class="material-symbols-outlined" data-icon="drag_indicator">drag_indicator</span>
                                 </button>
                             </div>
                             <h4 class="font-headline font-bold text-lg mb-2 text-on-surface leading-snug">
@@ -86,8 +89,7 @@
                                 <span
                                     class="bg-tertiary/10 text-tertiary text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">Urgent</span>
                                 <button class="opacity-0 group-hover:opacity-100 transition-opacity text-slate-300">
-                                    <span class="material-symbols-outlined"
-                                        data-icon="drag_indicator">drag_indicator</span>
+                                    <span class="material-symbols-outlined" data-icon="drag_indicator">drag_indicator</span>
                                 </button>
                             </div>
                             <h4 class="font-headline font-bold text-lg mb-2 text-on-surface leading-snug">
@@ -135,8 +137,7 @@
                                 <span
                                     class="bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">Design</span>
                                 <button class="opacity-0 group-hover:opacity-100 transition-opacity text-slate-300">
-                                    <span class="material-symbols-outlined"
-                                        data-icon="drag_indicator">drag_indicator</span>
+                                    <span class="material-symbols-outlined" data-icon="drag_indicator">drag_indicator</span>
                                 </button>
                             </div>
                             <h4 class="font-headline font-bold text-lg mb-2 text-on-surface leading-snug">
@@ -220,4 +221,4 @@
             </div>
         </div>
     </div>
-</x-member-layout>
+@endSection

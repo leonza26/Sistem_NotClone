@@ -1,4 +1,8 @@
-<x-member-layout>
+@extends('layouts.member')
+
+@section('title', 'Activity Timeline')
+
+@section('content')
     <div class="max-w-7xl px-10">
         <!-- Header Section -->
         <div class="mb-12">
@@ -40,8 +44,7 @@
                                         created
                                         <span class="font-bold">Q4 Project Roadmap</span>
                                     </p>
-                                    <span
-                                        class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">10:24
+                                    <span class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">10:24
                                         AM</span>
                                 </div>
                                 <div
@@ -64,8 +67,7 @@
                         <div class="relative flex gap-6 items-start mt-10 group">
                             <div
                                 class="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-secondary-container text-primary shadow-sm">
-                                <span class="material-symbols-outlined text-[20px]"
-                                    data-icon="edit_note">edit_note</span>
+                                <span class="material-symbols-outlined text-[20px]" data-icon="edit_note">edit_note</span>
                             </div>
                             <div class="flex-1 pt-1">
                                 <div class="flex justify-between items-start mb-2">
@@ -74,8 +76,7 @@
                                         updated
                                         <span class="font-bold">Style Guide v2.4</span>
                                     </p>
-                                    <span
-                                        class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">09:15
+                                    <span class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">09:15
                                         AM</span>
                                 </div>
                                 <div class="p-2 border-l-4 border-primary-container ml-1">
@@ -101,8 +102,7 @@
                                         uploaded
                                         <span class="font-bold">4 Curation Assets</span>
                                     </p>
-                                    <span
-                                        class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">08:30
+                                    <span class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">08:30
                                         AM</span>
                                 </div>
                                 <div class="grid grid-cols-4 gap-2 mt-2">
@@ -141,8 +141,7 @@
                         <div class="relative flex gap-6 items-start group">
                             <div
                                 class="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-surface-container text-on-surface-variant">
-                                <span class="material-symbols-outlined text-[20px]"
-                                    data-icon="smart_toy">smart_toy</span>
+                                <span class="material-symbols-outlined text-[20px]" data-icon="smart_toy">smart_toy</span>
                             </div>
                             <div class="flex-1 pt-1">
                                 <div class="flex justify-between items-start mb-2">
@@ -306,4 +305,4 @@
             </div>
         </div>
     </div>
-</x-member-layout>
+@endsection

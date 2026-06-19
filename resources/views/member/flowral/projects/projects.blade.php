@@ -1,5 +1,9 @@
 <!-- Page Content -->
-<x-member-layout>
+@extends('layouts.member')
+
+@section('title', 'Projects')
+
+@section('content')
     <div class="px-10 pb-12 max-w-7xl">
         <!-- Breadcrumbs & Title -->
         <div class="mb-12">
@@ -128,8 +132,7 @@
                 <div class="flex justify-between items-start mb-6">
                     <span
                         class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full text-[0.6875rem] font-bold tracking-wider uppercase inline-block">Planning</span>
-                    <span class="material-symbols-outlined text-on-surface-variant"
-                        data-icon="more_vert">more_vert</span>
+                    <span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
                 </div>
                 <h3 class="text-xl font-bold text-on-surface mb-2">
                     Metropolitan Sky-Garden
@@ -159,8 +162,7 @@
                     <span
                         class="bg-primary-container/10 text-primary px-3 py-1 rounded-full text-[0.6875rem] font-bold tracking-wider uppercase inline-block">In
                         Progress</span>
-                    <span class="material-symbols-outlined text-on-surface-variant"
-                        data-icon="more_vert">more_vert</span>
+                    <span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
                 </div>
                 <h3 class="text-xl font-bold text-on-surface mb-2">
                     Lunar Living Modules
@@ -201,8 +203,7 @@
         <!-- Dashboard Stats Ticker (Subtle) -->
         <div class="mt-16 bg-surface-container-low rounded-2xl p-6 flex flex-wrap items-center justify-between gap-8">
             <div class="flex items-center gap-4">
-                <div
-                    class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center shadow-sm">
+                <div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center shadow-sm">
                     <span class="material-symbols-outlined text-primary" data-icon="monitoring">monitoring</span>
                 </div>
                 <div>
@@ -216,8 +217,7 @@
             </div>
             <div class="h-8 w-px bg-outline-variant/30 hidden sm:block"></div>
             <div class="flex items-center gap-4">
-                <div
-                    class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center shadow-sm">
+                <div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center shadow-sm">
                     <span class="material-symbols-outlined text-tertiary" data-icon="speed">speed</span>
                 </div>
                 <div>
@@ -231,8 +231,7 @@
             </div>
             <div class="h-8 w-px bg-outline-variant/30 hidden sm:block"></div>
             <div class="flex items-center gap-4">
-                <div
-                    class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center shadow-sm">
+                <div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center shadow-sm">
                     <span class="material-symbols-outlined text-primary-container" data-icon="layers">layers</span>
                 </div>
                 <div>
@@ -251,4 +250,4 @@
             </div>
         </div>
     </div>
-</x-member-layout>
+@endsection

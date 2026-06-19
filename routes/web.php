@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminMainController;
-use App\Http\Controllers\member\AI\AIMainController;
 use App\Http\Controllers\LandingPage\LandingPageController;
 use App\Http\Controllers\member\Activity\ActivityMainController;
+use App\Http\Controllers\member\AI\AIMainController;
 use App\Http\Controllers\member\Dashboard\DashboardMainController;
 use App\Http\Controllers\member\Notes\NoteMainController;
 use App\Http\Controllers\member\Projects\projectsMainController;
 use App\Http\Controllers\member\Tasks\TaskMainController;
+use App\Http\Controllers\member\Workspace\WorkspaceMainController;
 use App\Http\Controllers\Owner\OwnerMainController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -58,16 +59,24 @@ Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function ()
         Route::controller(AIMainController::class)->group(function () {
             Route::get('/ai', 'ai')->name('member.ai');
         });
+        Route::controller(WorkspaceMainController::class)->group(function () {
+            Route::get('/workspace', 'index')->name('member.workspace.index');  
+            Route::get('/workspace/create', 'create')->name('member.workspace.create');
+            Route::post('/workspace', 'store')->name('member.workspace.store');
+            Route::get('/workspace/{workspace}/edit', 'edit')->name('member.workspace.edit');
+            Route::put('/workspace/{workspace}', 'update')->name('member.workspace.update');
+            Route::delete('/workspace/{workspace}', 'destroy')->name('member.workspace.destroy');
+        });
     });
 });
 
 
 
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 require __DIR__ . '/auth.php';

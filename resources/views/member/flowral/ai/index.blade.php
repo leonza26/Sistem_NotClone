@@ -1,4 +1,8 @@
-<x-member-layout>
+@extends('layouts.member')
+
+@section('title', 'AI Assistant')
+
+@section('content')
     <header
         class="sticky top-0 z-40 flex justify-between items-center h-16 w-full px-8 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl"
         style="box-shadow: 0 20px 40px -10px rgba(40, 43, 42, 0.06)">
@@ -31,4 +35,4 @@
             </div>
         </div>
     </header>
-</x-member-layout>
+@endsection
