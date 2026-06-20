@@ -45,10 +45,21 @@ Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function ()
             Route::get('/dashboard', 'index')->name('member');
         });
         Route::controller(projectsMainController::class)->group(function () {
-            Route::get('/projects', 'projects')->name('member.projects');
+            Route::get('/projects', 'index')->name('member.projects');
+            Route::get('/projects/create', 'create')->name('member.projects.create');
+            Route::post('/projects', 'store')->name('member.projects.store');
+            Route::get('/projects/{project}/edit', 'edit')->name('member.projects.edit');
+            Route::put('/projects/{project}', 'update')->name('member.projects.update');
+            Route::delete('/projects/{project}', 'destroy')->name('member.projects.destroy');
         });
         Route::controller(TaskMainController::class)->group(function () {
-            Route::get('/tasks', 'tasks')->name('member.tasks');
+            Route::get('/tasks', 'index')->name('member.tasks');
+            Route::get('/tasks/create', 'create')->name('member.tasks.create');
+            Route::post('/tasks', 'store')->name('member.tasks.store');
+            Route::get('/tasks/{task}/edit', 'edit')->name('member.tasks.edit');
+            Route::put('/tasks/{task}', 'update')->name('member.tasks.update');
+            Route::patch('/tasks/{task}/status', 'updateStatus')->name('member.tasks.updateStatus');
+            Route::delete('/tasks/{task}', 'destroy')->name('member.tasks.destroy');
         });
         Route::controller(NoteMainController::class)->group(function () {
             Route::get('/notes', 'notes')->name('member.notes');

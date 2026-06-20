@@ -40,13 +40,12 @@
                             <div class="flex justify-end gap-3 pt-4 border-t border-outline-variant">
                                 <a href="{{ route('member.workspace.edit', $workspace) }}"
                                     class="text-sm font-bold text-primary hover:underline">Edit</a>
-                                <form action="{{ route('member.workspace.destroy', $workspace) }}" method="POST"
-                                    onsubmit="return confirm('Hapus workspace ini beserta isinya?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="text-sm font-bold text-error hover:underline">Delete</button>
-                                </form>
+                                    {{-- alpine js --}}
+                                <button type="button" x-data=""
+                                    @click="$dispatch('open-delete-modal', { url: '{{ route('member.workspace.destroy', $workspace) }}', message: 'Yakin ingin menghapus workspace {{ $workspace->name }} beserta seluruh isinya?' })"
+                                    class="text-sm font-bold text-error hover:underline">
+                                    Delete
+                                </button>
                             </div>
                         </div>
                     </div>
