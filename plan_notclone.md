@@ -231,3 +231,7 @@ Dan ini:
   - Cocok untuk skripsi ✔
   - Bisa jadi startup ✔
   - Bisa jadi portfolio kuat ✔
+
+#  Package yang diapakai 
+- alpine js
+- sortable js

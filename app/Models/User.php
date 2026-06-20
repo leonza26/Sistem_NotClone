@@ -29,4 +29,24 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Relasi user tergabung dalam banyak workspace
+    public function workspaces()
+    {
+        return $this->belongsToMany(Workspace::class, 'workspace_users')
+            ->withPivot('role')
+            ->withTimestamps();
+    }
+    
+    // Relasi workspace yang dimiliki oleh user ini (sebagai owner)
+    public function ownedWorkspaces()
+    {
+        return $this->hasMany(Workspace::class, 'owner_id');
+    }
+
+    // Relasi task yang di-assign ke user ini
+    public function assignedTasks()
+    {
+        return $this->hasMany(Task::class, 'assigned_to');
+    }
 }

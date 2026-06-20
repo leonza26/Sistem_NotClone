@@ -1,4 +1,8 @@
-<x-member-layout>
+@extends('layouts.member')
+
+@section('title', 'Notes')
+
+@section('content')
     <div class="flex h-[calc(100vh-4rem)]">
         <!-- Left Inner Sidebar (Notes Navigation) -->
         <aside
@@ -250,12 +254,10 @@
                 <footer class="mt-20 pt-8 border-t border-surface-container-high flex items-center justify-between">
                     <div class="flex items-center gap-4">
                         <div class="flex -space-x-2">
-                            <img alt="Collaborator"
-                                class="w-8 h-8 rounded-full border-2 border-surface-container-lowest"
+                            <img alt="Collaborator" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest"
                                 data-alt="close-up portrait of a woman smiling with soft natural lighting and blurred greenery in background"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHjWX3t4_2KixBPLUOfRlKipO7SKSg51Cqu1WpXRbxbp3E2O9RY40eyV_-kwVBVpxIrhZIl9xqM_w7vjr4bIlsZ60lB1k2xWH9IsZ-5LBKxq07tUgGX0yt-x2C-n26Ydo93fvkarXemUmLQG2tKUaxNqmQzwMHuy7yCb_0IQoe2EUgP27tZxuNxICjkL7JfGFc4Vaxu3eGBfTfxNlf5KwuUxpmLN4tGZYdNGFFf2G9gVrFFcVZ4MOFHdSfc2kxcxlWfRsF3Q0-QkA" />
-                            <img alt="Collaborator"
-                                class="w-8 h-8 rounded-full border-2 border-surface-container-lowest"
+                            <img alt="Collaborator" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest"
                                 data-alt="headshot of a man with glasses looking at the camera in a modern office interior"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAFQKgxabVm0q85UuFXPbAKQ5ezVYosqpNM28V-NpG_r9akb7L34pwhfvOw_Oirxj44wrK5cMDx0eFKgoXL90F6pFIyBnoUaZ_A_z5Oqx6JB1MFxwvcwf9VeK7b_fMCGIvPZbSvpO1_S7-WRD0rB7sWNXHexCb3xFD-0VXuOMxwL-VN2TMVXRfJb4YQVQmex3fD4jDdVdDOxGdJIoPsuuhSuApCKAsUptk4hUTOKq2jb_-563s79X8kj_pE6g2WOKAwGK_bByfwpU" />
                             <div
@@ -294,4 +296,4 @@
             </button>
         </aside>
     </div>
-</x-member-layout>
+@endsection
