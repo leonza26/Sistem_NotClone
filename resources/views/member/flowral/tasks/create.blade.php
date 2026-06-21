@@ -21,7 +21,16 @@
 
         <div class="max-w-3xl mt-8">
             <div class="bg-surface-container-lowest p-8 rounded-2xl shadow-sm border border-outline-variant">
-                <form action="{{ route('member.tasks.store') }}" method="POST">
+                <form action="{{ route('member.tasks.store') }}" method="POST" x-data="{
+                    projects: {{ $projects->toJson() }},
+                    selectedProjectId: '{{ old('project_id') }}',
+                    assignedTo: '{{ old('assigned_to') }}',
+                    get availableUsers() {
+                        if (!this.selectedProjectId) return [];
+                        let project = this.projects.find(p => p.id == this.selectedProjectId);
+                        return project && project.workspace && project.workspace.users ? project.workspace.users : [];
+                    }
+                }">
                     @csrf
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -29,13 +38,12 @@
                         <div>
                             <label for="project_id" class="block text-sm font-bold text-on-surface mb-2">Pilih
                                 Project</label>
-                            <select name="project_id" id="project_id"
+                            <select name="project_id" id="project_id" x-model="selectedProjectId" @change="assignedTo = ''"
                                 class="block w-full rounded-xl border-outline-variant bg-surface focus:border-primary focus:ring-primary sm:text-sm px-4 py-3"
                                 required>
-                                <option value="" disabled selected>-- Pilih Project --</option>
+                                <option value="" disabled>-- Pilih Project --</option>
                                 @foreach ($projects as $project)
-                                    <option value="{{ $project->id }}"
-                                        {{ old('project_id') == $project->id ? 'selected' : '' }}>
+                                    <option value="{{ $project->id }}">
                                         {{ $project->name }} ({{ $project->workspace->name }})
                                     </option>
                                 @endforeach
@@ -90,15 +98,12 @@
                         <div>
                             <label for="assigned_to" class="block text-sm font-bold text-on-surface mb-2">Assign To
                                 (Opsional)</label>
-                            <select name="assigned_to" id="assigned_to"
+                            <select name="assigned_to" id="assigned_to" x-model="assignedTo"
                                 class="block w-full rounded-xl border-outline-variant bg-surface focus:border-primary focus:ring-primary sm:text-sm px-4 py-3">
                                 <option value="">-- Unassigned --</option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}"
-                                        {{ old('assigned_to') == $user->id ? 'selected' : '' }}>
-                                        {{ $user->name }}
-                                    </option>
-                                @endforeach
+                                <template x-for="user in availableUsers" :key="user.id">
+                                    <option :value="user.id" x-text="user.name"></option>
+                                </template>
                             </select>
                             @error('assigned_to')
                                 <p class="text-error text-xs mt-2 font-semibold">{{ $message }}</p>

@@ -7,10 +7,11 @@ use App\Http\Controllers\member\AI\AIMainController;
 use App\Http\Controllers\member\Dashboard\DashboardMainController;
 use App\Http\Controllers\member\Notes\NoteMainController;
 use App\Http\Controllers\member\Projects\projectsMainController;
+use App\Http\Controllers\member\Tasks\TaskCommentController;
 use App\Http\Controllers\member\Tasks\TaskMainController;
 use App\Http\Controllers\member\Workspace\WorkspaceMainController;
+use App\Http\Controllers\member\Workspace\WorkspaceMemberController;
 use App\Http\Controllers\Owner\OwnerMainController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -56,10 +57,16 @@ Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function ()
             Route::get('/tasks', 'index')->name('member.tasks');
             Route::get('/tasks/create', 'create')->name('member.tasks.create');
             Route::post('/tasks', 'store')->name('member.tasks.store');
+            Route::get('/tasks/{task}', 'show')->name('member.tasks.show');
             Route::get('/tasks/{task}/edit', 'edit')->name('member.tasks.edit');
             Route::put('/tasks/{task}', 'update')->name('member.tasks.update');
             Route::patch('/tasks/{task}/status', 'updateStatus')->name('member.tasks.updateStatus');
             Route::delete('/tasks/{task}', 'destroy')->name('member.tasks.destroy');
+        });
+
+        Route::controller(TaskCommentController::class)->group(function () {
+            Route::post('/tasks/{task}/comments', 'store')->name('member.tasks.comments.store');
+            Route::delete('/comments/{comment}', 'destroy')->name('member.tasks.comments.destroy');
         });
         Route::controller(NoteMainController::class)->group(function () {
             Route::get('/notes', 'notes')->name('member.notes');
@@ -71,12 +78,19 @@ Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function ()
             Route::get('/ai', 'ai')->name('member.ai');
         });
         Route::controller(WorkspaceMainController::class)->group(function () {
-            Route::get('/workspace', 'index')->name('member.workspace.index');  
+            Route::get('/workspace', 'index')->name('member.workspace.index');
             Route::get('/workspace/create', 'create')->name('member.workspace.create');
             Route::post('/workspace', 'store')->name('member.workspace.store');
             Route::get('/workspace/{workspace}/edit', 'edit')->name('member.workspace.edit');
             Route::put('/workspace/{workspace}', 'update')->name('member.workspace.update');
             Route::delete('/workspace/{workspace}', 'destroy')->name('member.workspace.destroy');
+        });
+
+        Route::controller(WorkspaceMemberController::class)->group(function () {
+            Route::get('/workspace/{workspace}/members', 'index')->name('member.workspace.members.index');
+            Route::post('/workspace/{workspace}/members', 'store')->name('member.workspace.members.store');
+            Route::put('/workspace/{workspace}/members/{user}', 'update')->name('member.workspace.members.update');
+            Route::delete('/workspace/{workspace}/members/{user}', 'destroy')->name('member.workspace.members.destroy');
         });
     });
 });

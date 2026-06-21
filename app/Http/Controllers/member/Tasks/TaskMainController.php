@@ -32,13 +32,11 @@ class TaskMainController extends Controller
         $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
         $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
 
-        $projects = Project::whereIn('workspace_id', $allWorkspaceIds)->get();
+        $projects = Project::with('workspace.users')->whereIn('workspace_id', $allWorkspaceIds)->get();
         if ($projects->isEmpty()) {
             return redirect()->route('member.projects')->with('error', 'Silakan buat Project terlebih dahulu sebelum membuat Task.');
         }
-        // Ambil list user untuk dropdown 'Assign To' (sementara kita tampilkan semua user)
-        $users = User::all();
-        return view('member.flowral.tasks.create', compact('projects', 'users'));
+        return view('member.flowral.tasks.create', compact('projects'));
     }
     public function store(Request $request)
     {
@@ -53,15 +51,22 @@ class TaskMainController extends Controller
         Task::create($request->all());
         return redirect()->route('member.tasks')->with('success', 'Task berhasil dibuat!');
     }
+
+    public function show(Task $task)
+    {
+        // Load task beserta relasi komentar dan data usernya (biar query efisien)
+        $task->load('comments.user');
+        return view('member.flowral.tasks.show', compact('task'));
+    }
+
     public function edit(Task $task)
     {
         $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
         $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
         $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
 
-        $projects = Project::whereIn('workspace_id', $allWorkspaceIds)->get();
-        $users = User::all();
-        return view('member.flowral.tasks.edit', compact('task', 'projects', 'users'));
+        $projects = Project::with('workspace.users')->whereIn('workspace_id', $allWorkspaceIds)->get();
+        return view('member.flowral.tasks.edit', compact('task', 'projects'));
     }
     public function update(Request $request, Task $task)
     {

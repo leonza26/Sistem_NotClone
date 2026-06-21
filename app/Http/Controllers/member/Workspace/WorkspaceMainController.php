@@ -11,9 +11,8 @@ class WorkspaceMainController extends Controller
 {
     public function index()
     {
-        // Ambil workspace di mana user adalah owner
-        $workspaces = Auth::user()->ownedWorkspaces;
-
+        // Ambil SEMUA workspace di mana user tergabung (baik sebagai Owner, Admin, maupun Member)
+        $workspaces = Auth::user()->workspaces;
         return view('member.flowral.workspace.index', compact('workspaces'));
     }
     public function create()

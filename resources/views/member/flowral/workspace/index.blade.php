@@ -37,16 +37,33 @@
                             <h3 class="text-xl font-bold text-on-surface mb-1">{{ $workspace->name }}</h3>
                             <p class="text-xs text-on-surface-variant mb-6">Owner: {{ $workspace->owner->name }}</p>
 
-                            <div class="flex justify-end gap-3 pt-4 border-t border-outline-variant">
-                                <a href="{{ route('member.workspace.edit', $workspace) }}"
-                                    class="text-sm font-bold text-primary hover:underline">Edit</a>
-                                    {{-- alpine js --}}
-                                <button type="button" x-data=""
-                                    @click="$dispatch('open-delete-modal', { url: '{{ route('member.workspace.destroy', $workspace) }}', message: 'Yakin ingin menghapus workspace {{ $workspace->name }} beserta seluruh isinya?' })"
-                                    class="text-sm font-bold text-error hover:underline">
-                                    Delete
-                                </button>
+                            <div class="flex justify-end gap-4 pt-4 border-t border-outline-variant">
+                                {{-- Tombol Members --}}
+                                <a href="{{ route('member.workspace.members.index', $workspace) }}"
+                                    class="text-sm font-bold text-secondary hover:text-secondary-dark flex items-center gap-1 transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">group</span>
+                                    Members
+                                </a>
+
+                                {{-- Hanya Owner yang boleh Edit & Delete Workspace --}}
+                                @if ($workspace->pivot->role === 'owner')
+                                    {{-- Tombol Edit --}}
+                                    <a href="{{ route('member.workspace.edit', $workspace) }}"
+                                        class="text-sm font-bold text-primary hover:text-primary-dark flex items-center gap-1 transition-colors">
+                                        <span class="material-symbols-outlined text-[18px]">edit</span>
+                                        Edit
+                                    </a>
+
+                                    {{-- Tombol Delete (Alpine.js) --}}
+                                    <button type="button" x-data=""
+                                        @click="$dispatch('open-delete-modal', { url: '{{ route('member.workspace.destroy', $workspace) }}', message: 'Yakin ingin menghapus workspace {{ $workspace->name }} beserta seluruh isinya?' })"
+                                        class="text-sm font-bold text-error hover:text-red-700 flex items-center gap-1 transition-colors">
+                                        <span class="material-symbols-outlined text-[18px]">delete</span>
+                                        Delete
+                                    </button>
+                                @endif
                             </div>
+
                         </div>
                     </div>
                 @empty
