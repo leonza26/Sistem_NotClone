@@ -3,97 +3,125 @@
 @section('title', 'Task Details')
 
 @section('content')
-    <div class="px-10 pb-12">
-        <header class="max-w-6xl mb-8">
+    <div class="px-8 lg:px-10 pb-12 pt-4 max-w-7xl">
+        <header class="mb-10">
             <a href="{{ route('member.tasks') }}"
-                class="text-sm font-bold text-secondary hover:underline mb-4 flex items-center gap-1 w-fit">
+                class="flex items-center gap-1 text-[13px] text-brand-slate hover:text-brand-orange transition-colors mb-6 font-medium w-fit">
                 <span class="material-symbols-outlined text-[16px]">arrow_back</span> Back to Kanban
             </a>
-            <div class="flex items-center gap-4 mt-2">
-                <h2 class="font-headline text-display-md text-3xl font-extrabold text-on-surface leading-tight">
+            <div class="flex flex-col md:flex-row md:items-center gap-4">
+                <h2 class="font-outfit text-3xl sm:text-4xl font-medium text-brand-dark leading-tight tracking-tight">
                     {{ $task->title }}
                 </h2>
                 <span
-                    class="px-3 py-1 text-xs font-bold uppercase rounded-full 
-                {{ $task->status === 'done' ? 'bg-teal-100 text-teal-700' : ($task->status === 'in_progress' ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-700') }}">
+                    class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest rounded-md w-fit
+                {{ $task->status === 'done' ? 'bg-brand-teal/10 text-brand-teal border border-brand-teal/20' : ($task->status === 'in_progress' ? 'bg-brand-orange/10 text-brand-orange border border-brand-orange/20' : 'bg-brand-surface text-brand-slate border border-brand-teal/20') }}">
                     {{ str_replace('_', ' ', $task->status) }}
                 </span>
             </div>
-            <div class="text-sm text-on-surface-variant mt-4 flex flex-wrap gap-4">
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">folder</span>
-                    {{ $task->project->name }}</span>
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">person</span>
-                    {{ $task->assignee->name ?? 'Unassigned' }}</span>
+            <div class="mt-5 flex flex-wrap gap-5">
+                <div class="flex items-center gap-2 text-sm text-brand-slate">
+                    <div
+                        class="w-8 h-8 rounded-full bg-brand-surface flex items-center justify-center border border-brand-teal/10">
+                        <span class="material-symbols-outlined text-[16px]">folder</span>
+                    </div>
+                    <span class="font-medium">{{ $task->project->name }}</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-brand-slate">
+                    @if ($task->assignee)
+                        <img alt="Assignee" class="w-8 h-8 rounded-full object-cover border border-brand-teal/10"
+                            src="https://ui-avatars.com/api/?name={{ urlencode($task->assignee->name) }}&background=F5FAFB&color=282B2A&bold=true" />
+                        <span class="font-medium">{{ $task->assignee->name }}</span>
+                    @else
+                        <div
+                            class="w-8 h-8 rounded-full bg-brand-surface flex items-center justify-center border border-brand-teal/10">
+                            <span class="material-symbols-outlined text-[16px]">person_off</span>
+                        </div>
+                        <span class="italic font-light">Unassigned</span>
+                    @endif
+                </div>
             </div>
         </header>
 
-        <div class="max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-            <!-- Task Info -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Task Info (Kiri) -->
             <div class="lg:col-span-2">
                 <div
-                    class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant mb-8 editorial-shadow">
-                    <h3
-                        class="text-lg font-bold text-on-surface mb-4 border-b border-outline-variant pb-3 flex items-center gap-2">
-                        <span class="material-symbols-outlined text-primary">description</span> Description
+                    class="bg-white p-8 sm:p-10 rounded-[32px] border border-brand-teal/10 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)]">
+                    <h3 class="font-outfit text-xl font-medium text-brand-dark mb-6 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-brand-orange">description</span>
+                        Description
                     </h3>
-                    <div class="text-on-surface-variant text-sm leading-relaxed">
+                    <div class="text-brand-slate text-[14px] leading-relaxed font-light whitespace-pre-wrap">
                         {!! nl2br(e($task->description ?: 'Tidak ada deskripsi untuk task ini.')) !!}
                     </div>
                 </div>
             </div>
 
-            <!-- Comments -->
+            <!-- Comments / Discussion (Kanan) -->
             <div class="lg:col-span-1">
                 <div
-                    class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant flex flex-col h-[550px] editorial-shadow">
-                    <h3
-                        class="text-lg font-bold text-on-surface mb-4 border-b border-outline-variant pb-3 flex items-center gap-2">
-                        <span class="material-symbols-outlined text-primary">forum</span> Discussion
+                    class="bg-white p-6 sm:p-8 rounded-[32px] border border-brand-teal/10 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)] flex flex-col h-[600px]">
+                    <h3 class="font-outfit text-xl font-medium text-brand-dark mb-6 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-brand-teal">forum</span>
+                        Discussion
                     </h3>
 
                     <!-- Comments List -->
-                    <div class="flex-1 overflow-y-auto space-y-4 pr-2 mb-4 scrollbar-thin">
+                    <div class="flex-1 overflow-y-auto space-y-5 pr-2 mb-6 custom-scrollbar">
                         @forelse($task->comments as $comment)
-                            <div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant">
-                                <div class="flex justify-between items-start mb-2">
-                                    <span class="text-xs font-bold text-on-surface flex items-center gap-1">
+                            <div
+                                class="flex flex-col {{ $comment->user_id === auth()->id() ? 'items-end' : 'items-start' }}">
+                                <div class="flex items-center gap-2 mb-1.5 px-1">
+                                    <span class="text-[11px] font-bold text-brand-dark">
                                         {{ $comment->user->name }}
-                                        @if ($comment->user_id === auth()->id())
-                                            <span class="text-[10px] text-primary">(You)</span>
-                                        @endif
                                     </span>
                                     <span
-                                        class="text-[10px] text-on-surface-variant font-medium">{{ $comment->created_at->diffForHumans() }}</span>
+                                        class="text-[9px] font-light text-brand-slate/60">{{ $comment->created_at->diffForHumans() }}</span>
                                 </div>
-                                <p class="text-sm text-on-surface-variant">{{ $comment->content }}</p>
 
-                                @if ($comment->user_id === auth()->id())
-                                    <form action="{{ route('member.tasks.comments.destroy', $comment) }}" method="POST"
-                                        class="mt-3 text-right" onsubmit="return confirm('Hapus komentar?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="text-[11px] font-bold text-error hover:underline">Delete</button>
-                                    </form>
-                                @endif
+                                <!-- Chat Bubble -->
+                                <div
+                                    class="relative max-w-[90%] p-4 text-[13px] font-light leading-relaxed {{ $comment->user_id === auth()->id() ? 'bg-brand-dark text-white rounded-2xl rounded-tr-sm' : 'bg-brand-surface text-brand-slate border border-brand-teal/10 rounded-2xl rounded-tl-sm' }}">
+                                    {{ $comment->content }}
+
+                                    @if ($comment->user_id === auth()->id())
+                                        <form action="{{ route('member.tasks.comments.destroy', $comment) }}"
+                                            method="POST"
+                                            class="absolute -left-8 top-1/2 -translate-y-1/2 opacity-0 hover:opacity-100 transition-opacity"
+                                            onsubmit="return confirm('Hapus komentar?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="w-6 h-6 rounded-full bg-red-50 text-red-500 flex items-center justify-center hover:bg-red-100 transition-colors"
+                                                title="Delete">
+                                                <span class="material-symbols-outlined text-[14px]">delete</span>
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
                             </div>
                         @empty
-                            <div class="flex flex-col items-center justify-center h-full opacity-50">
-                                <span class="material-symbols-outlined text-4xl mb-2">speaker_notes_off</span>
-                                <p class="text-sm text-center">Belum ada komentar.</p>
+                            <div class="flex flex-col items-center justify-center h-full opacity-60">
+                                <div class="w-16 h-16 rounded-full bg-brand-surface flex items-center justify-center mb-4">
+                                    <span
+                                        class="material-symbols-outlined text-3xl text-brand-slate">speaker_notes_off</span>
+                                </div>
+                                <p class="text-[13px] text-brand-slate font-light text-center">Belum ada
+                                    diskusi.<br />Jadilah yang pertama berkomentar!</p>
                             </div>
                         @endforelse
                     </div>
 
                     <!-- Add Comment Form -->
                     <form action="{{ route('member.tasks.comments.store', $task) }}" method="POST"
-                        class="mt-auto pt-4 border-t border-outline-variant">
+                        class="mt-auto pt-5 border-t border-brand-teal/10 relative">
                         @csrf
-                        <textarea name="content" rows="2" required placeholder="Tulis komentar..."
-                            class="w-full text-sm rounded-xl border-outline-variant bg-surface focus:border-primary focus:ring-primary px-4 py-3 mb-3 resize-none"></textarea>
+                        <textarea name="content" rows="2" required placeholder="Tulis pesan..."
+                            class="w-full text-[13px] rounded-2xl border border-brand-teal/20 bg-brand-surface focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 pl-4 pr-12 py-3.5 resize-none outline-none custom-scrollbar text-brand-dark font-medium"></textarea>
                         <button type="submit"
-                            class="w-full py-2.5 bg-primary text-on-primary font-bold text-sm rounded-xl hover:opacity-90 transition shadow-sm">
-                            Post Comment
+                            class="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 mt-2.5 rounded-full bg-brand-orange text-white flex items-center justify-center hover:bg-[#CC6800] transition-colors shadow-md">
+                            <span class="material-symbols-outlined text-[16px] -ml-0.5">send</span>
                         </button>
                     </form>
                 </div>

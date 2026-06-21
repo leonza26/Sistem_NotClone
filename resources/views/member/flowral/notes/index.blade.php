@@ -1,299 +1,231 @@
 @extends('layouts.member')
 
-@section('title', 'Notes')
+@section('title', 'Notes & Docs')
 
 @section('content')
     <div class="flex h-[calc(100vh-4rem)]">
         <!-- Left Inner Sidebar (Notes Navigation) -->
-        <aside
-            class="w-72 bg-surface-container-low flex flex-col p-6 overflow-y-auto border-r border-surface-container-high">
+        <aside class="w-72 bg-brand-surface flex flex-col p-6 overflow-y-auto border-r border-brand-teal/10">
             <div class="flex items-center justify-between mb-6">
-                <h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                <h3 class="text-[10px] font-bold uppercase tracking-widest text-brand-slate">
                     Private Docs
                 </h3>
                 <button
-                    class="w-6 h-6 rounded flex items-center justify-center hover:bg-surface-container-high transition-colors">
-                    <span class="material-symbols-outlined text-sm">add</span>
+                    class="w-6 h-6 rounded-lg flex items-center justify-center hover:bg-white transition-colors text-brand-slate hover:text-brand-dark shadow-sm">
+                    <span class="material-symbols-outlined text-[16px]">add</span>
                 </button>
             </div>
             <div class="space-y-4">
                 <div>
                     <div
-                        class="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-semibold text-sm cursor-pointer shadow-sm">
-                        <span class="material-symbols-outlined text-sm">description</span>
+                        class="flex items-center gap-2 px-3 py-2 rounded-xl bg-white text-brand-orange font-medium text-sm shadow-[0_2px_10px_-4px_rgba(48,71,78,0.05)] border border-brand-teal/10 cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">description</span>
                         <span>Getting Started</span>
                     </div>
                 </div>
                 <div class="space-y-1">
                     <div
-                        class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant text-sm cursor-pointer group">
+                        class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white hover:shadow-sm hover:border-brand-teal/10 border border-transparent transition-all text-brand-slate hover:text-brand-dark text-sm cursor-pointer group">
                         <span
-                            class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">folder</span>
-                        <span>Design Assets</span>
-                        <span class="material-symbols-outlined text-xs ml-auto text-slate-300">chevron_right</span>
+                            class="material-symbols-outlined text-[18px] text-brand-slate/60 group-hover:text-brand-orange">folder</span>
+                        <span class="font-light group-hover:font-medium">Design Assets</span>
+                        <span
+                            class="material-symbols-outlined text-[14px] ml-auto opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
                     </div>
                     <div
-                        class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant text-sm cursor-pointer group">
+                        class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white hover:shadow-sm hover:border-brand-teal/10 border border-transparent transition-all text-brand-slate hover:text-brand-dark text-sm cursor-pointer group">
                         <span
-                            class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">folder</span>
-                        <span>Meeting Notes</span>
-                        <span class="material-symbols-outlined text-xs ml-auto text-slate-300">chevron_right</span>
+                            class="material-symbols-outlined text-[18px] text-brand-slate/60 group-hover:text-brand-orange">folder</span>
+                        <span class="font-light group-hover:font-medium">Meeting Notes</span>
+                        <span
+                            class="material-symbols-outlined text-[14px] ml-auto opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
                     </div>
                     <div
-                        class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant text-sm cursor-pointer group">
+                        class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white hover:shadow-sm hover:border-brand-teal/10 border border-transparent transition-all text-brand-slate hover:text-brand-dark text-sm cursor-pointer group">
                         <span
-                            class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">description</span>
-                        <span>Project Roadmap</span>
+                            class="material-symbols-outlined text-[18px] text-brand-slate/60 group-hover:text-brand-teal">description</span>
+                        <span class="font-light group-hover:font-medium">Project Roadmap</span>
                     </div>
                     <div
-                        class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant text-sm cursor-pointer group">
+                        class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white hover:shadow-sm hover:border-brand-teal/10 border border-transparent transition-all text-brand-slate hover:text-brand-dark text-sm cursor-pointer group">
                         <span
-                            class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">description</span>
-                        <span>Brand Guidelines</span>
+                            class="material-symbols-outlined text-[18px] text-brand-slate/60 group-hover:text-brand-teal">description</span>
+                        <span class="font-light group-hover:font-medium">Brand Guidelines</span>
                     </div>
                 </div>
+
                 <div class="pt-6">
-                    <h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">
+                    <h3 class="text-[10px] font-bold uppercase tracking-widest text-brand-slate mb-4">
                         Shared
                     </h3>
                     <div class="space-y-1">
                         <div
-                            class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant text-sm cursor-pointer group">
-                            <span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary"
-                                style="
-                                        font-variation-settings: &quot;FILL&quot;
-                                            1;
-                                    ">group</span>
-                            <span>Team Handbook</span>
+                            class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white hover:shadow-sm hover:border-brand-teal/10 border border-transparent transition-all text-brand-slate hover:text-brand-dark text-sm cursor-pointer group">
+                            <span
+                                class="material-symbols-outlined text-[18px] text-brand-slate/60 group-hover:text-brand-dark">group</span>
+                            <span class="font-light group-hover:font-medium">Team Handbook</span>
                         </div>
                         <div
-                            class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant text-sm cursor-pointer group">
+                            class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white hover:shadow-sm hover:border-brand-teal/10 border border-transparent transition-all text-brand-slate hover:text-brand-dark text-sm cursor-pointer group">
                             <span
-                                class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">description</span>
-                            <span>Client Onboarding</span>
+                                class="material-symbols-outlined text-[18px] text-brand-slate/60 group-hover:text-brand-teal">description</span>
+                            <span class="font-light group-hover:font-medium">Client Onboarding</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="mt-auto pt-6">
-                <div class="bg-primary/5 rounded-xl p-4">
-                    <p class="text-xs text-primary font-semibold mb-1">
+                <div class="bg-brand-orange/5 border border-brand-orange/10 rounded-2xl p-4">
+                    <p class="text-[11px] text-brand-orange font-bold mb-2 uppercase tracking-wide">
                         Workspace Storage
                     </p>
-                    <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
-                        <div class="bg-primary h-full w-[65%]"></div>
+                    <div class="w-full bg-white/50 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-brand-orange h-full w-[65%] rounded-full shadow-[0_0_10px_rgba(229,117,0,0.5)]">
+                        </div>
                     </div>
-                    <p class="text-[10px] text-on-surface-variant mt-2">
+                    <p class="text-[10px] text-brand-slate mt-2 font-medium">
                         6.5 GB of 10 GB used
                     </p>
                 </div>
             </div>
         </aside>
+
         <!-- Main Editor Area -->
-        <section class="flex-grow bg-surface-container-lowest overflow-y-auto relative">
+        <section class="flex-grow bg-white overflow-y-auto relative custom-scrollbar">
             <!-- Floating Editor Toolbar (Glassmorphism) -->
-            <div class="sticky top-0 w-full glass-nav bg-white/60 px-12 py-3 flex items-center justify-between z-10">
-                <div class="flex items-center gap-4 text-slate-400">
-                    <button class="hover:text-primary transition-colors flex items-center gap-1">
-                        <span class="material-symbols-outlined text-lg">format_bold</span>
+            <div
+                class="sticky top-0 w-full bg-white/80 backdrop-blur-xl border-b border-brand-teal/10 px-8 lg:px-12 py-3 flex items-center justify-between z-10">
+                <div class="flex items-center gap-2 text-brand-slate">
+                    <button
+                        class="w-8 h-8 rounded-lg hover:bg-brand-surface hover:text-brand-dark transition-colors flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[18px]">format_bold</span>
                     </button>
-                    <button class="hover:text-primary transition-colors flex items-center gap-1">
-                        <span class="material-symbols-outlined text-lg">format_italic</span>
+                    <button
+                        class="w-8 h-8 rounded-lg hover:bg-brand-surface hover:text-brand-dark transition-colors flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[18px]">format_italic</span>
                     </button>
-                    <button class="hover:text-primary transition-colors flex items-center gap-1">
-                        <span class="material-symbols-outlined text-lg">format_list_bulleted</span>
+                    <button
+                        class="w-8 h-8 rounded-lg hover:bg-brand-surface hover:text-brand-dark transition-colors flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
                     </button>
-                    <button class="hover:text-primary transition-colors flex items-center gap-1">
-                        <span class="material-symbols-outlined text-lg">link</span>
+                    <div class="w-px h-4 bg-brand-teal/10 mx-2"></div>
+                    <button
+                        class="w-8 h-8 rounded-lg hover:bg-brand-surface hover:text-brand-dark transition-colors flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[18px]">link</span>
                     </button>
-                    <div class="w-px h-4 bg-surface-container-high mx-2"></div>
-                    <button class="hover:text-primary transition-colors flex items-center gap-1">
-                        <span class="material-symbols-outlined text-lg">image</span>
+                    <button
+                        class="w-8 h-8 rounded-lg hover:bg-brand-surface hover:text-brand-dark transition-colors flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[18px]">image</span>
                     </button>
                 </div>
-                <div class="flex items-center gap-3">
-                    <span class="text-xs text-slate-400">Saved 2m ago</span>
+                <div class="flex items-center gap-4">
+                    <span class="text-[11px] text-brand-slate font-light">Saved 2m ago</span>
                     <button
-                        class="text-xs font-bold uppercase tracking-widest text-primary px-3 py-1.5 hover:bg-primary/10 rounded-lg transition-colors">
+                        class="text-[11px] font-bold uppercase tracking-widest text-brand-dark bg-brand-surface border border-brand-teal/10 px-4 py-2 hover:bg-brand-teal/5 rounded-lg transition-colors">
                         Share
                     </button>
                 </div>
             </div>
+
             <!-- Content Canvas -->
-            <div class="max-w-3xl mx-auto py-16 px-12 animate-in fade-in duration-700">
-                <!-- Page Cover Image -->
-                <div class="w-full h-48 rounded-2xl mb-12 overflow-hidden">
-                    <img alt="Modern Workspace" class="w-full h-full object-cover"
-                        data-alt="high-angle shot of a minimalist architecture office with large windows, warm wooden furniture, and clean concrete walls"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfyIxdnGPYuGT2mMrtr5pxVDNIgYKaY9mzL37VU_8tWzIBxCSl5o1P9yzrBN5Q8tfg8fl2F-qmkehjp8HolRTVPR5VJXdAcp_ZP2l6NfNNeETNQnOf-775un_ogJpdg7oInLdqN75er3wietQXu7J6HekRy48bxwe4hHWZVqn5y39SUfdUt7YJAjtyJMSKh2AGjw-TFFU837zBlC66e8Ve9zWn8Y8JnIThFZHzSnlYz_AynO0bwAbpheQYCUkEQMKdqLD6siQGUzk" />
+            <div class="max-w-3xl mx-auto py-12 px-8 lg:px-12">
+                <!-- Cover Image -->
+                <div class="w-full h-48 rounded-[32px] mb-12 overflow-hidden shadow-sm">
+                    <img alt="Cover Image" class="w-full h-full object-cover"
+                        src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2000&auto=format&fit=crop" />
                 </div>
-                <div class="space-y-8">
+
+                <!-- Fake Editor Content -->
+                <div class="space-y-6">
                     <header>
-                        <h1 class="text-5xl font-extrabold tracking-tight text-on-surface mb-4">
+                        <h1 class="font-outfit text-5xl font-medium text-brand-dark mb-4 leading-tight tracking-tight outline-none"
+                            contenteditable="true">
                             Getting Started
                         </h1>
-                        <p class="text-lg text-on-surface-variant font-medium leading-relaxed">
-                            Welcome to the Architectural Curator workspace.
-                            This document will help you navigate your new
-                            curated environment.
+                        <p class="text-lg text-brand-slate font-light leading-relaxed outline-none" contenteditable="true">
+                            Welcome to Flowral Notes. This document will help you navigate your new curated environment.
+                            Edit me!
                         </p>
                     </header>
-                    <div class="prose prose-slate max-w-none">
-                        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4 border-l-4 border-primary pl-4">
+
+                    <div class="prose prose-slate max-w-none pt-4">
+                        <h2 class="font-outfit text-2xl font-medium text-brand-dark mt-8 mb-4">
                             Core Principles
                         </h2>
-                        <p class="text-on-surface-variant leading-relaxed mb-4">
-                            Our workspace is built on the philosophy of
-                            **Mental Clarity**. We believe that information
-                            should be displayed with editorial precision,
-                            avoiding the clutter of traditional task
-                            managers.
+                        <p class="text-brand-slate leading-relaxed font-light mb-4">
+                            Our workspace is built on the philosophy of <strong>Mental Clarity</strong>. We believe that
+                            information should be displayed with editorial precision, avoiding the clutter of traditional
+                            task managers.
                         </p>
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-                            <div class="p-6 bg-surface-container-low rounded-xl">
-                                <span class="material-symbols-outlined text-primary mb-3"
-                                    style="
-                                            font-variation-settings: &quot;FILL&quot;
-                                                1;
-                                        ">architecture</span>
-                                <h4 class="font-bold text-on-surface mb-2">
-                                    Architectural Integrity
+                            <div class="p-6 bg-brand-surface rounded-[24px] border border-brand-teal/10">
+                                <span class="material-symbols-outlined text-brand-orange mb-3">architecture</span>
+                                <h4 class="font-outfit text-lg font-medium text-brand-dark mb-2">Architectural Integrity
                                 </h4>
-                                <p class="text-sm text-on-surface-variant">
-                                    Focus on the structural hierarchy of
-                                    your data. Use nesting and tonal layers
-                                    to define importance.
-                                </p>
+                                <p class="text-[13px] text-brand-slate font-light">Focus on the structural hierarchy of your
+                                    data. Use nesting and tonal layers to define importance.</p>
                             </div>
-                            <div class="p-6 bg-surface-container-low rounded-xl">
-                                <span class="material-symbols-outlined text-primary mb-3"
-                                    style="
-                                            font-variation-settings: &quot;FILL&quot;
-                                                1;
-                                        ">auto_awesome</span>
-                                <h4 class="font-bold text-on-surface mb-2">
-                                    AI-Driven Insights
-                                </h4>
-                                <p class="text-sm text-on-surface-variant">
-                                    Our AI assistant curates your notes into
-                                    actionable summaries and project
-                                    timelines automatically.
-                                </p>
+                            <div class="p-6 bg-brand-surface rounded-[24px] border border-brand-teal/10">
+                                <span class="material-symbols-outlined text-brand-teal mb-3">auto_awesome</span>
+                                <h4 class="font-outfit text-lg font-medium text-brand-dark mb-2">AI-Driven Insights</h4>
+                                <p class="text-[13px] text-brand-slate font-light">Our AI assistant curates your notes into
+                                    actionable summaries automatically.</p>
                             </div>
                         </div>
-                        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">
+
+                        <h2 class="font-outfit text-2xl font-medium text-brand-dark mt-10 mb-4">
                             Initial Tasks
                         </h2>
-                        <ul class="space-y-4">
+                        <ul class="space-y-4 list-none pl-0">
                             <li class="flex items-start gap-3">
-                                <button
-                                    class="mt-1 w-5 h-5 rounded border border-outline-variant flex items-center justify-center hover:bg-primary-container/20">
-                                    <span class="material-symbols-outlined text-[14px] text-transparent">check</span>
-                                </button>
-                                <span class="text-on-surface-variant">Connect your cloud storage in
-                                    **Settings &gt; Integrations**</span>
+                                <input type="checkbox"
+                                    class="mt-1 w-5 h-5 rounded border-brand-teal/20 text-brand-orange focus:ring-brand-orange">
+                                <span class="text-brand-slate font-light">Connect your cloud storage in Settings</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <button
-                                    class="mt-1 w-5 h-5 rounded border-2 border-primary bg-primary flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-[14px] text-white">check</span>
-                                </button>
-                                <span class="text-on-surface-variant line-through opacity-50">Create your first project
+                                <input type="checkbox" checked
+                                    class="mt-1 w-5 h-5 rounded border-brand-teal/20 text-brand-orange focus:ring-brand-orange">
+                                <span class="text-brand-slate/50 line-through font-light">Create your first project
                                     workspace</span>
                             </li>
-                            <li class="flex items-start gap-3">
-                                <button
-                                    class="mt-1 w-5 h-5 rounded border border-outline-variant flex items-center justify-center hover:bg-primary-container/20">
-                                    <span class="material-symbols-outlined text-[14px] text-transparent">check</span>
-                                </button>
-                                <span class="text-on-surface-variant">Invite your team members via the top
-                                    breadcrumb link</span>
-                            </li>
                         </ul>
+
                         <div
-                            class="mt-12 p-8 bg-surface text-on-surface-variant rounded-2xl border-l-4 border-tertiary-container relative overflow-hidden">
+                            class="mt-12 p-8 bg-brand-surface rounded-[32px] border-l-4 border-brand-orange relative overflow-hidden">
                             <div class="relative z-10">
-                                <p class="italic text-lg font-medium">
-                                    "Architecture is the learned game,
-                                    correct and magnificent, of forms
-                                    assembled in the light."
+                                <p class="italic text-lg font-medium text-brand-dark">
+                                    "Design is not just what it looks like and feels like. Design is how it works."
                                 </p>
-                                <p class="text-xs uppercase tracking-widest mt-4 font-bold">
-                                    — Le Corbusier
+                                <p class="text-[10px] uppercase tracking-widest mt-4 font-bold text-brand-slate">
+                                    — Steve Jobs
                                 </p>
                             </div>
-                            <div class="absolute -right-4 -bottom-4 opacity-5">
+                            <div class="absolute -right-4 -bottom-4 opacity-[0.03]">
                                 <span class="material-symbols-outlined text-9xl">format_quote</span>
                             </div>
                         </div>
-                        <h3 class="text-xl font-bold text-on-surface mt-12 mb-4">
-                            Documentation Standards
-                        </h3>
-                        <p class="text-on-surface-variant leading-relaxed mb-6">
-                            When writing documentation for the curated
-                            workspace, adhere to our brand's typography
-                            scale:
-                        </p>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex items-center justify-between py-2 border-b border-surface-container-high">
-                                <span class="font-bold text-on-surface">Page Titles</span>
-                                <span class="text-on-surface-variant">Manrope, 2.75rem (display-md)</span>
-                            </div>
-                            <div class="flex items-center justify-between py-2 border-b border-surface-container-high">
-                                <span class="font-bold text-on-surface">Section Headers</span>
-                                <span class="text-on-surface-variant">Inter, 1.375rem (title-lg)</span>
-                            </div>
-                            <div class="flex items-center justify-between py-2 border-b border-surface-container-high">
-                                <span class="font-bold text-on-surface">Body Text</span>
-                                <span class="text-on-surface-variant">Inter, 0.875rem (body-md)</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
+
                 <!-- Page Footer -->
-                <footer class="mt-20 pt-8 border-t border-surface-container-high flex items-center justify-between">
+                <footer class="mt-20 pt-8 border-t border-brand-teal/10 flex items-center justify-between pb-20">
                     <div class="flex items-center gap-4">
                         <div class="flex -space-x-2">
-                            <img alt="Collaborator" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest"
-                                data-alt="close-up portrait of a woman smiling with soft natural lighting and blurred greenery in background"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHjWX3t4_2KixBPLUOfRlKipO7SKSg51Cqu1WpXRbxbp3E2O9RY40eyV_-kwVBVpxIrhZIl9xqM_w7vjr4bIlsZ60lB1k2xWH9IsZ-5LBKxq07tUgGX0yt-x2C-n26Ydo93fvkarXemUmLQG2tKUaxNqmQzwMHuy7yCb_0IQoe2EUgP27tZxuNxICjkL7JfGFc4Vaxu3eGBfTfxNlf5KwuUxpmLN4tGZYdNGFFf2G9gVrFFcVZ4MOFHdSfc2kxcxlWfRsF3Q0-QkA" />
-                            <img alt="Collaborator" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest"
-                                data-alt="headshot of a man with glasses looking at the camera in a modern office interior"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAFQKgxabVm0q85UuFXPbAKQ5ezVYosqpNM28V-NpG_r9akb7L34pwhfvOw_Oirxj44wrK5cMDx0eFKgoXL90F6pFIyBnoUaZ_A_z5Oqx6JB1MFxwvcwf9VeK7b_fMCGIvPZbSvpO1_S7-WRD0rB7sWNXHexCb3xFD-0VXuOMxwL-VN2TMVXRfJb4YQVQmex3fD4jDdVdDOxGdJIoPsuuhSuApCKAsUptk4hUTOKq2jb_-563s79X8kj_pE6g2WOKAwGK_bByfwpU" />
+                            <img class="w-8 h-8 rounded-full border-2 border-white"
+                                src="https://ui-avatars.com/api/?name=Leon+Role&background=F5FAFB&color=282B2A" />
+                            <img class="w-8 h-8 rounded-full border-2 border-white"
+                                src="https://ui-avatars.com/api/?name=Sarah+Chen&background=F5FAFB&color=282B2A" />
                             <div
-                                class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-primary-fixed flex items-center justify-center text-[10px] font-bold text-on-primary-fixed">
+                                class="w-8 h-8 rounded-full border-2 border-white bg-brand-surface flex items-center justify-center text-[10px] font-bold text-brand-slate">
                                 +4
                             </div>
                         </div>
-                        <span class="text-xs text-on-surface-variant">Last edited by **Sarah Chen** today at 2:45
-                            PM</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button
-                            class="p-2 hover:bg-surface-container-low rounded-lg text-on-surface-variant transition-colors">
-                            <span class="material-symbols-outlined text-sm">more_horiz</span>
-                        </button>
+                        <span class="text-[11px] text-brand-slate font-light">Last edited by <strong
+                                class="font-medium text-brand-dark">Sarah Chen</strong> today at 2:45 PM</span>
                     </div>
                 </footer>
             </div>
         </section>
-        <!-- Right Side Context Panel (Asymmetric Editorial Element) -->
-        <aside
-            class="w-16 bg-surface-container-lowest border-l border-surface-container-low flex flex-col items-center py-6 gap-6">
-            <button
-                class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-white shadow-lg hover:scale-105 transition-all">
-                <span class="material-symbols-outlined">add</span>
-            </button>
-            <div class="w-8 h-[1px] bg-surface-container-high"></div>
-            <button class="text-on-surface-variant hover:text-primary transition-colors">
-                <span class="material-symbols-outlined">chat_bubble</span>
-            </button>
-            <button class="text-on-surface-variant hover:text-primary transition-colors">
-                <span class="material-symbols-outlined">calendar_today</span>
-            </button>
-            <button class="text-on-surface-variant hover:text-primary transition-colors">
-                <span class="material-symbols-outlined">star</span>
-            </button>
-        </aside>
     </div>
 @endsection

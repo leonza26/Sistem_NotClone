@@ -92,6 +92,8 @@ Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function ()
             Route::put('/workspace/{workspace}/members/{user}', 'update')->name('member.workspace.members.update');
             Route::delete('/workspace/{workspace}/members/{user}', 'destroy')->name('member.workspace.members.destroy');
         });
+
+        Route::view('/settings', 'member.flowral.settings.index')->name('member.settings');
     });
 });
 
