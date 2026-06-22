@@ -23,4 +23,9 @@ class Workspace extends Model
     {
         return $this->hasMany(Project::class);
     }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
 }

@@ -218,5 +218,5 @@ Dan ini:
 - alpine js
 - sortable js
 - laravel breeze
-- laravel reverb
-- 
+- laravel reverb untuk chat realtime
+- tinyMCE (rich text editor)

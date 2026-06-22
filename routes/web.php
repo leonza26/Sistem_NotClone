@@ -70,6 +70,10 @@ Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function ()
         });
         Route::controller(NoteMainController::class)->group(function () {
             Route::get('/notes', 'notes')->name('member.notes');
+            Route::post('/notes', 'store')->name('member.notes.store');
+            Route::get('/notes/{note}', 'show')->name('member.notes.show');
+            Route::put('/notes/{note}', 'update')->name('member.notes.update');
+            Route::delete('/notes/{note}', 'destroy')->name('member.notes.destroy');
         });
         Route::controller(ActivityMainController::class)->group(function () {
             Route::get('/activity', 'activity')->name('member.activity');

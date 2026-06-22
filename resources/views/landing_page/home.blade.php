@@ -93,7 +93,7 @@
         <div class="max-w-4xl mx-auto px-6 text-center z-10">
             <div
                 class="hero-anim gsap-hidden inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-brand-teal/20 text-brand-slate text-[11px] font-semibold tracking-widest uppercase mb-8 shadow-sm">
-                <span>Introducing Flowral 2.0</span>
+                <span>Introducing Flowral 1.0</span>
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></span>
             </div>
 

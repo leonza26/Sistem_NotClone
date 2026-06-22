@@ -1,231 +1,371 @@
 @extends('layouts.member')
 
-@section('title', 'Notes & Docs')
+@section('title', 'Documents')
 
 @section('content')
-    <div class="flex h-[calc(100vh-4rem)]">
-        <!-- Left Inner Sidebar (Notes Navigation) -->
-        <aside class="w-72 bg-brand-surface flex flex-col p-6 overflow-y-auto border-r border-brand-teal/10">
-            <div class="flex items-center justify-between mb-6">
-                <h3 class="text-[10px] font-bold uppercase tracking-widest text-brand-slate">
-                    Private Docs
-                </h3>
-                <button
-                    class="w-6 h-6 rounded-lg flex items-center justify-center hover:bg-white transition-colors text-brand-slate hover:text-brand-dark shadow-sm">
-                    <span class="material-symbols-outlined text-[16px]">add</span>
-                </button>
+    <div class="px-8 lg:px-10 pb-12 pt-4" x-data="notesApp()">
+        <!-- HEADER -->
+        <header class="max-w-6xl mb-8">
+            <div class="flex items-center gap-2 text-gray-500 text-xs font-semibold uppercase tracking-widest mb-3">
+                <span>Workspace</span>
+                <span class="w-1 h-1 rounded-full bg-orange-500"></span>
+                <span class="text-orange-500 font-bold">Documents</span>
             </div>
-            <div class="space-y-4">
-                <div>
-                    <div
-                        class="flex items-center gap-2 px-3 py-2 rounded-xl bg-white text-brand-orange font-medium text-sm shadow-[0_2px_10px_-4px_rgba(48,71,78,0.05)] border border-brand-teal/10 cursor-pointer">
-                        <span class="material-symbols-outlined text-[18px]">description</span>
-                        <span>Getting Started</span>
-                    </div>
-                </div>
-                <div class="space-y-1">
-                    <div
-                        class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white hover:shadow-sm hover:border-brand-teal/10 border border-transparent transition-all text-brand-slate hover:text-brand-dark text-sm cursor-pointer group">
-                        <span
-                            class="material-symbols-outlined text-[18px] text-brand-slate/60 group-hover:text-brand-orange">folder</span>
-                        <span class="font-light group-hover:font-medium">Design Assets</span>
-                        <span
-                            class="material-symbols-outlined text-[14px] ml-auto opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
-                    </div>
-                    <div
-                        class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white hover:shadow-sm hover:border-brand-teal/10 border border-transparent transition-all text-brand-slate hover:text-brand-dark text-sm cursor-pointer group">
-                        <span
-                            class="material-symbols-outlined text-[18px] text-brand-slate/60 group-hover:text-brand-orange">folder</span>
-                        <span class="font-light group-hover:font-medium">Meeting Notes</span>
-                        <span
-                            class="material-symbols-outlined text-[14px] ml-auto opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
-                    </div>
-                    <div
-                        class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white hover:shadow-sm hover:border-brand-teal/10 border border-transparent transition-all text-brand-slate hover:text-brand-dark text-sm cursor-pointer group">
-                        <span
-                            class="material-symbols-outlined text-[18px] text-brand-slate/60 group-hover:text-brand-teal">description</span>
-                        <span class="font-light group-hover:font-medium">Project Roadmap</span>
-                    </div>
-                    <div
-                        class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white hover:shadow-sm hover:border-brand-teal/10 border border-transparent transition-all text-brand-slate hover:text-brand-dark text-sm cursor-pointer group">
-                        <span
-                            class="material-symbols-outlined text-[18px] text-brand-slate/60 group-hover:text-brand-teal">description</span>
-                        <span class="font-light group-hover:font-medium">Brand Guidelines</span>
-                    </div>
+            <h2 class="font-outfit text-4xl lg:text-5xl font-medium text-gray-900 leading-tight tracking-tight">
+                Your <span class="text-orange-500">Knowledge Base.</span>
+            </h2>
+        </header>
+
+        <!-- CONTAINER UTAMA -->
+        <div class="bg-white rounded-3xl border border-gray-200 overflow-hidden flex"
+            style="height: 75vh; min-height: 600px; box-shadow: 0 4px 20px -10px rgba(0,0,0,0.1);">
+
+            <!-- SIDEBAR KIRI (Bisa di Minimize) -->
+            <div x-show="sidebarOpen" x-transition:enter="transition-all ease-out duration-300"
+                x-transition:enter-start="opacity-0 -ml-72" x-transition:enter-end="opacity-100 ml-0"
+                x-transition:leave="transition-all ease-in duration-300" x-transition:leave-start="opacity-100 ml-0"
+                x-transition:leave-end="opacity-0 -ml-72"
+                class="w-72 flex-shrink-0 border-r border-gray-200 bg-gray-50 flex flex-col relative z-20">
+                <div class="p-6 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+                    <span class="font-outfit font-medium text-gray-800 text-lg">Documents</span>
                 </div>
 
-                <div class="pt-6">
-                    <h3 class="text-[10px] font-bold uppercase tracking-widest text-brand-slate mb-4">
-                        Shared
-                    </h3>
-                    <div class="space-y-1">
-                        <div
-                            class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white hover:shadow-sm hover:border-brand-teal/10 border border-transparent transition-all text-brand-slate hover:text-brand-dark text-sm cursor-pointer group">
-                            <span
-                                class="material-symbols-outlined text-[18px] text-brand-slate/60 group-hover:text-brand-dark">group</span>
-                            <span class="font-light group-hover:font-medium">Team Handbook</span>
-                        </div>
-                        <div
-                            class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white hover:shadow-sm hover:border-brand-teal/10 border border-transparent transition-all text-brand-slate hover:text-brand-dark text-sm cursor-pointer group">
-                            <span
-                                class="material-symbols-outlined text-[18px] text-brand-slate/60 group-hover:text-brand-teal">description</span>
-                            <span class="font-light group-hover:font-medium">Client Onboarding</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-auto pt-6">
-                <div class="bg-brand-orange/5 border border-brand-orange/10 rounded-2xl p-4">
-                    <p class="text-[11px] text-brand-orange font-bold mb-2 uppercase tracking-wide">
-                        Workspace Storage
-                    </p>
-                    <div class="w-full bg-white/50 h-1.5 rounded-full overflow-hidden">
-                        <div class="bg-brand-orange h-full w-[65%] rounded-full shadow-[0_0_10px_rgba(229,117,0,0.5)]">
-                        </div>
-                    </div>
-                    <p class="text-[10px] text-brand-slate mt-2 font-medium">
-                        6.5 GB of 10 GB used
-                    </p>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Main Editor Area -->
-        <section class="flex-grow bg-white overflow-y-auto relative custom-scrollbar">
-            <!-- Floating Editor Toolbar (Glassmorphism) -->
-            <div
-                class="sticky top-0 w-full bg-white/80 backdrop-blur-xl border-b border-brand-teal/10 px-8 lg:px-12 py-3 flex items-center justify-between z-10">
-                <div class="flex items-center gap-2 text-brand-slate">
-                    <button
-                        class="w-8 h-8 rounded-lg hover:bg-brand-surface hover:text-brand-dark transition-colors flex items-center justify-center">
-                        <span class="material-symbols-outlined text-[18px]">format_bold</span>
-                    </button>
-                    <button
-                        class="w-8 h-8 rounded-lg hover:bg-brand-surface hover:text-brand-dark transition-colors flex items-center justify-center">
-                        <span class="material-symbols-outlined text-[18px]">format_italic</span>
-                    </button>
-                    <button
-                        class="w-8 h-8 rounded-lg hover:bg-brand-surface hover:text-brand-dark transition-colors flex items-center justify-center">
-                        <span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
-                    </button>
-                    <div class="w-px h-4 bg-brand-teal/10 mx-2"></div>
-                    <button
-                        class="w-8 h-8 rounded-lg hover:bg-brand-surface hover:text-brand-dark transition-colors flex items-center justify-center">
-                        <span class="material-symbols-outlined text-[18px]">link</span>
-                    </button>
-                    <button
-                        class="w-8 h-8 rounded-lg hover:bg-brand-surface hover:text-brand-dark transition-colors flex items-center justify-center">
-                        <span class="material-symbols-outlined text-[18px]">image</span>
-                    </button>
-                </div>
-                <div class="flex items-center gap-4">
-                    <span class="text-[11px] text-brand-slate font-light">Saved 2m ago</span>
-                    <button
-                        class="text-[11px] font-bold uppercase tracking-widest text-brand-dark bg-brand-surface border border-brand-teal/10 px-4 py-2 hover:bg-brand-teal/5 rounded-lg transition-colors">
-                        Share
-                    </button>
-                </div>
-            </div>
-
-            <!-- Content Canvas -->
-            <div class="max-w-3xl mx-auto py-12 px-8 lg:px-12">
-                <!-- Cover Image -->
-                <div class="w-full h-48 rounded-[32px] mb-12 overflow-hidden shadow-sm">
-                    <img alt="Cover Image" class="w-full h-full object-cover"
-                        src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2000&auto=format&fit=crop" />
-                </div>
-
-                <!-- Fake Editor Content -->
-                <div class="space-y-6">
-                    <header>
-                        <h1 class="font-outfit text-5xl font-medium text-brand-dark mb-4 leading-tight tracking-tight outline-none"
-                            contenteditable="true">
-                            Getting Started
-                        </h1>
-                        <p class="text-lg text-brand-slate font-light leading-relaxed outline-none" contenteditable="true">
-                            Welcome to Flowral Notes. This document will help you navigate your new curated environment.
-                            Edit me!
-                        </p>
-                    </header>
-
-                    <div class="prose prose-slate max-w-none pt-4">
-                        <h2 class="font-outfit text-2xl font-medium text-brand-dark mt-8 mb-4">
-                            Core Principles
-                        </h2>
-                        <p class="text-brand-slate leading-relaxed font-light mb-4">
-                            Our workspace is built on the philosophy of <strong>Mental Clarity</strong>. We believe that
-                            information should be displayed with editorial precision, avoiding the clutter of traditional
-                            task managers.
-                        </p>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-                            <div class="p-6 bg-brand-surface rounded-[24px] border border-brand-teal/10">
-                                <span class="material-symbols-outlined text-brand-orange mb-3">architecture</span>
-                                <h4 class="font-outfit text-lg font-medium text-brand-dark mb-2">Architectural Integrity
-                                </h4>
-                                <p class="text-[13px] text-brand-slate font-light">Focus on the structural hierarchy of your
-                                    data. Use nesting and tonal layers to define importance.</p>
-                            </div>
-                            <div class="p-6 bg-brand-surface rounded-[24px] border border-brand-teal/10">
-                                <span class="material-symbols-outlined text-brand-teal mb-3">auto_awesome</span>
-                                <h4 class="font-outfit text-lg font-medium text-brand-dark mb-2">AI-Driven Insights</h4>
-                                <p class="text-[13px] text-brand-slate font-light">Our AI assistant curates your notes into
-                                    actionable summaries automatically.</p>
-                            </div>
-                        </div>
-
-                        <h2 class="font-outfit text-2xl font-medium text-brand-dark mt-10 mb-4">
-                            Initial Tasks
-                        </h2>
-                        <ul class="space-y-4 list-none pl-0">
-                            <li class="flex items-start gap-3">
-                                <input type="checkbox"
-                                    class="mt-1 w-5 h-5 rounded border-brand-teal/20 text-brand-orange focus:ring-brand-orange">
-                                <span class="text-brand-slate font-light">Connect your cloud storage in Settings</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <input type="checkbox" checked
-                                    class="mt-1 w-5 h-5 rounded border-brand-teal/20 text-brand-orange focus:ring-brand-orange">
-                                <span class="text-brand-slate/50 line-through font-light">Create your first project
-                                    workspace</span>
-                            </li>
-                        </ul>
-
-                        <div
-                            class="mt-12 p-8 bg-brand-surface rounded-[32px] border-l-4 border-brand-orange relative overflow-hidden">
-                            <div class="relative z-10">
-                                <p class="italic text-lg font-medium text-brand-dark">
-                                    "Design is not just what it looks like and feels like. Design is how it works."
-                                </p>
-                                <p class="text-[10px] uppercase tracking-widest mt-4 font-bold text-brand-slate">
-                                    — Steve Jobs
-                                </p>
-                            </div>
-                            <div class="absolute -right-4 -bottom-4 opacity-[0.03]">
-                                <span class="material-symbols-outlined text-9xl">format_quote</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Page Footer -->
-                <footer class="mt-20 pt-8 border-t border-brand-teal/10 flex items-center justify-between pb-20">
-                    <div class="flex items-center gap-4">
-                        <div class="flex -space-x-2">
-                            <img class="w-8 h-8 rounded-full border-2 border-white"
-                                src="https://ui-avatars.com/api/?name=Leon+Role&background=F5FAFB&color=282B2A" />
-                            <img class="w-8 h-8 rounded-full border-2 border-white"
-                                src="https://ui-avatars.com/api/?name=Sarah+Chen&background=F5FAFB&color=282B2A" />
+                <div class="overflow-y-auto flex-1 py-4 space-y-8 custom-scrollbar">
+                    @foreach ($workspaces as $workspace)
+                        <div>
                             <div
-                                class="w-8 h-8 rounded-full border-2 border-white bg-brand-surface flex items-center justify-center text-[10px] font-bold text-brand-slate">
-                                +4
+                                class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3 px-6 flex justify-between items-center group">
+                                <span>{{ $workspace->name }}</span>
+                                <button @click="createNote({{ $workspace->id }}, null)"
+                                    class="opacity-0 group-hover:opacity-100 hover:bg-gray-200 text-gray-500 hover:text-orange-500 p-1 rounded transition-colors"
+                                    title="Add Document">
+                                    <span class="material-symbols-outlined text-base">add</span>
+                                </button>
+                            </div>
+
+                            <div class="px-4">
+                                @include('member.flowral.notes.partials.tree', [
+                                    'notes' => $workspace->notes,
+                                    'workspaceId' => $workspace->id,
+                                ])
                             </div>
                         </div>
-                        <span class="text-[11px] text-brand-slate font-light">Last edited by <strong
-                                class="font-medium text-brand-dark">Sarah Chen</strong> today at 2:45 PM</span>
-                    </div>
-                </footer>
+                    @endforeach
+                </div>
             </div>
-        </section>
-    </div>
-@endsection
+
+            <!-- AREA KANAN -->
+            <div class="flex-1 flex flex-col relative bg-white">
+
+                <!-- State: Kosong -->
+                <div x-show="!activeNote" class="flex-1 flex flex-col items-center justify-center text-gray-400 bg-white">
+                    <div
+                        class="w-24 h-24 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-gray-300 text-5xl">edit_document</span>
+                    </div>
+                    <h4 class="font-outfit text-xl font-medium text-gray-900 mb-2">No Document Selected</h4>
+                    <p class="text-sm font-light">Choose a document from the sidebar or create a new one.</p>
+                </div>
+
+                <!-- State: Aktif (Diubah dari x-if ke x-show agar DOM tidak hancur) -->
+                <div x-show="activeNote" style="display: none;" class="flex-1 flex flex-col h-full overflow-hidden">
+
+                    <!-- Header Editor & Tombol Save -->
+                    <div
+                        class="border-b border-gray-200 p-4 px-6 flex justify-between items-center bg-white z-20 shadow-sm">
+                        <div class="flex items-center gap-4 flex-1">
+                            <button @click="sidebarOpen = !sidebarOpen"
+                                class="p-1.5 hover:bg-gray-100 rounded-md text-gray-500 transition-colors"
+                                title="Toggle Sidebar">
+                                <span class="material-symbols-outlined text-xl"
+                                    x-text="sidebarOpen ? 'menu_open' : 'menu'"></span>
+                            </button>
+
+                            <input type="text" x-model="activeNote?.title" @input="markDirty()"
+                                class="w-full max-w-xl text-2xl font-outfit font-medium text-gray-900 border-none focus:ring-0 p-0 placeholder-gray-300 bg-transparent"
+                                placeholder="Document Title...">
+                        </div>
+
+                        <!-- Indikator Save & Tombol -->
+                        <div class="flex items-center gap-5">
+                            <span x-show="isDirty" class="text-xs font-medium text-orange-500 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span> Unsaved changes
+                            </span>
+                            <span x-show="!isDirty && lastSavedTime"
+                                class="text-xs text-gray-500 font-medium flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-base text-green-500">check_circle</span> Saved
+                            </span>
+
+                            <button @click="saveNote()"
+                                class="bg-gray-900 hover:bg-orange-500 text-white px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-widest transition-all flex items-center gap-2 border-none"
+                                style="box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                <span class="material-symbols-outlined text-lg" :class="isSaving ? 'animate-spin' : ''">
+                                    <template x-if="isSaving">sync</template>
+                                    <template x-if="!isSaving">save</template>
+                                </span>
+                                <span x-text="isSaving ? 'Saving...' : 'Save'"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Kertas Dokumen (Area Mengetik TinyMCE) -->
+                    <!-- KUNCI RAHASIA: Atribut x-ignore ini mencegah Alpine mengganggu/merusak isi Editor -->
+                    <div class="flex-1 p-0 relative bg-slate-50" x-ignore>
+                        <div class="w-full h-full border-none">
+                            <textarea id="tinymce-editor"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RENAME MODAL (AJAX) -->
+        <div x-show="renameModalOpen" class="fixed inset-0 z-[100] flex items-center justify-center" x-cloak
+            style="display: none;">
+            <!-- Backdrop -->
+            <div x-show="renameModalOpen" x-transition.opacity class="absolute inset-0 bg-brand-dark/40 backdrop-blur-sm"
+                @click="renameModalOpen = false"></div>
+
+            <!-- Panel -->
+            <div x-show="renameModalOpen" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                class="relative bg-white border border-gray-200 rounded-3xl shadow-2xl w-full max-w-md p-8">
+                <div
+                    class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center mb-5 border border-orange-100">
+                    <span class="material-symbols-outlined text-orange-500 text-2xl">edit_document</span>
+                </div>
+                <h3 class="text-xl font-outfit font-medium text-gray-900 mb-2">Rename Document</h3>
+                <p class="text-gray-500 text-sm font-light mb-6">Enter a new name for this document.</p>
+
+                <input type="text" x-model="renameTitle" @keydown.enter="submitRename()"
+                    class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all text-sm mb-8 outline-none"
+                    placeholder="Document Title...">
+
+                <div class="flex gap-3 justify-end">
+                    <button @click="renameModalOpen = false"
+                        class="px-5 py-2.5 rounded-xl text-gray-500 font-medium text-sm hover:bg-gray-50 transition-colors">Cancel</button>
+                    <button @click="submitRename()"
+                        class="px-5 py-2.5 rounded-xl bg-orange-500 text-white font-medium text-sm shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm" x-show="isRenaming" class="animate-spin"
+                            style="display: none;">sync</span>
+                        <span x-text="isRenaming ? 'Saving...' : 'Save Name'"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gunakan TinyMCE via CDN Open Source (Tanpa API Key, Tanpa Warning) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.2/tinymce.min.js"></script>
+
+        <script>
+            document.addEventListener('alpine:init', () => {
+                Alpine.data('notesApp', () => ({
+                    activeNote: null,
+                    isSaving: false,
+                    isDirty: false,
+                    sidebarOpen: true,
+                    lastSavedTime: '',
+
+                    // STATE UNTUK RENAME MODAL
+                    renameModalOpen: false,
+                    renameId: null,
+                    renameTitle: '',
+                    isRenaming: false,
+
+                    init() {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const noteId = urlParams.get('note');
+                        if (noteId) {
+                            this.openNote(noteId);
+                        }
+                    },
+
+                    async createNote(workspaceId, parentId = null) {
+                        try {
+                            const response = await fetch('{{ route('member.notes.store') }}', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({
+                                    workspace_id: workspaceId,
+                                    parent_id: parentId,
+                                    title: 'New Document'
+                                })
+                            });
+                            const newNote = await response.json();
+                            window.location.href = '?note=' + newNote.id;
+                        } catch (error) {
+                            console.error('Error creating note:', error);
+                        }
+                    },
+
+                    async openNote(id) {
+                        try {
+                            if (this.activeNote && this.activeNote.id === id) return;
+
+                            const response = await fetch(`/member/notes/${id}`);
+                            this.activeNote = await response.json();
+
+                            const newUrl = new URL(window.location);
+                            newUrl.searchParams.set('note', id);
+                            window.history.pushState({}, '', newUrl);
+
+                            this.$nextTick(() => {
+                                this.initEditor();
+                            });
+                        } catch (error) {
+                            console.error('Error loading note:', error);
+                        }
+                    },
+
+                    initEditor() {
+                        let contentHTML = this.activeNote.content || '';
+                        if (contentHTML.startsWith('{"time":') || contentHTML.startsWith('{"blocks":'))
+                            contentHTML = '';
+
+                        // Jika TinyMCE sudah dimuat sebelumnya
+                        if (tinymce.get('tinymce-editor')) {
+                            tinymce.get('tinymce-editor').setContent(contentHTML);
+                            tinymce.get('tinymce-editor').undoManager.clear();
+                            setTimeout(() => {
+                                this.isDirty = false;
+                            }, 100);
+                            return;
+                        }
+
+                        // Setup TinyMCE
+                        tinymce.init({
+                            selector: '#tinymce-editor',
+                            height: '100%',
+                            menubar: 'file edit view insert format tools table',
+                            plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table wordcount',
+                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image table | removeformat | fullscreen',
+                            content_style: 'body { font-family: "Inter", sans-serif; font-size: 16px; color: #334155; line-height: 1.8; margin: 20px 40px; } h1,h2,h3 { font-family: "Outfit", sans-serif; color: #0f172a; }',
+                            resize: false,
+                            branding: false,
+                            promotion: false,
+                            skin: 'oxide',
+                            setup: (editor) => {
+                                editor.on('init', () => {
+                                    let html = this.activeNote ? (this.activeNote
+                                        .content || '') : '';
+                                    if (html.startsWith('{"time":')) html = '';
+                                    editor.setContent(html);
+                                    setTimeout(() => {
+                                        this.isDirty = false;
+                                    }, 100);
+                                });
+
+                                editor.on('input change keyup', (e) => {
+                                    this.markDirty();
+                                });
+                            }
+                        });
+                    },
+
+                    markDirty() {
+                        this.isDirty = true;
+                    },
+
+                    async saveNote() {
+                        if (!this.activeNote || !tinymce.get('tinymce-editor')) return;
+
+                        this.isSaving = true;
+                        const htmlContent = tinymce.get('tinymce-editor').getContent();
+
+                        try {
+                            await fetch(`/member/notes/${this.activeNote.id}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({
+                                    title: this.activeNote.title,
+                                    content: htmlContent
+                                })
+                            });
+
+                            const now = new Date();
+                            this.lastSavedTime = now.getHours() + ':' + String(now.getMinutes())
+                                .padStart(2, '0');
+                            this.isDirty = false;
+
+                            // Auto-Sync Judul ke Sidebar
+                            const sidebarTitle = document.getElementById('sidebar-title-' + this
+                                .activeNote.id);
+                            if (sidebarTitle) sidebarTitle.innerText = this.activeNote.title;
+
+                        } catch (error) {
+                            console.error('Save error:', error);
+                        } finally {
+                            this.isSaving = false;
+                        }
+                    },
+
+                    // FUNGSI UNTUK BUKA MODAL RENAME
+                    openRenameModal(id, title) {
+                        this.renameId = id;
+                        this.renameTitle = title;
+                        this.renameModalOpen = true;
+                    },
+
+                    // FUNGSI UNTUK MENYIMPAN RENAME
+                    async submitRename() {
+                        if (!this.renameTitle || !this.renameId) return;
+                        this.isRenaming = true;
+
+                        try {
+                            await fetch(`/member/notes/${this.renameId}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({
+                                    title: this.renameTitle
+                                })
+                            });
+                            window.location.reload();
+                        } catch (error) {
+                            console.error('Rename error:', error);
+                        } finally {
+                            this.isRenaming = false;
+                            this.renameModalOpen = false;
+                        }
+                    }
+                }));
+            });
+        </script>
+
+        <style>
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background-color: #cbd5e1;
+                border-radius: 20px;
+            }
+
+            .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+                background-color: #94a3b8;
+            }
+
+            /* Merapikan UI TinyMCE ke border kita */
+            .tox-tinymce {
+                border: none !important;
+            }
+
+            .tox-editor-header {
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+                padding: 4px 8px !important;
+            }
+        </style>
+    @endsection
