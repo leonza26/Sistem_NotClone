@@ -48,9 +48,19 @@ class TaskMainController extends Controller
             'assigned_to' => 'nullable|exists:users,id',
             'due_date' => 'nullable|date',
         ]);
-        Task::create($request->all());
+
+        // Simpan task baru ke variabel $task
+        $task = Task::create($request->all());
+        // --- LOGIKA NOTIFIKASI ---
+        // Jika ada yang di-assign, dan orang itu bukan kita sendiri (Auth::id())
+        if ($task->assigned_to && $task->assigned_to != Auth::id()) {
+            $user = User::find($task->assigned_to);
+            $user->notify(new \App\Notifications\TaskAssigned($task));
+        }
+        // -------------------------
         return redirect()->route('member.tasks')->with('success', 'Task berhasil dibuat!');
     }
+
 
     public function show(Task $task)
     {
@@ -78,7 +88,17 @@ class TaskMainController extends Controller
             'assigned_to' => 'nullable|exists:users,id',
             'due_date' => 'nullable|date',
         ]);
+
+        // Update task-nya
         $task->update($request->all());
+        // --- LOGIKA NOTIFIKASI ---
+        // wasChanged() mengecek apakah kolom 'assigned_to' benar-benar baru saja diubah
+        // Ini mencegah notifikasi terkirim berulang kali saat kita cuma mengedit judul task
+        if ($task->wasChanged('assigned_to') && $task->assigned_to && $task->assigned_to != Auth::id()) {
+            $user = User::find($task->assigned_to);
+            $user->notify(new \App\Notifications\TaskAssigned($task));
+        }
+        // -------------------------
         return redirect()->route('member.tasks')->with('success', 'Task berhasil diperbarui!');
     }
 

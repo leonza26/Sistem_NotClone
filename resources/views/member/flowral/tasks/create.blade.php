@@ -25,10 +25,38 @@
                 projects: {{ $projects->toJson() }},
                 selectedProjectId: '{{ old('project_id') }}',
                 assignedTo: '{{ old('assigned_to') }}',
+                taskTitle: '{{ old('title') }}',
+                taskDesc: `{{ old('description') }}`,
+                isGenerating: false,
                 get availableUsers() {
                     if (!this.selectedProjectId) return [];
                     let project = this.projects.find(p => p.id == this.selectedProjectId);
                     return project && project.workspace && project.workspace.users ? project.workspace.users : [];
+                },
+                generateDescription() {
+                    if (!this.taskTitle) return;
+                    this.isGenerating = true;
+                    fetch('{{ route('member.ai.generate_task') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify({ title: this.taskTitle })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            this.isGenerating = false;
+                            if (data.success) {
+                                this.taskDesc = data.description;
+                            }
+                        })
+                        .catch(err => {
+                            this.isGenerating = false;
+                            console.error(err);
+                            alert('Gagal menghubungi AI Copilot');
+                        });
                 }
             }">
                 @csrf
@@ -74,7 +102,7 @@
                 <div class="space-y-1.5 mb-6">
                     <label for="title" class="block text-xs font-semibold tracking-wide text-brand-slate ml-1">Task
                         Title</label>
-                    <input type="text" name="title" id="title" value="{{ old('title') }}" required
+                    <input type="text" name="title" id="title" x-model="taskTitle" required
                         placeholder="e.g. Design Homepage, Fix Database Bug..."
                         class="w-full px-4 py-3.5 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 text-brand-dark font-medium">
                     @error('title')
@@ -83,12 +111,29 @@
                 </div>
 
                 <!-- Deskripsi Task -->
+                <!-- Deskripsi Task -->
                 <div class="space-y-1.5 mb-6">
-                    <label for="description"
-                        class="block text-xs font-semibold tracking-wide text-brand-slate ml-1">Description
-                        (Opsional)</label>
-                    <textarea name="description" id="description" rows="4" placeholder="Tuliskan detail pekerjaan ini..."
-                        class="w-full px-4 py-3.5 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 text-brand-dark font-light leading-relaxed custom-scrollbar">{{ old('description') }}</textarea>
+                    <div class="flex items-center justify-between mb-1.5 px-1">
+                        <label for="description"
+                            class="block text-xs font-semibold tracking-wide text-brand-slate">Description
+                            (Opsional)</label>
+
+                        <!-- Tombol ✨ AI Generate -->
+                        <button type="button" @click="generateDescription()" :disabled="isGenerating || !taskTitle"
+                            class="text-[11px] font-semibold flex items-center gap-1.5 transition-colors px-2 py-1 rounded-md"
+                            :class="isGenerating || !taskTitle ? 'text-brand-slate/50 cursor-not-allowed' :
+                                'text-brand-orange hover:bg-brand-orange/10'">
+                            <span class="material-symbols-outlined text-[14px]" :class="isGenerating ? 'animate-spin' : ''">
+                                auto_awesome
+                            </span>
+                            <span x-text="isGenerating ? 'Generating...' : 'AI Generate'"></span>
+                        </button>
+                    </div>
+
+                    <textarea name="description" id="description" x-model="taskDesc" rows="6"
+                        placeholder="Tuliskan detail pekerjaan ini..."
+                        class="w-full px-4 py-3.5 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 text-brand-dark font-light leading-relaxed custom-scrollbar"></textarea>
+
                     @error('description')
                         <p class="text-red-500 text-[11px] mt-1.5 font-medium ml-1">{{ $message }}</p>
                     @enderror

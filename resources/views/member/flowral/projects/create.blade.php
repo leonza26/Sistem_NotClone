@@ -21,7 +21,36 @@
 
         <div
             class="bg-white p-8 sm:p-10 rounded-[32px] border border-brand-teal/10 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)]">
-            <form action="{{ route('member.projects.store') }}" method="POST">
+            <form action="{{ route('member.projects.store') }}" method="POST" x-data="{
+                projectName: '{{ old('name') }}',
+                projectDesc: `{{ old('description') }}`,
+                isGenerating: false,
+                suggestWorkflow() {
+                    if (!this.projectName) return;
+                    this.isGenerating = true;
+                    fetch('{{ route('member.ai.suggest_workflow') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify({ name: this.projectName })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            this.isGenerating = false;
+                            if (data.success) {
+                                this.projectDesc = data.workflow;
+                            }
+                        })
+                        .catch(err => {
+                            this.isGenerating = false;
+                            console.error(err);
+                            alert('Gagal menghubungi AI Copilot');
+                        });
+                }
+            }">
                 @csrf
 
                 <!-- Pilih Workspace -->
@@ -47,7 +76,7 @@
                 <div class="space-y-1.5 mb-6">
                     <label for="name" class="block text-xs font-semibold tracking-wide text-brand-slate ml-1">Project
                         Name</label>
-                    <input type="text" name="name" id="name" value="{{ old('name') }}" required
+                    <input type="text" name="name" id="name" x-model="projectName" required
                         placeholder="e.g. Website Revamp, Marketing Q3..."
                         class="w-full px-4 py-3.5 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 text-brand-dark font-medium">
                     @error('name')
@@ -57,12 +86,27 @@
 
                 <!-- Deskripsi Project -->
                 <div class="space-y-1.5 mb-8">
-                    <label for="description"
-                        class="block text-xs font-semibold tracking-wide text-brand-slate ml-1">Description
-                        (Opsional)</label>
-                    <textarea name="description" id="description" rows="4"
+                    <div class="flex items-center justify-between mb-1.5 px-1">
+                        <label for="description"
+                            class="block text-xs font-semibold tracking-wide text-brand-slate">Description & Workflow
+                            (Opsional)</label>
+
+                        <!-- Tombol ✨ AI Suggest Workflow -->
+                        <button type="button" @click="suggestWorkflow()" :disabled="isGenerating || !projectName"
+                            class="text-[11px] font-semibold flex items-center gap-1.5 transition-colors px-2 py-1 rounded-md"
+                            :class="isGenerating || !projectName ? 'text-brand-slate/50 cursor-not-allowed' :
+                                'text-brand-orange hover:bg-brand-orange/10'">
+                            <span class="material-symbols-outlined text-[14px]" :class="isGenerating ? 'animate-spin' : ''">
+                                auto_awesome
+                            </span>
+                            <span x-text="isGenerating ? 'Thinking...' : 'AI Suggest Workflow'"></span>
+                        </button>
+                    </div>
+
+                    <textarea name="description" id="description" x-model="projectDesc" rows="8"
                         placeholder="Tuliskan detail atau tujuan singkat project ini..."
-                        class="w-full px-4 py-3.5 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 text-brand-dark font-light leading-relaxed custom-scrollbar">{{ old('description') }}</textarea>
+                        class="w-full px-4 py-3.5 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 text-brand-dark font-light leading-relaxed custom-scrollbar"></textarea>
+
                     @error('description')
                         <p class="text-red-500 text-[11px] mt-1.5 font-medium ml-1">{{ $message }}</p>
                     @enderror

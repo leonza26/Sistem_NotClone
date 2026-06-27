@@ -189,8 +189,10 @@ Target: fitur beda dari Notion
   - Activity log
   - Notification
 
-## ☁️ PHASE 6 — DEPLOY
-  - Docker (WAJIB kamu pelajari)
+## ☁️ PHASE 6 
+  - core system 
+
+## DEPLOYMENT
   - VPS / Cloud
   - CI/CD sederhana
 
@@ -207,7 +209,6 @@ Kalau diringkas:
 👉 Kamu lagi bangun:  
  **“Mini Notion + AI + Self Hosted”**
 Dan ini:
-  - Cocok untuk skripsi ✔
   - Bisa jadi startup ✔
   - Bisa jadi portfolio kuat ✔
 
@@ -220,3 +221,6 @@ Dan ini:
 - laravel breeze
 - laravel reverb untuk chat realtime
 - tinyMCE (rich text editor)
+- Gemini API Key
+- Fitur Trait
+- notification

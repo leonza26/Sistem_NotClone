@@ -4,8 +4,9 @@ namespace App\Http\Controllers\member\Workspace;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\Workspace;
 use App\Models\User;
+use App\Models\Workspace;
+use App\Notifications\WorkspaceAssigned;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,6 +45,11 @@ class WorkspaceMemberController extends Controller
         }
         // Tambahkan ke workspace_users sebagai member
         $workspace->users()->attach($userToInvite->id, ['role' => 'member']);
+
+        // Tambahkan ke workspace_users sebagai member
+        $workspace->users()->attach($userToInvite->id, ['role' => 'member']);
+        // --- TAMBAHAN TRIGGER NOTIFIKASI INVITE ---
+        $userToInvite->notify(new WorkspaceAssigned($workspace, Auth::user()->name));
         return redirect()->route('member.workspace.members.index', $workspace)->with('success', 'Member berhasil ditambahkan!');
     }
     public function update(Request $request, Workspace $workspace, User $user)

@@ -28,150 +28,123 @@
                 <div class="absolute left-16 top-0 bottom-0 w-[1px] bg-brand-teal/10"></div>
 
                 <div class="space-y-12 relative z-10">
-                    <!-- Timeline Group: Today -->
-                    <div>
-                        <h3
-                            class="ml-20 text-[10px] font-bold text-brand-orange tracking-widest uppercase mb-8 bg-brand-orange/10 w-fit px-3 py-1 rounded-full">
-                            Today
-                        </h3>
 
-                        <!-- Activity Item 1 -->
-                        <div class="relative flex gap-6 items-start group">
-                            <div
-                                class="flex items-center justify-center w-12 h-12 rounded-full bg-brand-surface border border-brand-teal/10 text-brand-dark shadow-sm z-10">
-                                <span class="material-symbols-outlined text-[20px]">add_task</span>
-                            </div>
-                            <div class="flex-1 pt-1.5">
-                                <div class="flex justify-between items-start mb-2">
-                                    <p class="text-[14px] text-brand-dark font-light">
-                                        <span
-                                            class="font-medium hover:text-brand-orange cursor-pointer transition-colors">Leon
-                                            Role</span>
-                                        created
-                                        <span class="font-medium">Q4 Project Roadmap</span>
-                                    </p>
-                                    <span
-                                        class="text-[10px] font-semibold text-brand-slate uppercase tracking-wider bg-brand-surface px-2 py-1 rounded-md">10:24
-                                        AM</span>
-                                </div>
-                                <div
-                                    class="bg-brand-surface/50 rounded-[20px] p-4 border border-brand-teal/5 transition-all group-hover:bg-brand-surface">
-                                    <p class="text-[13px] text-brand-slate font-light leading-relaxed">
-                                        Added 12 new milestones and assigned structural leads for the architectural phase.
-                                    </p>
-                                    <div class="mt-3 flex gap-2">
-                                        <span
-                                            class="px-2 py-1 bg-white border border-brand-teal/10 text-[9px] font-bold rounded-md text-brand-slate tracking-wide">PLANNING</span>
-                                        <span
-                                            class="px-2 py-1 bg-white border border-brand-teal/10 text-[9px] font-bold rounded-md text-brand-slate tracking-wide">Q4-2024</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    @forelse($activities as $dateGroup => $dailyActivities)
+                        <div class="{{ $loop->first ? '' : 'pt-8' }}">
+                            <!-- Label Waktu (Today / Yesterday / Tanggal) -->
+                            <h3
+                                class="ml-20 text-[10px] font-bold tracking-widest uppercase mb-8 w-fit px-3 py-1 rounded-full {{ $dateGroup === 'Today' ? 'text-brand-orange bg-brand-orange/10' : 'text-brand-slate bg-brand-surface border border-brand-teal/10' }}">
+                                {{ $dateGroup }}
+                            </h3>
 
-                        <!-- Activity Item 2 -->
-                        <div class="relative flex gap-6 items-start mt-10 group">
-                            <div
-                                class="flex items-center justify-center w-12 h-12 rounded-full bg-brand-surface border border-brand-teal/10 text-brand-teal shadow-sm z-10">
-                                <span class="material-symbols-outlined text-[20px]">edit_note</span>
-                            </div>
-                            <div class="flex-1 pt-1.5">
-                                <div class="flex justify-between items-start mb-2">
-                                    <p class="text-[14px] text-brand-dark font-light">
-                                        <span
-                                            class="font-medium hover:text-brand-orange cursor-pointer transition-colors">Sarah
-                                            Jenkins</span>
-                                        updated
-                                        <span class="font-medium">Style Guide v2.4</span>
-                                    </p>
-                                    <span
-                                        class="text-[10px] font-semibold text-brand-slate uppercase tracking-wider bg-brand-surface px-2 py-1 rounded-md">09:15
-                                        AM</span>
-                                </div>
-                                <div class="p-3 border-l-[3px] border-brand-teal/30 ml-2">
-                                    <p class="text-[13px] italic text-brand-slate font-light">
-                                        "Refined the tonal layering tokens to include atmospheric teals for the curation
-                                        dashboard."
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                            @foreach ($dailyActivities as $activity)
+                                @php
+                                    // Logika menentukan Icon dan Warna berdasarkan jenis data yang dirubah
+                                    $icon = 'history'; // icon default
+                                    $colorClass = 'bg-brand-surface text-brand-dark border-brand-teal/10';
 
-                        <!-- Activity Item 3 -->
-                        <div class="relative flex gap-6 items-start mt-10 group">
-                            <div
-                                class="flex items-center justify-center w-12 h-12 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange shadow-sm z-10">
-                                <span class="material-symbols-outlined text-[20px]">image</span>
-                            </div>
-                            <div class="flex-1 pt-1.5">
-                                <div class="flex justify-between items-start mb-2">
-                                    <p class="text-[14px] text-brand-dark font-light">
-                                        <span
-                                            class="font-medium hover:text-brand-orange cursor-pointer transition-colors">Elena
-                                            Rossi</span>
-                                        uploaded
-                                        <span class="font-medium">4 Curation Assets</span>
-                                    </p>
-                                    <span
-                                        class="text-[10px] font-semibold text-brand-slate uppercase tracking-wider bg-brand-surface px-2 py-1 rounded-md">08:30
-                                        AM</span>
-                                </div>
-                                <div class="grid grid-cols-4 gap-3 mt-3">
+                                    if (str_contains($activity->target_type, 'Task')) {
+                                        $icon = $activity->action == 'created' ? 'add_task' : 'task_alt';
+                                        $colorClass = 'bg-brand-surface text-brand-dark border-brand-teal/10';
+                                    } elseif (str_contains($activity->target_type, 'Note')) {
+                                        $icon = 'edit_note';
+                                        $colorClass = 'bg-brand-surface text-brand-teal border-brand-teal/10';
+                                    } elseif (str_contains($activity->target_type, 'Project')) {
+                                        $icon = 'folder_open';
+                                        $colorClass = 'bg-brand-orange/10 text-brand-orange border-brand-orange/20';
+                                    }
+                                @endphp
+
+                                <!-- Activity Item -->
+                                <div class="relative flex gap-6 items-start {{ $loop->first ? '' : 'mt-10' }} group">
                                     <div
-                                        class="aspect-square bg-brand-surface rounded-xl overflow-hidden border border-brand-teal/10">
-                                        <img class="w-full h-full object-cover hover:scale-105 transition-transform"
-                                            src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=400&auto=format&fit=crop" />
+                                        class="flex items-center justify-center w-12 h-12 rounded-full border shadow-sm z-10 {{ $colorClass }}">
+                                        <span class="material-symbols-outlined text-[20px]">{{ $icon }}</span>
                                     </div>
-                                    <div
-                                        class="aspect-square bg-brand-surface rounded-xl overflow-hidden border border-brand-teal/10">
-                                        <img class="w-full h-full object-cover hover:scale-105 transition-transform"
-                                            src="https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=400&auto=format&fit=crop" />
-                                    </div>
-                                    <div
-                                        class="aspect-square bg-brand-surface rounded-xl overflow-hidden border border-brand-teal/10">
-                                        <img class="w-full h-full object-cover hover:scale-105 transition-transform"
-                                            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=400&auto=format&fit=crop" />
-                                    </div>
-                                    <div
-                                        class="aspect-square bg-brand-surface rounded-xl overflow-hidden border border-brand-teal/10 flex items-center justify-center text-[13px] font-medium text-brand-slate hover:bg-white cursor-pointer transition-colors">
-                                        +1
+                                    <div class="flex-1 pt-1.5">
+                                        <div class="flex justify-between items-start mb-2">
+                                            <p class="text-[14px] text-brand-dark font-light">
+                                                <span
+                                                    class="font-medium hover:text-brand-orange cursor-pointer transition-colors">
+                                                    {{ $activity->user->name ?? 'System/AI Assistant' }}
+                                                </span>
+                                                {{ $activity->action }}
+                                                <span
+                                                    class="font-medium">{{ $activity->metadata['title'] ?? 'an item' }}</span>
+                                            </p>
+                                            <span
+                                                class="text-[10px] font-semibold text-brand-slate uppercase tracking-wider bg-brand-surface px-2 py-1 rounded-md">
+                                                {{ $activity->created_at->format('h:i A') }}
+                                            </span>
+                                        </div>
+
+                                        <!-- Detail metadata jika itu Update -->
+                                        @if ($activity->action === 'updated' && !empty($activity->metadata['changed_fields']))
+                                            <div class="p-3 border-l-[3px] border-brand-teal/30 ml-2">
+                                                <p class="text-[13px] italic text-brand-slate font-light">
+                                                    Berhasil mengupdate kolom: <span
+                                                        class="font-medium">{{ implode(', ', $activity->metadata['changed_fields']) }}</span>
+                                                </p>
+                                            </div>
+                                        @elseif($activity->action === 'created')
+                                            <!-- Detail info jika itu Create -->
+                                            <div
+                                                class="bg-brand-surface/50 rounded-[20px] p-4 border border-brand-teal/5 transition-all group-hover:bg-brand-surface">
+                                                <p class="text-[13px] text-brand-slate font-light leading-relaxed">
+                                                    Sebuah {{ class_basename($activity->target_type) }} baru telah
+                                                    ditambahkan ke dalam Workspace.
+                                                </p>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-                    </div>
-
-                    <!-- Timeline Group: Yesterday -->
-                    <div class="pt-8">
-                        <h3
-                            class="ml-20 text-[10px] font-bold text-brand-slate tracking-widest uppercase mb-8 bg-brand-surface w-fit px-3 py-1 rounded-full border border-brand-teal/10">
-                            Yesterday
-                        </h3>
-
-                        <div class="relative flex gap-6 items-start group">
+                    @empty
+                        <div class="text-center py-20 mt-10">
                             <div
-                                class="flex items-center justify-center w-12 h-12 rounded-full bg-brand-dark text-white shadow-sm shadow-brand-dark/20 z-10">
-                                <span class="material-symbols-outlined text-[20px]">smart_toy</span>
+                                class="w-20 h-20 bg-brand-surface rounded-full flex items-center justify-center mx-auto mb-4 border border-brand-teal/10">
+                                <span
+                                    class="material-symbols-outlined text-[32px] text-brand-slate">history_toggle_off</span>
                             </div>
-                            <div class="flex-1 pt-1.5">
-                                <div class="flex justify-between items-start mb-2">
-                                    <p class="text-[14px] text-brand-dark font-light">
-                                        <span class="font-medium">AI Assistant</span>
-                                        optimized
-                                        <span class="font-medium">Project Metadata</span>
-                                    </p>
-                                    <span
-                                        class="text-[10px] font-semibold text-brand-slate uppercase tracking-wider bg-brand-surface px-2 py-1 rounded-md">4:50
-                                        PM</span>
-                                </div>
-                                <div class="bg-brand-surface rounded-[20px] p-4 border border-dashed border-brand-teal/20">
-                                    <p class="text-[13px] text-brand-slate font-light italic">
-                                        Automated tagging completed for 45 files in "Production Workspace".
-                                    </p>
-                                </div>
-                            </div>
+                            <h3 class="text-brand-dark font-medium text-lg">Belum ada aktivitas</h3>
+                            <p class="text-brand-slate font-light text-sm mt-1">Lakukan sesuatu di Workspace ini agar log
+                                tercatat.</p>
                         </div>
-                    </div>
+                    @endforelse
+
+                    <!-- Custom Pagination UI -->
+                    @if ($paginatedActivities->hasPages())
+                        <div class="mt-12 pt-8 border-t border-brand-teal/10 flex justify-between items-center">
+
+                            <!-- Tombol Previous -->
+                            @if ($paginatedActivities->onFirstPage())
+                                <span
+                                    class="px-4 py-2 bg-brand-surface text-brand-slate/50 rounded-xl text-xs font-medium cursor-not-allowed">Previous</span>
+                            @else
+                                <a href="{{ $paginatedActivities->previousPageUrl() }}"
+                                    class="px-4 py-2 bg-white border border-brand-teal/20 text-brand-dark hover:text-brand-orange hover:border-brand-orange/30 rounded-xl text-xs font-medium transition-colors shadow-sm">Previous</a>
+                            @endif
+
+                            <!-- Indikator Halaman -->
+                            <div class="text-xs font-light text-brand-slate">
+                                Page <span
+                                    class="font-medium text-brand-dark">{{ $paginatedActivities->currentPage() }}</span> of
+                                <span class="font-medium text-brand-dark">{{ $paginatedActivities->lastPage() }}</span>
+                            </div>
+
+                            <!-- Tombol Next -->
+                            @if ($paginatedActivities->hasMorePages())
+                                <a href="{{ $paginatedActivities->nextPageUrl() }}"
+                                    class="px-4 py-2 bg-white border border-brand-teal/20 text-brand-dark hover:text-brand-orange hover:border-brand-orange/30 rounded-xl text-xs font-medium transition-colors shadow-sm">Next</a>
+                            @else
+                                <span
+                                    class="px-4 py-2 bg-brand-surface text-brand-slate/50 rounded-xl text-xs font-medium cursor-not-allowed">Next</span>
+                            @endif
+
+                        </div>
+                    @endif
+
                 </div>
             </div>
 
@@ -186,7 +159,7 @@
                     </h4>
                     <div class="space-y-6">
                         <div>
-                            <p class="font-outfit text-5xl font-medium">142</p>
+                            <p class="font-outfit text-5xl font-medium">{{ $stats['total'] }}</p>
                             <p class="text-[11px] font-medium text-brand-surface/60 mt-1 tracking-wide">
                                 Total Activities
                             </p>
@@ -194,16 +167,16 @@
                         <div class="h-[1px] bg-brand-surface/10 w-full"></div>
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="font-outfit text-2xl font-medium">24</p>
+                                <p class="font-outfit text-2xl font-medium">{{ $stats['tasks'] }}</p>
                                 <p class="text-[9px] text-brand-surface/60 uppercase tracking-widest mt-1">Tasks</p>
                             </div>
                             <div>
-                                <p class="font-outfit text-2xl font-medium">89</p>
-                                <p class="text-[9px] text-brand-surface/60 uppercase tracking-widest mt-1">Files</p>
+                                <p class="font-outfit text-2xl font-medium">{{ $stats['notes'] }}</p>
+                                <p class="text-[9px] text-brand-surface/60 uppercase tracking-widest mt-1">Notes</p>
                             </div>
                             <div>
-                                <p class="font-outfit text-2xl font-medium text-brand-orange">2.4h</p>
-                                <p class="text-[9px] text-brand-orange uppercase tracking-widest mt-1">Response</p>
+                                <p class="font-outfit text-2xl font-medium text-brand-orange">{{ $stats['projects'] }}</p>
+                                <p class="text-[9px] text-brand-orange uppercase tracking-widest mt-1">Projects</p>
                             </div>
                         </div>
                     </div>
@@ -213,21 +186,22 @@
                 <div class="bg-white rounded-[32px] p-6 shadow-sm border border-brand-teal/10">
                     <h4 class="text-[10px] font-bold text-brand-slate uppercase tracking-widest mb-4 px-2">Filters</h4>
                     <div class="flex flex-wrap gap-2">
-                        <button class="px-4 py-2 bg-brand-dark text-white rounded-full text-[11px] font-semibold shadow-md">
+                        <a href="{{ url()->current() }}"
+                            class="px-4 py-2 rounded-full text-[11px] font-semibold transition-colors {{ !$filter ? 'bg-brand-dark text-white shadow-md' : 'bg-brand-surface border border-brand-teal/10 text-brand-slate hover:bg-white' }}">
                             Everything
-                        </button>
-                        <button
-                            class="px-4 py-2 bg-brand-surface border border-brand-teal/10 text-brand-slate rounded-full text-[11px] font-medium hover:bg-white transition-colors">
+                        </a>
+                        <a href="{{ url()->current() }}?filter=tasks"
+                            class="px-4 py-2 rounded-full text-[11px] font-medium transition-colors {{ $filter === 'tasks' ? 'bg-brand-dark text-white shadow-md' : 'bg-brand-surface border border-brand-teal/10 text-brand-slate hover:bg-white' }}">
                             Tasks
-                        </button>
-                        <button
-                            class="px-4 py-2 bg-brand-surface border border-brand-teal/10 text-brand-slate rounded-full text-[11px] font-medium hover:bg-white transition-colors">
-                            Assets
-                        </button>
-                        <button
-                            class="px-4 py-2 bg-brand-surface border border-brand-teal/10 text-brand-slate rounded-full text-[11px] font-medium hover:bg-white transition-colors">
-                            Mentions
-                        </button>
+                        </a>
+                        <a href="{{ url()->current() }}?filter=notes"
+                            class="px-4 py-2 rounded-full text-[11px] font-medium transition-colors {{ $filter === 'notes' ? 'bg-brand-dark text-white shadow-md' : 'bg-brand-surface border border-brand-teal/10 text-brand-slate hover:bg-white' }}">
+                            Notes
+                        </a>
+                        <a href="{{ url()->current() }}?filter=projects"
+                            class="px-4 py-2 rounded-full text-[11px] font-medium transition-colors {{ $filter === 'projects' ? 'bg-brand-dark text-white shadow-md' : 'bg-brand-surface border border-brand-teal/10 text-brand-slate hover:bg-white' }}">
+                            Projects
+                        </a>
                     </div>
                 </div>
             </div>

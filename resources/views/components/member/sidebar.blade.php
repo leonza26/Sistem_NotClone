@@ -61,7 +61,7 @@
     <!-- Bottom Actions -->
     <div class="mt-auto pt-6 space-y-1 border-t border-brand-teal/10">
         <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-brand-slate font-light hover:bg-white/50 transition-colors"
-            href="{{ route('member.settings') }}">
+            href="{{ route('member.settings.index') }}">
             <span class="material-symbols-outlined text-[20px]">settings</span>
             <span class="text-sm">Settings</span>
         </a>

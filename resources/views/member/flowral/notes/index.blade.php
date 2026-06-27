@@ -96,6 +96,15 @@
                                 <span class="material-symbols-outlined text-base text-green-500">check_circle</span> Saved
                             </span>
 
+                            <button @click="generateSummary()"
+                                class="bg-orange-50 text-orange-600 hover:bg-orange-100 hover:text-orange-700 px-4 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-widest transition-all flex items-center gap-2 border border-orange-200 shadow-sm">
+                                <span class="material-symbols-outlined text-lg"
+                                    :class="isSummarizing ? 'animate-spin' : ''">
+                                    auto_awesome
+                                </span>
+                                <span x-text="isSummarizing ? 'Thinking...' : 'AI Summarize'"></span>
+                            </button>
+
                             <button @click="saveNote()"
                                 class="bg-gray-900 hover:bg-orange-500 text-white px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-widest transition-all flex items-center gap-2 border-none"
                                 style="box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
@@ -149,6 +158,41 @@
                         <span class="material-symbols-outlined text-sm" x-show="isRenaming" class="animate-spin"
                             style="display: none;">sync</span>
                         <span x-text="isRenaming ? 'Saving...' : 'Save Name'"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI SUMMARY MODAL -->
+        <div x-show="summaryModalOpen" class="fixed inset-0 z-[100] flex items-center justify-center" x-cloak
+            style="display: none;">
+            <div x-show="summaryModalOpen" x-transition.opacity class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm"
+                @click="summaryModalOpen = false"></div>
+
+            <div x-show="summaryModalOpen" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                class="relative bg-white border border-gray-200 rounded-3xl shadow-2xl w-full max-w-2xl p-8 max-h-[80vh] flex flex-col mx-4">
+                <div class="flex items-center gap-4 mb-6">
+                    <div
+                        class="w-12 h-12 rounded-full bg-gray-900 flex items-center justify-center shadow-lg shadow-gray-900/20 flex-shrink-0">
+                        <span class="material-symbols-outlined text-white text-[24px]">smart_toy</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-outfit font-medium text-gray-900">AI Summary</h3>
+                        <p class="text-gray-500 text-sm font-light">Ringkasan otomatis dari dokumen ini.</p>
+                    </div>
+                </div>
+
+                <div class="flex-1 overflow-y-auto custom-scrollbar pr-2 mb-6">
+                    <div class="bg-gray-50 rounded-2xl p-6 text-sm text-gray-800 font-light leading-relaxed border border-gray-100"
+                        x-html="aiSummaryResult">
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-2 border-t border-gray-100">
+                    <button @click="summaryModalOpen = false"
+                        class="px-5 py-2.5 rounded-xl bg-orange-500 text-white font-medium text-sm shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all">
+                        Tutup Ringkasan
                     </button>
                 </div>
             </div>
@@ -334,6 +378,47 @@
                         } finally {
                             this.isRenaming = false;
                             this.renameModalOpen = false;
+                        }
+                    },
+
+                    // AI Summarization
+                    isSummarizing: false,
+                    summaryModalOpen: false,
+                    aiSummaryResult: '',
+                    async generateSummary() {
+                        if (!this.activeNote || !tinymce.get('tinymce-editor')) return;
+
+                        // Ambil isi tulisan dari TinyMCE
+                        const htmlContent = tinymce.get('tinymce-editor').getContent();
+                        if (htmlContent.trim() === '') {
+                            alert('Dokumen masih kosong, tidak ada yang bisa diringkas.');
+                            return;
+                        }
+                        this.isSummarizing = true;
+                        try {
+                            const response = await fetch('{{ route('member.ai.summarize_note') }}', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({
+                                    content: htmlContent
+                                })
+                            });
+                            const data = await response.json();
+
+                            if (data.success) {
+                                this.aiSummaryResult = data.summary;
+                                this.summaryModalOpen = true; // Buka Pop-up
+                            } else {
+                                alert('Gagal membuat ringkasan dari server AI.');
+                            }
+                        } catch (error) {
+                            console.error('AI Error:', error);
+                            alert('Koneksi ke AI gagal.');
+                        } finally {
+                            this.isSummarizing = false;
                         }
                     }
                 }));

@@ -19,6 +19,13 @@ class TaskCommentController extends Controller
             'content' => $request->content
         ]);
 
+        if ($task->assigned_to && $task->assigned_to != Auth::id()) {
+            $assignee = \App\Models\User::find($task->assigned_to);
+            if ($assignee) {
+                $assignee->notify(new \App\Notifications\TaskCommented($task, Auth::user()->name));
+            }
+        }
+
         return redirect()->back()->with('success', 'Komentar berhasil ditambahkan!');
     }
 

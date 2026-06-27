@@ -7,11 +7,11 @@ use App\Http\Controllers\member\AI\AIMainController;
 use App\Http\Controllers\member\Dashboard\DashboardMainController;
 use App\Http\Controllers\member\Notes\NoteMainController;
 use App\Http\Controllers\member\Projects\projectsMainController;
+use App\Http\Controllers\member\Settings\SettingsController;
 use App\Http\Controllers\member\Tasks\TaskCommentController;
 use App\Http\Controllers\member\Tasks\TaskMainController;
 use App\Http\Controllers\member\Workspace\WorkspaceMainController;
 use App\Http\Controllers\member\Workspace\WorkspaceMemberController;
-use App\Http\Controllers\Owner\OwnerMainController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,15 +26,6 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
         Route::controller(AdminMainController::class)->group(function () {
             // create data category
             Route::post('/store/category', 'storecat')->name('store.cat');
-        });
-    });
-});
-
-// Owner routes
-Route::middleware(['auth', 'verified', 'rolemanager:owner'])->group(function () {
-    Route::prefix('owner')->group(function () {
-        Route::controller(OwnerMainController::class)->group(function () {
-            Route::get('/owner', 'index')->name('owner.dashboard');
         });
     });
 });
@@ -80,6 +71,10 @@ Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function ()
         });
         Route::controller(AIMainController::class)->group(function () {
             Route::get('/ai', 'ai')->name('member.ai');
+            Route::post('/ai/chat', 'chat')->name('member.ai.chat');
+            Route::post('/ai/generate-task', 'generateTask')->name('member.ai.generate_task');
+            Route::post('/ai/summarize-note', 'summarizeNote')->name('member.ai.summarize_note');
+            Route::post('/ai/suggest-workflow', 'suggestWorkflow')->name('member.ai.suggest_workflow');
         });
         Route::controller(WorkspaceMainController::class)->group(function () {
             Route::get('/workspace', 'index')->name('member.workspace.index');
@@ -97,7 +92,10 @@ Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function ()
             Route::delete('/workspace/{workspace}/members/{user}', 'destroy')->name('member.workspace.members.destroy');
         });
 
-        Route::view('/settings', 'member.flowral.settings.index')->name('member.settings');
+        Route::controller(SettingsController::class)->group(function () {
+            Route::get('/settings', 'index')->name('member.settings.index');
+            Route::post('/settings/profile', 'updateProfile')->name('member.settings.profile.update');
+        });
     });
 });
 
