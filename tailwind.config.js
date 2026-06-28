@@ -66,6 +66,12 @@ export default {
                 "surface": "#f5fafb",
                 "cyan-900": "#164e63",
                 "on-primary": "#ffffff",
+                'brand-surface': '#F5FAFB',
+                'brand-teal': '#81B4C5',
+                'brand-orange': '#E57500',
+                'brand-dark': '#282B2A',
+                'brand-brown': '#512500',
+                'brand-slate': '#30474E',
             },
 
             backgroundImage: {
@@ -84,7 +90,9 @@ export default {
                 "headline": ["Manrope", "sans-serif"],
                 "display": ["Manrope", "sans-serif"],
                 "body": ["Inter", "sans-serif"],
-                "label": ["Inter", "sans-serif"]
+                "label": ["Inter", "sans-serif"],
+                "outfit": ["Outfit", "sans-serif"],
+                "inter": ["Inter", "sans-serif"],
             }
 
         },

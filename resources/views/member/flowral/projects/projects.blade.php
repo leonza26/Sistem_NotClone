@@ -1,142 +1,148 @@
-<!-- Page Content -->
 @extends('layouts.member')
 
 @section('title', 'Projects')
 
 @section('content')
-    <div class="px-10 pb-12 max-w-7xl">
-        <!-- Breadcrumbs & Title -->
-        <div class="mb-12">
-            <nav class="flex items-center gap-2 text-on-surface-variant mb-4">
-                <span class="text-xs font-medium tracking-wide uppercase">Workspace</span>
-                <span class="w-1 h-1 rounded-full bg-primary-container"></span>
-                <span class="text-xs font-medium tracking-wide uppercase text-on-surface">Active Projects</span>
-            </nav>
-            <div class="flex justify-between items-end">
-                <div>
-                    <h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">
-                        Project Portfolio
-                    </h1>
-                    <p class="text-on-surface-variant max-w-md">
-                        Mengelola {{ $projects->count() }} project aktif Anda dari seluruh workspace.
-                    </p>
+    <div class="px-8 lg:px-10 pb-12 pt-4 max-w-7xl">
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div>
+                <div
+                    class="flex items-center gap-2 text-brand-slate/60 text-[11px] font-semibold uppercase tracking-widest mb-3">
+                    <span>Workspace</span>
+                    <span class="w-1 h-1 rounded-full bg-brand-orange"></span>
+                    <span class="text-brand-orange font-bold">Active Projects</span>
                 </div>
-                <a href="{{ route('member.projects.create') }}"
-                    class="signature-gradient text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-primary/20">
-                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
-                    Create Project
-                </a>
+                <h2 class="font-outfit text-3xl font-medium text-brand-dark leading-tight tracking-tight">
+                    Project <span class="text-brand-orange">Portfolio.</span>
+                </h2>
+                <p class="text-brand-slate font-light mt-1">Mengelola {{ $projects->count() }} project aktif Anda dari
+                    seluruh workspace.</p>
             </div>
-        </div>
+            <a href="{{ route('member.projects.create') }}"
+                class="px-5 py-2.5 bg-brand-orange text-white text-sm font-medium rounded-xl shadow-[0_4px_14px_0_rgba(229,117,0,0.39)] hover:shadow-[0_6px_20px_rgba(229,117,0,0.23)] hover:-translate-y-0.5 transition-all flex items-center gap-2 w-fit">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                Create Project
+            </a>
+        </header>
+
         @if (session('success'))
-            <div class="mb-8 px-4 py-3 bg-green-50 border border-green-200 text-green-700 rounded-xl shadow-sm font-medium">
+            <div
+                class="mb-8 px-4 py-3 bg-brand-teal/10 border border-brand-teal/20 text-brand-teal rounded-xl text-sm font-medium flex items-center gap-2">
+                <span class="material-symbols-outlined text-[20px]">check_circle</span>
                 {{ session('success') }}
             </div>
         @endif
-        <!-- Bento-Style Projects Grid -->
+
         <div class="grid grid-cols-12 gap-6">
             @forelse ($projects as $project)
                 @if ($loop->first)
-                    <!-- Primary Featured Project (Ukuran Besar - Span 8) -->
+                    <!-- Primary Featured Project (Lebih Besar - Span 8) -->
                     <div
-                        class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-2xl p-8 relative overflow-hidden group border border-outline-variant hover:border-primary transition-all shadow-sm hover:shadow-md">
-                        <div class="relative z-10 flex flex-col h-full">
-                            <div class="flex justify-between items-start mb-12">
+                        class="col-span-12 lg:col-span-8 bg-brand-dark rounded-[32px] p-8 sm:p-10 relative overflow-hidden group shadow-[0_10px_30px_-15px_rgba(40,43,42,0.5)] flex flex-col h-full">
+                        <!-- Efek Glow Oranye -->
+                        <div
+                            class="absolute -top-10 -right-10 w-64 h-64 bg-brand-orange/20 blur-[60px] rounded-full group-hover:bg-brand-orange/30 transition-colors">
+                        </div>
+
+                        <div class="relative z-10 flex-grow">
+                            <div class="flex justify-between items-start mb-10">
                                 <div>
                                     <span
-                                        class="bg-primary-container/20 text-primary px-3 py-1 rounded-full text-[0.6875rem] font-bold tracking-wider uppercase mb-3 inline-block">
+                                        class="bg-white/10 border border-white/20 text-white px-3 py-1 rounded-md text-[10px] font-bold tracking-widest uppercase mb-4 inline-block">
                                         {{ $project->workspace->name }}
                                     </span>
-                                    <h3 class="text-3xl font-bold text-on-surface leading-tight mb-3">
+                                    <h3 class="font-outfit text-3xl sm:text-4xl font-medium text-white leading-tight mb-3">
                                         {{ $project->name }}
                                     </h3>
-                                    <p class="text-on-surface-variant max-w-sm line-clamp-2">
+                                    <p class="text-white/60 font-light max-w-md line-clamp-2 text-[13px] leading-relaxed">
                                         {{ $project->description ?: 'Belum ada deskripsi untuk project ini.' }}
                                     </p>
                                 </div>
-                                <div class="flex gap-2 relative z-20">
+                                <!-- Aksi -->
+                                <div class="flex gap-2">
                                     <a href="{{ route('member.projects.edit', $project) }}"
-                                        class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary-container transition shadow-sm">
-                                        <span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+                                        class="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center text-white transition-all backdrop-blur-md"
+                                        title="Edit">
+                                        <span class="material-symbols-outlined text-[18px]">edit</span>
                                     </a>
-                                    <!-- Tombol Panggil Modal Hapus -->
                                     <button type="button" x-data=""
                                         @click="$dispatch('open-delete-modal', { url: '{{ route('member.projects.destroy', $project) }}', message: 'Yakin ingin menghapus project {{ $project->name }}? Seluruh data di dalamnya tidak bisa dikembalikan.' })"
-                                        class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-600 hover:bg-red-100 transition shadow-sm">
-                                        <span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+                                        class="w-10 h-10 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 flex items-center justify-center text-red-400 transition-all backdrop-blur-md"
+                                        title="Delete">
+                                        <span class="material-symbols-outlined text-[18px]">delete</span>
                                     </button>
                                 </div>
                             </div>
-                            <div class="mt-auto flex justify-between items-end">
-                                <div class="text-sm font-bold text-on-surface-variant">
-                                    Dibuat: {{ $project->created_at->format('d M Y') }}
-                                </div>
-                                <span
-                                    class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform"
-                                    data-icon="arrow_forward">arrow_forward</span>
+                        </div>
+
+                        <div class="relative z-10 mt-auto flex justify-between items-end border-t border-white/10 pt-5">
+                            <div class="text-[11px] font-medium text-white/50 tracking-widest uppercase">
+                                Created • {{ $project->created_at->format('M d, Y') }}
                             </div>
+                            <span
+                                class="material-symbols-outlined text-brand-orange group-hover:translate-x-1 transition-transform">arrow_forward</span>
                         </div>
                     </div>
                 @else
-                    <!-- Secondary Projects (Ukuran Kecil - Span 4) -->
+                    <!-- Secondary Projects (Lebih Kecil - Span 4) -->
                     <div
-                        class="col-span-12 md:col-span-6 lg:col-span-4 bg-surface-container-lowest rounded-2xl p-6 transition-all hover:border-primary hover:shadow-md border border-outline-variant shadow-sm relative group flex flex-col justify-between">
-                        <div>
+                        class="col-span-12 md:col-span-6 lg:col-span-4 bg-white rounded-[24px] p-6 sm:p-8 border border-brand-teal/10 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)] hover:shadow-[0_8px_30px_-10px_rgba(48,71,78,0.1)] hover:border-brand-teal/30 transition-all relative group flex flex-col h-full">
+                        <div class="flex-grow">
                             <div class="flex justify-between items-start mb-6">
                                 <span
-                                    class="bg-tertiary-container/20 text-tertiary px-3 py-1 rounded-full text-[0.6875rem] font-bold tracking-wider uppercase inline-block">
+                                    class="bg-brand-surface text-brand-teal border border-brand-teal/20 px-2.5 py-1 rounded-md text-[9px] font-bold tracking-widest uppercase inline-block">
                                     {{ $project->workspace->name }}
                                 </span>
-                                <!-- Aksi Edit/Delete (Muncul saat Hover) -->
-                                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <!-- Aksi (Muncu saat Hover) -->
+                                <div class="flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <a href="{{ route('member.projects.edit', $project) }}"
-                                        class="text-slate-400 hover:text-primary transition">
-                                        <span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+                                        class="text-brand-slate hover:text-brand-orange transition-colors">
+                                        <span class="material-symbols-outlined text-[18px]">edit</span>
                                     </a>
-                                    <!-- Tombol Panggil Modal Hapus -->
                                     <button type="button" x-data=""
-                                        @click="$dispatch('open-delete-modal', { url: '{{ route('member.projects.destroy', $project) }}', message: 'Yakin ingin menghapus project {{ $project->name }} beserta seluruh isinya?' })"
-                                        class="text-slate-400 hover:text-red-600 transition">
-                                        <span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+                                        @click="$dispatch('open-delete-modal', { url: '{{ route('member.projects.destroy', $project) }}', message: 'Yakin ingin menghapus project {{ $project->name }}?' })"
+                                        class="text-brand-slate hover:text-red-500 transition-colors">
+                                        <span class="material-symbols-outlined text-[18px]">delete</span>
                                     </button>
                                 </div>
                             </div>
-                            <h3 class="text-xl font-bold text-on-surface mb-2">
-                                {{ $project->name }}
-                            </h3>
-                            <p class="text-sm text-on-surface-variant line-clamp-2">
+                            <h3 class="font-outfit text-xl font-medium text-brand-dark mb-1">{{ $project->name }}</h3>
+                            <p class="text-[13px] font-light text-brand-slate line-clamp-2 leading-relaxed">
                                 {{ $project->description ?: 'Belum ada deskripsi untuk project ini.' }}
                             </p>
                         </div>
-                        <div class="mt-8 flex justify-between items-center border-t border-surface-container pt-4">
+
+                        <div class="mt-8 flex justify-between items-center border-t border-brand-teal/10 pt-4">
                             <span
-                                class="text-xs font-bold text-on-surface-variant">{{ $project->created_at->diffForHumans() }}</span>
+                                class="text-[11px] font-medium text-brand-slate/60 tracking-widest uppercase">{{ $project->created_at->diffForHumans() }}</span>
                             <span
-                                class="material-symbols-outlined text-primary text-[18px] group-hover:translate-x-1 transition-transform"
-                                data-icon="arrow_forward">arrow_forward</span>
+                                class="material-symbols-outlined text-brand-slate group-hover:text-brand-orange group-hover:translate-x-1 transition-all text-[18px]">arrow_forward</span>
                         </div>
                     </div>
                 @endif
             @empty
-                <!-- Saat Data Kosong -->
+                <!-- State Kosong -->
                 <div
-                    class="col-span-12 bg-surface-container-lowest p-10 rounded-2xl shadow-sm border border-dashed border-outline text-center flex flex-col items-center justify-center">
-                    <span class="material-symbols-outlined text-5xl text-outline mb-4"
-                        data-icon="folder_off">folder_off</span>
-                    <h3 class="text-xl font-bold text-on-surface">Belum Ada Project</h3>
-                    <p class="mt-2 text-sm text-on-surface-variant mb-6 max-w-md">Anda belum memiliki project. Mulailah
-                        mengelola pekerjaan tim Anda dengan membuat project pertama.</p>
+                    class="col-span-12 bg-white p-12 rounded-[32px] border border-dashed border-brand-teal/20 text-center flex flex-col items-center justify-center h-64">
+                    <div class="w-16 h-16 rounded-full bg-brand-surface flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-brand-slate text-[32px]">folder_off</span>
+                    </div>
+                    <h3 class="font-outfit text-xl font-medium text-brand-dark mb-2">No Projects Found</h3>
+                    <p class="text-sm font-light text-brand-slate mb-6 max-w-sm mx-auto">Start your architectural journey by
+                        creating a new project inside your workspace.</p>
                 </div>
             @endforelse
-            <!-- Create New Card (Selalu muncul di akhir Grid) -->
+
+            <!-- Tombol Tambah "Kotak Orange" (Selalu di akhir grid) -->
             <a href="{{ route('member.projects.create') }}"
-                class="col-span-12 md:col-span-6 lg:col-span-4 bg-primary text-white rounded-2xl p-8 cursor-pointer group flex flex-col justify-center items-center text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                class="col-span-12 md:col-span-6 lg:col-span-4 bg-gradient-to-br from-brand-orange to-[#ff9838] text-white rounded-[24px] p-8 cursor-pointer group flex flex-col justify-center items-center text-center shadow-[0_10px_30px_-15px_rgba(229,117,0,0.5)] hover:shadow-xl transition-all hover:-translate-y-1 h-full min-h-[200px]">
                 <div
-                    class="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-[32px]" data-icon="add_circle">add_circle</span>
+                    class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-[28px]">add</span>
                 </div>
-                <h3 class="text-xl font-bold mb-2">Project Baru</h3>
-                <p class="text-white/80 text-sm">Tambahkan project baru ke dalam workspace Anda.</p>
+                <h3 class="font-outfit text-xl font-medium mb-1">New Project</h3>
+                <p class="text-white/80 text-[13px] font-light px-4">Add a new project to your workflow.</p>
             </a>
         </div>
     </div>

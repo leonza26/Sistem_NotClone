@@ -1,61 +1,73 @@
 <!doctype html>
-
-<html class="light" lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>@yield('title', 'member')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@yield('title', 'Dashboard') | Flowral</title>
+
+    <!-- PENTING: Link Material Symbols yang tadi tertinggal -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <style>
         .material-symbols-outlined {
-            font-variation-settings:
-                "FILL" 0,
-                "wght" 400,
-                "GRAD" 0,
-                "opsz" 24;
+            /* Memastikan font icon ter-render dengan benar */
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+            font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
             vertical-align: middle;
         }
 
-        .glass-panel {
-            background: rgba(245, 250, 251, 0.7);
-            backdrop-filter: blur(12px);
+        /* Custom Scrollbar Minimalis */
+        ::-webkit-scrollbar {
+            width: 6px;
         }
 
-        .signature-gradient {
-            background: linear-gradient(135deg, #316574 0%, #81b4c5 100%);
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c0c8cb;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #81B4C5;
         }
     </style>
 </head>
 
-<body class="bg-surface font-body text-on-surface overflow-x-hidden">
-    <!-- SideNavBar Anchor -->
+<body
+    class="bg-brand-surface font-inter text-brand-dark overflow-x-hidden selection:bg-brand-orange selection:text-white">
+    <!-- SideNavBar -->
     @include('components.member.sidebar')
-    <!-- TopNavBar Anchor -->
+
+    <!-- TopNavBar -->
     @include('components.member.header')
-    <!-- Main Content Canvas -->
-    <main class="ml-64 pt-24 min-h-screen">
+
+    <!-- Main Content -->
+    <main class="ml-64 pt-20 min-h-screen">
         @yield('content')
     </main>
 
-    <!-- Floating Action Button (FAB) -->
-    <button
-        class="fixed bottom-10 right-10 w-16 h-16 rounded-full signature-gradient text-white flex items-center justify-center shadow-[0_20px_40px_-10px_rgba(49,101,116,0.4)] hover:scale-110 transition-transform z-50">
-        <span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
-    </button>
-
-    <!-- Global Delete Confirmation Modal (Alpine.js) -->
+    <!-- Global Delete Modal (Alpine.js) -->
     <div x-data="{ open: false, url: '', message: '' }"
         @open-delete-modal.window="open = true; url = $event.detail.url; message = $event.detail.message;"
         class="fixed inset-0 z-[100] flex items-center justify-center" x-show="open" x-cloak style="display: none;">
@@ -64,40 +76,40 @@
         <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-            class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" @click="open = false"></div>
+            class="absolute inset-0 bg-brand-dark/40 backdrop-blur-sm" @click="open = false"></div>
 
         <!-- Modal Panel -->
         <div x-show="open" x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
             x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-95"
-            class="relative bg-surface-container-lowest border border-outline-variant rounded-3xl shadow-2xl w-full max-w-md p-8">
+            class="relative bg-white border border-brand-teal/20 rounded-3xl shadow-2xl w-full max-w-md p-8">
 
-            <div class="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mb-6">
-                <span class="material-symbols-outlined text-red-600 text-3xl"
-                    data-icon="delete_forever">delete_forever</span>
+            <div class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center mb-5 border border-red-100">
+                <span class="material-symbols-outlined text-red-500 text-2xl">delete</span>
             </div>
-            <h3 class="text-2xl font-headline font-bold text-on-surface mb-2">Konfirmasi Hapus</h3>
+            <h3 class="text-xl font-outfit font-medium text-brand-dark mb-2">Confirm Deletion</h3>
 
-            <!-- Pesan akan di-bind ke variabel Alpine -->
-            <p class="text-on-surface-variant text-sm mb-8 line-clamp-3" x-text="message"></p>
+            <!-- Dynamic Message -->
+            <p class="text-brand-slate text-sm font-light mb-8 leading-relaxed" x-text="message"></p>
 
-            <div class="flex gap-3 justify-end mt-4 pt-6 border-t border-outline-variant">
+            <div class="flex gap-3 justify-end pt-4">
                 <button @click="open = false" type="button"
-                    class="px-5 py-2.5 rounded-xl text-on-surface font-bold hover:bg-surface-container transition-colors">Batal</button>
+                    class="px-5 py-2.5 rounded-xl text-brand-slate font-medium text-sm hover:bg-brand-teal/5 transition-colors">Cancel</button>
 
-                <!-- Action Form akan di-bind ke variabel url Alpine -->
+                <!-- Dynamic Action -->
                 <form method="POST" :action="url">
                     @csrf
                     @method('DELETE')
                     <button type="submit"
-                        class="px-5 py-2.5 rounded-xl bg-error text-on-error font-bold shadow-lg shadow-error/20 hover:opacity-90 active:scale-95 transition-all">
-                        Ya, Hapus
+                        class="px-5 py-2.5 rounded-xl bg-red-500 text-white font-medium text-sm shadow-lg shadow-red-500/20 hover:bg-red-600 transition-all">
+                        Yes, delete it
                     </button>
                 </form>
             </div>
         </div>
     </div>
+    @stack('scripts')
 </body>
 
 </html>

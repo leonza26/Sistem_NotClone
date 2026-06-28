@@ -189,31 +189,12 @@ Target: fitur beda dari Notion
   - Activity log
   - Notification
 
-## ☁️ PHASE 6 — DEPLOY
-  - Docker (WAJIB kamu pelajari)
+## ☁️ PHASE 6 
+  - core system 
+
+## DEPLOYMENT
   - VPS / Cloud
   - CI/CD sederhana
-
-# 🎨 7. STRUKTUR MENU (UI)
-Ini penting untuk Stitch nanti:
-### Sidebar:
-  - Dashboard
-  - Workspace
-  - Projects
-  - Tasks
-  - Notes
-  - Activity
-  - AI Assistant ⚡
-
-# ⚠️ 9. SARAN PENTING (DARI SAYA)
-Ini jujur ya, biar kamu nggak salah arah:
-## ❌ Jangan langsung ke AI dulu
-Fokus:  
- 👉 Core system dulu (task, workspace)
-
-## ✅ Gunakan API-first mindset
-Frontend kamu dari Stitch:  
- 👉 Backend harus API (Laravel API)
 
 ## ✅ Simpan content note dalam JSON
 Supaya fleksibel seperti Notion
@@ -228,10 +209,18 @@ Kalau diringkas:
 👉 Kamu lagi bangun:  
  **“Mini Notion + AI + Self Hosted”**
 Dan ini:
-  - Cocok untuk skripsi ✔
   - Bisa jadi startup ✔
   - Bisa jadi portfolio kuat ✔
 
 #  Package yang diapakai 
+- tailwind css
+- font google
+- icon google
 - alpine js
 - sortable js
+- laravel breeze
+- laravel reverb untuk chat realtime
+- tinyMCE (rich text editor)
+- Gemini API Key
+- Fitur Trait
+- notification

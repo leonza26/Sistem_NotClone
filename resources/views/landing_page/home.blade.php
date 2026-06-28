@@ -1,279 +1,281 @@
-<!DOCTYPE html>
+@extends('layouts.landing')
 
-<html lang="en">
+@section('title', 'Flowral - The Elegant Workspace for Modern Teams')
+@section('content')
 
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Flowral | Workspace</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@400;500;700;800&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-
-    <style>
-        body {
-            background-color: #f5fafb;
-            color: #171d1e;
-        }
-
-        .bg-gradient-primary-cta {
-            background: linear-gradient(135deg, #316574, #81b4c5);
-        }
-    </style>
-</head>
-
-<body class="font-body antialiased flex flex-col min-h-screen">
-    <!-- TopAppBar Component -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-slate-100">
-        <div class="flex justify-between items-center px-12 py-6 max-w-[1440px] mx-auto w-full">
-            <!-- Logo -->
-            <div class="text-2xl font-black font-manrope text-cyan-900">Flowral</div>
-
-            <!-- Menu -->
-            <div class="hidden md:flex gap-8 items-center">
-                <a class="font-manrope tracking-tight font-bold text-lg text-slate-500 hover:text-cyan-600 transition-all"
-                    href="#">Features</a>
-                <a class="font-manrope tracking-tight font-bold text-lg text-slate-500 hover:text-cyan-600 transition-all"
-                    href="#">Pricing</a>
-                <a class="font-manrope tracking-tight font-bold text-lg text-slate-500 hover:text-cyan-600 transition-all"
-                    href="#">Support</a>
-            </div>
-
-            <!-- Buttons -->
-            <div class="flex items-center gap-4">
-                @if (Route::has('login'))
-                    <nav class="flex items-center justify-end gap-4">
-                        @auth
-                            <a href="{{ url('/member/dashboard') }}"
-                                class="font-manrope tracking-tight font-bold text-lg bg-gradient-primary-cta text-white px-6 py-2 rounded-md hover:opacity-90 transition-all shadow-sm">
-                                Dashboard
-                            </a>
-                        @else
-                            <a href="{{ route('login') }}"
-                                class="font-manrope tracking-tight font-bold text-lg text-slate-500 hover:text-cyan-600 px-4 py-2 transition-all">
-                                Log in
-                            </a>
-
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}"
-                                    class="font-manrope tracking-tight font-bold text-lg bg-gradient-primary-cta text-white px-6 py-2 rounded-md hover:opacity-90 transition-all shadow-sm">
-                                    Sign Up
-                                </a>
-                            @endif
-                        @endauth
-                    </nav>
-                @endif
-            </div>
-
+    <!-- 2. Hero Section -->
+    <section
+        class="relative pt-40 pb-20 lg:pt-52 lg:pb-32 overflow-hidden flex flex-col items-center justify-center min-h-[90vh]">
+        <!-- Glow Orbs -->
+        <div
+            class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-brand-teal/10 blur-[100px] rounded-full mix-blend-multiply -z-10 animate-blob">
         </div>
-    </nav>
+        <div
+            class="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-brand-orange/5 blur-[100px] rounded-full mix-blend-multiply -z-10 animate-blob animation-delay-2000">
+        </div>
 
-
-    <!-- Hero Section -->
-    <main class="flex-grow pt-32 pb-24">
-        <section
-            class="max-w-[1440px] mx-auto px-12 lg:px-24 flex flex-col md:flex-row items-center justify-between gap-16 relative">
-            <div class="w-full md:w-5/12 space-y-8 z-10">
-                <h1 class="font-display text-5xl md:text-[2.75rem] leading-tight font-extrabold text-on-surface">Design
-                    Atur Workflow Tim Anda dengan Lebih Terstruktur.</h1>
-                <p class="font-body text-lg text-on-surface-variant max-w-lg leading-relaxed">
-                    Flowral adalah workspace all-in-one berbasis AI yang membantu tim Anda mengelola project, tugas, dan
-                    dokumentasi dalam satu sistem yang terintegrasi dan efisien.
-                </p>
-                <div class="pt-4 flex gap-4 items-center">
-                    <button
-                        class="bg-gradient-primary-cta text-on-primary font-body font-medium px-8 py-4 rounded-md shadow-sm hover:shadow-[0_0_20px_rgba(155,206,224,0.4)] transition-all">
-                        Mulai Gratis Sekarang
-                    </button>
-                    <button
-                        class="text-primary font-body font-medium px-6 py-4 flex items-center gap-2 hover:bg-surface-container-low rounded-md transition-colors">
-                        <span class="material-symbols-outlined"
-                            style="font-variation-settings: 'FILL' 1;">play_circle</span>
-                        Lihat Demo
-                    </button>
-                </div>
-            </div>
-            <div class="w-full md:w-7/12 relative">
-                <!-- Abstract visual placeholder using layered divs to simulate UI elements -->
-                <div
-                    class="relative w-full aspect-[4/3] rounded-xl bg-surface-container-low flex items-center justify-center overflow-hidden border border-outline-variant/20 shadow-[0_20px_40px_-10px_rgba(40,43,42,0.06)]">
-                    <img alt="Abstract clean architectural interior with smooth lighting and minimal layout"
-                        class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-multiply"
-                        data-alt="Abstract clean architectural interior with smooth light streaming in, conveying workspace clarity and modern design"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN4kwdo3kPbd1kTWUB3-xLhap8zm5ncwEOHgmoAJKra-hUSMQWQAskwMiX-05orT4D1UeP8cHiNNb_4wivrsPXzL36-ihjelBTpwqBToxDqsvV97FL00tmBRnbwM0Pq5u_aCrRbKx1hEpOcR5-mIQ0VI-jev0quoEFEj-kO5nckgiLUfuAeKkJ27seXcKNO_MxBT-XFJ7P96_EdedMTTtibR-r6P6FtJpzuqSPrr7fYE6Th1z--MpuzXw6WtNR7U1bGAJONcxam-A" />
-                    <!-- Floating UI Elements -->
-                    <div
-                        class="absolute top-1/4 left-8 bg-surface-container-lowest/80 backdrop-blur-[12px] p-6 rounded-lg w-64 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.05)] border border-outline-variant/10">
-                        <div class="h-4 w-2/3 bg-surface-container-highest rounded mb-4"></div>
-                        <div class="h-3 w-full bg-surface-container-highest rounded mb-2"></div>
-                        <div class="h-3 w-4/5 bg-surface-container-highest rounded"></div>
-                    </div>
-                    <div
-                        class="absolute bottom-1/4 right-8 bg-surface-container-lowest/80 backdrop-blur-[12px] p-6 rounded-lg w-72 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.05)] border border-outline-variant/10 flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-full bg-primary-container flex-shrink-0"></div>
-                        <div class="flex-1">
-                            <div class="h-3 w-1/2 bg-surface-container-highest rounded mb-2"></div>
-                            <div class="h-2 w-full bg-surface-container rounded mb-1"></div>
-                            <div class="h-2 w-2/3 bg-surface-container rounded"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Social Proof -->
-        <section class="py-16 bg-surface-container mt-16 border-t border-b border-outline-variant/10">
-            <div class="max-w-7xl mx-auto px-12 text-center">
-                <p class="font-label text-xs uppercase tracking-[0.05em] text-on-surface-variant mb-8">Digunakan oleh
-                    berbagai tim modern untuk meningkatkan produktivitas kerja mereka.</p>
-                <div class="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale">
-                    <!-- Placeholder logos -->
-                    <div class="font-display font-bold text-xl text-on-surface">Oculus Design</div>
-                    <div class="font-display font-bold text-xl text-on-surface">Studio Arch</div>
-                    <div class="font-display font-bold text-xl text-on-surface">Vanguard Builders</div>
-                    <div class="font-display font-bold text-xl text-on-surface">Horizon Group</div>
-                </div>
-            </div>
-        </section>
-        <!-- Features Bento Grid -->
-        <section class="py-24 max-w-[1440px] mx-auto px-12 lg:px-24">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="font-display text-3xl font-bold text-on-surface mb-4">Semua yang Anda Butuhkan dalam Satu
-                    Workspace</h2>
-                <p class="font-body text-on-surface-variant">Kelola pekerjaan, kolaborasi tim, dan dokumentasi dengan
-                    lebih rapi dan terstruktur dalam satu sistem terpadu.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div
-                    class="bg-surface-container-lowest rounded-xl p-8 hover:bg-surface-container-low transition-colors border border-outline-variant/10 flex flex-col h-full">
-                    <div
-                        class="w-12 h-12 rounded-md bg-primary-container/20 flex items-center justify-center mb-6 text-primary">
-                        <span class="material-symbols-outlined text-2xl">view_kanban</span>
-                    </div>
-                    <h3 class="font-display text-xl font-semibold text-on-surface mb-3">Manajemen Tugas</h3>
-                    <p class="font-body text-sm text-on-surface-variant mb-8 flex-grow">Kelola dan pantau progres
-                        pekerjaan menggunakan tampilan Kanban yang intuitif. Atur prioritas dan tingkatkan produktivitas
-                        tim dengan lebih mudah.</p>
-                    <!-- Abstract illustration -->
-                    <div class="mt-auto h-32 bg-surface-container rounded-lg p-4 flex gap-3 overflow-hidden">
-                        <div class="w-1/3 bg-surface-container-highest rounded p-2 flex flex-col gap-2">
-                            <div class="h-2 w-1/2 bg-surface-dim rounded"></div>
-                            <div class="h-8 bg-surface-container-lowest rounded shadow-sm"></div>
-                            <div class="h-8 bg-surface-container-lowest rounded shadow-sm"></div>
-                        </div>
-                        <div class="w-1/3 bg-surface-container-highest rounded p-2 flex flex-col gap-2">
-                            <div class="h-2 w-1/2 bg-surface-dim rounded"></div>
-                            <div class="h-8 bg-surface-container-lowest rounded shadow-sm"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Feature 2 -->
-                <div
-                    class="bg-surface-container-lowest rounded-xl p-8 hover:bg-surface-container-low transition-colors border border-outline-variant/10 flex flex-col h-full">
-                    <div
-                        class="w-12 h-12 rounded-md bg-primary-container/20 flex items-center justify-center mb-6 text-primary">
-                        <span class="material-symbols-outlined text-2xl">edit_document</span>
-                    </div>
-                    <h3 class="font-display text-xl font-semibold text-on-surface mb-3">Dokumentasi & Catatan</h3>
-                    <p class="font-body text-sm text-on-surface-variant mb-8 flex-grow">Buat dan simpan catatan penting,
-                        ide, dan dokumentasi proyek dalam satu tempat yang rapi seperti Notion, namun lebih ringan dan
-                        fleksibel. </p>
-                    <!-- Abstract illustration -->
-                    <div class="mt-auto h-32 bg-surface-container rounded-lg p-4 flex flex-col gap-3 overflow-hidden">
-                        <div class="h-4 w-3/4 bg-surface-container-highest rounded"></div>
-                        <div class="h-2 w-full bg-surface-dim rounded"></div>
-                        <div class="h-2 w-full bg-surface-dim rounded"></div>
-                        <div class="h-2 w-4/5 bg-surface-dim rounded"></div>
-                    </div>
-                </div>
-                <!-- Feature 3 -->
-                <div
-                    class="bg-surface-container-lowest rounded-xl p-8 hover:bg-surface-container-low transition-colors border border-outline-variant/10 flex flex-col h-full">
-                    <div
-                        class="w-12 h-12 rounded-md bg-primary-container/20 flex items-center justify-center mb-6 text-primary">
-                        <span class="material-symbols-outlined text-2xl">smart_toy</span>
-                    </div>
-                    <h3 class="font-display text-xl font-semibold text-on-surface mb-3">AI Assistant Cerdas</h3>
-                    <p class="font-body text-sm text-on-surface-variant mb-8 flex-grow">Gunakan bantuan AI untuk
-                        merangkum catatan, membuat task otomatis, dan memberikan rekomendasi alur kerja yang lebih
-                        efektif.</p>
-                    <!-- Abstract illustration -->
-                    <div
-                        class="mt-auto h-32 bg-surface-container rounded-lg p-4 flex flex-col gap-3 justify-end overflow-hidden">
-                        <div class="self-end w-2/3 h-6 bg-primary/10 rounded-lg rounded-br-none p-2 flex items-center">
-                            <div class="h-1.5 w-1/2 bg-primary/40 rounded"></div>
-                        </div>
-                        <div
-                            class="self-start w-3/4 h-8 bg-surface-container-lowest rounded-lg rounded-bl-none shadow-sm p-2 flex flex-col justify-center gap-1.5">
-                            <div class="h-1.5 w-full bg-surface-dim rounded"></div>
-                            <div class="h-1.5 w-2/3 bg-surface-dim rounded"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Final CTA -->
-        <section class="py-24 max-w-5xl mx-auto px-12">
+        <div class="max-w-4xl mx-auto px-6 text-center z-10">
             <div
-                class="bg-surface-container-low rounded-[2rem] p-16 text-center relative overflow-hidden border border-outline-variant/20 shadow-[0_20px_40px_-10px_rgba(40,43,42,0.06)]">
-                <!-- Decorative background elements -->
-                <div
-                    class="absolute top-0 right-0 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
-                </div>
-                <div
-                    class="absolute bottom-0 left-0 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2">
-                </div>
-                <div class="relative z-10">
-                    <h2 class="font-display text-4xl font-bold text-on-surface mb-6">Tingkatkan Produktivitas Tim Anda
-                        Sekarang</h2>
-                    <p class="font-body text-on-surface-variant mb-10 max-w-xl mx-auto">Bergabunglah dengan tim yang
-                        sudah beralih ke sistem kerja yang lebih terstruktur dan efisien bersama Flowral.</p>
-                    <button
-                        class="bg-gradient-primary-cta text-on-primary font-body font-medium px-10 py-4 rounded-md shadow-sm hover:shadow-[0_0_20px_rgba(155,206,224,0.4)] transition-all text-lg">
-                        Mulai Sekarang
-                    </button>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer Component -->
-    <footer class="w-full py-16 bg-white border-t border-slate-100">
-        <div class="flex flex-col md:flex-row justify-between items-center px-12 max-w-[1440px] mx-auto w-full">
-            <!-- Brand -->
-            <div class="text-xl font-black font-manrope text-cyan-900 mb-6 md:mb-0">
-                Flowral
+                class="hero-anim gsap-hidden inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-brand-teal/20 text-brand-slate text-[11px] font-semibold tracking-widest uppercase mb-8 shadow-sm">
+                <span>Introducing Flowral 1.0</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></span>
             </div>
 
-            <!-- Links -->
-            <div class="flex items-center gap-8 mb-6 md:mb-0">
-                <a class="font-manrope text-sm font-bold text-slate-400 hover:text-cyan-600 transition-colors"
-                    href="#">Privacy</a>
-                <a class="font-manrope text-sm font-bold text-slate-400 hover:text-cyan-600 transition-colors"
-                    href="#">Terms</a>
-                <a class="font-manrope text-sm font-bold text-slate-400 hover:text-cyan-600 transition-colors"
-                    href="#">Twitter</a>
-                <a class="font-manrope text-sm font-bold text-slate-400 hover:text-cyan-600 transition-colors"
-                    href="#">LinkedIn</a>
-            </div>
+            <h1
+                class="hero-anim gsap-hidden font-outfit text-6xl md:text-8xl font-medium text-brand-dark leading-[1.05] tracking-tight mb-8">
+                The new standard for <br />
+                <span class="text-gradient font-semibold">productivity.</span>
+            </h1>
 
-            <!-- Copyright -->
-            <div class="font-manrope text-sm font-bold text-cyan-900/60">
-                © 2026 Flowral. All rights reserved. Built for better workflow.
+            <p
+                class="hero-anim gsap-hidden text-xl md:text-2xl text-brand-slate font-light max-w-2xl mx-auto mb-12 leading-relaxed">
+                Experience a workspace that adapts to your mind. Say goodbye to scattered tools and embrace absolute
+                clarity.
+            </p>
+
+            <div class="hero-anim gsap-hidden flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="{{ route('register') }}"
+                    class="px-8 py-4 text-base font-medium bg-brand-dark text-white rounded-full hover:bg-brand-slate transition-all w-full sm:w-auto shadow-lg hover:shadow-xl hover:-translate-y-1">
+                    Start creating for free
+                </a>
             </div>
         </div>
-    </footer>
 
+        <!-- Hero App Mockup Image -->
+        <div class="hero-img-wrap gsap-hidden w-full max-w-6xl mx-auto px-6 mt-24 relative z-20 perspective-1000">
+            <div
+                class="relative rounded-2xl md:rounded-[32px] p-2 bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_20px_80px_-20px_rgba(48,71,78,0.2)]">
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2000&auto=format&fit=crop"
+                    alt="Flowral Dashboard" class="w-full rounded-xl md:rounded-[24px] shadow-sm object-cover aspect-video">
+            </div>
+        </div>
+    </section>
 
-</body>
+    <!-- 3. Logo Cloud / Marquee -->
+    <section class="py-10 border-y border-brand-teal/10 bg-white overflow-hidden flex flex-col items-center">
+        <p class="text-xs font-semibold tracking-widest text-brand-slate uppercase mb-8 text-center">Trusted by
+            forward-thinking teams</p>
+        <div
+            class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+            <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-marquee">
+                <!-- Gunakan teks/svg statis sbg placeholder keren -->
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40">ACME Corp</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40">GlobalTech</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40">Quantum</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40">Nebula</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40">StudioX</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40">Horizon</li>
+            </ul>
+            <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-marquee"
+                aria-hidden="true">
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40">ACME Corp</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40">GlobalTech</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40">Quantum</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40">Nebula</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40">StudioX</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40">Horizon</li>
+            </ul>
+        </div>
+    </section>
 
-</html>
+    <!-- 4. Feature Showcase (Left-Right Alternating) -->
+    <section id="features" class="py-32 bg-brand-surface relative">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <!-- Feature 1 -->
+            <div class="flex flex-col lg:flex-row items-center gap-16 mb-40 showcase-row">
+                <div class="w-full lg:w-1/2 showcase-text">
+                    <h2 class="font-outfit text-4xl lg:text-5xl font-medium text-brand-dark mb-6 leading-tight">
+                        Visualize your workflow. <br /><span class="text-brand-slate">In real-time.</span></h2>
+                    <p class="text-brand-slate text-lg font-light leading-relaxed mb-8">
+                        Our intuitive Kanban boards are designed to get out of your way. Drag, drop, and conquer your
+                        tasks without the friction of traditional enterprise software.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-brand-dark font-medium"><svg
+                                class="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg> Frictionless drag & drop</li>
+                        <li class="flex items-center gap-3 text-brand-dark font-medium"><svg
+                                class="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg> Custom columns & tags</li>
+                    </ul>
+                </div>
+                <div class="w-full lg:w-1/2 showcase-img">
+                    <div class="rounded-3xl overflow-hidden border border-brand-teal/20 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=1000&auto=format&fit=crop"
+                            alt="Kanban Feature" class="w-full h-auto">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-16 showcase-row">
+                <div class="w-full lg:w-1/2 showcase-text">
+                    <h2 class="font-outfit text-4xl lg:text-5xl font-medium text-brand-dark mb-6 leading-tight">
+                        Collaboration that <br /><span class="text-brand-slate">feels natural.</span></h2>
+                    <p class="text-brand-slate text-lg font-light leading-relaxed mb-8">
+                        Discuss tasks right where the work happens. Flowral’s threaded comments bring context to your
+                        conversations, eliminating the need for endless chat apps.
+                    </p>
+                    <a href="{{ route('register') }}"
+                        class="text-brand-orange font-semibold hover:text-brand-brown transition-colors flex items-center gap-1">
+                        Explore collaboration <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="w-full lg:w-1/2 showcase-img">
+                    <div class="rounded-3xl overflow-hidden border border-brand-teal/20 shadow-2xl relative">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop"
+                            alt="Team Collaboration" class="w-full h-auto">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. Bento Grid Deep Features -->
+    <section class="py-32 bg-white border-t border-brand-teal/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 bento-header gsap-hidden">
+                <h2 class="font-outfit text-4xl md:text-5xl font-medium text-brand-dark mb-6">Designed for scale.</h2>
+                <p class="text-brand-slate text-xl font-light max-w-2xl mx-auto">Everything you need to manage complex
+                    projects, beautifully organized into simple modules.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[320px]">
+                <!-- Large Card -->
+                <div
+                    class="md:col-span-2 bg-brand-surface rounded-[32px] p-10 border border-brand-teal/10 hover:border-brand-teal/30 transition-colors flex flex-col justify-between bento-item gsap-hidden">
+                    <div>
+                        <div
+                            class="w-10 h-10 rounded-full bg-white flex items-center justify-center mb-6 shadow-sm border border-brand-teal/10">
+                            <svg class="w-5 h-5 text-brand-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                        </div>
+                        <h3 class="font-outfit text-2xl font-medium text-brand-dark mb-3">Infinite Workspaces</h3>
+                        <p class="text-brand-slate font-light">Create isolated environments for different teams,
+                            clients, or side projects. Complete separation of concerns.</p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop"
+                        class="w-full h-32 object-cover rounded-xl mt-4 opacity-80 mix-blend-multiply" alt="Workspaces">
+                </div>
+
+                <!-- Small Card -->
+                <div class="bg-brand-dark rounded-[32px] p-10 flex flex-col justify-between bento-item gsap-hidden">
+                    <div>
+                        <div class="w-10 h-10 rounded-full bg-brand-slate flex items-center justify-center mb-6">
+                            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7z" />
+                            </svg>
+                        </div>
+                        <h3 class="font-outfit text-2xl font-medium text-white mb-3">Bank-grade Security</h3>
+                        <p class="text-brand-surface/70 font-light text-sm">Self-hostable architecture gives you
+                            absolute control over your team's sensitive data.</p>
+                    </div>
+                </div>
+
+                <!-- Small Card AI -->
+                <div
+                    class="md:col-span-3 lg:col-span-1 bg-gradient-to-br from-brand-orange to-[#ff9838] rounded-[32px] p-10 flex flex-col justify-between relative overflow-hidden bento-item gsap-hidden">
+                    <div class="relative z-10">
+                        <div
+                            class="inline-block px-3 py-1 bg-white/20 text-white text-xs font-bold rounded-full backdrop-blur-md mb-6">
+                            COMING SOON</div>
+                        <h3 class="font-outfit text-2xl font-medium text-white mb-3">AI Copilot</h3>
+                        <p class="text-white/90 font-light">Automatically generate sub-tasks, summarize long threads,
+                            and organize your schedule.</p>
+                    </div>
+                </div>
+
+                <!-- Medium Card -->
+                <div
+                    class="md:col-span-3 lg:col-span-2 bg-brand-surface rounded-[32px] p-10 border border-brand-teal/10 flex flex-col justify-center items-center text-center bento-item gsap-hidden">
+                    <h3 class="font-outfit text-3xl font-medium text-brand-dark mb-4">Fast. Blazing Fast.</h3>
+                    <p class="text-brand-slate font-light max-w-md">Built on Laravel & Alpine.js. No heavy client-side
+                        bloat. Just pure, unadulterated speed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Pricing Section -->
+    <section id="pricing" class="py-32 bg-brand-surface">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="font-outfit text-4xl md:text-5xl font-medium text-brand-dark mb-6">Simple pricing.</h2>
+                <p class="text-brand-slate text-xl font-light">Start for free, upgrade when you need superpowers.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Free Plan -->
+                <div class="bg-white rounded-[32px] p-10 border border-brand-teal/10 shadow-lg pricing-card gsap-hidden">
+                    <h3 class="font-outfit text-2xl font-medium text-brand-dark mb-2">Starter</h3>
+                    <p class="text-brand-slate font-light text-sm mb-6">Perfect for individuals and small teams.</p>
+                    <div class="mb-8">
+                        <span class="font-outfit text-5xl font-bold text-brand-dark">$0</span>
+                        <span class="text-brand-slate">/forever</span>
+                    </div>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-brand-slate font-light"><svg class="w-5 h-5 text-brand-teal"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg> 3 Workspaces</li>
+                        <li class="flex items-center gap-3 text-brand-slate font-light"><svg class="w-5 h-5 text-brand-teal"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg> Unlimited Tasks</li>
+                        <li class="flex items-center gap-3 text-brand-slate font-light"><svg class="w-5 h-5 text-brand-teal"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg> Up to 5 Members</li>
+                    </ul>
+                    <a href="{{ route('register') }}"
+                        class="block w-full py-4 text-center rounded-full font-medium bg-brand-surface text-brand-dark hover:bg-brand-teal/10 transition-colors">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="bg-brand-dark rounded-[32px] p-10 shadow-2xl relative overflow-hidden pricing-card gsap-hidden">
+                    <div
+                        class="absolute top-0 right-0 px-4 py-1 bg-brand-orange text-white text-xs font-bold rounded-bl-xl">
+                        POPULAR</div>
+                    <h3 class="font-outfit text-2xl font-medium text-white mb-2">Pro</h3>
+                    <p class="text-brand-surface/70 font-light text-sm mb-6">For scaling organizations needing control.
+                    </p>
+                    <div class="mb-8">
+                        <span class="font-outfit text-5xl font-bold text-white">$12</span>
+                        <span class="text-brand-surface/70">/user/month</span>
+                    </div>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-brand-surface/90 font-light"><svg
+                                class="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg> Unlimited Workspaces</li>
+                        <li class="flex items-center gap-3 text-brand-surface/90 font-light"><svg
+                                class="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg> Unlimited Members</li>
+                        <li class="flex items-center gap-3 text-brand-surface/90 font-light"><svg
+                                class="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg> Advanced AI Features</li>
+                    </ul>
+                    <a href="{{ route('register') }}"
+                        class="block w-full py-4 text-center rounded-full font-medium bg-brand-orange text-white hover:bg-orange-600 transition-colors">
+                        Upgrade to Pro
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+@endsection

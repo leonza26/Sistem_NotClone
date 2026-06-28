@@ -3,303 +3,205 @@
 @section('title', 'Activity Timeline')
 
 @section('content')
-    <div class="max-w-7xl px-10">
-        <!-- Header Section -->
-        <div class="mb-12">
-            <div class="flex items-center gap-2 mb-4">
-                <span class="text-xs font-semibold tracking-widest text-primary uppercase">Workspace</span>
-                <span class="w-1 h-1 rounded-full bg-primary-fixed"></span>
-                <span class="text-xs font-semibold tracking-widest text-on-surface-variant uppercase">Stream</span>
+    <div class="max-w-[1600px] px-8 lg:px-10 pb-12 pt-4">
+        <!-- Header -->
+        <div class="mb-10">
+            <div
+                class="flex items-center gap-2 text-brand-slate/60 text-[11px] font-semibold uppercase tracking-widest mb-3">
+                <span>Workspace</span>
+                <span class="w-1 h-1 rounded-full bg-brand-orange"></span>
+                <span class="text-brand-orange font-bold">Activity Stream</span>
             </div>
-            <h2 class="text-5xl font-extrabold tracking-tight text-on-surface mb-4">
-                Activity Timeline
+            <h2 class="font-outfit text-3xl font-medium text-brand-dark leading-tight tracking-tight">
+                Activity <span class="text-brand-orange">Timeline.</span>
             </h2>
-            <p class="text-lg text-on-surface-variant leading-relaxed max-w-2xl">
-                A curated flow of updates and milestones across your
-                production environment.
+            <p class="text-brand-slate font-light mt-2 text-sm max-w-2xl">
+                A curated flow of updates and milestones across your production environment.
             </p>
-        </div>w
-        <!-- Bento Layout Activity Grid (Asymmetric) -->
-        <div class="grid grid-cols-12 gap-8">
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Main Timeline Canvas -->
-            <div class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl p-8 relative overflow-hidden">
+            <div
+                class="lg:col-span-2 bg-white rounded-[32px] p-8 lg:p-12 border border-brand-teal/10 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)] relative overflow-hidden">
                 <!-- Vertical Line -->
-                <div class="absolute left-12 top-0 bottom-0 w-[1px] bg-surface-container"></div>
-                <div class="space-y-12 relative">
-                    <!-- Timeline Group: Today -->
-                    <div>
-                        <h3 class="ml-16 text-xs font-bold text-primary-container tracking-widest uppercase mb-8">
-                            Today
-                        </h3>
-                        <!-- Activity Item 1 -->
-                        <div class="relative flex gap-6 items-start group">
-                            <div
-                                class="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white shadow-lg shadow-primary/20">
-                                <span class="material-symbols-outlined text-[20px]" data-icon="add_task">add_task</span>
-                            </div>
-                            <div class="flex-1 pt-1">
-                                <div class="flex justify-between items-start mb-2">
-                                    <p class="text-on-surface font-semibold">
-                                        <span class="text-primary hover:underline cursor-pointer">Marcus Thorne</span>
-                                        created
-                                        <span class="font-bold">Q4 Project Roadmap</span>
-                                    </p>
-                                    <span class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">10:24
-                                        AM</span>
-                                </div>
-                                <div
-                                    class="bg-surface-container-low rounded-lg p-4 transition-all group-hover:scale-[0.99] duration-200">
-                                    <p class="text-sm text-on-surface-variant leading-snug">
-                                        Added 12 new milestones and
-                                        assigned structural leads for
-                                        the architectural phase.
-                                    </p>
-                                    <div class="mt-3 flex gap-2">
-                                        <span
-                                            class="px-2 py-1 bg-surface-container text-[10px] font-bold rounded text-slate-500">PLANNING</span>
-                                        <span
-                                            class="px-2 py-1 bg-surface-container text-[10px] font-bold rounded text-slate-500">Q4-2024</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Activity Item 2 -->
-                        <div class="relative flex gap-6 items-start mt-10 group">
-                            <div
-                                class="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-secondary-container text-primary shadow-sm">
-                                <span class="material-symbols-outlined text-[20px]" data-icon="edit_note">edit_note</span>
-                            </div>
-                            <div class="flex-1 pt-1">
-                                <div class="flex justify-between items-start mb-2">
-                                    <p class="text-on-surface font-semibold">
-                                        <span class="text-primary hover:underline cursor-pointer">Sarah Jenkins</span>
-                                        updated
-                                        <span class="font-bold">Style Guide v2.4</span>
-                                    </p>
-                                    <span class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">09:15
-                                        AM</span>
-                                </div>
-                                <div class="p-2 border-l-4 border-primary-container ml-1">
-                                    <p class="text-sm italic text-on-surface-variant">
-                                        "Refined the tonal layering
-                                        tokens to include atmospheric
-                                        teals for the curation
-                                        dashboard."
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Activity Item 3 (Image Upload) -->
-                        <div class="relative flex gap-6 items-start mt-10 group">
-                            <div
-                                class="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant shadow-sm">
-                                <span class="material-symbols-outlined text-[20px]" data-icon="image">image</span>
-                            </div>
-                            <div class="flex-1 pt-1">
-                                <div class="flex justify-between items-start mb-2">
-                                    <p class="text-on-surface font-semibold">
-                                        <span class="text-primary hover:underline cursor-pointer">Elena Rossi</span>
-                                        uploaded
-                                        <span class="font-bold">4 Curation Assets</span>
-                                    </p>
-                                    <span class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">08:30
-                                        AM</span>
-                                </div>
-                                <div class="grid grid-cols-4 gap-2 mt-2">
+                <div class="absolute left-16 top-0 bottom-0 w-[1px] bg-brand-teal/10"></div>
+
+                <div class="space-y-12 relative z-10">
+
+                    @forelse($activities as $dateGroup => $dailyActivities)
+                        <div class="{{ $loop->first ? '' : 'pt-8' }}">
+                            <!-- Label Waktu (Today / Yesterday / Tanggal) -->
+                            <h3
+                                class="ml-20 text-[10px] font-bold tracking-widest uppercase mb-8 w-fit px-3 py-1 rounded-full {{ $dateGroup === 'Today' ? 'text-brand-orange bg-brand-orange/10' : 'text-brand-slate bg-brand-surface border border-brand-teal/10' }}">
+                                {{ $dateGroup }}
+                            </h3>
+
+                            @foreach ($dailyActivities as $activity)
+                                @php
+                                    // Logika menentukan Icon dan Warna berdasarkan jenis data yang dirubah
+                                    $icon = 'history'; // icon default
+                                    $colorClass = 'bg-brand-surface text-brand-dark border-brand-teal/10';
+
+                                    if (str_contains($activity->target_type, 'Task')) {
+                                        $icon = $activity->action == 'created' ? 'add_task' : 'task_alt';
+                                        $colorClass = 'bg-brand-surface text-brand-dark border-brand-teal/10';
+                                    } elseif (str_contains($activity->target_type, 'Note')) {
+                                        $icon = 'edit_note';
+                                        $colorClass = 'bg-brand-surface text-brand-teal border-brand-teal/10';
+                                    } elseif (str_contains($activity->target_type, 'Project')) {
+                                        $icon = 'folder_open';
+                                        $colorClass = 'bg-brand-orange/10 text-brand-orange border-brand-orange/20';
+                                    }
+                                @endphp
+
+                                <!-- Activity Item -->
+                                <div class="relative flex gap-6 items-start {{ $loop->first ? '' : 'mt-10' }} group">
                                     <div
-                                        class="aspect-square bg-slate-100 rounded-lg overflow-hidden ring-1 ring-inset ring-black/5">
-                                        <img alt="Asset 1" class="w-full h-full object-cover"
-                                            data-alt="architectural sketch of a modern pavilion with clean lines and soft shadows"
-                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5Avw1w64vUrwEC2wnnxExHjXQxZYs1Ejmxdhz8NLTdoBiM3x-t7d5e8WCdjiowq_PtIPiRC7-wGQBJuFE0pCcUu-sA1nY6xIJM9o9BWWveRcGgKfFCw7vNcWM5qKfv_5Let1ZuXNQA0Ymub_fkglKPmvHljXNP7JnrshvqLRR02ADUKWspEPRPukQ7gNA0KS__rm_5-0Xl1F1LKwu8ViAPfgpKidWP4nCpq_zcAvuVehHCWQDsHeKSIFfbrNvqWDZnmKnIeMKGVs" />
+                                        class="flex items-center justify-center w-12 h-12 rounded-full border shadow-sm z-10 {{ $colorClass }}">
+                                        <span class="material-symbols-outlined text-[20px]">{{ $icon }}</span>
                                     </div>
-                                    <div
-                                        class="aspect-square bg-slate-100 rounded-lg overflow-hidden ring-1 ring-inset ring-black/5">
-                                        <img alt="Asset 2" class="w-full h-full object-cover"
-                                            data-alt="macro texture photo of brushed limestone with soft neutral lighting"
-                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUbea4OTCsKp0ij6WqqOw-33nZsUaRlK6bLY7ya-YuQHNxzmqovzc6ErBE8JDZVSmQ3Wo-EISg74lkytX4xxwG9donP-l8uUB24HhnAmC6FttDu7zXXA9NvjSWsUseu3nyLiZ-UVaJeds8oOfYGWCjfeq8tAvyAbHkRJoiydQf4nwXljWw4JvVnJfDeZHL_zKRerGkRrHqljbHRbMUgtISF0jeuEeEbZVQoWUEnNtFJQUaBYCOll9qNxzwmtoBT1GL-AsYMzjjbM4" />
-                                    </div>
-                                    <div
-                                        class="aspect-square bg-slate-100 rounded-lg overflow-hidden ring-1 ring-inset ring-black/5">
-                                        <img alt="Asset 3" class="w-full h-full object-cover"
-                                            data-alt="minimalist interior design concept with large windows and natural wood elements"
-                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDX33W3zfisePdyV-5DN7wxjJ8GB2rsnbsNWWdPZ7Jfnjsdi-jaKW-HH5r8pmXtkgvDNU75pvg6v9fF6rxKtVQKZ98t5LE-agXZLGDCayl28oer_Za8ZVMygnrWkKv0vQZcIx58tfHkiauvcAYU9eC_mjcGAAEItHpGXZV-DGLBZBAKKmOJhRd4ZabwaEwmjxP-pPeXK4zBZ7qKYT9Ea0XKiCHIujmT0llj314AkvMrDzr2-YQr_A8FhSC-IakUQOYaRd5ome1nOU" />
-                                    </div>
-                                    <div
-                                        class="aspect-square bg-slate-100 rounded-lg overflow-hidden ring-1 ring-inset ring-black/5 flex items-center justify-center text-xs font-bold text-slate-400">
-                                        +1
+                                    <div class="flex-1 pt-1.5">
+                                        <div class="flex justify-between items-start mb-2">
+                                            <p class="text-[14px] text-brand-dark font-light">
+                                                <span
+                                                    class="font-medium hover:text-brand-orange cursor-pointer transition-colors">
+                                                    {{ $activity->user->name ?? 'System/AI Assistant' }}
+                                                </span>
+                                                {{ $activity->action }}
+                                                <span
+                                                    class="font-medium">{{ $activity->metadata['title'] ?? 'an item' }}</span>
+                                            </p>
+                                            <span
+                                                class="text-[10px] font-semibold text-brand-slate uppercase tracking-wider bg-brand-surface px-2 py-1 rounded-md">
+                                                {{ $activity->created_at->format('h:i A') }}
+                                            </span>
+                                        </div>
+
+                                        <!-- Detail metadata jika itu Update -->
+                                        @if ($activity->action === 'updated' && !empty($activity->metadata['changed_fields']))
+                                            <div class="p-3 border-l-[3px] border-brand-teal/30 ml-2">
+                                                <p class="text-[13px] italic text-brand-slate font-light">
+                                                    Berhasil mengupdate kolom: <span
+                                                        class="font-medium">{{ implode(', ', $activity->metadata['changed_fields']) }}</span>
+                                                </p>
+                                            </div>
+                                        @elseif($activity->action === 'created')
+                                            <!-- Detail info jika itu Create -->
+                                            <div
+                                                class="bg-brand-surface/50 rounded-[20px] p-4 border border-brand-teal/5 transition-all group-hover:bg-brand-surface">
+                                                <p class="text-[13px] text-brand-slate font-light leading-relaxed">
+                                                    Sebuah {{ class_basename($activity->target_type) }} baru telah
+                                                    ditambahkan ke dalam Workspace.
+                                                </p>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-                    </div>
-                    <!-- Timeline Group: Yesterday -->
-                    <div>
-                        <h3 class="ml-16 text-xs font-bold text-slate-400 tracking-widest uppercase mb-8">
-                            Yesterday
-                        </h3>
-                        <!-- Activity Item 4 -->
-                        <div class="relative flex gap-6 items-start group">
+                    @empty
+                        <div class="text-center py-20 mt-10">
                             <div
-                                class="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-surface-container text-on-surface-variant">
-                                <span class="material-symbols-outlined text-[20px]" data-icon="smart_toy">smart_toy</span>
+                                class="w-20 h-20 bg-brand-surface rounded-full flex items-center justify-center mx-auto mb-4 border border-brand-teal/10">
+                                <span
+                                    class="material-symbols-outlined text-[32px] text-brand-slate">history_toggle_off</span>
                             </div>
-                            <div class="flex-1 pt-1">
-                                <div class="flex justify-between items-start mb-2">
-                                    <p class="text-on-surface font-semibold">
-                                        <span class="text-primary font-bold">AI Assistant</span>
-                                        optimized
-                                        <span class="font-bold">Project Metadata</span>
-                                    </p>
-                                    <span class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">4:50
-                                        PM</span>
-                                </div>
-                                <div
-                                    class="bg-surface-container-low/50 rounded-lg p-3 border border-dashed border-outline-variant/30">
-                                    <p class="text-sm text-on-surface-variant italic">
-                                        Automated tagging completed for
-                                        45 files in "Production
-                                        Workspace".
-                                    </p>
-                                </div>
-                            </div>
+                            <h3 class="text-brand-dark font-medium text-lg">Belum ada aktivitas</h3>
+                            <p class="text-brand-slate font-light text-sm mt-1">Lakukan sesuatu di Workspace ini agar log
+                                tercatat.</p>
                         </div>
-                        <!-- Activity Item 5 -->
-                        <div class="relative flex gap-6 items-start mt-10 group">
-                            <div
-                                class="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-error-container text-error">
-                                <span class="material-symbols-outlined text-[20px]" data-icon="flag">flag</span>
+                    @endforelse
+
+                    <!-- Custom Pagination UI -->
+                    @if ($paginatedActivities->hasPages())
+                        <div class="mt-12 pt-8 border-t border-brand-teal/10 flex justify-between items-center">
+
+                            <!-- Tombol Previous -->
+                            @if ($paginatedActivities->onFirstPage())
+                                <span
+                                    class="px-4 py-2 bg-brand-surface text-brand-slate/50 rounded-xl text-xs font-medium cursor-not-allowed">Previous</span>
+                            @else
+                                <a href="{{ $paginatedActivities->previousPageUrl() }}"
+                                    class="px-4 py-2 bg-white border border-brand-teal/20 text-brand-dark hover:text-brand-orange hover:border-brand-orange/30 rounded-xl text-xs font-medium transition-colors shadow-sm">Previous</a>
+                            @endif
+
+                            <!-- Indikator Halaman -->
+                            <div class="text-xs font-light text-brand-slate">
+                                Page <span
+                                    class="font-medium text-brand-dark">{{ $paginatedActivities->currentPage() }}</span> of
+                                <span class="font-medium text-brand-dark">{{ $paginatedActivities->lastPage() }}</span>
                             </div>
-                            <div class="flex-1 pt-1">
-                                <div class="flex justify-between items-start mb-2">
-                                    <p class="text-on-surface font-semibold">
-                                        <span class="text-primary hover:underline cursor-pointer">Marcus Thorne</span>
-                                        flagged
-                                        <span class="font-bold text-error">Critical Delay</span>
-                                    </p>
-                                    <span class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">1:12
-                                        PM</span>
-                                </div>
-                                <p class="text-sm text-on-surface-variant">
-                                    Vendor approval pending for Site
-                                    Phase A. Re-assigned to Sarah for
-                                    follow-up.
-                                </p>
-                            </div>
+
+                            <!-- Tombol Next -->
+                            @if ($paginatedActivities->hasMorePages())
+                                <a href="{{ $paginatedActivities->nextPageUrl() }}"
+                                    class="px-4 py-2 bg-white border border-brand-teal/20 text-brand-dark hover:text-brand-orange hover:border-brand-orange/30 rounded-xl text-xs font-medium transition-colors shadow-sm">Next</a>
+                            @else
+                                <span
+                                    class="px-4 py-2 bg-brand-surface text-brand-slate/50 rounded-xl text-xs font-medium cursor-not-allowed">Next</span>
+                            @endif
+
                         </div>
-                    </div>
+                    @endif
+
                 </div>
             </div>
-            <!-- Contextual Sidebar / Stats -->
-            <div class="col-span-12 lg:col-span-4 space-y-8">
+
+            <!-- Sidebar / Stats -->
+            <div class="lg:col-span-1 space-y-6">
                 <!-- Insights Card -->
                 <div
-                    class="bg-gradient-to-br from-primary to-primary-container rounded-xl p-8 text-white shadow-xl shadow-primary/10">
-                    <h4 class="text-sm font-bold uppercase tracking-widest opacity-80 mb-6">
+                    class="bg-brand-dark rounded-[32px] p-8 text-white shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-brand-orange/20 blur-2xl rounded-full"></div>
+                    <h4 class="text-[10px] font-bold uppercase tracking-widest text-brand-surface/60 mb-8">
                         Weekly Pulse
                     </h4>
                     <div class="space-y-6">
                         <div>
-                            <p class="text-4xl font-extrabold">142</p>
-                            <p class="text-xs font-medium opacity-70 mt-1 uppercase tracking-tight">
+                            <p class="font-outfit text-5xl font-medium">{{ $stats['total'] }}</p>
+                            <p class="text-[11px] font-medium text-brand-surface/60 mt-1 tracking-wide">
                                 Total Activities
                             </p>
                         </div>
-                        <div class="h-[2px] bg-white/20 w-full"></div>
+                        <div class="h-[1px] bg-brand-surface/10 w-full"></div>
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-xl font-bold">24</p>
-                                <p class="text-[10px] opacity-70 uppercase">
-                                    Tasks Created
-                                </p>
+                                <p class="font-outfit text-2xl font-medium">{{ $stats['tasks'] }}</p>
+                                <p class="text-[9px] text-brand-surface/60 uppercase tracking-widest mt-1">Tasks</p>
                             </div>
                             <div>
-                                <p class="text-xl font-bold">89</p>
-                                <p class="text-[10px] opacity-70 uppercase">
-                                    Files Curated
-                                </p>
+                                <p class="font-outfit text-2xl font-medium">{{ $stats['notes'] }}</p>
+                                <p class="text-[9px] text-brand-surface/60 uppercase tracking-widest mt-1">Notes</p>
                             </div>
                             <div>
-                                <p class="text-xl font-bold">2.4h</p>
-                                <p class="text-[10px] opacity-70 uppercase">
-                                    Avg Response
-                                </p>
+                                <p class="font-outfit text-2xl font-medium text-brand-orange">{{ $stats['projects'] }}</p>
+                                <p class="text-[9px] text-brand-orange uppercase tracking-widest mt-1">Projects</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Team Status List (No Borders) -->
-                <div class="bg-surface-container-high/40 rounded-xl p-6">
-                    <h4 class="text-xs font-bold text-on-surface uppercase tracking-widest mb-6 px-2">
-                        Live Collaborators
-                    </h4>
-                    <div class="space-y-2">
-                        <div
-                            class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-lowest transition-colors cursor-pointer group">
-                            <div class="flex items-center gap-3">
-                                <div class="relative">
-                                    <img class="w-8 h-8 rounded-full bg-secondary-container"
-                                        data-alt="portrait of an elegant professional in a creative studio setting"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPyPJFqD1IdEAyUr7fj2bCBG4vhlRJvuKir1lh3xSQ8piy4rfbkC36DyL9jTAmXIplcxruBrPuhG1RA0nYWd3nrJSkb1rebdVJ5MHztYm4jEw9dCyMCEak4T3o4jB5nq5xmYwoVfnZeKLYX-7eDVkJtNPtggDGVbBuk74ywm554z1j1O9RcWxFsBky0gfWtXNDTPZ81eMLXMZWK_tjq9lpYVXlrio4Jevc7HL-9ek2bo4mfEfLgL2sXEVY49Oa52uUElNRXj2mW4w" />
-                                    <span
-                                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-surface rounded-full"></span>
-                                </div>
-                                <span class="text-sm font-semibold text-on-surface">Marcus Thorne</span>
-                            </div>
-                            <span
-                                class="text-[10px] text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">Curating</span>
-                        </div>
-                        <div
-                            class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-lowest transition-colors cursor-pointer group">
-                            <div class="flex items-center gap-3">
-                                <div class="relative">
-                                    <img class="w-8 h-8 rounded-full bg-primary-fixed"
-                                        data-alt="close-up of a creative designer working in a bright modern office"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0Dw3bQvsTdybFK29tpwLLkK7F2MF79bImMjsQdsq4TpbhE_JtK7uMgCrJ2QcLZyY6keVzPQvU9TyVbJrWN7W9X82iHuNQwFQd4o6TciBD_rWuW9W_NbPjbWB_ZmRj-5wk-m5067O94WM0fpy2BQkiejVM6_3hfadC_4wWTdt9SFRLmiZO_8BXSGCFbP6zxaTLGoigzQp2TE0mU0rDWI6i_2zY2S78lRHwydM4q4nGYjJNaisNBphxXXGP9vriKxLJBWdbs_arZCE" />
-                                    <span
-                                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-surface rounded-full"></span>
-                                </div>
-                                <span class="text-sm font-semibold text-on-surface">Sarah Jenkins</span>
-                            </div>
-                            <span
-                                class="text-[10px] text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">Writing</span>
-                        </div>
-                        <div
-                            class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-lowest transition-colors cursor-pointer group">
-                            <div class="flex items-center gap-3">
-                                <div class="relative">
-                                    <img class="w-8 h-8 rounded-full bg-tertiary-fixed"
-                                        data-alt="professional woman in a stylish workspace with soft morning light"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYM8SpQO0nV3930UW59uOzaEzsQ5Wg7i1FxondpEwsV3PoUBXxEqkk-t2_c6HAWDayXR2ie70m1Nz71Jxqm80IqHyGvqd2WeIZcprDMzUf6gskszLTgg_qcfyQjX-dDpcGWD53_eYadU-bIXsxXbyOayyyW8hYF5U4OyuUjTtuJygyW86OTb4WP7uRy8r209dPfN1xQZ0sih_oEVuUYqrQ85SaGTkETLwEG1drsY1WtV7aMo9onGTCdYA4QWgOhuNIMjfkOYF2QvY" />
-                                    <span
-                                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-slate-300 border-2 border-surface rounded-full"></span>
-                                </div>
-                                <span class="text-sm font-semibold text-on-surface opacity-60">Elena Rossi</span>
-                            </div>
-                            <span class="text-[10px] text-slate-400">Away</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Filter / Filter Actions -->
-                <div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/10">
-                    <h4 class="text-xs font-bold text-on-surface uppercase tracking-widest mb-4">
-                        Filters
-                    </h4>
+
+                <!-- Filter -->
+                <div class="bg-white rounded-[32px] p-6 shadow-sm border border-brand-teal/10">
+                    <h4 class="text-[10px] font-bold text-brand-slate uppercase tracking-widest mb-4 px-2">Filters</h4>
                     <div class="flex flex-wrap gap-2">
-                        <button class="px-3 py-1.5 bg-primary text-white rounded-full text-xs font-semibold">
+                        <a href="{{ url()->current() }}"
+                            class="px-4 py-2 rounded-full text-[11px] font-semibold transition-colors {{ !$filter ? 'bg-brand-dark text-white shadow-md' : 'bg-brand-surface border border-brand-teal/10 text-brand-slate hover:bg-white' }}">
                             Everything
-                        </button>
-                        <button
-                            class="px-3 py-1.5 bg-surface-container text-on-surface-variant rounded-full text-xs font-medium hover:bg-surface-container-high">
+                        </a>
+                        <a href="{{ url()->current() }}?filter=tasks"
+                            class="px-4 py-2 rounded-full text-[11px] font-medium transition-colors {{ $filter === 'tasks' ? 'bg-brand-dark text-white shadow-md' : 'bg-brand-surface border border-brand-teal/10 text-brand-slate hover:bg-white' }}">
                             Tasks
-                        </button>
-                        <button
-                            class="px-3 py-1.5 bg-surface-container text-on-surface-variant rounded-full text-xs font-medium hover:bg-surface-container-high">
-                            Assets
-                        </button>
-                        <button
-                            class="px-3 py-1.5 bg-surface-container text-on-surface-variant rounded-full text-xs font-medium hover:bg-surface-container-high">
-                            Mentions
-                        </button>
+                        </a>
+                        <a href="{{ url()->current() }}?filter=notes"
+                            class="px-4 py-2 rounded-full text-[11px] font-medium transition-colors {{ $filter === 'notes' ? 'bg-brand-dark text-white shadow-md' : 'bg-brand-surface border border-brand-teal/10 text-brand-slate hover:bg-white' }}">
+                            Notes
+                        </a>
+                        <a href="{{ url()->current() }}?filter=projects"
+                            class="px-4 py-2 rounded-full text-[11px] font-medium transition-colors {{ $filter === 'projects' ? 'bg-brand-dark text-white shadow-md' : 'bg-brand-surface border border-brand-teal/10 text-brand-slate hover:bg-white' }}">
+                            Projects
+                        </a>
                     </div>
                 </div>
             </div>

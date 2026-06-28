@@ -4,72 +4,80 @@
 
 @section('content')
     <style>
-        /* Sembunyikan placeholder secara default */
         .kanban-list .empty-placeholder {
             display: none;
         }
 
-        /* Munculkan HANYA JIKA dia adalah satu-satunya elemen di dalam kolom */
         .kanban-list .empty-placeholder:only-child {
-            display: block;
+            display: flex;
+        }
+
+        /* Menghaluskan drag animation */
+        .sortable-ghost {
+            opacity: 0.4;
+        }
+
+        .sortable-drag {
+            cursor: grabbing !important;
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
     </style>
-    <!-- Canvas -->
-    <div class="px-10 pb-12 max-w-[1600px] mx-auto">
-        <!-- Editorial Header -->
-        <div class="flex justify-between items-end mb-12">
+
+    <div class="px-8 lg:px-10 pb-12 pt-4 max-w-[1600px]">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
             <div>
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="text-on-surface-variant font-label text-xs uppercase tracking-widest">Workspace</span>
-                    <span class="w-1 h-1 rounded-full bg-primary-fixed"></span>
-                    <span class="text-on-surface-variant font-label text-xs uppercase tracking-widest">All Projects</span>
+                <div
+                    class="flex items-center gap-2 text-brand-slate/60 text-[11px] font-semibold uppercase tracking-widest mb-3">
+                    <span>Workspace</span>
+                    <span class="w-1 h-1 rounded-full bg-brand-orange"></span>
+                    <span class="text-brand-orange font-bold">All Projects</span>
                 </div>
-                <h2 class="font-headline text-5xl font-extrabold tracking-tight text-on-surface">
-                    Tasks
+                <h2 class="font-outfit text-3xl font-medium text-brand-dark leading-tight tracking-tight">
+                    Kanban <span class="text-brand-orange">Board.</span>
                 </h2>
             </div>
-            <div class="flex items-center gap-3">
-                <a href="{{ route('member.tasks.create') }}"
-                    class="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-br from-primary to-primary-container text-white rounded-lg font-bold text-sm editorial-shadow hover:scale-[1.02] active:scale-[0.98] transition-all">
-                    <span class="material-symbols-outlined text-lg" data-icon="add">add</span>
-                    New Task
-                </a>
-            </div>
+            <a href="{{ route('member.tasks.create') }}"
+                class="px-5 py-2.5 bg-brand-orange text-white text-sm font-medium rounded-xl shadow-[0_4px_14px_0_rgba(229,117,0,0.39)] hover:shadow-[0_6px_20px_rgba(229,117,0,0.23)] hover:-translate-y-0.5 transition-all flex items-center gap-2 w-fit">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                New Task
+            </a>
         </div>
 
         @if (session('success'))
-            <div class="mb-8 px-4 py-3 bg-green-50 border border-green-200 text-green-700 rounded-xl shadow-sm font-medium">
+            <div
+                class="mb-8 px-4 py-3 bg-brand-teal/10 border border-brand-teal/20 text-brand-teal rounded-xl text-sm font-medium flex items-center gap-2">
+                <span class="material-symbols-outlined text-[20px]">check_circle</span>
                 {{ session('success') }}
             </div>
         @endif
 
-        <!-- Kanban Board -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Kanban Board Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
 
             <!-- COLUMN 1: TODO -->
-            <div class="space-y-6">
-                <div class="flex items-center justify-between px-2">
+            <div class="flex flex-col bg-brand-surface/50 rounded-[32px] p-2 border border-brand-teal/5">
+                <div class="flex items-center justify-between px-6 py-5">
                     <div class="flex items-center gap-3">
-                        <span class="w-2 h-2 rounded-full bg-slate-300"></span>
-                        <h3 class="font-headline text-lg font-bold text-on-surface">Todo</h3>
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-slate/30"></span>
+                        <h3 class="font-outfit text-lg font-medium text-brand-dark">To Do</h3>
                         <span
-                            class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-xs font-bold">{{ $todoTasks->count() }}</span>
+                            class="bg-white border border-brand-teal/10 text-brand-slate px-2 py-0.5 rounded-md text-[11px] font-bold shadow-sm">{{ $todoTasks->count() }}</span>
                     </div>
                 </div>
-                <div class="bg-surface-container-low/50 rounded-2xl p-4 min-h-[600px] border-2 border-dashed border-transparent hover:border-outline-variant/30 transition-all kanban-column"
+                <div class="bg-brand-surface rounded-[24px] p-3 min-h-[600px] border border-dashed border-brand-teal/20 transition-all kanban-column flex flex-col"
                     data-status="todo">
-                    <div class="space-y-4 kanban-list min-h-full">
-                        <!-- Placeholder Selalu Ditaruh Di Atas -->
+                    <div class="space-y-3 kanban-list flex-1 flex flex-col">
                         <div
-                            class="text-center py-10 text-slate-400 text-sm border-2 border-dashed border-slate-200 rounded-xl empty-placeholder">
-                            Belum ada Task Todo
+                            class="flex-1 flex-col items-center justify-center text-center py-12 text-brand-slate/40 border-2 border-dashed border-transparent rounded-[20px] empty-placeholder">
+                            <span class="material-symbols-outlined text-4xl mb-2">inbox</span>
+                            <span class="text-sm font-medium">No tasks yet</span>
                         </div>
-
-                        <!-- Lakukan Foreach biasa -->
                         @foreach ($todoTasks as $task)
                             @include('member.flowral.tasks.partials.task-card', [
                                 'task' => $task,
-                                'color' => 'bg-slate-100 text-slate-600',
+                                'color' => 'bg-brand-surface text-brand-slate border-brand-teal/20',
                             ])
                         @endforeach
                     </div>
@@ -77,27 +85,27 @@
             </div>
 
             <!-- COLUMN 2: IN PROGRESS -->
-            <div class="space-y-6">
-                <div class="flex items-center justify-between px-2">
+            <div class="flex flex-col bg-brand-surface/50 rounded-[32px] p-2 border border-brand-teal/5">
+                <div class="flex items-center justify-between px-6 py-5">
                     <div class="flex items-center gap-3">
-                        <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-                        <h3 class="font-headline text-lg font-bold text-on-surface">In Progress</h3>
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-orange shadow-[0_0_10px_rgba(229,117,0,0.5)]"></span>
+                        <h3 class="font-outfit text-lg font-medium text-brand-dark">In Progress</h3>
                         <span
-                            class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-xs font-bold">{{ $inProgressTasks->count() }}</span>
+                            class="bg-white border border-brand-teal/10 text-brand-slate px-2 py-0.5 rounded-md text-[11px] font-bold shadow-sm">{{ $inProgressTasks->count() }}</span>
                     </div>
                 </div>
-                <div class="bg-surface-container-low/50 rounded-2xl p-4 min-h-[600px] border-2 border-dashed border-transparent hover:border-outline-variant/30 transition-all kanban-column"
+                <div class="bg-brand-surface rounded-[24px] p-3 min-h-[600px] border border-dashed border-brand-teal/20 transition-all kanban-column flex flex-col"
                     data-status="in_progress">
-                    <div class="space-y-4 kanban-list min-h-full">
+                    <div class="space-y-3 kanban-list flex-1 flex flex-col">
                         <div
-                            class="text-center py-10 text-slate-400 text-sm border-2 border-dashed border-slate-200 rounded-xl empty-placeholder">
-                            Belum ada Task In Progress
+                            class="flex-1 flex-col items-center justify-center text-center py-12 text-brand-slate/40 border-2 border-dashed border-transparent rounded-[20px] empty-placeholder">
+                            <span class="material-symbols-outlined text-4xl mb-2">bolt</span>
+                            <span class="text-sm font-medium">Clear board</span>
                         </div>
-
                         @foreach ($inProgressTasks as $task)
                             @include('member.flowral.tasks.partials.task-card', [
                                 'task' => $task,
-                                'color' => 'bg-blue-100 text-blue-700',
+                                'color' => 'bg-brand-orange/10 text-brand-orange border-brand-orange/20',
                             ])
                         @endforeach
                     </div>
@@ -105,27 +113,27 @@
             </div>
 
             <!-- COLUMN 3: DONE -->
-            <div class="space-y-6">
-                <div class="flex items-center justify-between px-2">
+            <div class="flex flex-col bg-brand-surface/50 rounded-[32px] p-2 border border-brand-teal/5">
+                <div class="flex items-center justify-between px-6 py-5">
                     <div class="flex items-center gap-3">
-                        <span class="w-2 h-2 rounded-full bg-teal-500"></span>
-                        <h3 class="font-headline text-lg font-bold text-on-surface">Done</h3>
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-teal shadow-[0_0_10px_rgba(129,180,197,0.5)]"></span>
+                        <h3 class="font-outfit text-lg font-medium text-brand-dark">Done</h3>
                         <span
-                            class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-xs font-bold">{{ $doneTasks->count() }}</span>
+                            class="bg-white border border-brand-teal/10 text-brand-slate px-2 py-0.5 rounded-md text-[11px] font-bold shadow-sm">{{ $doneTasks->count() }}</span>
                     </div>
                 </div>
-                <div class="bg-surface-container-low/50 rounded-2xl p-4 min-h-[600px] border-2 border-dashed border-transparent hover:border-outline-variant/30 transition-all kanban-column"
+                <div class="bg-brand-surface rounded-[24px] p-3 min-h-[600px] border border-dashed border-brand-teal/20 transition-all kanban-column flex flex-col"
                     data-status="done">
-                    <div class="space-y-4 kanban-list min-h-full">
+                    <div class="space-y-3 kanban-list flex-1 flex flex-col">
                         <div
-                            class="text-center py-10 text-slate-400 text-sm border-2 border-dashed border-slate-200 rounded-xl empty-placeholder">
-                            Belum ada Task Done
+                            class="flex-1 flex-col items-center justify-center text-center py-12 text-brand-slate/40 border-2 border-dashed border-transparent rounded-[20px] empty-placeholder">
+                            <span class="material-symbols-outlined text-4xl mb-2">done_all</span>
+                            <span class="text-sm font-medium">Awaiting completion</span>
                         </div>
-
                         @foreach ($doneTasks as $task)
                             @include('member.flowral.tasks.partials.task-card', [
                                 'task' => $task,
-                                'color' => 'bg-teal-100 text-teal-700',
+                                'color' => 'bg-brand-teal/10 text-brand-teal border-brand-teal/20',
                             ])
                         @endforeach
                     </div>
@@ -137,24 +145,21 @@
 
     <script type="module">
         document.addEventListener('DOMContentLoaded', function() {
-            // Pilih semua area yang bisa didrop (kanban-list)
             const columns = document.querySelectorAll('.kanban-list');
 
             columns.forEach(column => {
                 new Sortable(column, {
                     group: 'kanban',
-                    animation: 150,
-                    ghostClass: 'opacity-40',
-                    dragClass: 'scale-105',
-                    draggable: '.group', // HANYA drag elemen yang punya class group (kartu asli)
+                    animation: 200,
+                    easing: "cubic-bezier(1, 0, 0, 1)",
+                    ghostClass: 'sortable-ghost',
+                    dragClass: 'sortable-drag',
+                    draggable: '.kanban-card',
 
                     onEnd: function(evt) {
                         const itemEl = evt.item;
                         const toList = evt.to;
-
                         const taskId = itemEl.getAttribute('data-id');
-
-                        // Jika entah bagaimana yang ditarik tidak punya ID, batalkan proses (jangan tembak ke backend)
                         if (!taskId) return;
 
                         const newStatus = toList.closest('.kanban-column').getAttribute(
@@ -176,7 +181,7 @@
                                     const errorText = await response.text();
                                     throw new Error(
                                         `HTTP Error ${response.status}: ${errorText}`
-                                    );
+                                        );
                                 }
                                 return response.json();
                             })
@@ -185,13 +190,13 @@
                                     alert('Gagal dari server: ' + (data.message ||
                                         'Unknown error'));
                                     window.location.reload();
+                                } else {
+                                    // Update color label class based on new column dynamically if needed
+                                    // (Refresh is safer, but Alpine/JS can handle it too)
                                 }
                             })
                             .catch(error => {
                                 console.error('Terdapat Kesalahan Teknis:', error);
-                                alert(
-                                    'Gagal memindahkan! Silakan tekan F12 dan cek Console (Inspect Element) untuk melihat penyebab pastinya.'
-                                );
                                 window.location.reload();
                             });
                     },

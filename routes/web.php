@@ -7,15 +7,19 @@ use App\Http\Controllers\member\AI\AIMainController;
 use App\Http\Controllers\member\Dashboard\DashboardMainController;
 use App\Http\Controllers\member\Notes\NoteMainController;
 use App\Http\Controllers\member\Projects\projectsMainController;
+use App\Http\Controllers\member\Search\GlobalSearchController;
+use App\Http\Controllers\member\Settings\SettingsController;
+use App\Http\Controllers\member\Tasks\TaskCommentController;
 use App\Http\Controllers\member\Tasks\TaskMainController;
 use App\Http\Controllers\member\Workspace\WorkspaceMainController;
-use App\Http\Controllers\Owner\OwnerMainController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\member\Workspace\WorkspaceMemberController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::controller(LandingPageController::class)->group(function () {
     Route::get('/', 'index')->name('landing.page');
+    Route::view('/privacy', 'landing_page.privacy')->name('landing.privacy');
+    Route::view('/terms', 'landing_page.terms')->name('landing.terms');
 });
 
 // admin routes
@@ -25,15 +29,6 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
         Route::controller(AdminMainController::class)->group(function () {
             // create data category
             Route::post('/store/category', 'storecat')->name('store.cat');
-        });
-    });
-});
-
-// Owner routes
-Route::middleware(['auth', 'verified', 'rolemanager:owner'])->group(function () {
-    Route::prefix('owner')->group(function () {
-        Route::controller(OwnerMainController::class)->group(function () {
-            Route::get('/owner', 'index')->name('owner.dashboard');
         });
     });
 });
@@ -56,27 +51,57 @@ Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function ()
             Route::get('/tasks', 'index')->name('member.tasks');
             Route::get('/tasks/create', 'create')->name('member.tasks.create');
             Route::post('/tasks', 'store')->name('member.tasks.store');
+            Route::get('/tasks/{task}', 'show')->name('member.tasks.show');
             Route::get('/tasks/{task}/edit', 'edit')->name('member.tasks.edit');
             Route::put('/tasks/{task}', 'update')->name('member.tasks.update');
             Route::patch('/tasks/{task}/status', 'updateStatus')->name('member.tasks.updateStatus');
             Route::delete('/tasks/{task}', 'destroy')->name('member.tasks.destroy');
         });
+
+        Route::controller(TaskCommentController::class)->group(function () {
+            Route::post('/tasks/{task}/comments', 'store')->name('member.tasks.comments.store');
+            Route::delete('/comments/{comment}', 'destroy')->name('member.tasks.comments.destroy');
+        });
         Route::controller(NoteMainController::class)->group(function () {
             Route::get('/notes', 'notes')->name('member.notes');
+            Route::post('/notes', 'store')->name('member.notes.store');
+            Route::get('/notes/{note}', 'show')->name('member.notes.show');
+            Route::put('/notes/{note}', 'update')->name('member.notes.update');
+            Route::delete('/notes/{note}', 'destroy')->name('member.notes.destroy');
         });
         Route::controller(ActivityMainController::class)->group(function () {
             Route::get('/activity', 'activity')->name('member.activity');
         });
         Route::controller(AIMainController::class)->group(function () {
             Route::get('/ai', 'ai')->name('member.ai');
+            Route::post('/ai/chat', 'chat')->name('member.ai.chat');
+            Route::post('/ai/generate-task', 'generateTask')->name('member.ai.generate_task');
+            Route::post('/ai/summarize-note', 'summarizeNote')->name('member.ai.summarize_note');
+            Route::post('/ai/suggest-workflow', 'suggestWorkflow')->name('member.ai.suggest_workflow');
         });
         Route::controller(WorkspaceMainController::class)->group(function () {
-            Route::get('/workspace', 'index')->name('member.workspace.index');  
+            Route::get('/workspace', 'index')->name('member.workspace.index');
             Route::get('/workspace/create', 'create')->name('member.workspace.create');
             Route::post('/workspace', 'store')->name('member.workspace.store');
             Route::get('/workspace/{workspace}/edit', 'edit')->name('member.workspace.edit');
             Route::put('/workspace/{workspace}', 'update')->name('member.workspace.update');
             Route::delete('/workspace/{workspace}', 'destroy')->name('member.workspace.destroy');
+        });
+
+        Route::controller(WorkspaceMemberController::class)->group(function () {
+            Route::get('/workspace/{workspace}/members', 'index')->name('member.workspace.members.index');
+            Route::post('/workspace/{workspace}/members', 'store')->name('member.workspace.members.store');
+            Route::put('/workspace/{workspace}/members/{user}', 'update')->name('member.workspace.members.update');
+            Route::delete('/workspace/{workspace}/members/{user}', 'destroy')->name('member.workspace.members.destroy');
+        });
+
+        Route::controller(SettingsController::class)->group(function () {
+            Route::get('/settings', 'index')->name('member.settings.index');
+            Route::post('/settings/profile', 'updateProfile')->name('member.settings.profile.update');
+        });
+
+        Route::controller(GlobalSearchController::class)->group(function () {
+            Route::get('/search', 'index')->name('member.search');
         });
     });
 });

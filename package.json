@@ -17,6 +17,9 @@
         "vite": "^8.0.0"
     },
     "dependencies": {
+        "@fontsource/inter": "^5.2.8",
+        "@fontsource/outfit": "^5.2.8",
+        "gsap": "^3.15.0",
         "sortablejs": "^1.15.7"
     }
 }
