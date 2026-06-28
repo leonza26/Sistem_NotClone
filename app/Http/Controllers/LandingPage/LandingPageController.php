@@ -12,4 +12,14 @@ class LandingPageController extends Controller
     {
         return view('landing_page.home');
     }
+
+    public function privacy()
+    {
+        return view('landing_page.privacy');
+    }
+
+    public function terms()
+    {
+        return view('landing_page.terms');
+    }
 }

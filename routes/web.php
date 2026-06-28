@@ -7,6 +7,7 @@ use App\Http\Controllers\member\AI\AIMainController;
 use App\Http\Controllers\member\Dashboard\DashboardMainController;
 use App\Http\Controllers\member\Notes\NoteMainController;
 use App\Http\Controllers\member\Projects\projectsMainController;
+use App\Http\Controllers\member\Search\GlobalSearchController;
 use App\Http\Controllers\member\Settings\SettingsController;
 use App\Http\Controllers\member\Tasks\TaskCommentController;
 use App\Http\Controllers\member\Tasks\TaskMainController;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(LandingPageController::class)->group(function () {
     Route::get('/', 'index')->name('landing.page');
+    Route::view('/privacy', 'landing_page.privacy')->name('landing.privacy');
+    Route::view('/terms', 'landing_page.terms')->name('landing.terms');
 });
 
 // admin routes
@@ -95,6 +98,10 @@ Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function ()
         Route::controller(SettingsController::class)->group(function () {
             Route::get('/settings', 'index')->name('member.settings.index');
             Route::post('/settings/profile', 'updateProfile')->name('member.settings.profile.update');
+        });
+
+        Route::controller(GlobalSearchController::class)->group(function () {
+            Route::get('/search', 'index')->name('member.search');
         });
     });
 });

@@ -1,16 +1,18 @@
 <header
     class="fixed top-0 right-0 left-64 h-16 bg-brand-surface/60 backdrop-blur-xl z-40 flex justify-between items-center px-8 border-b border-brand-teal/10 transition-all">
     <!-- Search Bar -->
-    <div class="flex items-center gap-6">
+    <form action="{{ route('member.search') }}" method="GET" class="flex items-center gap-6">
         <div class="relative group">
             <span
                 class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-brand-slate/50 group-focus-within:text-brand-dark transition-colors text-[18px]"
                 data-icon="search">search</span>
-            <input
+
+            <!-- Tambahkan attribute name="q" dan value -->
+            <input name="q" value="{{ request('q') }}"
                 class="pl-10 pr-4 py-2 bg-white/50 border border-brand-teal/10 rounded-full text-sm w-72 focus:ring-2 focus:ring-brand-teal/20 focus:bg-white transition-all outline-none placeholder:text-brand-slate/50 font-light"
-                placeholder="Search across workspaces..." type="text" />
+                placeholder="Search across workspaces..." type="text" autocomplete="off" />
         </div>
-    </div>
+    </form>
 
     <!-- Right Actions -->
     <div class="flex items-center gap-3">
@@ -23,8 +25,7 @@
 
                 <!-- Titik oranye muncul jika ada notif yang belum dibaca -->
                 @if (Auth::user()->unreadNotifications->count() > 0)
-                    <span
-                        class="absolute top-2 right-2 w-2 h-2 bg-brand-orange rounded-full border border-white"></span>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-brand-orange rounded-full border border-white"></span>
                 @endif
             </button>
 
@@ -50,7 +51,8 @@
                         <div
                             class="px-4 py-3 border-b border-brand-teal/5 hover:bg-brand-surface/50 transition-colors cursor-pointer">
                             <p class="text-xs text-brand-dark font-medium leading-relaxed">
-                                {{ $notification->data['message'] }}</p>
+                                {{ $notification->data['message'] }}
+                            </p>
                             <div class="flex justify-between items-center mt-2">
                                 <p class="text-[10px] text-brand-slate">{{ $notification->created_at->diffForHumans() }}
                                 </p>
@@ -87,6 +89,13 @@
             <!-- Dropdown Box -->
             <div
                 class="absolute right-0 mt-3 w-48 bg-white border border-brand-teal/10 rounded-2xl shadow-[0_10px_40px_-10px_rgba(48,71,78,0.15)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden translate-y-2 group-hover:translate-y-0">
+                <a href="/"
+                    class="block px-4 py-3 text-sm font-light text-brand-slate hover:bg-brand-surface hover:text-brand-dark transition-colors">
+                    <span class="material-symbols-outlined text-[16px] align-middle mr-2" data-icon="home">
+                        home
+                    </span>
+                    Home
+                </a>
                 <a href="{{ route('member.settings.index') }}"
                     class="block px-4 py-3 text-sm font-light text-brand-slate hover:bg-brand-surface hover:text-brand-dark transition-colors">
                     <span class="material-symbols-outlined text-[16px] align-middle mr-2"
