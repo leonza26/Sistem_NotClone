@@ -33,14 +33,8 @@ class RoleManager
                 }
                 break;
 
-            case 'owner':
-                if ($authUserRole == 1) {
-                    return $next($request);
-                }
-                break;
-
             case 'member':
-                if ($authUserRole == 2) {
+                if ($authUserRole == 1) {
                     return $next($request);
                 }
                 break;
@@ -51,11 +45,7 @@ class RoleManager
         switch ($authUserRole) {
             case 0: 
                 return redirect()->route('admin');
-
             case 1:
-                return redirect()->route('owner');
-
-            case 2:
                 return redirect()->route('member');
         }
     }

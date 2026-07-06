@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminMainController;
+
+use App\Http\Controllers\admin\Command_Center\DashboardController;
+use App\Http\Controllers\admin\Identity_Access\UserController;
 use App\Http\Controllers\LandingPage\LandingPageController;
 use App\Http\Controllers\member\Activity\ActivityMainController;
 use App\Http\Controllers\member\AI\AIMainController;
@@ -25,11 +27,14 @@ Route::controller(LandingPageController::class)->group(function () {
 // admin routes
 Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () {
     Route::prefix('admin')->group(function () {
-        // Category
-        Route::controller(AdminMainController::class)->group(function () {
-            // create data category
-            Route::post('/store/category', 'storecat')->name('store.cat');
+        Route::controller(DashboardController::class)->group(function () {
+            Route::get('/dashboard', 'index')->name('admin');
         });
+
+        Route::controller(UserController::class)->prefix('users')->group(function () {
+            Route::get('/', 'index')->name('admin.users.index');
+        });
+
     });
 });
 
