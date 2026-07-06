@@ -27,13 +27,19 @@ Route::controller(LandingPageController::class)->group(function () {
 // admin routes
 Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () {
     Route::prefix('admin')->group(function () {
+        // dashboard route
         Route::controller(DashboardController::class)->group(function () {
             Route::get('/dashboard', 'index')->name('admin');
         });
 
+        // identity & access management routes
         Route::controller(UserController::class)->prefix('users')->group(function () {
             Route::get('/', 'index')->name('admin.users.index');
+            Route::post('/{user}/suspend', 'suspend')->name('admin.users.suspend');
         });
+
+        // impersonate routes
+        Route::impersonate();
 
     });
 });

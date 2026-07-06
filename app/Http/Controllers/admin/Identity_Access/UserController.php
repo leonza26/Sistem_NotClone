@@ -23,4 +23,18 @@ class UserController extends Controller
             ->withQueryString(); // Mempertahankan query search saat pindah halaman paginasi
         return view('admin.users.index', compact('users', 'search'));
     }
+
+    public function suspend(User $user)
+    {
+        // Proteksi: Super Admin tidak bisa di-suspend
+        if ($user->role === 0) {
+            return back()->with('error', 'Super Admin cannot be suspended.');
+        }
+        // Toggle status: jika true jadi false, jika false jadi true
+        $user->update([
+            'is_suspended' => !$user->is_suspended
+        ]);
+        $status = $user->is_suspended ? 'suspended' : 'reactivated';
+        return back()->with('success', "User {$user->name} has been {$status}.");
+    }
 }

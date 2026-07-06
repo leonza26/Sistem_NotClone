@@ -76,9 +76,15 @@
                                     @endif
                                 </td>
                                 <td class="py-4 px-6">
-                                    <span class="flex items-center gap-1.5 text-xs font-medium text-emerald-600">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Active
-                                    </span>
+                                    @if($user->is_suspended)
+                                        <span class="flex items-center gap-1.5 text-xs font-medium text-red-600">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> Suspended
+                                        </span>
+                                    @else
+                                        <span class="flex items-center gap-1.5 text-xs font-medium text-emerald-600">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Active
+                                        </span>
+                                    @endif
                                 </td>
                                 <td class="py-4 px-6 text-sm text-slate-500">
                                     {{ $user->created_at->format('M d, Y') }}7
@@ -87,21 +93,23 @@
                                     <div
                                         class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                         <!-- Action: Impersonate (Login as) -->
-                                        <button title="Login as User"
-                                            class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">
+                                        @if($user->id !== auth()->id() && $user->role !== 0)
+                                        <a href="{{ route('impersonate', $user->id) }}" title="Login as {{ $user->name }}" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">
                                             <span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
-                                        </button>
+                                        </a>
+                                        @endif
+                                        
                                         <!-- Action: Suspend/Ban -->
-                                        @if($user->id !== auth()->id())
-                                            <button title="Suspend User"
-                                                class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors"
-                                                x-data @click="$dispatch('open-admin-modal', {
-                                                                url: '#',
-                                                                message: 'Are you sure you want to suspend {{ $user->name }}? They will lose access immediately.',
-                                                                type: 'warning'
-                                                            })">
-                                                <span class="material-symbols-outlined text-[18px]">block</span>
-                                            </button>
+                                        @if($user->id !== auth()->id() && $user->role !== 0)
+                                        <button title="{{ $user->is_suspended ? 'Reactivate User' : 'Suspend User' }}" 
+                                            class="w-8 h-8 rounded-lg flex items-center justify-center transition-colors {{ $user->is_suspended ? 'text-emerald-500 hover:bg-emerald-50' : 'text-slate-400 hover:text-red-600 hover:bg-red-50' }}"
+                                            x-data @click="$dispatch('open-admin-modal', {
+                                                url: '{{ route('admin.users.suspend', $user->id) }}',
+                                                message: '{{ $user->is_suspended ? "Are you sure you want to reactivate ".$user->name."?" : "Are you sure you want to suspend ".$user->name."? They will lose access immediately." }}',
+                                                type: 'warning'
+                                            })">
+                                            <span class="material-symbols-outlined text-[18px]">{{ $user->is_suspended ? 'check_circle' : 'block' }}</span>
+                                        </button>
                                         @endif
                                     </div>
                                 </td>

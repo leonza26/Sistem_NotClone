@@ -110,6 +110,25 @@
         </div>
     </div>
     @stack('scripts')
+
+    <!-- IMPERSONATE BANNER (Hanya muncul jika admin sedang impersonate) -->
+    @impersonating
+    <div
+        class="fixed bottom-6 right-6 z-[200] flex items-center gap-4 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl shadow-indigo-500/20 border border-slate-700 animate-bounce hover:animate-none transition-all">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-indigo-400 animate-pulse">detective</span>
+            <div class="text-sm">
+                <p class="font-light text-slate-300 text-xs">Admin Mode</p>
+                <p class="font-medium">Acting as {{ auth()->user()->name }}</p>
+            </div>
+        </div>
+        <div class="h-8 w-px bg-slate-700 mx-2"></div>
+        <a href="{{ route('impersonate.leave') }}"
+            class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-xl text-sm font-medium transition-colors">
+            Exit
+        </a>
+    </div>
+    @endImpersonating
 </body>
 
 </html>

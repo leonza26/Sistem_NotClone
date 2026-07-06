@@ -17,8 +17,8 @@ class AdminSeeder extends Seeder
         User::create([
             'name' => 'System God',
             'email' => 'admin@flowral.com',
-            'password' => Hash::make('l30nz426'), // Silakan ganti jika mau
-            'role' => 0, // 0 = Admin
+            'password' => Hash::make('l30nz426'), // Silakan ganti jika mau 
+            'role' => 0, // 0 = Admin 
             'job_title' => 'Super Administrator',
             'email_verified_at' => now(), // Bypass middleware 'verified'
         ]);
