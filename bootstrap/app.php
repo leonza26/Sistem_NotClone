@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CheckIsSuspended;
+use App\Http\Middleware\CheckWorkspaceStatus;
 use App\Http\Middleware\RoleManager;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -22,6 +23,13 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->web(append: [
             CheckIsSuspended::class,
+        ]);
+    })
+
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            'rolemanager' => \App\Http\Middleware\RoleManager::class,
+            'workspace.active' => \App\Http\Middleware\CheckWorkspaceStatus::class, // 
         ]);
     })
 

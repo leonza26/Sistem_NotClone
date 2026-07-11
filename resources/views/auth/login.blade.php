@@ -21,8 +21,7 @@
 
         <div class="w-full max-w-sm mx-auto z-10">
             <!-- Logo -->
-            <a href="{{ url('/') }}"
-                class="flex items-center gap-3 mb-16 w-fit hover:opacity-80 transition-opacity">
+            <a href="{{ url('/') }}" class="flex items-center gap-3 mb-16 w-fit hover:opacity-80 transition-opacity">
                 <div class="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center">
                     <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -39,6 +38,25 @@
 
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
+
+            <!-- Alert Error (Misal: Akun di-suspend) -->
+            @if (session('error'))
+                <div
+                    class="mb-5 bg-red-50 border border-red-200 text-red-600 px-4 py-3.5 rounded-xl flex items-start gap-3 shadow-sm">
+
+                    <!-- Icon Peringatan (SVG Murni) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+                        stroke="currentColor" class="w-5 h-5 shrink-0 mt-0.5 text-red-500">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <div class="flex-1">
+                        <h4 class="text-sm font-semibold tracking-tight">Access Denied</h4>
+                        <p class="text-xs font-medium mt-0.5 opacity-90 leading-relaxed">{{ session('error') }}</p>
+                    </div>
+                </div>
+            @endif
+
             <form method="POST" action="{{ route('login') }}" class="space-y-5">
                 @csrf
 
@@ -50,7 +68,8 @@
                         autocomplete="username"
                         class="w-full px-4 py-3 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40"
                         placeholder="you@company.com" />
-                    <x-input-error :messages="$errors->get('email')" class="mt-1 text-[11px] text-red-500 font-medium" />
+                    <x-input-error :messages="$errors->get('email')"
+                        class="mt-1 text-[11px] text-red-500 font-medium" />
                 </div>
 
                 <!-- Password -->
@@ -68,7 +87,8 @@
                     <input id="password" type="password" name="password" required autocomplete="current-password"
                         class="w-full px-4 py-3 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40"
                         placeholder="••••••••" />
-                    <x-input-error :messages="$errors->get('password')" class="mt-1 text-[11px] text-red-500 font-medium" />
+                    <x-input-error :messages="$errors->get('password')"
+                        class="mt-1 text-[11px] text-red-500 font-medium" />
                 </div>
 
                 <!-- Remember Me -->

@@ -37,4 +37,39 @@ class UserController extends Controller
         $status = $user->is_suspended ? 'suspended' : 'reactivated';
         return back()->with('success', "User {$user->name} has been {$status}.");
     }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+            'role' => 'required|integer|in:0,1,2',
+            'job_title' => 'nullable|string|max:255',
+        ]);
+        $validated['password'] = \Illuminate\Support\Facades\Hash::make($validated['password']);
+
+        // Sengaja langsung kita verifikasi agar user bisa langsung login
+        $validated['email_verified_at'] = now();
+        User::create($validated);
+        return back()->with('success', 'New user has been created successfully.');
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            // PENTING: kecualikan email user saat ini dari aturan unique
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'role' => 'required|integer|in:0,1',
+            'job_title' => 'nullable|string|max:255',
+        ]);
+        // Jika password diisi, maka update passwordnya
+        if ($request->filled('password')) {
+            $request->validate(['password' => 'string|min:8']);
+            $validated['password'] = \Illuminate\Support\Facades\Hash::make($request->password);
+        }
+        $user->update($validated);
+        return back()->with('success', 'User data has been updated successfully.');
+    }
 }

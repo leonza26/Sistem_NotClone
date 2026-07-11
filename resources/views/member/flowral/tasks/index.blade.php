@@ -45,13 +45,6 @@
             </a>
         </div>
 
-        @if (session('success'))
-            <div
-                class="mb-8 px-4 py-3 bg-brand-teal/10 border border-brand-teal/20 text-brand-teal rounded-xl text-sm font-medium flex items-center gap-2">
-                <span class="material-symbols-outlined text-[20px]">check_circle</span>
-                {{ session('success') }}
-            </div>
-        @endif
 
         <!-- Kanban Board Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-start">

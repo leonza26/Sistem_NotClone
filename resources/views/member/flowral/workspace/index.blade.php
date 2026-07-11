@@ -24,13 +24,6 @@
             </a>
         </header>
 
-        @if (session('success'))
-            <div
-                class="mb-8 px-4 py-3 bg-brand-teal/10 border border-brand-teal/20 text-brand-teal rounded-xl text-sm font-medium flex items-center gap-2">
-                <span class="material-symbols-outlined text-[20px]">check_circle</span>
-                {{ session('success') }}
-            </div>
-        @endif
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse ($workspaces as $workspace)
