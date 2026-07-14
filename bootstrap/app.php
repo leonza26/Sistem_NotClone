@@ -33,6 +33,17 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
 
+    ->withMiddleware(function (Middleware $middleware) {
+
+        // --- WAF GLOBAL MIDDLEWARE ---
+        $middleware->append(\App\Http\Middleware\ShieldFirewall::class);
+
+        $middleware->alias([
+            'rolemanager' => \App\Http\Middleware\RoleManager::class,
+            'workspace.active' => \App\Http\Middleware\CheckWorkspaceStatus::class,
+        ]);
+    })
+
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
