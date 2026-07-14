@@ -113,11 +113,6 @@
                             @csrf
                             <h3 class="font-outfit text-xl font-medium text-brand-dark mb-6">My Profile</h3>
 
-                            @if (session('success'))
-                                <div class="mb-6 p-4 bg-green-50 text-green-600 rounded-xl text-sm border border-green-200">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
 
                             <!-- Profile Avatar Section -->
                             <div class="flex items-center gap-6 mb-10">

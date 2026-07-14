@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminMainController;
+
+use App\Http\Controllers\admin\Command_Center\DashboardController;
+use App\Http\Controllers\admin\Identity_Access\UserController;
+use App\Http\Controllers\admin\Workspace_Ecosystem\WorkspaceController;
 use App\Http\Controllers\LandingPage\LandingPageController;
 use App\Http\Controllers\member\Activity\ActivityMainController;
 use App\Http\Controllers\member\AI\AIMainController;
@@ -22,22 +25,41 @@ Route::controller(LandingPageController::class)->group(function () {
     Route::view('/terms', 'landing_page.terms')->name('landing.terms');
 });
 
+// impersonate routes
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::impersonate();
+});
+
+
 // admin routes
 Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () {
     Route::prefix('admin')->group(function () {
-        // Category
-        Route::controller(AdminMainController::class)->group(function () {
-            // create data category
-            Route::post('/store/category', 'storecat')->name('store.cat');
+        // dashboard route
+        Route::controller(DashboardController::class)->group(function () {
+            Route::get('/dashboard', 'index')->name('admin');
+        });
+
+        // identity & access management routes
+        Route::controller(UserController::class)->prefix('users')->group(function () {
+            Route::get('/', 'index')->name('admin.users.index');
+            Route::post('/{user}/suspend', 'suspend')->name('admin.users.suspend');
+            Route::post('/', 'store')->name('admin.users.store');
+            Route::put('/{user}', 'update')->name('admin.users.update');
+        });
+
+        Route::controller(WorkspaceController::class)->prefix('workspaces')->group(function () {
+            Route::get('/', 'index')->name('admin.workspaces.index');
+            Route::post('/{workspace}/toggle', 'toggleStatus')->name('admin.workspaces.toggle');
         });
     });
 });
 
 // Member routes
-Route::middleware(['auth', 'verified', 'rolemanager:member'])->group(function () {
+Route::middleware(['auth', 'verified', 'rolemanager:member', 'workspace.active'])->group(function () {
     Route::prefix('member')->group(function () {
         Route::controller(DashboardMainController::class)->group(function () {
             Route::get('/dashboard', 'index')->name('member');
+
         });
         Route::controller(projectsMainController::class)->group(function () {
             Route::get('/projects', 'index')->name('member.projects');

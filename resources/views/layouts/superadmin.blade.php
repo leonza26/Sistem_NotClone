@@ -4,9 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title', 'Dashboard') | Flowral</title>
+    <title>@yield('title', 'Command Center') | Flowral Core</title>
 
-    <!-- PENTING: Link Material Symbols yang tadi tertinggal -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
@@ -16,7 +15,6 @@
 
     <style>
         .material-symbols-outlined {
-            /* Memastikan font icon ter-render dengan benar */
             font-family: 'Material Symbols Outlined';
             font-weight: normal;
             font-style: normal;
@@ -34,7 +32,7 @@
             vertical-align: middle;
         }
 
-        /* Custom Scrollbar Minimalis */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -44,91 +42,73 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #c0c8cb;
+            background: #cbd5e1;
             border-radius: 3px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #81B4C5;
+            background: #94a3b8;
         }
     </style>
 </head>
 
-<body
-    class="bg-brand-surface font-inter text-brand-dark overflow-x-hidden selection:bg-brand-orange selection:text-white">
-    <!-- SideNavBar -->
-    @include('components.member.sidebar')
+<body class="bg-brand-surface font-inter text-brand-dark overflow-x-hidden selection:bg-red-500 selection:text-white">
 
-    <!-- TopNavBar -->
-    @include('components.member.header')
+    <!-- Super Admin Sidebar -->
+    @include('components.super_admin.sidebar')
+
+    <!-- Super Admin Header -->
+    @include('components.super_admin.header')
 
     <!-- Main Content -->
     <main class="ml-64 pt-20 min-h-screen">
         @yield('content')
     </main>
 
-    <!-- Global Delete Modal (Alpine.js) -->
-    <div x-data="{ open: false, url: '', message: '' }"
-        @open-delete-modal.window="open = true; url = $event.detail.url; message = $event.detail.message;"
+    <!-- Global Action Modal (Alpine.js) untuk tindakan kritis admin -->
+    <div x-data="{ open: false, url: '', message: '', type: 'delete' }"
+        @open-admin-modal.window="open = true; url = $event.detail.url; message = $event.detail.message; type = $event.detail.type || 'delete';"
         class="fixed inset-0 z-[100] flex items-center justify-center" x-show="open" x-cloak style="display: none;">
 
-        <!-- Backdrop -->
         <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-            class="absolute inset-0 bg-brand-dark/40 backdrop-blur-sm" @click="open = false"></div>
+            class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" @click="open = false"></div>
 
-        <!-- Modal Panel -->
         <div x-show="open" x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
             x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-95"
-            class="relative bg-white border border-brand-teal/20 rounded-3xl shadow-2xl w-full max-w-md p-8">
+            class="relative bg-white border border-slate-200 rounded-3xl shadow-2xl w-full max-w-md p-8">
 
-            <div class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center mb-5 border border-red-100">
-                <span class="material-symbols-outlined text-red-500 text-2xl">delete</span>
+            <div class="w-12 h-12 rounded-full flex items-center justify-center mb-5"
+                :class="type === 'delete' ? 'bg-red-50 border border-red-100 text-red-500' : 'bg-orange-50 border border-orange-100 text-orange-500'">
+                <span class="material-symbols-outlined text-2xl"
+                    x-text="type === 'delete' ? 'delete_forever' : 'warning'"></span>
             </div>
-            <h3 class="text-xl font-outfit font-medium text-brand-dark mb-2">Confirm Deletion</h3>
 
-            <!-- Dynamic Message -->
-            <p class="text-brand-slate text-sm font-light mb-8 leading-relaxed" x-text="message"></p>
+            <h3 class="text-xl font-outfit font-medium text-slate-800 mb-2">Are you absolutely sure?</h3>
+            <p class="text-slate-500 text-sm font-light mb-8 leading-relaxed" x-text="message"></p>
 
             <div class="flex gap-3 justify-end pt-4">
                 <button @click="open = false" type="button"
-                    class="px-5 py-2.5 rounded-xl text-brand-slate font-medium text-sm hover:bg-brand-teal/5 transition-colors">Cancel</button>
+                    class="px-5 py-2.5 rounded-xl text-slate-500 font-medium text-sm hover:bg-slate-50 transition-colors">Cancel</button>
 
-                <!-- Dynamic Action -->
                 <form method="POST" :action="url">
                     @csrf
-                    @method('DELETE')
+                    <!-- Metode default dinamis bisa disesuaikan nanti -->
+                    @method('POST')
                     <button type="submit"
-                        class="px-5 py-2.5 rounded-xl bg-red-500 text-white font-medium text-sm shadow-lg shadow-red-500/20 hover:bg-red-600 transition-all">
-                        Yes, delete it
+                        class="px-5 py-2.5 rounded-xl font-medium text-sm shadow-lg transition-all text-white"
+                        :class="type === 'delete' ? 'bg-red-500 shadow-red-500/20 hover:bg-red-600' : 'bg-orange-500 shadow-orange-500/20 hover:bg-orange-600'">
+                        Confirm Action
                     </button>
                 </form>
             </div>
         </div>
     </div>
-    @stack('scripts')
 
-    <!-- IMPERSONATE BANNER (Hanya muncul jika admin sedang impersonate) -->
-    @impersonating
-    <div
-        class="fixed bottom-6 right-6 z-[200] flex items-center gap-4 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl shadow-indigo-500/20 border border-slate-700 animate-bounce hover:animate-none transition-all">
-        <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-indigo-400 animate-pulse">detective</span>
-            <div class="text-sm">
-                <p class="font-light text-slate-300 text-xs">Admin Mode</p>
-                <p class="font-medium">Acting as {{ auth()->user()->name }}</p>
-            </div>
-        </div>
-        <div class="h-8 w-px bg-slate-700 mx-2"></div>
-        <a href="{{ route('impersonate.leave') }}"
-            class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-xl text-sm font-medium transition-colors">
-            Exit
-        </a>
-    </div>
-    @endImpersonating
+    @stack('scripts')
 
         <!-- ========================================== -->
     <!-- GLOBAL TOAST NOTIFICATIONS (ALPINE.JS)     -->

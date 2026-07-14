@@ -212,7 +212,7 @@ Dan ini:
   - Bisa jadi startup ✔
   - Bisa jadi portfolio kuat ✔
 
-#  Package yang diapakai 
+#  Package yang dipakai 
 - tailwind css
 - font google
 - icon google
@@ -224,3 +224,4 @@ Dan ini:
 - Gemini API Key
 - Fitur Trait
 - notification
+- laravel-impersonate

@@ -9,13 +9,14 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Lab404\Impersonate\Models\Impersonate;
 
-#[Fillable(['name', 'email', 'password', 'avatar', 'job_title'])]
+#[Fillable(['name', 'email', 'password', 'avatar', 'job_title', 'is_suspended'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Impersonate;
 
     /**
      * Get the attributes that should be cast.
@@ -37,7 +38,7 @@ class User extends Authenticatable
             ->withPivot('role')
             ->withTimestamps();
     }
-    
+
     // Relasi workspace yang dimiliki oleh user ini (sebagai owner)
     public function ownedWorkspaces()
     {
@@ -48,5 +49,17 @@ class User extends Authenticatable
     public function assignedTasks()
     {
         return $this->hasMany(Task::class, 'assigned_to');
+    }
+
+    // Hanya Super Admin (role 0) yang diizinkan.
+    public function canImpersonate(): bool
+    {
+        return $this->role == 0;
+    }
+
+    // Super Admin (role 0) tidak boleh di-impersonate untuk mencegah celah keamanan.
+    public function canBeImpersonated(): bool
+    {
+        return $this->role != 0;
     }
 }

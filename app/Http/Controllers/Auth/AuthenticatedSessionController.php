@@ -32,8 +32,6 @@ class AuthenticatedSessionController extends Controller
 
         if ($authUserRole == 0) {
             return redirect()->intended(route('admin', absolute: false));
-        } elseif ($authUserRole == 1) {
-            return redirect()->intended(route('owner', absolute: false));
         } else {
             return redirect()->intended(route('member', absolute: false));
         }

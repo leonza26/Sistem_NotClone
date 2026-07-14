@@ -17,20 +17,6 @@
             </div>
         </header>
 
-        @if (session('success'))
-            <div
-                class="mb-8 px-4 py-3 bg-brand-teal/10 border border-brand-teal/20 text-brand-teal rounded-xl text-sm font-medium flex items-center gap-2">
-                <span class="material-symbols-outlined text-[20px]">check_circle</span>
-                {{ session('success') }}
-            </div>
-        @endif
-        @if (session('error'))
-            <div
-                class="mb-8 px-4 py-3 bg-red-50 border border-red-100 text-red-500 rounded-xl text-sm font-medium flex items-center gap-2">
-                <span class="material-symbols-outlined text-[20px]">error</span>
-                {{ session('error') }}
-            </div>
-        @endif
 
         {{-- Form Invite (Hanya untuk Owner & Admin) --}}
         @if ($canManage)
