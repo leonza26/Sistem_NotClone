@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\admin\Command_Center\DashboardController;
 use App\Http\Controllers\admin\Identity_Access\UserController;
+use App\Http\Controllers\admin\Shield_Security\SecurityController;
 use App\Http\Controllers\admin\Workspace_Ecosystem\WorkspaceController;
 use App\Http\Controllers\LandingPage\LandingPageController;
 use App\Http\Controllers\member\Activity\ActivityMainController;
@@ -50,6 +51,11 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
         Route::controller(WorkspaceController::class)->prefix('workspaces')->group(function () {
             Route::get('/', 'index')->name('admin.workspaces.index');
             Route::post('/{workspace}/toggle', 'toggleStatus')->name('admin.workspaces.toggle');
+        });
+
+        Route::controller(SecurityController::class)->prefix('security')->group(function () {
+            Route::get('/', 'index')->name('admin.security.index');
+            Route::delete('/unblock/{blockedIp}', 'unblockIp')->name('admin.security.unblock');
         });
     });
 });

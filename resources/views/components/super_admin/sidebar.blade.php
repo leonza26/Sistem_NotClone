@@ -46,7 +46,7 @@
 
         <!-- Shield & Security -->
         <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('admin.security*') ? 'bg-red-500/10 border border-red-500/20 text-red-400 font-medium' : 'text-slate-400 font-light hover:bg-slate-800 hover:text-white transition-colors' }}"
-            href="#">
+            href="{{ route('admin.security.index') }}">
             <span class="material-symbols-outlined text-[20px]">shield_person</span>
             <span class="text-sm">Shield & Security</span>
             <!-- Red dot indicator for active threats (contoh statis) -->
