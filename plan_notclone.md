@@ -225,3 +225,5 @@ Dan ini:
 - Fitur Trait
 - notification
 - laravel-impersonate
+- Geo IP
+- jenssegers
