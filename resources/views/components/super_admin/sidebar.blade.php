@@ -64,8 +64,8 @@
     <!-- Bottom Actions -->
     <div class="mt-auto pt-6 space-y-1 border-t border-slate-800">
         <!-- Global Configs -->
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('admin.settings*') ? 'bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-medium' : 'text-slate-400 font-light hover:bg-slate-800 hover:text-white transition-colors' }}"
-            href="#">
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('admin.configs*') ? 'bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-medium' : 'text-slate-400 font-light hover:bg-slate-800 hover:text-white transition-colors' }}"
+            href="{{ route('admin.configs.index') }}">
             <span class="material-symbols-outlined text-[20px]">admin_panel_settings</span>
             <span class="text-sm">System Configs</span>
         </a>

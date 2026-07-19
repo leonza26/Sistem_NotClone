@@ -50,6 +50,7 @@
             background: #94a3b8;
         }
     </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body class="bg-brand-surface font-inter text-brand-dark overflow-x-hidden selection:bg-red-500 selection:text-white">
@@ -110,61 +111,52 @@
 
     @stack('scripts')
 
-        <!-- ========================================== -->
+    <!-- ========================================== -->
     <!-- GLOBAL TOAST NOTIFICATIONS (ALPINE.JS)     -->
     <!-- ========================================== -->
     <div x-data="{ 
             showSuccess: {{ session('success') ? 'true' : 'false' }}, 
             showError: {{ session('error') ? 'true' : 'false' }} 
-        }" 
-        class="fixed top-6 right-6 z-[9999] flex flex-col gap-3 pointer-events-none">
-        
+        }" class="fixed top-6 right-6 z-[9999] flex flex-col gap-3 pointer-events-none">
+
         <!-- Success Toast -->
         @if(session('success'))
-        <div x-show="showSuccess" x-cloak
-             x-init="setTimeout(() => showSuccess = false, 4000)"
-             x-transition:enter="transition ease-out duration-300"
-             x-transition:enter-start="opacity-0 translate-x-8"
-             x-transition:enter-end="opacity-100 translate-x-0"
-             x-transition:leave="transition ease-in duration-200"
-             x-transition:leave-start="opacity-100 translate-x-0"
-             x-transition:leave-end="opacity-0 translate-x-8"
-             class="pointer-events-auto bg-white border border-emerald-100 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-2xl p-4 flex items-start gap-3 w-80">
-            <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-emerald-500 text-[18px]">check_circle</span>
+            <div x-show="showSuccess" x-cloak x-init="setTimeout(() => showSuccess = false, 4000)"
+                x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-8"
+                x-transition:enter-end="opacity-100 translate-x-0" x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 translate-x-8"
+                class="pointer-events-auto bg-white border border-emerald-100 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-2xl p-4 flex items-start gap-3 w-80">
+                <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-emerald-500 text-[18px]">check_circle</span>
+                </div>
+                <div class="flex-1 pt-0.5">
+                    <h4 class="text-sm font-semibold text-slate-800 tracking-tight">Success</h4>
+                    <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">{{ session('success') }}</p>
+                </div>
+                <button @click="showSuccess = false" class="text-slate-400 hover:text-slate-600 transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">close</span>
+                </button>
             </div>
-            <div class="flex-1 pt-0.5">
-                <h4 class="text-sm font-semibold text-slate-800 tracking-tight">Success</h4>
-                <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">{{ session('success') }}</p>
-            </div>
-            <button @click="showSuccess = false" class="text-slate-400 hover:text-slate-600 transition-colors">
-                <span class="material-symbols-outlined text-[18px]">close</span>
-            </button>
-        </div>
         @endif
 
         <!-- Error Toast -->
         @if(session('error'))
-        <div x-show="showError" x-cloak
-             x-init="setTimeout(() => showError = false, 5000)"
-             x-transition:enter="transition ease-out duration-300"
-             x-transition:enter-start="opacity-0 translate-x-8"
-             x-transition:enter-end="opacity-100 translate-x-0"
-             x-transition:leave="transition ease-in duration-200"
-             x-transition:leave-start="opacity-100 translate-x-0"
-             x-transition:leave-end="opacity-0 translate-x-8"
-             class="pointer-events-auto bg-white border border-red-100 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-2xl p-4 flex items-start gap-3 w-80">
-            <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-red-500 text-[18px]">error</span>
+            <div x-show="showError" x-cloak x-init="setTimeout(() => showError = false, 5000)"
+                x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-8"
+                x-transition:enter-end="opacity-100 translate-x-0" x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 translate-x-8"
+                class="pointer-events-auto bg-white border border-red-100 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-2xl p-4 flex items-start gap-3 w-80">
+                <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-red-500 text-[18px]">error</span>
+                </div>
+                <div class="flex-1 pt-0.5">
+                    <h4 class="text-sm font-semibold text-slate-800 tracking-tight">Access Denied / Error</h4>
+                    <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">{{ session('error') }}</p>
+                </div>
+                <button @click="showError = false" class="text-slate-400 hover:text-slate-600 transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">close</span>
+                </button>
             </div>
-            <div class="flex-1 pt-0.5">
-                <h4 class="text-sm font-semibold text-slate-800 tracking-tight">Access Denied / Error</h4>
-                <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">{{ session('error') }}</p>
-            </div>
-            <button @click="showError = false" class="text-slate-400 hover:text-slate-600 transition-colors">
-                <span class="material-symbols-outlined text-[18px]">close</span>
-            </button>
-        </div>
         @endif
     </div>
 </body>

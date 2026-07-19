@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CheckIsSuspended;
+use App\Http\Middleware\CheckMaintenanceMode;
 use App\Http\Middleware\CheckWorkspaceStatus;
 use App\Http\Middleware\RoleManager;
 use Illuminate\Foundation\Application;
@@ -14,36 +15,23 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
-        $middleware->alias([
-            'rolemanager' => RoleManager::class,
-        ]);
-    })
 
-    ->withMiddleware(function (Middleware $middleware) {
+        // 1. GLOBAL MIDDLEWARE (Dijalankan di setiap rute)
+        $middleware->append(\App\Http\Middleware\ShieldFirewall::class);
+        
+
+        // 2. WEB MIDDLEWARE GROUP (Dijalankan khusus di rute web)
         $middleware->web(append: [
             CheckIsSuspended::class,
+            CheckMaintenanceMode::class,
         ]);
-    })
 
-    ->withMiddleware(function (Middleware $middleware) {
+        // 3. MIDDLEWARE ALIAS (Dipanggil secara spesifik di routes/web.php)
         $middleware->alias([
-            'rolemanager' => \App\Http\Middleware\RoleManager::class,
-            'workspace.active' => \App\Http\Middleware\CheckWorkspaceStatus::class, // 
+            'rolemanager'      => RoleManager::class,
+            'workspace.active' => CheckWorkspaceStatus::class,
         ]);
     })
-
-    ->withMiddleware(function (Middleware $middleware) {
-
-        // --- WAF GLOBAL MIDDLEWARE ---
-        $middleware->append(\App\Http\Middleware\ShieldFirewall::class);
-
-        $middleware->alias([
-            'rolemanager' => \App\Http\Middleware\RoleManager::class,
-            'workspace.active' => \App\Http\Middleware\CheckWorkspaceStatus::class,
-        ]);
-    })
-
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
