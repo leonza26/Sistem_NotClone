@@ -1,79 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Upgrade | Flowral</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Maintenance — Flowral</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-        }
-
-        .glass-panel {
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .gsap-hidden { visibility: hidden; opacity: 0; }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(135deg, #00A3A3 0%, #004D4D 100%);
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
+<body class="bg-brand-surface text-brand-dark font-inter antialiased overflow-hidden selection:bg-brand-teal selection:text-white h-screen flex flex-col">
 
-<body class="min-h-screen flex items-center justify-center p-4 overflow-hidden relative">
-
-    <!-- Efek Cahaya Estetik (Glowing Orbs) -->
-    <div
-        class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-indigo-500/20 rounded-full blur-[100px] pointer-events-none">
-    </div>
-    <div
-        class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-teal-500/10 rounded-full blur-[100px] pointer-events-none">
-    </div>
-
-    <div class="max-w-lg w-full text-center relative z-10">
-
-        <!-- Logo Sederhana -->
-        <div class="flex items-center justify-center gap-2 mb-8 opacity-80">
-            <div class="w-8 h-8 bg-white text-slate-900 rounded-lg flex items-center justify-center font-bold text-xl">F
-            </div>
-            <span class="text-xl font-bold tracking-wide">Flowral<span class="text-teal-400">.</span></span>
-        </div>
-
-        <!-- Panel Kaca -->
-        <div class="glass-panel p-10 rounded-3xl shadow-2xl">
-            <!-- Ikon Animasi Gigi Roda -->
-            <div class="relative w-20 h-20 mx-auto mb-6">
-                <div class="absolute inset-0 bg-red-500/20 rounded-full animate-ping"></div>
-                <div
-                    class="relative w-20 h-20 bg-slate-800 border border-slate-700 text-red-400 rounded-full flex items-center justify-center shadow-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+    <nav class="absolute w-full z-50 top-0 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3 opacity-50">
+                <div class="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center">
+                    <svg class="w-4 h-4 text-brand-surface" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                 </div>
+                <span class="font-outfit font-semibold text-xl tracking-wide text-brand-dark">Flowral.</span>
             </div>
+        </div>
+    </nav>
 
-            <h1 class="text-2xl sm:text-3xl font-bold text-white mb-3">System Upgrade</h1>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                We are currently upgrading our core infrastructure to bring you a faster and more secure experience.
-                Flowral will be back online shortly.
+    <main class="relative flex-1 flex flex-col items-center justify-center">
+        <!-- Glow Orbs -->
+        <div class="absolute top-1/3 right-1/3 w-[600px] h-[600px] bg-brand-teal/10 blur-[120px] rounded-full mix-blend-multiply -z-10 animate-pulse"></div>
+
+        <div class="max-w-3xl mx-auto px-6 text-center z-10 flex flex-col items-center">
+            <div class="hero-anim gsap-hidden w-24 h-24 bg-white border border-brand-teal/20 rounded-3xl flex items-center justify-center mb-8 shadow-sm">
+                <svg class="w-10 h-10 text-brand-teal animate-spin-slow" style="animation: spin 8s linear infinite;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </div>
+            
+            <h1 class="hero-anim gsap-hidden font-outfit text-5xl md:text-7xl font-medium text-brand-dark leading-[1.1] tracking-tight mb-6">
+                Upgrading the <br/>
+                <span class="text-gradient">workspace.</span>
+            </h1>
+            
+            <p class="hero-anim gsap-hidden text-lg md:text-xl text-brand-slate font-light max-w-xl mx-auto mb-10 leading-relaxed">
+                We're currently performing some scheduled maintenance to make Flowral even faster and more reliable. We'll be back shortly.
             </p>
-
-            <!-- Status Indicator -->
-            <div class="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/50 rounded-full border border-slate-700">
-                <span class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span>
-                <span class="text-[10px] text-slate-300 font-bold tracking-widest">MAINTENANCE IN PROGRESS</span>
+            
+            <div class="hero-anim gsap-hidden flex items-center justify-center gap-2 text-sm font-medium text-brand-slate">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-orange"></span>
+                </span>
+                Systems currently offline
             </div>
         </div>
+    </main>
 
-        <div class="mt-8">
-            <p class="text-[10px] text-slate-500 tracking-widest uppercase font-bold">Flowral Core System &copy;
-                {{ date('Y') }}</p>
-        </div>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.utils.toArray('.gsap-hidden').forEach(el => {
+                el.classList.remove('gsap-hidden');
+            });
+
+            gsap.fromTo(".hero-anim", {
+                y: 40,
+                opacity: 0
+            }, {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                stagger: 0.15,
+                ease: "power3.out"
+            });
+        });
+    </script>
 </body>
-
 </html>

@@ -1,81 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found | Flowral</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>404 Not Found — Flowral</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        body {
-            font-family: 'Outfit', sans-serif;
+        .gsap-hidden { visibility: hidden; opacity: 0; }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(135deg, #E57500 0%, #512500 100%);
         }
     </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        // Mendekati warna teal/emerald Flowral
-                        brand: { teal: '#0f766e' }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Include GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
+<body class="bg-brand-surface text-brand-dark font-inter antialiased overflow-hidden selection:bg-brand-orange selection:text-white h-screen flex flex-col">
 
-<body class="bg-slate-50 flex items-center justify-center min-h-screen p-4 overflow-hidden relative">
-
-    <!-- Ornamen Lingkaran Estetik -->
-    <div class="absolute top-[-20%] left-[-10%] w-96 h-96 bg-brand-teal/5 rounded-full blur-3xl pointer-events-none">
-    </div>
-    <div class="absolute bottom-[-10%] right-[-5%] w-72 h-72 bg-blue-500/5 rounded-full blur-2xl pointer-events-none">
-    </div>
-
-    <div class="max-w-md w-full text-center relative z-10 space-y-8">
-
-        <!-- Ilustrasi 404 Elegan -->
-        <div class="relative w-48 h-48 mx-auto">
-            <!-- Lingkaran Berdenyut -->
-            <div class="absolute inset-0 bg-brand-teal/10 rounded-full animate-pulse"></div>
-            <div class="absolute inset-4 bg-brand-teal/10 rounded-full"></div>
-
-            <!-- Teks Angka -->
-            <div class="relative flex items-center justify-center h-full">
-                <span
-                    class="text-[100px] font-black text-transparent bg-clip-text bg-gradient-to-br from-slate-700 to-slate-400 drop-shadow-sm leading-none">
-                    404
-                </span>
-            </div>
-        </div>
-
-        <!-- Pesan Error -->
-        <div>
-            <h1 class="text-3xl font-bold text-slate-800 mb-3">Oops! Page not found.</h1>
-            <p class="text-slate-500 text-sm leading-relaxed mb-8 px-4">
-                The page you are looking for might have been removed, had its name changed, or is temporarily
-                unavailable in the Flowral ecosystem.
-            </p>
-
-            <!-- Tombol Kembali -->
-            <a href="{{ url('/') }}"
-                class="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium rounded-xl transition-all shadow-md hover:shadow-lg focus:ring-4 focus:ring-slate-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                Return to Safety
+    <!-- Navbar -->
+    <nav class="absolute w-full z-50 top-0 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="{{ url('/') }}" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <div class="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center">
+                    <svg class="w-4 h-4 text-brand-surface" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <span class="font-outfit font-semibold text-xl tracking-wide text-brand-dark">Flowral.</span>
             </a>
         </div>
+    </nav>
 
-        <!-- Footer Kecil -->
-        <div class="pt-8 border-t border-slate-200/60">
-            <p class="text-xs text-slate-400 font-medium">Flowral Ecosystem &copy; {{ date('Y') }}</p>
+    <!-- Main Content -->
+    <main class="relative flex-1 flex flex-col items-center justify-center">
+        <!-- Glow Orbs -->
+        <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-brand-teal/10 blur-[100px] rounded-full mix-blend-multiply -z-10 animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-brand-orange/5 blur-[100px] rounded-full mix-blend-multiply -z-10" style="animation: pulse 4s infinite alternate;"></div>
+
+        <div class="max-w-3xl mx-auto px-6 text-center z-10">
+            <h1 class="hero-anim gsap-hidden font-outfit text-8xl md:text-[150px] font-medium text-brand-dark leading-none tracking-tighter mb-4">
+                4<span class="text-gradient">0</span>4
+            </h1>
+            
+            <h2 class="hero-anim gsap-hidden font-outfit text-3xl md:text-5xl font-medium text-brand-dark mb-6">
+                Lost in the void.
+            </h2>
+            
+            <p class="hero-anim gsap-hidden text-lg md:text-xl text-brand-slate font-light max-w-xl mx-auto mb-10 leading-relaxed">
+                The workspace or page you are looking for doesn't exist, has been moved, or you don't have access to it.
+            </p>
+            
+            <div class="hero-anim gsap-hidden flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="{{ url('/') }}" class="px-8 py-4 text-base font-medium bg-brand-dark text-white rounded-full hover:bg-brand-slate transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Back to Home
+                </a>
+            </div>
         </div>
-    </div>
-</body>
+    </main>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.utils.toArray('.gsap-hidden').forEach(el => {
+                el.classList.remove('gsap-hidden');
+            });
+
+            gsap.fromTo(".hero-anim", {
+                y: 50,
+                opacity: 0
+            }, {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                stagger: 0.15,
+                ease: "power3.out"
+            });
+        });
+    </script>
+</body>
 </html>
