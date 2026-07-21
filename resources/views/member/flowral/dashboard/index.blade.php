@@ -5,6 +5,7 @@
 @section('content')
     <div class="px-8 lg:px-10 pb-12 pt-4">
         <!-- Header Besar ala SaaS -->
+        @include('components.member.banner')
         <header class="max-w-6xl mb-8">
             <div
                 class="flex items-center gap-2 text-brand-slate/60 text-[11px] font-semibold uppercase tracking-widest mb-3">
@@ -33,7 +34,8 @@
                     <div class="relative z-10">
                         <p class="text-[11px] font-semibold text-brand-slate uppercase tracking-widest mb-2">To Do</p>
                         <h3 class="text-5xl font-outfit font-medium text-brand-dark mb-3">
-                            {{ str_pad($todoCount, 2, '0', STR_PAD_LEFT) }}</h3>
+                            {{ str_pad($todoCount, 2, '0', STR_PAD_LEFT) }}
+                        </h3>
                         <div
                             class="flex items-center gap-1.5 text-[11px] font-medium text-brand-teal bg-brand-teal/5 w-fit px-2.5 py-1 rounded-md">
                             <span class="material-symbols-outlined text-[14px]">trending_up</span>
@@ -51,7 +53,8 @@
                     <div class="relative z-10">
                         <p class="text-[11px] font-semibold text-brand-slate uppercase tracking-widest mb-2">In Progress</p>
                         <h3 class="text-5xl font-outfit font-medium text-brand-dark mb-4">
-                            {{ str_pad($inProgressCount, 2, '0', STR_PAD_LEFT) }}</h3>
+                            {{ str_pad($inProgressCount, 2, '0', STR_PAD_LEFT) }}
+                        </h3>
                         <div class="w-full bg-brand-surface h-1.5 rounded-full overflow-hidden">
                             <div class="bg-brand-orange h-full rounded-full shadow-[0_0_10px_rgba(229,117,0,0.5)]"
                                 style="width: {{ $inProgressPercentage }}%"></div>
@@ -71,7 +74,8 @@
                     <div class="relative z-10">
                         <p class="text-[11px] font-semibold text-white/50 uppercase tracking-widest mb-2">Done</p>
                         <h3 class="text-5xl font-outfit font-medium text-white mb-3">
-                            {{ str_pad($doneCount, 2, '0', STR_PAD_LEFT) }}</h3>
+                            {{ str_pad($doneCount, 2, '0', STR_PAD_LEFT) }}
+                        </h3>
                         <div class="flex items-center gap-1.5 text-[11px] font-light text-white/80">
                             <span>Project Completion: <b
                                     class="font-medium text-white">{{ $completionPercentage }}%</b></span>
@@ -160,12 +164,10 @@
 
                                 <div
                                     class="absolute left-0 top-0.5 w-8 h-8 rounded-full {{ $bgClass }} ring-4 ring-white flex items-center justify-center border">
-                                    <span
-                                        class="material-symbols-outlined {{ $iconColor }} text-[14px]">{{ $icon }}</span>
+                                    <span class="material-symbols-outlined {{ $iconColor }} text-[14px]">{{ $icon }}</span>
                                 </div>
                                 <p class="text-[13px] text-brand-slate leading-relaxed">
-                                    <span
-                                        class="font-semibold text-brand-dark">{{ $activity->user->name ?? 'System' }}</span>
+                                    <span class="font-semibold text-brand-dark">{{ $activity->user->name ?? 'System' }}</span>
                                     {{ $activity->action }}
                                     <span
                                         class="text-brand-dark font-medium">{{ $activity->metadata['title'] ?? 'an item' }}</span>.
