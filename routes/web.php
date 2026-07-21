@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\admin\Broadcasts\BroadcastController;
 use App\Http\Controllers\admin\Command_Center\DashboardController;
 use App\Http\Controllers\admin\Global_Configurations\SystemConfigController;
 use App\Http\Controllers\admin\Identity_Access\UserController;
@@ -63,6 +64,20 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
             Route::get('/', 'index')->name('admin.configs.index');
             Route::post('/update', 'update')->name('admin.configs.update');
         });
+
+        Route::controller(BroadcastController::class)->prefix('broadcasts')->group(function () {
+            // Halaman Dashboard
+            Route::get('/', 'index')->name('admin.broadcasts.index');
+
+            // Aksi Banner
+            Route::post('/banners', 'storeBanner')->name('admin.broadcasts.banners.store');
+            Route::patch('/banners/{banner}/toggle', 'toggleBanner')->name('admin.broadcasts.banners.toggle');
+            Route::delete('/banners/{banner}', 'destroyBanner')->name('admin.broadcasts.banners.destroy');
+
+            // Aksi Changelog
+            Route::post('/changelogs', 'storeChangelog')->name('admin.broadcasts.changelogs.store');
+            Route::delete('/changelogs/{changelog}', 'destroyChangelog')->name('admin.broadcasts.changelogs.destroy');
+        });
     });
 });
 
@@ -71,7 +86,6 @@ Route::middleware(['auth', 'verified', 'rolemanager:member', 'workspace.active']
     Route::prefix('member')->group(function () {
         Route::controller(DashboardMainController::class)->group(function () {
             Route::get('/dashboard', 'index')->name('member');
-
         });
         Route::controller(projectsMainController::class)->group(function () {
             Route::get('/projects', 'index')->name('member.projects');
