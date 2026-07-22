@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\admin\Command_Center;
 
+use App\Exports\SystemReportExport;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Workspace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel; 
 
 class DashboardController extends Controller
 {
@@ -92,5 +94,11 @@ class DashboardController extends Controller
         $bytes /= (1 << (10 * $pow));
 
         return round($bytes, $precision) . ' ' . $units[$pow];
+    }
+
+    public function exportReport()
+    {
+        $fileName = 'system_report_' . date('Y_m_d_H_i_s') . '.xlsx';
+        return Excel::download(new SystemReportExport, $fileName);
     }
 }

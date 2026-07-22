@@ -43,6 +43,7 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
         // dashboard route
         Route::controller(DashboardController::class)->group(function () {
             Route::get('/dashboard', 'index')->name('admin');
+            Route::get('/dashboard/export', 'exportReport')->name('admin.dashboard.export');
         });
 
         // identity & access management routes

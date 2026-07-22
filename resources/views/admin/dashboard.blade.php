@@ -47,11 +47,11 @@
                 <p class="text-slate-500 font-light mt-1">Real-time metrics and system health monitoring.</p>
             </div>
             <div class="flex items-center gap-3">
-                <button
+                <a href="{{ route('admin.dashboard.export') }}"
                     class="px-4 py-2 bg-white border border-slate-200 text-slate-600 rounded-xl font-medium text-sm hover:bg-slate-50 transition-colors flex items-center gap-2 shadow-sm">
                     <span class="material-symbols-outlined text-[18px]">download</span>
                     Generate Report
-                </button>
+                </a>
             </div>
         </div>
 
@@ -73,7 +73,8 @@
                 </div>
                 <div class="flex items-baseline gap-2 relative z-10">
                     <h2 class="text-3xl font-outfit font-semibold text-slate-800">
-                        {{ number_format($metrics['total_users']) }}</h2>
+                        {{ number_format($metrics['total_users']) }}
+                    </h2>
                     <span
                         class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100 uppercase tracking-wider">
                         {{ $metrics['user_growth'] }}
@@ -97,7 +98,8 @@
                 </div>
                 <div class="flex items-baseline gap-2 relative z-10">
                     <h2 class="text-3xl font-outfit font-semibold text-slate-800">
-                        {{ number_format($metrics['active_workspaces']) }}</h2>
+                        {{ number_format($metrics['active_workspaces']) }}
+                    </h2>
                     <span
                         class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100 uppercase tracking-wider">
                         {{ $metrics['workspace_growth'] }}
