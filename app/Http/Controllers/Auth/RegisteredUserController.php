@@ -40,6 +40,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 1, // <--- Paksa role menjadi 1 (Member) secara hardcode
         ]);
 
         event(new Registered($user));

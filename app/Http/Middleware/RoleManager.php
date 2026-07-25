@@ -47,6 +47,9 @@ class RoleManager
                 return redirect()->route('admin');
             case 1:
                 return redirect()->route('member');
+            default:
+                Auth::logout();
+                return redirect()->route('login')->with('error', 'Unrecognized role detected. Access denied.');
         }
     }
 }
