@@ -44,6 +44,7 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
         Route::controller(DashboardController::class)->group(function () {
             Route::get('/dashboard', 'index')->name('admin');
             Route::get('/dashboard/export', 'exportReport')->name('admin.dashboard.export');
+            Route::post('/dashboard/notifications/read', 'markNotificationsAsRead')->name('admin.notifications.read');
         });
 
         // identity & access management routes

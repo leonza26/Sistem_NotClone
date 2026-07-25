@@ -9,7 +9,7 @@ use App\Models\Workspace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Maatwebsite\Excel\Facades\Excel; 
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
@@ -69,12 +69,12 @@ class DashboardController extends Controller
             ];
         });
         // Hati-hati, kita butuh relasi 'user' agar tahu siapa pembuat workspacenya
-        $recentWorkspaces = Workspace::with('users')->latest()->take(5)->get()->map(function ($ws) {
+        $recentWorkspaces = Workspace::with('owner')->latest()->take(5)->get()->map(function ($ws) {
             return [
                 'icon' => 'add_business',
                 'color' => 'emerald',
                 'title' => 'Workspace Created',
-                'desc' => "\"{$ws->name}\" by " . ($ws->user->name ?? 'Unknown'),
+                'desc' => "\"{$ws->name}\" by " . ($ws->owner->name ?? 'Unknown'),
                 'time' => $ws->created_at
             ];
         });
@@ -100,5 +100,11 @@ class DashboardController extends Controller
     {
         $fileName = 'system_report_' . date('Y_m_d_H_i_s') . '.xlsx';
         return Excel::download(new SystemReportExport, $fileName);
+    }
+
+    public function markNotificationsAsRead()
+    {
+        auth()->user()->unreadNotifications->markAsRead();
+        return back();
     }
 }

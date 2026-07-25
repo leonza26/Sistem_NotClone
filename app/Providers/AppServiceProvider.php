@@ -26,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::componentNamespace('App\\View\\Components\\Custom', 'custom');
          // --- AKTIFKAN RADAR KEAMANAN ---
         // Event::subscribe(AuthEventSubscriber::class);
+        \App\Models\User::observe(\App\Observers\UserObserver::class);
+        \App\Models\Workspace::observe(\App\Observers\WorkspaceObserver::class);
     }
 }
