@@ -227,3 +227,4 @@ Dan ini:
 - laravel-impersonate
 - Geo IP
 - jenssegers
+- laravel localization

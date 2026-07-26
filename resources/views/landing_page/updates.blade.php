@@ -39,7 +39,7 @@
             
             <div class="flex items-center gap-5">
                 <a href="{{ url('/') }}" class="font-inter font-medium text-sm text-brand-slate dark:text-slate-300 hover:text-brand-dark dark:hover:text-white transition-colors">
-                    Back to Home
+                    @lang('landing.updates_back')
                 </a>
             </div>
         </div>
@@ -52,16 +52,16 @@
         
         <div class="max-w-3xl mx-auto px-6 text-center z-10">
             <div class="hero-anim gsap-hidden inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-brand-teal/20 dark:border-brand-teal/30 text-brand-slate dark:text-slate-300 text-[11px] font-semibold tracking-widest uppercase mb-6 shadow-sm dark:shadow-none">
-                <span>Changelog</span>
+                <span>@lang('landing.updates_badge')</span>
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></span>
             </div>
             
             <h1 class="hero-anim gsap-hidden font-outfit text-5xl md:text-7xl font-medium text-brand-dark dark:text-white leading-[1.05] tracking-tight mb-6">
-                Flowral <span class="text-gradient font-semibold">Updates.</span>
+                @lang('landing.updates_title_1') <span class="text-gradient font-semibold">@lang('landing.updates_title_2')</span>
             </h1>
             
             <p class="hero-anim gsap-hidden text-lg text-brand-slate dark:text-slate-300 font-light max-w-xl mx-auto leading-relaxed">
-                Discover the latest features, bug fixes, and structural improvements in our curated workspace.
+                @lang('landing.updates_desc')
             </p>
         </div>
     </section>
@@ -108,7 +108,7 @@
                     <div class="w-16 h-16 bg-brand-surface dark:bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-slate dark:text-slate-300">
                         <span class="material-symbols-outlined text-3xl" style="font-family: 'Material Symbols Outlined';">history</span>
                     </div>
-                    <p class="text-brand-slate dark:text-slate-300 font-light text-lg">No updates have been published yet.</p>
+                    <p class="text-brand-slate dark:text-slate-300 font-light text-lg">@lang('landing.updates_empty')</p>
                 </div>
             @endif
         </div>

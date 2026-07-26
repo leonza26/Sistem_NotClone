@@ -24,6 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             CheckIsSuspended::class,
             CheckMaintenanceMode::class,
+            \App\Http\Middleware\SetLocale::class,
         ]);
 
         // 3. MIDDLEWARE ALIAS (Dipanggil secara spesifik di routes/web.php)

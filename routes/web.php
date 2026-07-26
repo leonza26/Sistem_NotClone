@@ -22,6 +22,13 @@ use App\Http\Controllers\member\Workspace\WorkspaceMemberController;
 use Illuminate\Support\Facades\Route;
 
 
+// Language Switcher Route
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'id'])) {
+        session(['locale' => $locale]);
+    }
+    return back();
+})->name('lang.switch');
 Route::controller(LandingPageController::class)->group(function () {
     Route::get('/', 'index')->name('landing.page');
     Route::view('/privacy', 'landing_page.privacy')->name('landing.privacy');
