@@ -2,7 +2,7 @@
     <!-- Logo & Badge -->
     <div class="mb-10 px-2 flex flex-col gap-1">
         <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-md">
+            <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center shadow-md">
                 <!-- Icon Code/Terminal -->
                 <span class="material-symbols-outlined text-slate-900 text-[18px]">terminal</span>
             </div>
@@ -41,7 +41,7 @@
         </a>
 
         <div class="pt-4 pb-1">
-            <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider px-3">Monitoring</p>
+            <p class="text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-3">Monitoring</p>
         </div>
 
         <!-- Shield & Security -->
@@ -73,7 +73,7 @@
         <form action="{{ route('logout') }}" method="POST" class="w-full">
             @csrf
             <button type="submit"
-                class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 font-light hover:bg-red-500/10 hover:text-red-400 transition-colors">
+                class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 dark:text-slate-500 font-light hover:bg-red-500/10 hover:text-red-400 transition-colors">
                 <span class="material-symbols-outlined text-[20px]">logout</span>
                 <span class="text-sm">Exit Core</span>
             </button>

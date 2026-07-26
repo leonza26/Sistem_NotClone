@@ -6,20 +6,20 @@
     <div class="px-8 lg:px-10 pb-12 pt-4 max-w-4xl">
         <header class="mb-10">
             <div
-                class="flex items-center gap-2 text-brand-slate/60 text-[11px] font-semibold uppercase tracking-widest mb-3">
+                class="flex items-center gap-2 text-brand-slate/60 dark:text-slate-300 text-[11px] font-semibold uppercase tracking-widest mb-3">
                 <span>Member</span>
                 <span class="w-1 h-1 rounded-full bg-brand-orange"></span>
-                <a href="{{ route('member.tasks') }}" class="hover:text-brand-dark transition-colors">Tasks</a>
+                <a href="{{ route('member.tasks') }}" class="hover:text-brand-dark dark:hover:text-white transition-colors">Tasks</a>
                 <span class="w-1 h-1 rounded-full bg-brand-orange"></span>
                 <span class="text-brand-orange font-bold">Edit</span>
             </div>
-            <h2 class="font-outfit text-3xl font-medium text-brand-dark leading-tight tracking-tight">
+            <h2 class="font-outfit text-3xl font-medium text-brand-dark dark:text-white leading-tight tracking-tight">
                 Edit <span class="text-brand-orange">Task.</span>
             </h2>
         </header>
 
         <div
-            class="bg-white p-8 sm:p-10 rounded-[32px] border border-brand-teal/10 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)]">
+            class="bg-white dark:bg-slate-800 p-8 sm:p-10 rounded-[32px] border border-brand-teal/10 dark:border-brand-teal/20 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)]">
             <form action="{{ route('member.tasks.update', $task) }}" method="POST" x-data="{
                 projects: {{ $projects->toJson() }},
                 selectedProjectId: '{{ old('project_id', $task->project_id) }}',
@@ -37,10 +37,10 @@
                     <!-- Pilih Project -->
                     <div class="space-y-1.5">
                         <label for="project_id"
-                            class="block text-xs font-semibold tracking-wide text-brand-slate ml-1">Pilih Project</label>
+                            class="block text-xs font-semibold tracking-wide text-brand-slate dark:text-slate-300 ml-1">Pilih Project</label>
                         <select name="project_id" id="project_id" x-model="selectedProjectId" @change="assignedTo = ''"
                             required
-                            class="w-full px-4 py-3.5 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark font-medium cursor-pointer appearance-none">
+                            class="w-full px-4 py-3.5 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark dark:text-white font-medium cursor-pointer appearance-none">
                             <option value="" disabled>-- Pilih Project --</option>
                             @foreach ($projects as $project)
                                 <option value="{{ $project->id }}">
@@ -56,9 +56,9 @@
                     <!-- Status -->
                     <div class="space-y-1.5">
                         <label for="status"
-                            class="block text-xs font-semibold tracking-wide text-brand-slate ml-1">Status</label>
+                            class="block text-xs font-semibold tracking-wide text-brand-slate dark:text-slate-300 ml-1">Status</label>
                         <select name="status" id="status" required
-                            class="w-full px-4 py-3.5 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark font-medium cursor-pointer appearance-none">
+                            class="w-full px-4 py-3.5 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark dark:text-white font-medium cursor-pointer appearance-none">
                             <option value="todo" {{ old('status', $task->status) == 'todo' ? 'selected' : '' }}>To Do
                             </option>
                             <option value="in_progress"
@@ -74,10 +74,10 @@
 
                 <!-- Judul Task -->
                 <div class="space-y-1.5 mb-6">
-                    <label for="title" class="block text-xs font-semibold tracking-wide text-brand-slate ml-1">Task
+                    <label for="title" class="block text-xs font-semibold tracking-wide text-brand-slate dark:text-slate-300 ml-1">Task
                         Title</label>
                     <input type="text" name="title" id="title" value="{{ old('title', $task->title) }}" required
-                        class="w-full px-4 py-3.5 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark font-medium">
+                        class="w-full px-4 py-3.5 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark dark:text-white font-medium">
                     @error('title')
                         <p class="text-red-500 text-[11px] mt-1.5 font-medium ml-1">{{ $message }}</p>
                     @enderror
@@ -86,10 +86,10 @@
                 <!-- Deskripsi Task -->
                 <div class="space-y-1.5 mb-6">
                     <label for="description"
-                        class="block text-xs font-semibold tracking-wide text-brand-slate ml-1">Description
+                        class="block text-xs font-semibold tracking-wide text-brand-slate dark:text-slate-300 ml-1">Description
                         (Opsional)</label>
                     <textarea name="description" id="description" rows="4"
-                        class="w-full px-4 py-3.5 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark font-light leading-relaxed custom-scrollbar">{{ old('description', $task->description) }}</textarea>
+                        class="w-full px-4 py-3.5 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark dark:text-white font-light leading-relaxed custom-scrollbar">{{ old('description', $task->description) }}</textarea>
                     @error('description')
                         <p class="text-red-500 text-[11px] mt-1.5 font-medium ml-1">{{ $message }}</p>
                     @enderror
@@ -99,10 +99,10 @@
                     <!-- Assign To -->
                     <div class="space-y-1.5">
                         <label for="assigned_to"
-                            class="block text-xs font-semibold tracking-wide text-brand-slate ml-1">Assign To
+                            class="block text-xs font-semibold tracking-wide text-brand-slate dark:text-slate-300 ml-1">Assign To
                             (Opsional)</label>
                         <select name="assigned_to" id="assigned_to" x-model="assignedTo"
-                            class="w-full px-4 py-3.5 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark font-medium cursor-pointer appearance-none">
+                            class="w-full px-4 py-3.5 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark dark:text-white font-medium cursor-pointer appearance-none">
                             <option value="">-- Unassigned --</option>
                             <template x-for="user in availableUsers" :key="user.id">
                                 <option :value="user.id" x-text="user.name"></option>
@@ -115,20 +115,20 @@
 
                     <!-- Due Date -->
                     <div class="space-y-1.5">
-                        <label for="due_date" class="block text-xs font-semibold tracking-wide text-brand-slate ml-1">Due
+                        <label for="due_date" class="block text-xs font-semibold tracking-wide text-brand-slate dark:text-slate-300 ml-1">Due
                             Date (Opsional)</label>
                         <input type="date" name="due_date" id="due_date"
                             value="{{ old('due_date', $task->due_date ? \Carbon\Carbon::parse($task->due_date)->format('Y-m-d') : '') }}"
-                            class="w-full px-4 py-3.5 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark font-medium text-brand-slate">
+                            class="w-full px-4 py-3.5 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark dark:text-white font-medium text-brand-slate dark:text-slate-300">
                         @error('due_date')
                             <p class="text-red-500 text-[11px] mt-1.5 font-medium ml-1">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
 
-                <div class="flex justify-end gap-3 pt-6 border-t border-brand-teal/10">
+                <div class="flex justify-end gap-3 pt-6 border-t border-brand-teal/10 dark:border-brand-teal/20">
                     <a href="{{ route('member.tasks') }}"
-                        class="px-5 py-2.5 text-sm font-medium text-brand-slate bg-brand-surface rounded-xl hover:bg-brand-teal/10 transition-colors">Cancel</a>
+                        class="px-5 py-2.5 text-sm font-medium text-brand-slate dark:text-slate-300 bg-brand-surface dark:bg-slate-900 rounded-xl hover:bg-brand-teal/10 transition-colors">Cancel</a>
                     <button type="submit"
                         class="px-6 py-2.5 text-sm font-medium text-white bg-brand-dark rounded-xl hover:bg-brand-orange shadow-lg hover:-translate-y-0.5 transition-all">
                         Update Task

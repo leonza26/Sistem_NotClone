@@ -23,10 +23,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
-<body class="bg-brand-surface text-brand-dark font-inter antialiased overflow-x-hidden selection:bg-brand-orange selection:text-white flex flex-col min-h-screen">
+<body class="bg-brand-surface dark:bg-slate-900 text-brand-dark dark:text-white font-inter antialiased overflow-x-hidden selection:bg-brand-orange selection:text-white flex flex-col min-h-screen">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 top-0 transition-all duration-500 bg-brand-surface/80 backdrop-blur-xl border-b border-brand-teal/10">
+    <nav class="fixed w-full z-50 top-0 transition-all duration-500 bg-brand-surface/80 backdrop-blur-xl border-b border-brand-teal/10 dark:border-brand-teal/20">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <a href="{{ url('/') }}" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
                 <div class="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center">
@@ -34,11 +34,11 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                 </div>
-                <span class="font-outfit font-semibold text-xl tracking-wide text-brand-dark">Flowral.</span>
+                <span class="font-outfit font-semibold text-xl tracking-wide text-brand-dark dark:text-white">Flowral.</span>
             </a>
             
             <div class="flex items-center gap-5">
-                <a href="{{ url('/') }}" class="font-inter font-medium text-sm text-brand-slate hover:text-brand-dark transition-colors">
+                <a href="{{ url('/') }}" class="font-inter font-medium text-sm text-brand-slate dark:text-slate-300 hover:text-brand-dark dark:hover:text-white transition-colors">
                     Back to Home
                 </a>
             </div>
@@ -51,16 +51,16 @@
         <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-teal/10 blur-[100px] rounded-full mix-blend-multiply -z-10 animate-pulse"></div>
         
         <div class="max-w-3xl mx-auto px-6 text-center z-10">
-            <div class="hero-anim gsap-hidden inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-brand-teal/20 text-brand-slate text-[11px] font-semibold tracking-widest uppercase mb-6 shadow-sm">
+            <div class="hero-anim gsap-hidden inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-brand-teal/20 dark:border-brand-teal/30 text-brand-slate dark:text-slate-300 text-[11px] font-semibold tracking-widest uppercase mb-6 shadow-sm dark:shadow-none">
                 <span>Changelog</span>
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></span>
             </div>
             
-            <h1 class="hero-anim gsap-hidden font-outfit text-5xl md:text-7xl font-medium text-brand-dark leading-[1.05] tracking-tight mb-6">
+            <h1 class="hero-anim gsap-hidden font-outfit text-5xl md:text-7xl font-medium text-brand-dark dark:text-white leading-[1.05] tracking-tight mb-6">
                 Flowral <span class="text-gradient font-semibold">Updates.</span>
             </h1>
             
-            <p class="hero-anim gsap-hidden text-lg text-brand-slate font-light max-w-xl mx-auto leading-relaxed">
+            <p class="hero-anim gsap-hidden text-lg text-brand-slate dark:text-slate-300 font-light max-w-xl mx-auto leading-relaxed">
                 Discover the latest features, bug fixes, and structural improvements in our curated workspace.
             </p>
         </div>
@@ -82,19 +82,19 @@
                             </div>
                             
                             <!-- Content Box -->
-                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-8 rounded-[32px] shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)] border border-brand-teal/10 hover:border-brand-teal/30 hover:shadow-lg transition-all duration-300">
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white dark:bg-slate-800 p-8 rounded-[32px] shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)] border border-brand-teal/10 dark:border-brand-teal/20 hover:border-brand-teal/30 hover:shadow-lg transition-all duration-300">
                                 <div class="flex flex-wrap items-center justify-between mb-6 gap-2">
                                     <span class="text-[11px] font-extrabold text-brand-orange bg-brand-orange/10 px-3 py-1.5 rounded-full tracking-widest uppercase">
                                         {{ $log->version }}
                                     </span>
-                                    <time class="text-[10px] text-brand-slate font-bold uppercase tracking-widest">
+                                    <time class="text-[10px] text-brand-slate dark:text-slate-300 font-bold uppercase tracking-widest">
                                         {{ \Carbon\Carbon::parse($log->released_at)->format('M d, Y') }}
                                     </time>
                                 </div>
-                                <h3 class="font-outfit text-2xl font-medium text-brand-dark mb-4 leading-tight">
+                                <h3 class="font-outfit text-2xl font-medium text-brand-dark dark:text-white mb-4 leading-tight">
                                     {{ $log->title }}
                                 </h3>
-                                <div class="text-[14px] text-brand-slate font-light whitespace-pre-wrap leading-relaxed prose prose-slate prose-a:text-brand-orange">
+                                <div class="text-[14px] text-brand-slate dark:text-slate-300 font-light whitespace-pre-wrap leading-relaxed prose prose-slate prose-a:text-brand-orange">
                                     {{ $log->content }}
                                 </div>
                             </div>
@@ -104,18 +104,18 @@
 
                 </div>
             @else
-                <div class="hero-anim gsap-hidden text-center p-16 bg-white rounded-[32px] border border-brand-teal/10 shadow-sm">
-                    <div class="w-16 h-16 bg-brand-surface rounded-full flex items-center justify-center mx-auto mb-4 text-brand-slate">
+                <div class="hero-anim gsap-hidden text-center p-16 bg-white dark:bg-slate-800 rounded-[32px] border border-brand-teal/10 dark:border-brand-teal/20 shadow-sm dark:shadow-none">
+                    <div class="w-16 h-16 bg-brand-surface dark:bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-slate dark:text-slate-300">
                         <span class="material-symbols-outlined text-3xl" style="font-family: 'Material Symbols Outlined';">history</span>
                     </div>
-                    <p class="text-brand-slate font-light text-lg">No updates have been published yet.</p>
+                    <p class="text-brand-slate dark:text-slate-300 font-light text-lg">No updates have been published yet.</p>
                 </div>
             @endif
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-brand-teal/10 pt-16 pb-8 mt-auto">
+    <footer class="bg-white dark:bg-slate-800 border-t border-brand-teal/10 dark:border-brand-teal/20 pt-16 pb-8 mt-auto">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
             <div class="flex items-center gap-2 mb-4 md:mb-0 opacity-80">
                 <div class="w-6 h-6 rounded bg-brand-dark flex items-center justify-center">
@@ -123,9 +123,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                 </div>
-                <span class="font-outfit font-medium text-lg text-brand-dark">Flowral</span>
+                <span class="font-outfit font-medium text-lg text-brand-dark dark:text-white">Flowral</span>
             </div>
-            <div class="flex gap-8 text-[12px] text-brand-slate font-light">
+            <div class="flex gap-8 text-[12px] text-brand-slate dark:text-slate-300 font-light">
                 <span>&copy; {{ date('Y') }} Flowral. All rights reserved.</span>
             </div>
         </div>

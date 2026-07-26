@@ -8,14 +8,14 @@
         @include('components.member.banner')
         <header class="max-w-6xl mb-8">
             <div
-                class="flex items-center gap-2 text-brand-slate/60 text-[11px] font-semibold uppercase tracking-widest mb-3">
+                class="flex items-center gap-2 text-brand-slate/60 dark:text-slate-300 text-[11px] font-semibold uppercase tracking-widest mb-3">
                 <span>Workspace</span>
                 <span class="w-1 h-1 rounded-full bg-brand-orange"></span>
                 <span>Dashboard</span>
                 <span class="w-1 h-1 rounded-full bg-brand-orange"></span>
                 <span class="text-brand-orange font-bold">Overview</span>
             </div>
-            <h2 class="font-outfit text-4xl lg:text-5xl font-medium text-brand-dark leading-tight tracking-tight max-w-3xl">
+            <h2 class="font-outfit text-4xl lg:text-5xl font-medium text-brand-dark dark:text-white leading-tight tracking-tight max-w-3xl">
                 Elevating the vision of your <br />
                 <span class="text-brand-orange">curated projects.</span>
             </h2>
@@ -26,14 +26,14 @@
             <div class="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Todo Card -->
                 <div
-                    class="bg-white p-6 rounded-[24px] border border-brand-teal/10 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)] relative overflow-hidden group hover:border-brand-teal/30 transition-all">
+                    class="bg-white dark:bg-slate-800 p-6 rounded-[24px] border border-brand-teal/10 dark:border-brand-teal/20 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)] relative overflow-hidden group hover:border-brand-teal/30 transition-all">
                     <div class="absolute top-0 right-0 p-5">
                         <span
                             class="material-symbols-outlined text-brand-slate/10 text-6xl group-hover:scale-110 transition-transform origin-top-right">pending</span>
                     </div>
                     <div class="relative z-10">
-                        <p class="text-[11px] font-semibold text-brand-slate uppercase tracking-widest mb-2">To Do</p>
-                        <h3 class="text-5xl font-outfit font-medium text-brand-dark mb-3">
+                        <p class="text-[11px] font-semibold text-brand-slate dark:text-slate-300 uppercase tracking-widest mb-2">To Do</p>
+                        <h3 class="text-5xl font-outfit font-medium text-brand-dark dark:text-white mb-3">
                             {{ str_pad($todoCount, 2, '0', STR_PAD_LEFT) }}
                         </h3>
                         <div
@@ -45,17 +45,17 @@
                 </div>
                 <!-- In Progress Card -->
                 <div
-                    class="bg-white p-6 rounded-[24px] border border-brand-teal/10 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)] relative overflow-hidden group hover:border-brand-teal/30 transition-all">
+                    class="bg-white dark:bg-slate-800 p-6 rounded-[24px] border border-brand-teal/10 dark:border-brand-teal/20 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)] relative overflow-hidden group hover:border-brand-teal/30 transition-all">
                     <div class="absolute top-0 right-0 p-5">
                         <span
                             class="material-symbols-outlined text-brand-orange/10 text-6xl group-hover:scale-110 transition-transform origin-top-right">bolt</span>
                     </div>
                     <div class="relative z-10">
-                        <p class="text-[11px] font-semibold text-brand-slate uppercase tracking-widest mb-2">In Progress</p>
-                        <h3 class="text-5xl font-outfit font-medium text-brand-dark mb-4">
+                        <p class="text-[11px] font-semibold text-brand-slate dark:text-slate-300 uppercase tracking-widest mb-2">In Progress</p>
+                        <h3 class="text-5xl font-outfit font-medium text-brand-dark dark:text-white mb-4">
                             {{ str_pad($inProgressCount, 2, '0', STR_PAD_LEFT) }}
                         </h3>
-                        <div class="w-full bg-brand-surface h-1.5 rounded-full overflow-hidden">
+                        <div class="w-full bg-brand-surface dark:bg-slate-900 h-1.5 rounded-full overflow-hidden">
                             <div class="bg-brand-orange h-full rounded-full shadow-[0_0_10px_rgba(229,117,0,0.5)]"
                                 style="width: {{ $inProgressPercentage }}%"></div>
                         </div>
@@ -72,7 +72,7 @@
                             class="material-symbols-outlined text-white/5 text-6xl group-hover:scale-110 transition-transform origin-top-right">check_circle</span>
                     </div>
                     <div class="relative z-10">
-                        <p class="text-[11px] font-semibold text-white/50 uppercase tracking-widest mb-2">Done</p>
+                        <p class="text-[11px] font-semibold text-white/50 dark:text-slate-300 uppercase tracking-widest mb-2">Done</p>
                         <h3 class="text-5xl font-outfit font-medium text-white mb-3">
                             {{ str_pad($doneCount, 2, '0', STR_PAD_LEFT) }}
                         </h3>
@@ -85,9 +85,9 @@
 
                 <!-- Tasks in Progress (Detailed List) -->
                 <div
-                    class="col-span-1 md:col-span-3 bg-white p-8 rounded-[24px] border border-brand-teal/10 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)] mt-2">
+                    class="col-span-1 md:col-span-3 bg-white dark:bg-slate-800 p-8 rounded-[24px] border border-brand-teal/10 dark:border-brand-teal/20 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)] mt-2">
                     <div class="flex items-center justify-between mb-8">
-                        <h4 class="font-outfit text-xl font-medium text-brand-dark">Active Tasks</h4>
+                        <h4 class="font-outfit text-xl font-medium text-brand-dark dark:text-white">Active Tasks</h4>
                         <a href="{{ route('member.tasks') }}"
                             class="text-brand-orange text-xs font-semibold uppercase tracking-widest hover:text-[#CC6800] transition-colors">View
                             All</a>
@@ -96,16 +96,16 @@
                         <div class="space-y-3">
                             @forelse($activeTasks as $task)
                                 <div
-                                    class="group flex items-center justify-between p-4 rounded-2xl hover:bg-brand-surface border border-transparent hover:border-brand-teal/10 transition-all">
+                                    class="group flex items-center justify-between p-4 rounded-2xl hover:bg-brand-surface dark:hover:bg-slate-700/50 border border-transparent hover:border-brand-teal/10 transition-all">
                                     <div class="flex items-center gap-4">
                                         <div
-                                            class="w-12 h-12 rounded-xl bg-white border border-brand-teal/10 flex items-center justify-center shadow-sm">
+                                            class="w-12 h-12 rounded-xl bg-white dark:bg-slate-800 border border-brand-teal/10 dark:border-brand-teal/20 flex items-center justify-center shadow-sm dark:shadow-none">
                                             <span class="material-symbols-outlined text-brand-orange"
                                                 data-icon="architecture">architecture</span>
                                         </div>
                                         <div>
-                                            <h5 class="text-sm font-medium text-brand-dark mb-0.5">{{ $task->title }}</h5>
-                                            <p class="text-[11px] text-brand-slate font-light">
+                                            <h5 class="text-sm font-medium text-brand-dark dark:text-white mb-0.5">{{ $task->title }}</h5>
+                                            <p class="text-[11px] text-brand-slate dark:text-slate-300 font-light">
                                                 {{ $task->project->name ?? 'No Project' }} •
                                                 {{ $task->due_date ? 'Due ' . \Carbon\Carbon::parse($task->due_date)->diffForHumans() : 'No Due Date' }}
                                             </p>
@@ -113,13 +113,13 @@
                                     </div>
                                     <div class="flex items-center gap-4">
                                         <span
-                                            class="px-3 py-1 rounded-full bg-brand-surface border border-brand-teal/20 text-brand-slate text-[10px] font-semibold uppercase tracking-widest">
+                                            class="px-3 py-1 rounded-full bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 text-brand-slate dark:text-slate-300 text-[10px] font-semibold uppercase tracking-widest">
                                             {{ str_replace('_', ' ', $task->status) }}
                                         </span>
                                     </div>
                                 </div>
                             @empty
-                                <div class="text-center py-6 text-brand-slate text-sm font-light">
+                                <div class="text-center py-6 text-brand-slate dark:text-slate-300 text-sm font-light">
                                     Wah! Semua task sudah selesai.
                                 </div>
                             @endforelse
@@ -132,13 +132,13 @@
             <div class="col-span-12 lg:col-span-4 space-y-6 mt-2 lg:mt-0">
                 <!-- Activity Feed Timeline -->
                 <div
-                    class="bg-white p-8 rounded-[24px] border border-brand-teal/10 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)]">
+                    class="bg-white dark:bg-slate-800 p-8 rounded-[24px] border border-brand-teal/10 dark:border-brand-teal/20 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)]">
                     <div class="flex items-center gap-3 mb-8">
-                        <div class="w-8 h-8 rounded-full bg-brand-surface flex items-center justify-center">
-                            <span class="material-symbols-outlined text-brand-dark text-[16px]"
+                        <div class="w-8 h-8 rounded-full bg-brand-surface dark:bg-slate-900 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-brand-dark dark:text-white text-[16px]"
                                 data-icon="history">history</span>
                         </div>
-                        <h4 class="font-outfit text-lg font-medium text-brand-dark">Team Activity</h4>
+                        <h4 class="font-outfit text-lg font-medium text-brand-dark dark:text-white">Team Activity</h4>
                     </div>
 
                     <!-- Timeline Wrapper -->
@@ -166,17 +166,17 @@
                                     class="absolute left-0 top-0.5 w-8 h-8 rounded-full {{ $bgClass }} ring-4 ring-white flex items-center justify-center border">
                                     <span class="material-symbols-outlined {{ $iconColor }} text-[14px]">{{ $icon }}</span>
                                 </div>
-                                <p class="text-[13px] text-brand-slate leading-relaxed">
-                                    <span class="font-semibold text-brand-dark">{{ $activity->user->name ?? 'System' }}</span>
+                                <p class="text-[13px] text-brand-slate dark:text-slate-300 leading-relaxed">
+                                    <span class="font-semibold text-brand-dark dark:text-white">{{ $activity->user->name ?? 'System' }}</span>
                                     {{ $activity->action }}
                                     <span
-                                        class="text-brand-dark font-medium">{{ $activity->metadata['title'] ?? 'an item' }}</span>.
+                                        class="text-brand-dark dark:text-white font-medium">{{ $activity->metadata['title'] ?? 'an item' }}</span>.
                                 </p>
                                 <span
-                                    class="text-[10px] text-brand-slate/60 font-light block mt-1">{{ $activity->created_at->diffForHumans() }}</span>
+                                    class="text-[10px] text-brand-slate/60 dark:text-slate-300 font-light block mt-1">{{ $activity->created_at->diffForHumans() }}</span>
                             </div>
                         @empty
-                            <p class="text-xs text-brand-slate italic pl-10">Belum ada aktivitas dalam 7 hari terakhir.</p>
+                            <p class="text-xs text-brand-slate dark:text-slate-300 italic pl-10">Belum ada aktivitas dalam 7 hari terakhir.</p>
                         @endforelse
 
                     </div>
@@ -184,7 +184,7 @@
 
                 <!-- Premium CTA Card (AI Assistant) -->
                 <div
-                    class="bg-gradient-to-br from-[#1E2120] to-[#282B2A] p-8 rounded-[24px] text-white relative overflow-hidden shadow-xl border border-white/10 group cursor-pointer">
+                    class="bg-gradient-to-br from-[#1E2120] to-[#282B2A] p-8 rounded-[24px] text-white relative overflow-hidden shadow-xl dark:shadow-none border border-white/10 group cursor-pointer">
                     <!-- Orbs effect -->
                     <div
                         class="absolute -top-10 -right-10 w-40 h-40 bg-brand-orange/20 blur-[40px] rounded-full group-hover:bg-brand-orange/30 transition-colors">
@@ -201,7 +201,7 @@
                             Our AI assistant can help you organize and prioritize your tasks instantly.
                         </p>
                         <a href="{{ route('member.ai') }}"
-                            class="block w-full py-3 bg-white text-brand-dark rounded-xl font-medium text-[13px] text-center shadow-lg group-hover:bg-brand-orange group-hover:text-white transition-all">
+                            class="block w-full py-3 bg-white dark:bg-slate-800 text-brand-dark dark:text-white rounded-xl font-medium text-[13px] text-center shadow-lg group-hover:bg-brand-orange group-hover:text-white transition-all">
                             Launch Assistant
                         </a>
                     </div>

@@ -1,13 +1,13 @@
 <header
-    class="h-20 fixed top-0 right-0 left-64 bg-brand-surface/80 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-10 z-40">
+    class="h-20 fixed top-0 right-0 left-64 bg-brand-surface/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-10 z-40">
 
     <!-- Left: Page Title / Breadcrumbs -->
     <div class="flex items-center gap-4">
-        <h2 class="text-xl font-outfit font-medium text-slate-800">
+        <h2 class="text-xl font-outfit font-medium text-slate-800 dark:text-white">
             @yield('header_title', 'Command Center')
         </h2>
         <div class="h-5 w-px bg-slate-300"></div>
-        <span class="text-sm text-slate-500 font-light flex items-center gap-1">
+        <span class="text-sm text-slate-500 dark:text-slate-400 font-light flex items-center gap-1">
             <span class="material-symbols-outlined text-[16px] text-green-500">check_circle</span>
             System Operational
         </span>
@@ -24,7 +24,7 @@
             @endphp
 
             <button @click="notifOpen = !notifOpen" @click.away="notifOpen = false"
-                class="relative p-2 text-slate-400 hover:text-slate-600 transition-colors rounded-full hover:bg-slate-100 focus:outline-none">
+                class="relative p-2 text-slate-400 dark:text-slate-500 hover:text-slate-600 transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 focus:outline-none">
                 <span class="material-symbols-outlined">notifications_active</span>
             
                 @if($unreadNotifications->count() > 0)
@@ -39,12 +39,12 @@
                 x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
                 x-transition:leave="transition ease-in duration-150"
                 x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-2"
-                class="absolute right-0 mt-3 w-80 bg-white border border-slate-200 rounded-2xl shadow-xl py-2 z-50 overflow-hidden"
+                class="absolute right-0 mt-3 w-80 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-xl dark:shadow-none py-2 z-50 overflow-hidden"
                 style="display: none;">
 
                 <!-- Judul Dropdown -->
-                <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between">
-                    <h3 class="text-sm font-semibold text-slate-800">Notifications</h3>
+                <div class="px-4 py-3 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                    <h3 class="text-sm font-semibold text-slate-800 dark:text-white">Notifications</h3>
                     @if($unreadNotifications->count() > 0)
                         <span
                             class="text-[10px] font-bold bg-red-50 text-red-500 px-2 py-0.5 rounded-full">{{ $unreadNotifications->count() }}
@@ -56,7 +56,7 @@
                 <div class="max-h-[300px] overflow-y-auto">
                     @forelse($unreadNotifications as $notif)
                         <a href="{{ $notif->data['url'] ?? '#' }}"
-                            class="block px-4 py-3 hover:bg-slate-50 border-b border-slate-50 last:border-0 transition-colors">
+                            class="block px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-700 border-b border-slate-50 last:border-0 transition-colors">
                             <div class="flex items-start gap-3">
                                 <!-- Ikon dinamis dari database -->
                                 <div
@@ -65,9 +65,9 @@
                                         class="material-symbols-outlined text-[16px]">{{ $notif->data['icon'] ?? 'notifications' }}</span>
                                 </div>
                                 <div>
-                                    <p class="text-xs font-semibold text-slate-800">
+                                    <p class="text-xs font-semibold text-slate-800 dark:text-white">
                                         {{ $notif->data['title'] ?? 'System Alert' }}</p>
-                                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">
                                         {{ $notif->data['message'] ?? 'No details provided.' }}</p>
                                     <p class="text-[9px] font-bold text-slate-300 uppercase mt-1">
                                         {{ $notif->created_at->diffForHumans() }}</p>
@@ -77,15 +77,15 @@
                     @empty
                         <div class="px-4 py-8 text-center">
                             <span class="material-symbols-outlined text-slate-200 text-4xl mb-2">notifications_paused</span>
-                            <p class="text-sm font-medium text-slate-500">All caught up!</p>
-                            <p class="text-xs text-slate-400 mt-0.5">No new notifications at the moment.</p>
+                            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">All caught up!</p>
+                            <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">No new notifications at the moment.</p>
                         </div>
                     @endforelse
                 </div>
 
                 <!-- Tombol Mark as Read -->
                 @if($unreadNotifications->count() > 0)
-                    <div class="px-4 py-2 border-t border-slate-100 bg-slate-50">
+                    <div class="px-4 py-2 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
                         <form method="POST" action="{{ route('admin.notifications.read') }}">
                             @csrf
                             <button type="submit"
@@ -103,7 +103,7 @@
             <button @click="open = !open" @click.away="open = false"
                 class="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none">
                 <div class="text-right hidden md:block">
-                    <p class="text-sm font-medium text-slate-800">{{ auth()->user()->name ?? 'Super Admin' }}</p>
+                    <p class="text-sm font-medium text-slate-800 dark:text-white">{{ auth()->user()->name ?? 'Super Admin' }}</p>
                     <p class="text-xs text-red-500 font-medium">System God</p>
                 </div>
                 <div
@@ -122,17 +122,17 @@
                 x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
                 x-transition:leave="transition ease-in duration-150"
                 x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-2"
-                class="absolute right-0 mt-3 w-48 bg-white border border-slate-200 rounded-2xl shadow-xl py-2 z-50"
+                class="absolute right-0 mt-3 w-48 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-xl dark:shadow-none py-2 z-50"
                 style="display: none;">
 
-                <div class="px-4 py-2 border-b border-slate-100 mb-2">
-                    <p class="text-xs text-slate-500">Signed in to Core</p>
-                    <p class="text-sm font-medium text-slate-800 truncate">{{ auth()->user()->email ??
+                <div class="px-4 py-2 border-b border-slate-100 dark:border-slate-800 mb-2">
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Signed in to Core</p>
+                    <p class="text-sm font-medium text-slate-800 dark:text-white truncate">{{ auth()->user()->email ??
                         'admin@flowral.com' }}</p>
                 </div>
 
                 <a href="{{ route('member') }}"
-                    class="flex items-center gap-2 px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-teal transition-colors">
+                    class="flex items-center gap-2 px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-brand-teal transition-colors">
                     <span class="material-symbols-outlined text-[18px]">launch</span>
                     Member Area
                 </a>

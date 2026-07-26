@@ -7,8 +7,7 @@
     <div class="w-full flex flex-col relative z-[100]">
         @foreach($activeBanners as $banner)
             <div x-data="{ show: true }" x-show="show" x-transition.opacity
-                class="relative rounded-md px-4 mb-3 py-2.5 flex items-center justify-between text-white text-sm font-medium shadow-md
-                         {{ $banner->type === 'danger' ? 'bg-red-600' : ($banner->type === 'warning' ? 'bg-yellow-600' : 'bg-teal-600') }}">
+                class="relative rounded-md px-4 mb-3 py-2.5 flex items-center justify-between text-white text-sm font-medium shadow-md {{ $banner->type === 'danger' ? 'bg-red-600' : ($banner->type === 'warning' ? 'bg-yellow-600' : 'bg-teal-600') }}">
 
                 <div class="flex-1 text-center flex items-center justify-center gap-2">
                     <span class="material-symbols-outlined text-[18px]">campaign</span>

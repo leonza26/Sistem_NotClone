@@ -9,11 +9,11 @@
 </head>
 
 <body
-    class="bg-brand-surface text-brand-dark font-inter antialiased min-h-screen selection:bg-brand-orange selection:text-white flex">
+    class="bg-brand-surface dark:bg-slate-900 text-brand-dark dark:text-white font-inter antialiased min-h-screen selection:bg-brand-orange selection:text-white flex">
 
     <!-- Bagian Kiri: Form -->
     <div
-        class="w-full lg:w-1/2 flex flex-col justify-center px-8 md:px-20 lg:px-24 xl:px-32 relative overflow-hidden bg-white">
+        class="w-full lg:w-1/2 flex flex-col justify-center px-8 md:px-20 lg:px-24 xl:px-32 relative overflow-hidden bg-white dark:bg-slate-800">
         <!-- Glow Halus di Pojok Kiri Atas -->
         <div
             class="absolute top-0 left-0 w-[500px] h-[500px] bg-brand-teal/10 blur-[120px] rounded-full -z-10 pointer-events-none translate-x-[-20%] translate-y-[-20%]">
@@ -28,12 +28,12 @@
                             d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                 </div>
-                <span class="font-outfit font-semibold text-xl tracking-wide text-brand-dark">Flowral.</span>
+                <span class="font-outfit font-semibold text-xl tracking-wide text-brand-dark dark:text-white">Flowral.</span>
             </a>
 
             <div>
-                <h1 class="font-outfit text-3xl font-medium text-brand-dark mb-3">Welcome back</h1>
-                <p class="text-brand-slate text-sm font-light mb-8">Enter your credentials to access your workspace.</p>
+                <h1 class="font-outfit text-3xl font-medium text-brand-dark dark:text-white mb-3">Welcome back</h1>
+                <p class="text-brand-slate dark:text-slate-300 text-sm font-light mb-8">Enter your credentials to access your workspace.</p>
             </div>
 
             <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -42,7 +42,7 @@
             <!-- Alert Error (Misal: Akun di-suspend) -->
             @if (session('error'))
                 <div
-                    class="mb-5 bg-red-50 border border-red-200 text-red-600 px-4 py-3.5 rounded-xl flex items-start gap-3 shadow-sm">
+                    class="mb-5 bg-red-50 border border-red-200 text-red-600 px-4 py-3.5 rounded-xl flex items-start gap-3 shadow-sm dark:shadow-none">
 
                     <!-- Icon Peringatan (SVG Murni) -->
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
@@ -62,11 +62,11 @@
 
                 <!-- Email Address -->
                 <div class="space-y-1.5">
-                    <label for="email" class="block text-xs font-semibold tracking-wide text-brand-slate">Email
+                    <label for="email" class="block text-xs font-semibold tracking-wide text-brand-slate dark:text-slate-300">Email
                         Address</label>
                     <input id="email" type="email" name="email" :value="old('email')" required autofocus
                         autocomplete="username"
-                        class="w-full px-4 py-3 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40"
+                        class="w-full px-4 py-3 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 dark:placeholder:text-slate-300 dark:text-slate-300"
                         placeholder="you@company.com" />
                     <x-input-error :messages="$errors->get('email')"
                         class="mt-1 text-[11px] text-red-500 font-medium" />
@@ -76,16 +76,16 @@
                 <div class="space-y-1.5">
                     <div class="flex justify-between items-center">
                         <label for="password"
-                            class="block text-xs font-semibold tracking-wide text-brand-slate">Password</label>
+                            class="block text-xs font-semibold tracking-wide text-brand-slate dark:text-slate-300">Password</label>
                         @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}"
-                                class="text-[11px] font-medium text-brand-slate hover:text-brand-orange transition-colors">
+                                class="text-[11px] font-medium text-brand-slate dark:text-slate-300 hover:text-brand-orange transition-colors">
                                 Forgot password?
                             </a>
                         @endif
                     </div>
                     <input id="password" type="password" name="password" required autocomplete="current-password"
-                        class="w-full px-4 py-3 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40"
+                        class="w-full px-4 py-3 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 dark:placeholder:text-slate-300 dark:text-slate-300"
                         placeholder="••••••••" />
                     <x-input-error :messages="$errors->get('password')"
                         class="mt-1 text-[11px] text-red-500 font-medium" />
@@ -94,9 +94,9 @@
                 <!-- Remember Me -->
                 <div class="flex items-center gap-2 pt-1">
                     <input id="remember_me" type="checkbox" name="remember"
-                        class="w-4 h-4 rounded border-brand-teal/30 text-brand-orange focus:ring-brand-orange bg-white cursor-pointer" />
+                        class="w-4 h-4 rounded border-brand-teal/30 text-brand-orange focus:ring-brand-orange bg-white dark:bg-slate-800 cursor-pointer" />
                     <label for="remember_me"
-                        class="text-[13px] font-light text-brand-slate cursor-pointer select-none">Remember me for 30
+                        class="text-[13px] font-light text-brand-slate dark:text-slate-300 cursor-pointer select-none">Remember me for 30
                         days</label>
                 </div>
 
@@ -110,15 +110,15 @@
             <!-- SSO / Divider -->
             <div class="relative py-8">
                 <div class="absolute inset-0 flex items-center">
-                    <div class="w-full border-t border-brand-teal/10"></div>
+                    <div class="w-full border-t border-brand-teal/10 dark:border-brand-teal/20"></div>
                 </div>
                 <div class="relative flex justify-center text-xs uppercase"><span
-                        class="bg-white px-4 text-brand-slate/50 tracking-widest font-medium">Or</span></div>
+                        class="bg-white dark:bg-slate-800 px-4 text-brand-slate/50 tracking-widest font-medium">Or</span></div>
             </div>
 
             <!-- Alternative Login -->
             <button type="button"
-                class="w-full py-3 px-4 bg-brand-surface border border-brand-teal/20 rounded-xl font-medium text-sm text-brand-dark hover:bg-brand-teal/5 transition-colors flex items-center justify-center gap-3">
+                class="w-full py-3 px-4 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl font-medium text-sm text-brand-dark dark:text-white hover:bg-brand-teal/5 transition-colors flex items-center justify-center gap-3">
                 <svg class="w-4 h-4" viewBox="0 0 24 24">
                     <path
                         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -136,10 +136,10 @@
                 Continue with Google
             </button>
 
-            <p class="mt-8 text-center text-[13px] text-brand-slate font-light">
+            <p class="mt-8 text-center text-[13px] text-brand-slate dark:text-slate-300 font-light">
                 Don't have an account?
                 <a href="{{ route('register') }}"
-                    class="font-medium text-brand-dark hover:text-brand-orange transition-colors">Create one</a>
+                    class="font-medium text-brand-dark dark:text-white hover:text-brand-orange transition-colors">Create one</a>
             </p>
         </div>
     </div>

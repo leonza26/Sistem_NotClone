@@ -6,36 +6,36 @@
     <div class="px-8 lg:px-10 pb-12 pt-4 max-w-4xl">
         <header class="mb-10">
             <div
-                class="flex items-center gap-2 text-brand-slate/60 text-[11px] font-semibold uppercase tracking-widest mb-3">
+                class="flex items-center gap-2 text-brand-slate/60 dark:text-slate-300 text-[11px] font-semibold uppercase tracking-widest mb-3">
                 <span>Member</span>
                 <span class="w-1 h-1 rounded-full bg-brand-orange"></span>
-                <a href="{{ route('member.workspace.index') }}" class="hover:text-brand-dark transition-colors">Workspaces</a>
+                <a href="{{ route('member.workspace.index') }}" class="hover:text-brand-dark dark:hover:text-white transition-colors">Workspaces</a>
                 <span class="w-1 h-1 rounded-full bg-brand-orange"></span>
                 <span class="text-brand-orange font-bold">Edit</span>
             </div>
-            <h2 class="font-outfit text-3xl font-medium text-brand-dark leading-tight tracking-tight">
+            <h2 class="font-outfit text-3xl font-medium text-brand-dark dark:text-white leading-tight tracking-tight">
                 Edit <span class="text-brand-orange">Workspace.</span>
             </h2>
         </header>
 
         <div
-            class="bg-white p-8 sm:p-10 rounded-[32px] border border-brand-teal/10 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)]">
+            class="bg-white dark:bg-slate-800 p-8 sm:p-10 rounded-[32px] border border-brand-teal/10 dark:border-brand-teal/20 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)]">
             <form action="{{ route('member.workspace.update', $workspace) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="space-y-1.5 mb-10">
-                    <label for="name" class="block text-xs font-semibold tracking-wide text-brand-slate ml-1">Workspace
+                    <label for="name" class="block text-xs font-semibold tracking-wide text-brand-slate dark:text-slate-300 ml-1">Workspace
                         Name</label>
                     <input type="text" name="name" id="name" value="{{ old('name', $workspace->name) }}" required
-                        class="w-full px-4 py-3.5 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark font-medium">
+                        class="w-full px-4 py-3.5 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none text-brand-dark dark:text-white font-medium">
                     @error('name')
                         <p class="text-red-500 text-[11px] mt-1.5 font-medium ml-1">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="flex justify-end gap-3 pt-6 border-t border-brand-teal/10">
+                <div class="flex justify-end gap-3 pt-6 border-t border-brand-teal/10 dark:border-brand-teal/20">
                     <a href="{{ route('member.workspace.index') }}"
-                        class="px-5 py-2.5 text-sm font-medium text-brand-slate bg-brand-surface rounded-xl hover:bg-brand-teal/10 transition-colors">Cancel</a>
+                        class="px-5 py-2.5 text-sm font-medium text-brand-slate dark:text-slate-300 bg-brand-surface dark:bg-slate-900 rounded-xl hover:bg-brand-teal/10 transition-colors">Cancel</a>
                     <button type="submit"
                         class="px-6 py-2.5 text-sm font-medium text-white bg-brand-dark rounded-xl hover:bg-brand-orange shadow-lg hover:-translate-y-0.5 transition-all">
                         Update Workspace

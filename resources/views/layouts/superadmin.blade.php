@@ -53,7 +53,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="bg-brand-surface font-inter text-brand-dark overflow-x-hidden selection:bg-red-500 selection:text-white">
+<body class="bg-brand-surface dark:bg-slate-900 font-inter text-brand-dark dark:text-white overflow-x-hidden selection:bg-red-500 selection:text-white">
 
     <!-- Super Admin Sidebar -->
     @include('components.super_admin.sidebar')
@@ -80,7 +80,7 @@
             x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
             x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-95"
-            class="relative bg-white border border-slate-200 rounded-3xl shadow-2xl w-full max-w-md p-8">
+            class="relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl shadow-2xl dark:shadow-none w-full max-w-md p-8">
 
             <div class="w-12 h-12 rounded-full flex items-center justify-center mb-5"
                 :class="type === 'delete' ? 'bg-red-50 border border-red-100 text-red-500' : 'bg-orange-50 border border-orange-100 text-orange-500'">
@@ -88,12 +88,12 @@
                     x-text="type === 'delete' ? 'delete_forever' : 'warning'"></span>
             </div>
 
-            <h3 class="text-xl font-outfit font-medium text-slate-800 mb-2">Are you absolutely sure?</h3>
-            <p class="text-slate-500 text-sm font-light mb-8 leading-relaxed" x-text="message"></p>
+            <h3 class="text-xl font-outfit font-medium text-slate-800 dark:text-white mb-2">Are you absolutely sure?</h3>
+            <p class="text-slate-500 dark:text-slate-400 text-sm font-light mb-8 leading-relaxed" x-text="message"></p>
 
             <div class="flex gap-3 justify-end pt-4">
                 <button @click="open = false" type="button"
-                    class="px-5 py-2.5 rounded-xl text-slate-500 font-medium text-sm hover:bg-slate-50 transition-colors">Cancel</button>
+                    class="px-5 py-2.5 rounded-xl text-slate-500 dark:text-slate-400 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Cancel</button>
 
                 <form method="POST" :action="url">
                     @csrf
@@ -125,15 +125,15 @@
                 x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-8"
                 x-transition:enter-end="opacity-100 translate-x-0" x-transition:leave="transition ease-in duration-200"
                 x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 translate-x-8"
-                class="pointer-events-auto bg-white border border-emerald-100 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-2xl p-4 flex items-start gap-3 w-80">
+                class="pointer-events-auto bg-white dark:bg-slate-800 border border-emerald-100 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-2xl p-4 flex items-start gap-3 w-80">
                 <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
                     <span class="material-symbols-outlined text-emerald-500 text-[18px]">check_circle</span>
                 </div>
                 <div class="flex-1 pt-0.5">
-                    <h4 class="text-sm font-semibold text-slate-800 tracking-tight">Success</h4>
-                    <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">{{ session('success') }}</p>
+                    <h4 class="text-sm font-semibold text-slate-800 dark:text-white tracking-tight">Success</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-relaxed">{{ session('success') }}</p>
                 </div>
-                <button @click="showSuccess = false" class="text-slate-400 hover:text-slate-600 transition-colors">
+                <button @click="showSuccess = false" class="text-slate-400 dark:text-slate-500 hover:text-slate-600 transition-colors">
                     <span class="material-symbols-outlined text-[18px]">close</span>
                 </button>
             </div>
@@ -145,15 +145,15 @@
                 x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-8"
                 x-transition:enter-end="opacity-100 translate-x-0" x-transition:leave="transition ease-in duration-200"
                 x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 translate-x-8"
-                class="pointer-events-auto bg-white border border-red-100 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-2xl p-4 flex items-start gap-3 w-80">
+                class="pointer-events-auto bg-white dark:bg-slate-800 border border-red-100 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-2xl p-4 flex items-start gap-3 w-80">
                 <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center shrink-0">
                     <span class="material-symbols-outlined text-red-500 text-[18px]">error</span>
                 </div>
                 <div class="flex-1 pt-0.5">
-                    <h4 class="text-sm font-semibold text-slate-800 tracking-tight">Access Denied / Error</h4>
-                    <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">{{ session('error') }}</p>
+                    <h4 class="text-sm font-semibold text-slate-800 dark:text-white tracking-tight">Access Denied / Error</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-relaxed">{{ session('error') }}</p>
                 </div>
-                <button @click="showError = false" class="text-slate-400 hover:text-slate-600 transition-colors">
+                <button @click="showError = false" class="text-slate-400 dark:text-slate-500 hover:text-slate-600 transition-colors">
                     <span class="material-symbols-outlined text-[18px]">close</span>
                 </button>
             </div>

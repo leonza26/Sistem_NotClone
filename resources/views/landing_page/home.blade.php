@@ -16,19 +16,19 @@
 
         <div class="max-w-4xl mx-auto px-6 text-center z-10">
             <div
-                class="hero-anim gsap-hidden inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-brand-teal/20 text-brand-slate text-[11px] font-semibold tracking-widest uppercase mb-8 shadow-sm">
+                class="hero-anim gsap-hidden inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-brand-teal/20 dark:border-brand-teal/30 text-brand-slate dark:text-slate-300 text-[11px] font-semibold tracking-widest uppercase mb-8 shadow-sm dark:shadow-none">
                 <span>Introducing Flowral 1.0</span>
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></span>
             </div>
 
             <h1
-                class="hero-anim gsap-hidden font-outfit text-6xl md:text-8xl font-medium text-brand-dark leading-[1.05] tracking-tight mb-8">
+                class="hero-anim gsap-hidden font-outfit text-6xl md:text-8xl font-medium text-brand-dark dark:text-white leading-[1.05] tracking-tight mb-8">
                 The new standard for <br />
                 <span class="text-gradient font-semibold">productivity.</span>
             </h1>
 
             <p
-                class="hero-anim gsap-hidden text-xl md:text-2xl text-brand-slate font-light max-w-2xl mx-auto mb-12 leading-relaxed">
+                class="hero-anim gsap-hidden text-xl md:text-2xl text-brand-slate dark:text-slate-300 font-light max-w-2xl mx-auto mb-12 leading-relaxed">
                 Experience a workspace that adapts to your mind. Say goodbye to scattered tools and embrace absolute
                 clarity.
             </p>
@@ -46,64 +46,64 @@
             <div
                 class="relative rounded-2xl md:rounded-[32px] p-2 bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_20px_80px_-20px_rgba(48,71,78,0.2)]">
                 <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2000&auto=format&fit=crop"
-                    alt="Flowral Dashboard" class="w-full rounded-xl md:rounded-[24px] shadow-sm object-cover aspect-video">
+                    alt="Flowral Dashboard" class="w-full rounded-xl md:rounded-[24px] shadow-sm dark:shadow-none object-cover aspect-video">
             </div>
         </div>
     </section>
 
     <!-- 3. Logo Cloud / Marquee -->
-    <section class="py-10 border-y border-brand-teal/10 bg-white overflow-hidden flex flex-col items-center">
-        <p class="text-xs font-semibold tracking-widest text-brand-slate uppercase mb-8 text-center">Trusted by
+    <section class="py-10 border-y border-brand-teal/10 dark:border-brand-teal/20 bg-white dark:bg-slate-800 overflow-hidden flex flex-col items-center">
+        <p class="text-xs font-semibold tracking-widest text-brand-slate dark:text-slate-300 uppercase mb-8 text-center">Trusted by
             forward-thinking teams</p>
         <div
             class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
             <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-marquee">
                 <!-- Gunakan teks/svg statis sbg placeholder keren -->
-                <li class="font-outfit text-2xl font-bold text-brand-slate/40">ACME Corp</li>
-                <li class="font-outfit text-2xl font-bold text-brand-slate/40">GlobalTech</li>
-                <li class="font-outfit text-2xl font-bold text-brand-slate/40">Quantum</li>
-                <li class="font-outfit text-2xl font-bold text-brand-slate/40">Nebula</li>
-                <li class="font-outfit text-2xl font-bold text-brand-slate/40">StudioX</li>
-                <li class="font-outfit text-2xl font-bold text-brand-slate/40">Horizon</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40 dark:text-slate-300">ACME Corp</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40 dark:text-slate-300">GlobalTech</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40 dark:text-slate-300">Quantum</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40 dark:text-slate-300">Nebula</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40 dark:text-slate-300">StudioX</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40 dark:text-slate-300">Horizon</li>
             </ul>
             <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-marquee"
                 aria-hidden="true">
-                <li class="font-outfit text-2xl font-bold text-brand-slate/40">ACME Corp</li>
-                <li class="font-outfit text-2xl font-bold text-brand-slate/40">GlobalTech</li>
-                <li class="font-outfit text-2xl font-bold text-brand-slate/40">Quantum</li>
-                <li class="font-outfit text-2xl font-bold text-brand-slate/40">Nebula</li>
-                <li class="font-outfit text-2xl font-bold text-brand-slate/40">StudioX</li>
-                <li class="font-outfit text-2xl font-bold text-brand-slate/40">Horizon</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40 dark:text-slate-300">ACME Corp</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40 dark:text-slate-300">GlobalTech</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40 dark:text-slate-300">Quantum</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40 dark:text-slate-300">Nebula</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40 dark:text-slate-300">StudioX</li>
+                <li class="font-outfit text-2xl font-bold text-brand-slate/40 dark:text-slate-300">Horizon</li>
             </ul>
         </div>
     </section>
 
     <!-- 4. Feature Showcase (Left-Right Alternating) -->
-    <section id="features" class="py-32 bg-brand-surface relative">
+    <section id="features" class="py-32 bg-brand-surface dark:bg-slate-900 relative">
         <div class="max-w-7xl mx-auto px-6">
 
             <!-- Feature 1 -->
             <div class="flex flex-col lg:flex-row items-center gap-16 mb-40 showcase-row">
                 <div class="w-full lg:w-1/2 showcase-text">
-                    <h2 class="font-outfit text-4xl lg:text-5xl font-medium text-brand-dark mb-6 leading-tight">
-                        Visualize your workflow. <br /><span class="text-brand-slate">In real-time.</span></h2>
-                    <p class="text-brand-slate text-lg font-light leading-relaxed mb-8">
+                    <h2 class="font-outfit text-4xl lg:text-5xl font-medium text-brand-dark dark:text-white mb-6 leading-tight">
+                        Visualize your workflow. <br /><span class="text-brand-slate dark:text-slate-300">In real-time.</span></h2>
+                    <p class="text-brand-slate dark:text-slate-300 text-lg font-light leading-relaxed mb-8">
                         Our intuitive Kanban boards are designed to get out of your way. Drag, drop, and conquer your
                         tasks without the friction of traditional enterprise software.
                     </p>
                     <ul class="space-y-4">
-                        <li class="flex items-center gap-3 text-brand-dark font-medium"><svg
+                        <li class="flex items-center gap-3 text-brand-dark dark:text-white font-medium"><svg
                                 class="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg> Frictionless drag & drop</li>
-                        <li class="flex items-center gap-3 text-brand-dark font-medium"><svg
+                        <li class="flex items-center gap-3 text-brand-dark dark:text-white font-medium"><svg
                                 class="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg> Custom columns & tags</li>
                     </ul>
                 </div>
                 <div class="w-full lg:w-1/2 showcase-img">
-                    <div class="rounded-3xl overflow-hidden border border-brand-teal/20 shadow-2xl">
+                    <div class="rounded-3xl overflow-hidden border border-brand-teal/20 dark:border-brand-teal/30 shadow-2xl dark:shadow-none">
                         <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=1000&auto=format&fit=crop"
                             alt="Kanban Feature" class="w-full h-auto">
                     </div>
@@ -113,9 +113,9 @@
             <!-- Feature 2 -->
             <div class="flex flex-col lg:flex-row-reverse items-center gap-16 showcase-row">
                 <div class="w-full lg:w-1/2 showcase-text">
-                    <h2 class="font-outfit text-4xl lg:text-5xl font-medium text-brand-dark mb-6 leading-tight">
-                        Collaboration that <br /><span class="text-brand-slate">feels natural.</span></h2>
-                    <p class="text-brand-slate text-lg font-light leading-relaxed mb-8">
+                    <h2 class="font-outfit text-4xl lg:text-5xl font-medium text-brand-dark dark:text-white mb-6 leading-tight">
+                        Collaboration that <br /><span class="text-brand-slate dark:text-slate-300">feels natural.</span></h2>
+                    <p class="text-brand-slate dark:text-slate-300 text-lg font-light leading-relaxed mb-8">
                         Discuss tasks right where the work happens. Flowral’s threaded comments bring context to your
                         conversations, eliminating the need for endless chat apps.
                     </p>
@@ -128,7 +128,7 @@
                     </a>
                 </div>
                 <div class="w-full lg:w-1/2 showcase-img">
-                    <div class="rounded-3xl overflow-hidden border border-brand-teal/20 shadow-2xl relative">
+                    <div class="rounded-3xl overflow-hidden border border-brand-teal/20 dark:border-brand-teal/30 shadow-2xl dark:shadow-none relative">
                         <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop"
                             alt="Team Collaboration" class="w-full h-auto">
                     </div>
@@ -139,32 +139,32 @@
     </section>
 
     <!-- 5. Bento Grid Deep Features -->
-    <section class="py-32 bg-white border-t border-brand-teal/10">
+    <section class="py-32 bg-white dark:bg-slate-800 border-t border-brand-teal/10 dark:border-brand-teal/20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20 bento-header gsap-hidden">
-                <h2 class="font-outfit text-4xl md:text-5xl font-medium text-brand-dark mb-6">Designed for scale.</h2>
-                <p class="text-brand-slate text-xl font-light max-w-2xl mx-auto">Everything you need to manage complex
+                <h2 class="font-outfit text-4xl md:text-5xl font-medium text-brand-dark dark:text-white mb-6">Designed for scale.</h2>
+                <p class="text-brand-slate dark:text-slate-300 text-xl font-light max-w-2xl mx-auto">Everything you need to manage complex
                     projects, beautifully organized into simple modules.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[320px]">
                 <!-- Large Card -->
                 <div
-                    class="md:col-span-2 bg-brand-surface rounded-[32px] p-10 border border-brand-teal/10 hover:border-brand-teal/30 transition-colors flex flex-col justify-between bento-item gsap-hidden">
+                    class="md:col-span-2 bg-brand-surface dark:bg-slate-900 rounded-[32px] p-10 border border-brand-teal/10 dark:border-brand-teal/20 hover:border-brand-teal/30 transition-colors flex flex-col justify-between relative overflow-hidden bento-item gsap-hidden">
                     <div>
                         <div
-                            class="w-10 h-10 rounded-full bg-white flex items-center justify-center mb-6 shadow-sm border border-brand-teal/10">
-                            <svg class="w-5 h-5 text-brand-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            class="w-10 h-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center mb-6 shadow-sm dark:shadow-none border border-brand-teal/10 dark:border-brand-teal/20">
+                            <svg class="w-5 h-5 text-brand-slate dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                             </svg>
                         </div>
-                        <h3 class="font-outfit text-2xl font-medium text-brand-dark mb-3">Infinite Workspaces</h3>
-                        <p class="text-brand-slate font-light">Create isolated environments for different teams,
+                        <h3 class="font-outfit text-2xl font-medium text-brand-dark dark:text-white mb-3">Infinite Workspaces</h3>
+                        <p class="text-brand-slate dark:text-slate-300 font-light">Create isolated environments for different teams,
                             clients, or side projects. Complete separation of concerns.</p>
                     </div>
                     <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop"
-                        class="w-full h-32 object-cover rounded-xl mt-4 opacity-80 mix-blend-multiply" alt="Workspaces">
+                        class="w-full h-32 object-cover rounded-xl mt-4 opacity-80 mix-blend-multiply dark:opacity-100 dark:mix-blend-normal" alt="Workspaces">
                 </div>
 
                 <!-- Small Card -->
@@ -197,9 +197,9 @@
 
                 <!-- Medium Card -->
                 <div
-                    class="md:col-span-3 lg:col-span-2 bg-brand-surface rounded-[32px] p-10 border border-brand-teal/10 flex flex-col justify-center items-center text-center bento-item gsap-hidden">
-                    <h3 class="font-outfit text-3xl font-medium text-brand-dark mb-4">Fast. Blazing Fast.</h3>
-                    <p class="text-brand-slate font-light max-w-md">Built on Laravel & Alpine.js. No heavy client-side
+                    class="md:col-span-3 lg:col-span-2 bg-brand-surface dark:bg-slate-900 rounded-[32px] p-10 border border-brand-teal/10 dark:border-brand-teal/20 flex flex-col justify-center items-center text-center bento-item gsap-hidden">
+                    <h3 class="font-outfit text-3xl font-medium text-brand-dark dark:text-white mb-4">Fast. Blazing Fast.</h3>
+                    <p class="text-brand-slate dark:text-slate-300 font-light max-w-md">Built on Laravel & Alpine.js. No heavy client-side
                         bloat. Just pure, unadulterated speed.</p>
                 </div>
             </div>
@@ -207,44 +207,44 @@
     </section>
 
     <!-- 6. Pricing Section -->
-    <section id="pricing" class="py-32 bg-brand-surface">
+    <section id="pricing" class="py-32 bg-brand-surface dark:bg-slate-900">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20">
-                <h2 class="font-outfit text-4xl md:text-5xl font-medium text-brand-dark mb-6">Simple pricing.</h2>
-                <p class="text-brand-slate text-xl font-light">Start for free, upgrade when you need superpowers.</p>
+                <h2 class="font-outfit text-4xl md:text-5xl font-medium text-brand-dark dark:text-white mb-6">Simple pricing.</h2>
+                <p class="text-brand-slate dark:text-slate-300 text-xl font-light">Start for free, upgrade when you need superpowers.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Free Plan -->
-                <div class="bg-white rounded-[32px] p-10 border border-brand-teal/10 shadow-lg pricing-card gsap-hidden">
-                    <h3 class="font-outfit text-2xl font-medium text-brand-dark mb-2">Starter</h3>
-                    <p class="text-brand-slate font-light text-sm mb-6">Perfect for individuals and small teams.</p>
+                <div class="bg-white dark:bg-slate-800 rounded-[32px] p-10 border border-brand-teal/10 dark:border-brand-teal/20 shadow-lg pricing-card gsap-hidden">
+                    <h3 class="font-outfit text-2xl font-medium text-brand-dark dark:text-white mb-2">Starter</h3>
+                    <p class="text-brand-slate dark:text-slate-300 font-light text-sm mb-6">Perfect for individuals and small teams.</p>
                     <div class="mb-8">
-                        <span class="font-outfit text-5xl font-bold text-brand-dark">$0</span>
-                        <span class="text-brand-slate">/forever</span>
+                        <span class="font-outfit text-5xl font-bold text-brand-dark dark:text-white">$0</span>
+                        <span class="text-brand-slate dark:text-slate-300">/forever</span>
                     </div>
                     <ul class="space-y-4 mb-10">
-                        <li class="flex items-center gap-3 text-brand-slate font-light"><svg class="w-5 h-5 text-brand-teal"
+                        <li class="flex items-center gap-3 text-brand-slate dark:text-slate-300 font-light"><svg class="w-5 h-5 text-brand-teal"
                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg> 3 Workspaces</li>
-                        <li class="flex items-center gap-3 text-brand-slate font-light"><svg class="w-5 h-5 text-brand-teal"
+                        <li class="flex items-center gap-3 text-brand-slate dark:text-slate-300 font-light"><svg class="w-5 h-5 text-brand-teal"
                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg> Unlimited Tasks</li>
-                        <li class="flex items-center gap-3 text-brand-slate font-light"><svg class="w-5 h-5 text-brand-teal"
+                        <li class="flex items-center gap-3 text-brand-slate dark:text-slate-300 font-light"><svg class="w-5 h-5 text-brand-teal"
                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg> Up to 5 Members</li>
                     </ul>
                     <a href="{{ route('register') }}"
-                        class="block w-full py-4 text-center rounded-full font-medium bg-brand-surface text-brand-dark hover:bg-brand-teal/10 transition-colors">
+                        class="block w-full py-4 text-center rounded-full font-medium bg-brand-surface dark:bg-slate-900 text-brand-dark dark:text-white hover:bg-brand-teal/10 transition-colors">
                         Get Started
                     </a>
                 </div>
 
                 <!-- Pro Plan -->
-                <div class="bg-brand-dark rounded-[32px] p-10 shadow-2xl relative overflow-hidden pricing-card gsap-hidden">
+                <div class="bg-brand-dark rounded-[32px] p-10 shadow-2xl dark:shadow-none relative overflow-hidden pricing-card gsap-hidden">
                     <div
                         class="absolute top-0 right-0 px-4 py-1 bg-brand-orange text-white text-xs font-bold rounded-bl-xl">
                         POPULAR</div>
