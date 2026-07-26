@@ -2,7 +2,7 @@
     <!-- Logo & Badge -->
     <div class="mb-10 px-2 flex flex-col gap-1">
         <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-md">
+            <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center shadow-md">
                 <!-- Icon Code/Terminal -->
                 <span class="material-symbols-outlined text-slate-900 text-[18px]">terminal</span>
             </div>
@@ -41,7 +41,7 @@
         </a>
 
         <div class="pt-4 pb-1">
-            <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider px-3">Monitoring</p>
+            <p class="text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-3">Monitoring</p>
         </div>
 
         <!-- Shield & Security -->
@@ -55,7 +55,7 @@
 
         <!-- Broadcasts -->
         <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('admin.broadcasts*') ? 'bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-medium' : 'text-slate-400 font-light hover:bg-slate-800 hover:text-white transition-colors' }}"
-            href="#">
+            href="{{ route('admin.broadcasts.index') }}">
             <span class="material-symbols-outlined text-[20px]">campaign</span>
             <span class="text-sm">Broadcasts</span>
         </a>
@@ -64,8 +64,8 @@
     <!-- Bottom Actions -->
     <div class="mt-auto pt-6 space-y-1 border-t border-slate-800">
         <!-- Global Configs -->
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('admin.settings*') ? 'bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-medium' : 'text-slate-400 font-light hover:bg-slate-800 hover:text-white transition-colors' }}"
-            href="#">
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('admin.configs*') ? 'bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-medium' : 'text-slate-400 font-light hover:bg-slate-800 hover:text-white transition-colors' }}"
+            href="{{ route('admin.configs.index') }}">
             <span class="material-symbols-outlined text-[20px]">admin_panel_settings</span>
             <span class="text-sm">System Configs</span>
         </a>
@@ -73,7 +73,7 @@
         <form action="{{ route('logout') }}" method="POST" class="w-full">
             @csrf
             <button type="submit"
-                class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 font-light hover:bg-red-500/10 hover:text-red-400 transition-colors">
+                class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 dark:text-slate-500 font-light hover:bg-red-500/10 hover:text-red-400 transition-colors">
                 <span class="material-symbols-outlined text-[20px]">logout</span>
                 <span class="text-sm">Exit Core</span>
             </button>

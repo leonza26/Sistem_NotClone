@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Lab404\Impersonate\Models\Impersonate;
 
-#[Fillable(['name', 'email', 'password', 'avatar', 'job_title', 'is_suspended'])]
+#[Fillable(['name', 'email', 'password', 'avatar', 'job_title', 'is_suspended', 'role'])] 
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {

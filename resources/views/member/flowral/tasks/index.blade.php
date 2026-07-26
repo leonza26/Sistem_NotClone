@@ -29,12 +29,12 @@
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
             <div>
                 <div
-                    class="flex items-center gap-2 text-brand-slate/60 text-[11px] font-semibold uppercase tracking-widest mb-3">
+                    class="flex items-center gap-2 text-brand-slate/60 dark:text-slate-300 text-[11px] font-semibold uppercase tracking-widest mb-3">
                     <span>Workspace</span>
                     <span class="w-1 h-1 rounded-full bg-brand-orange"></span>
                     <span class="text-brand-orange font-bold">All Projects</span>
                 </div>
-                <h2 class="font-outfit text-3xl font-medium text-brand-dark leading-tight tracking-tight">
+                <h2 class="font-outfit text-3xl font-medium text-brand-dark dark:text-white leading-tight tracking-tight">
                     Kanban <span class="text-brand-orange">Board.</span>
                 </h2>
             </div>
@@ -54,16 +54,16 @@
                 <div class="flex items-center justify-between px-6 py-5">
                     <div class="flex items-center gap-3">
                         <span class="w-2.5 h-2.5 rounded-full bg-brand-slate/30"></span>
-                        <h3 class="font-outfit text-lg font-medium text-brand-dark">To Do</h3>
+                        <h3 class="font-outfit text-lg font-medium text-brand-dark dark:text-white">To Do</h3>
                         <span
-                            class="bg-white border border-brand-teal/10 text-brand-slate px-2 py-0.5 rounded-md text-[11px] font-bold shadow-sm">{{ $todoTasks->count() }}</span>
+                            class="bg-white dark:bg-slate-800 border border-brand-teal/10 dark:border-brand-teal/20 text-brand-slate dark:text-slate-300 px-2 py-0.5 rounded-md text-[11px] font-bold shadow-sm dark:shadow-none">{{ $todoTasks->count() }}</span>
                     </div>
                 </div>
-                <div class="bg-brand-surface rounded-[24px] p-3 min-h-[600px] border border-dashed border-brand-teal/20 transition-all kanban-column flex flex-col"
+                <div class="bg-brand-surface dark:bg-slate-900 rounded-[24px] p-3 min-h-[600px] border border-dashed border-brand-teal/20 dark:border-brand-teal/30 transition-all kanban-column flex flex-col"
                     data-status="todo">
                     <div class="space-y-3 kanban-list flex-1 flex flex-col">
                         <div
-                            class="flex-1 flex-col items-center justify-center text-center py-12 text-brand-slate/40 border-2 border-dashed border-transparent rounded-[20px] empty-placeholder">
+                            class="flex-1 flex-col items-center justify-center text-center py-12 text-brand-slate/40 dark:text-slate-300 border-2 border-dashed border-transparent rounded-[20px] empty-placeholder">
                             <span class="material-symbols-outlined text-4xl mb-2">inbox</span>
                             <span class="text-sm font-medium">No tasks yet</span>
                         </div>
@@ -82,16 +82,16 @@
                 <div class="flex items-center justify-between px-6 py-5">
                     <div class="flex items-center gap-3">
                         <span class="w-2.5 h-2.5 rounded-full bg-brand-orange shadow-[0_0_10px_rgba(229,117,0,0.5)]"></span>
-                        <h3 class="font-outfit text-lg font-medium text-brand-dark">In Progress</h3>
+                        <h3 class="font-outfit text-lg font-medium text-brand-dark dark:text-white">In Progress</h3>
                         <span
-                            class="bg-white border border-brand-teal/10 text-brand-slate px-2 py-0.5 rounded-md text-[11px] font-bold shadow-sm">{{ $inProgressTasks->count() }}</span>
+                            class="bg-white dark:bg-slate-800 border border-brand-teal/10 dark:border-brand-teal/20 text-brand-slate dark:text-slate-300 px-2 py-0.5 rounded-md text-[11px] font-bold shadow-sm dark:shadow-none">{{ $inProgressTasks->count() }}</span>
                     </div>
                 </div>
-                <div class="bg-brand-surface rounded-[24px] p-3 min-h-[600px] border border-dashed border-brand-teal/20 transition-all kanban-column flex flex-col"
+                <div class="bg-brand-surface dark:bg-slate-900 rounded-[24px] p-3 min-h-[600px] border border-dashed border-brand-teal/20 dark:border-brand-teal/30 transition-all kanban-column flex flex-col"
                     data-status="in_progress">
                     <div class="space-y-3 kanban-list flex-1 flex flex-col">
                         <div
-                            class="flex-1 flex-col items-center justify-center text-center py-12 text-brand-slate/40 border-2 border-dashed border-transparent rounded-[20px] empty-placeholder">
+                            class="flex-1 flex-col items-center justify-center text-center py-12 text-brand-slate/40 dark:text-slate-300 border-2 border-dashed border-transparent rounded-[20px] empty-placeholder">
                             <span class="material-symbols-outlined text-4xl mb-2">bolt</span>
                             <span class="text-sm font-medium">Clear board</span>
                         </div>
@@ -110,16 +110,16 @@
                 <div class="flex items-center justify-between px-6 py-5">
                     <div class="flex items-center gap-3">
                         <span class="w-2.5 h-2.5 rounded-full bg-brand-teal shadow-[0_0_10px_rgba(129,180,197,0.5)]"></span>
-                        <h3 class="font-outfit text-lg font-medium text-brand-dark">Done</h3>
+                        <h3 class="font-outfit text-lg font-medium text-brand-dark dark:text-white">Done</h3>
                         <span
-                            class="bg-white border border-brand-teal/10 text-brand-slate px-2 py-0.5 rounded-md text-[11px] font-bold shadow-sm">{{ $doneTasks->count() }}</span>
+                            class="bg-white dark:bg-slate-800 border border-brand-teal/10 dark:border-brand-teal/20 text-brand-slate dark:text-slate-300 px-2 py-0.5 rounded-md text-[11px] font-bold shadow-sm dark:shadow-none">{{ $doneTasks->count() }}</span>
                     </div>
                 </div>
-                <div class="bg-brand-surface rounded-[24px] p-3 min-h-[600px] border border-dashed border-brand-teal/20 transition-all kanban-column flex flex-col"
+                <div class="bg-brand-surface dark:bg-slate-900 rounded-[24px] p-3 min-h-[600px] border border-dashed border-brand-teal/20 dark:border-brand-teal/30 transition-all kanban-column flex flex-col"
                     data-status="done">
                     <div class="space-y-3 kanban-list flex-1 flex flex-col">
                         <div
-                            class="flex-1 flex-col items-center justify-center text-center py-12 text-brand-slate/40 border-2 border-dashed border-transparent rounded-[20px] empty-placeholder">
+                            class="flex-1 flex-col items-center justify-center text-center py-12 text-brand-slate/40 dark:text-slate-300 border-2 border-dashed border-transparent rounded-[20px] empty-placeholder">
                             <span class="material-symbols-outlined text-4xl mb-2">done_all</span>
                             <span class="text-sm font-medium">Awaiting completion</span>
                         </div>

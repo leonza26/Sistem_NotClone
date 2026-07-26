@@ -2,30 +2,18 @@
     @foreach ($notes as $note)
         <li class="relative">
             <div class="flex items-center justify-between group px-3 py-2.5 rounded-xl cursor-pointer transition-all border border-transparent -ml-4"
-                :class="{
-                    'bg-white shadow-sm ring-1 ring-gray-200': activeNote && activeNote.id ===
-                        {{ $note->id }},
-                    'hover:bg-gray-100': !(activeNote && activeNote.id === {{ $note->id }})
-                }"
+                :class="{ 'bg-white dark:bg-slate-700 shadow-sm dark:shadow-none ring-1 ring-gray-200 dark:ring-slate-600': activeNote && activeNote.id === {{ $note->id }}, 'hover:bg-gray-100 dark:hover:bg-slate-800': !(activeNote && activeNote.id === {{ $note->id }}) }"
                 @click="openNote({{ $note->id }})">
 
                 <div class="flex items-center gap-3 flex-1 overflow-hidden">
                     <span class="material-symbols-outlined text-lg transition-colors"
-                        :class="{
-                            'text-orange-500': activeNote && activeNote.id === {{ $note->id }},
-                            'text-gray-400': !(
-                                activeNote && activeNote.id === {{ $note->id }})
-                        }">
+                        :class="{ 'text-orange-500': activeNote && activeNote.id === {{ $note->id }}, 'text-gray-400 dark:text-slate-500': !( activeNote && activeNote.id === {{ $note->id }}) }">
                         description
                     </span>
                     <!-- ID ini sangat penting untuk Auto-Sync Judul -->
                     <span id="sidebar-title-{{ $note->id }}"
                         class="text-sm font-medium truncate select-none transition-colors"
-                        :class="{
-                            'text-gray-900': activeNote && activeNote.id === {{ $note->id }},
-                            'text-gray-600': !(
-                                activeNote && activeNote.id === {{ $note->id }})
-                        }">
+                        :class="{ 'text-gray-900 dark:text-white': activeNote && activeNote.id === {{ $note->id }}, 'text-gray-600 dark:text-slate-300': !( activeNote && activeNote.id === {{ $note->id }}) }">
                         {{ $note->title ?? 'Untitled' }}
                     </span>
                 </div>
@@ -44,7 +32,7 @@
                         </button>
 
                         <div x-show="menuOpen" x-transition.opacity.duration.200ms
-                            class="absolute right-0 top-full mt-1 w-36 bg-white border border-gray-200 rounded-xl shadow-lg z-50 py-1 overflow-hidden"
+                            class="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-slate-800 border border-gray-200 rounded-xl shadow-lg z-50 py-1 overflow-hidden"
                             style="display: none;">
 
                             <!-- Panggil Fungsi Modal Rename -->

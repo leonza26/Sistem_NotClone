@@ -9,7 +9,7 @@
 </head>
 
 <body
-    class="bg-brand-surface text-brand-dark font-inter antialiased min-h-screen selection:bg-brand-orange selection:text-white flex">
+    class="bg-brand-surface dark:bg-slate-900 text-brand-dark dark:text-white font-inter antialiased min-h-screen selection:bg-brand-orange selection:text-white flex">
 
     <!-- Bagian Kiri: Visual Premium (Dibalik posisinya) -->
     <div class="hidden lg:flex lg:w-5/12 relative bg-[#1E2120] items-end p-12 overflow-hidden">
@@ -37,7 +37,7 @@
 
     <!-- Bagian Kanan: Form -->
     <div
-        class="w-full lg:w-7/12 flex flex-col justify-center px-8 md:px-20 lg:px-24 xl:px-40 relative overflow-hidden bg-white">
+        class="w-full lg:w-7/12 flex flex-col justify-center px-8 md:px-20 lg:px-24 xl:px-40 relative overflow-hidden bg-white dark:bg-slate-800">
         <!-- Glow Halus di Pojok Kanan Atas -->
         <div
             class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-orange/5 blur-[120px] rounded-full -z-10 pointer-events-none translate-x-[20%] translate-y-[-20%]">
@@ -53,12 +53,12 @@
                             d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                 </div>
-                <span class="font-outfit font-semibold text-xl tracking-wide text-brand-dark">Flowral.</span>
+                <span class="font-outfit font-semibold text-xl tracking-wide text-brand-dark dark:text-white">Flowral.</span>
             </a>
 
             <div>
-                <h1 class="font-outfit text-3xl font-medium text-brand-dark mb-3">Create your account</h1>
-                <p class="text-brand-slate text-sm font-light mb-8">Setup your profile to start creating workspaces.</p>
+                <h1 class="font-outfit text-3xl font-medium text-brand-dark dark:text-white mb-3">Create your account</h1>
+                <p class="text-brand-slate dark:text-slate-300 text-sm font-light mb-8">Setup your profile to start creating workspaces.</p>
             </div>
 
             <form method="POST" action="{{ route('register') }}" class="space-y-4">
@@ -66,22 +66,22 @@
 
                 <!-- Name -->
                 <div class="space-y-1.5">
-                    <label for="name" class="block text-xs font-semibold tracking-wide text-brand-slate">Full
+                    <label for="name" class="block text-xs font-semibold tracking-wide text-brand-slate dark:text-slate-300">Full
                         Name</label>
                     <input id="name" type="text" name="name" :value="old('name')" required autofocus
                         autocomplete="name"
-                        class="w-full px-4 py-3 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40"
+                        class="w-full px-4 py-3 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 dark:placeholder:text-slate-300 dark:text-slate-300"
                         placeholder="Johnathan Doe" />
                     <x-input-error :messages="$errors->get('name')" class="mt-1 text-[11px] text-red-500 font-medium" />
                 </div>
 
                 <!-- Email -->
                 <div class="space-y-1.5">
-                    <label for="email" class="block text-xs font-semibold tracking-wide text-brand-slate">Work
+                    <label for="email" class="block text-xs font-semibold tracking-wide text-brand-slate dark:text-slate-300">Work
                         Email</label>
                     <input id="email" type="email" name="email" :value="old('email')" required
                         autocomplete="username"
-                        class="w-full px-4 py-3 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40"
+                        class="w-full px-4 py-3 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 dark:placeholder:text-slate-300 dark:text-slate-300"
                         placeholder="john@company.com" />
                     <x-input-error :messages="$errors->get('email')" class="mt-1 text-[11px] text-red-500 font-medium" />
                 </div>
@@ -89,9 +89,9 @@
                 <!-- Password -->
                 <div class="space-y-1.5">
                     <label for="password"
-                        class="block text-xs font-semibold tracking-wide text-brand-slate">Password</label>
+                        class="block text-xs font-semibold tracking-wide text-brand-slate dark:text-slate-300">Password</label>
                     <input id="password" type="password" name="password" required autocomplete="new-password"
-                        class="w-full px-4 py-3 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40"
+                        class="w-full px-4 py-3 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 dark:placeholder:text-slate-300 dark:text-slate-300"
                         placeholder="••••••••" />
                     <x-input-error :messages="$errors->get('password')" class="mt-1 text-[11px] text-red-500 font-medium" />
                 </div>
@@ -99,10 +99,10 @@
                 <!-- Confirm Password -->
                 <div class="space-y-1.5">
                     <label for="password_confirmation"
-                        class="block text-xs font-semibold tracking-wide text-brand-slate">Confirm Password</label>
+                        class="block text-xs font-semibold tracking-wide text-brand-slate dark:text-slate-300">Confirm Password</label>
                     <input id="password_confirmation" type="password" name="password_confirmation" required
                         autocomplete="new-password"
-                        class="w-full px-4 py-3 bg-brand-surface border border-brand-teal/20 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40"
+                        class="w-full px-4 py-3 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 dark:placeholder:text-slate-300 dark:text-slate-300"
                         placeholder="••••••••" />
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-1 text-[11px] text-red-500 font-medium" />
                 </div>
@@ -110,12 +110,12 @@
                 <!-- Terms -->
                 <div class="flex items-start gap-2 pt-2">
                     <input id="terms" type="checkbox" required
-                        class="w-4 h-4 rounded border-brand-teal/30 text-brand-orange focus:ring-brand-orange bg-white cursor-pointer mt-0.5" />
-                    <label for="terms" class="text-[13px] font-light text-brand-slate leading-snug">
+                        class="w-4 h-4 rounded border-brand-teal/30 text-brand-orange focus:ring-brand-orange bg-white dark:bg-slate-800 cursor-pointer mt-0.5" />
+                    <label for="terms" class="text-[13px] font-light text-brand-slate dark:text-slate-300 leading-snug">
                         I agree to Flowral's <a href="#"
-                            class="font-medium text-brand-dark hover:text-brand-orange transition-colors">Terms of
+                            class="font-medium text-brand-dark dark:text-white hover:text-brand-orange transition-colors">Terms of
                             Service</a> and <a href="#"
-                            class="font-medium text-brand-dark hover:text-brand-orange transition-colors">Privacy
+                            class="font-medium text-brand-dark dark:text-white hover:text-brand-orange transition-colors">Privacy
                             Policy</a>.
                     </label>
                 </div>
@@ -127,10 +127,10 @@
                 </button>
             </form>
 
-            <p class="mt-8 text-center text-[13px] text-brand-slate font-light">
+            <p class="mt-8 text-center text-[13px] text-brand-slate dark:text-slate-300 font-light">
                 Already have an account?
                 <a href="{{ route('login') }}"
-                    class="font-medium text-brand-dark hover:text-brand-orange transition-colors">Sign in</a>
+                    class="font-medium text-brand-dark dark:text-white hover:text-brand-orange transition-colors">Sign in</a>
             </p>
         </div>
     </div>

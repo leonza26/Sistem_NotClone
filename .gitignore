@@ -19,6 +19,8 @@
 /storage/*.key
 /storage/pail
 /vendor
+darkmode_injector.php
+fix_contrast.php
 _ide_helper.php
 Homestead.json
 Homestead.yaml

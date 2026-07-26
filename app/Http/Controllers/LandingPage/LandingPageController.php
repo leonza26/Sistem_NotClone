@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\LandingPage;
 
 use App\Http\Controllers\Controller;
+use App\Models\Changelog;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -21,5 +22,11 @@ class LandingPageController extends Controller
     public function terms()
     {
         return view('landing_page.terms');
+    }
+
+    public function updates()
+    {
+        $changelogs = Changelog::latest('released_at')->get();
+        return view('landing_page.updates', compact('changelogs'));
     }
 }

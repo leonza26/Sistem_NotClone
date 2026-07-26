@@ -1,7 +1,9 @@
 <?php
 
 
+use App\Http\Controllers\admin\Broadcasts\BroadcastController;
 use App\Http\Controllers\admin\Command_Center\DashboardController;
+use App\Http\Controllers\admin\Global_Configurations\SystemConfigController;
 use App\Http\Controllers\admin\Identity_Access\UserController;
 use App\Http\Controllers\admin\Shield_Security\SecurityController;
 use App\Http\Controllers\admin\Workspace_Ecosystem\WorkspaceController;
@@ -20,11 +22,21 @@ use App\Http\Controllers\member\Workspace\WorkspaceMemberController;
 use Illuminate\Support\Facades\Route;
 
 
+// Language Switcher Route
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'id'])) {
+        session(['locale' => $locale]);
+    }
+    return back();
+})->name('lang.switch');
 Route::controller(LandingPageController::class)->group(function () {
     Route::get('/', 'index')->name('landing.page');
     Route::view('/privacy', 'landing_page.privacy')->name('landing.privacy');
     Route::view('/terms', 'landing_page.terms')->name('landing.terms');
+    Route::get('/updates', 'updates')->name('landing.updates');
 });
+
+
 
 // impersonate routes
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -38,6 +50,8 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
         // dashboard route
         Route::controller(DashboardController::class)->group(function () {
             Route::get('/dashboard', 'index')->name('admin');
+            Route::get('/dashboard/export', 'exportReport')->name('admin.dashboard.export');
+            Route::post('/dashboard/notifications/read', 'markNotificationsAsRead')->name('admin.notifications.read');
         });
 
         // identity & access management routes
@@ -57,6 +71,25 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
             Route::get('/', 'index')->name('admin.security.index');
             Route::delete('/unblock/{blockedIp}', 'unblockIp')->name('admin.security.unblock');
         });
+
+        Route::controller(SystemConfigController::class)->prefix('configs')->group(function () {
+            Route::get('/', 'index')->name('admin.configs.index');
+            Route::post('/update', 'update')->name('admin.configs.update');
+        });
+
+        Route::controller(BroadcastController::class)->prefix('broadcasts')->group(function () {
+            // Halaman Dashboard
+            Route::get('/', 'index')->name('admin.broadcasts.index');
+
+            // Aksi Banner
+            Route::post('/banners', 'storeBanner')->name('admin.broadcasts.banners.store');
+            Route::patch('/banners/{banner}/toggle', 'toggleBanner')->name('admin.broadcasts.banners.toggle');
+            Route::delete('/banners/{banner}', 'destroyBanner')->name('admin.broadcasts.banners.destroy');
+
+            // Aksi Changelog
+            Route::post('/changelogs', 'storeChangelog')->name('admin.broadcasts.changelogs.store');
+            Route::delete('/changelogs/{changelog}', 'destroyChangelog')->name('admin.broadcasts.changelogs.destroy');
+        });
     });
 });
 
@@ -65,7 +98,6 @@ Route::middleware(['auth', 'verified', 'rolemanager:member', 'workspace.active']
     Route::prefix('member')->group(function () {
         Route::controller(DashboardMainController::class)->group(function () {
             Route::get('/dashboard', 'index')->name('member');
-
         });
         Route::controller(projectsMainController::class)->group(function () {
             Route::get('/projects', 'index')->name('member.projects');

@@ -179,7 +179,7 @@
                         <p class="text-slate-400 text-sm font-light">Add a new member to the ecosystem.</p>
 
                         <button @click="showAddModal = false"
-                            class="absolute top-6 right-6 text-white/50 hover:text-white transition-colors bg-white/5 p-2 rounded-full hover:bg-white/10">
+                            class="absolute top-6 right-6 text-white/50 dark:text-slate-300 hover:text-white transition-colors bg-white/5 p-2 rounded-full hover:bg-white/10">
                             <span class="material-symbols-outlined">close</span>
                         </button>
                     </div>
@@ -270,7 +270,7 @@
                         <p class="text-slate-400 text-sm font-light">Update member information and access level.</p>
 
                         <button @click="showEditModal = false"
-                            class="absolute top-6 right-6 text-white/50 hover:text-white transition-colors bg-white/5 p-2 rounded-full hover:bg-white/10">
+                            class="absolute top-6 right-6 text-white/50 dark:text-slate-300 hover:text-white transition-colors bg-white/5 p-2 rounded-full hover:bg-white/10">
                             <span class="material-symbols-outlined">close</span>
                         </button>
                     </div>

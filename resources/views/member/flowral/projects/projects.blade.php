@@ -8,15 +8,15 @@
         <header class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
             <div>
                 <div
-                    class="flex items-center gap-2 text-brand-slate/60 text-[11px] font-semibold uppercase tracking-widest mb-3">
+                    class="flex items-center gap-2 text-brand-slate/60 dark:text-slate-300 text-[11px] font-semibold uppercase tracking-widest mb-3">
                     <span>Workspace</span>
                     <span class="w-1 h-1 rounded-full bg-brand-orange"></span>
                     <span class="text-brand-orange font-bold">Active Projects</span>
                 </div>
-                <h2 class="font-outfit text-3xl font-medium text-brand-dark leading-tight tracking-tight">
+                <h2 class="font-outfit text-3xl font-medium text-brand-dark dark:text-white leading-tight tracking-tight">
                     Project <span class="text-brand-orange">Portfolio.</span>
                 </h2>
-                <p class="text-brand-slate font-light mt-1">Mengelola {{ $projects->count() }} project aktif Anda dari
+                <p class="text-brand-slate dark:text-slate-300 font-light mt-1">Mengelola {{ $projects->count() }} project aktif Anda dari
                     seluruh workspace.</p>
             </div>
             <a href="{{ route('member.projects.create') }}"
@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="relative z-10 mt-auto flex justify-between items-end border-t border-white/10 pt-5">
-                            <div class="text-[11px] font-medium text-white/50 tracking-widest uppercase">
+                            <div class="text-[11px] font-medium text-white/50 dark:text-slate-300 tracking-widest uppercase">
                                 Created • {{ $project->created_at->format('M d, Y') }}
                             </div>
                             <span
@@ -80,49 +80,49 @@
                 @else
                     <!-- Secondary Projects (Lebih Kecil - Span 4) -->
                     <div
-                        class="col-span-12 md:col-span-6 lg:col-span-4 bg-white rounded-[24px] p-6 sm:p-8 border border-brand-teal/10 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)] hover:shadow-[0_8px_30px_-10px_rgba(48,71,78,0.1)] hover:border-brand-teal/30 transition-all relative group flex flex-col h-full">
+                        class="col-span-12 md:col-span-6 lg:col-span-4 bg-white dark:bg-slate-800 rounded-[24px] p-6 sm:p-8 border border-brand-teal/10 dark:border-brand-teal/20 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)] hover:shadow-[0_8px_30px_-10px_rgba(48,71,78,0.1)] hover:border-brand-teal/30 transition-all relative group flex flex-col h-full">
                         <div class="flex-grow">
                             <div class="flex justify-between items-start mb-6">
                                 <span
-                                    class="bg-brand-surface text-brand-teal border border-brand-teal/20 px-2.5 py-1 rounded-md text-[9px] font-bold tracking-widest uppercase inline-block">
+                                    class="bg-brand-surface dark:bg-slate-900 text-brand-teal border border-brand-teal/20 dark:border-brand-teal/30 px-2.5 py-1 rounded-md text-[9px] font-bold tracking-widest uppercase inline-block">
                                     {{ $project->workspace->name }}
                                 </span>
                                 <!-- Aksi (Muncu saat Hover) -->
                                 <div class="flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <a href="{{ route('member.projects.edit', $project) }}"
-                                        class="text-brand-slate hover:text-brand-orange transition-colors">
+                                        class="text-brand-slate dark:text-slate-300 hover:text-brand-orange transition-colors">
                                         <span class="material-symbols-outlined text-[18px]">edit</span>
                                     </a>
                                     <button type="button" x-data=""
                                         @click="$dispatch('open-delete-modal', { url: '{{ route('member.projects.destroy', $project) }}', message: 'Yakin ingin menghapus project {{ $project->name }}?' })"
-                                        class="text-brand-slate hover:text-red-500 transition-colors">
+                                        class="text-brand-slate dark:text-slate-300 hover:text-red-500 transition-colors">
                                         <span class="material-symbols-outlined text-[18px]">delete</span>
                                     </button>
                                 </div>
                             </div>
-                            <h3 class="font-outfit text-xl font-medium text-brand-dark mb-1">{{ $project->name }}</h3>
-                            <p class="text-[13px] font-light text-brand-slate line-clamp-2 leading-relaxed">
+                            <h3 class="font-outfit text-xl font-medium text-brand-dark dark:text-white mb-1">{{ $project->name }}</h3>
+                            <p class="text-[13px] font-light text-brand-slate dark:text-slate-300 line-clamp-2 leading-relaxed">
                                 {{ $project->description ?: 'Belum ada deskripsi untuk project ini.' }}
                             </p>
                         </div>
 
-                        <div class="mt-8 flex justify-between items-center border-t border-brand-teal/10 pt-4">
+                        <div class="mt-8 flex justify-between items-center border-t border-brand-teal/10 dark:border-brand-teal/20 pt-4">
                             <span
-                                class="text-[11px] font-medium text-brand-slate/60 tracking-widest uppercase">{{ $project->created_at->diffForHumans() }}</span>
+                                class="text-[11px] font-medium text-brand-slate/60 dark:text-slate-300 tracking-widest uppercase">{{ $project->created_at->diffForHumans() }}</span>
                             <span
-                                class="material-symbols-outlined text-brand-slate group-hover:text-brand-orange group-hover:translate-x-1 transition-all text-[18px]">arrow_forward</span>
+                                class="material-symbols-outlined text-brand-slate dark:text-slate-300 group-hover:text-brand-orange group-hover:translate-x-1 transition-all text-[18px]">arrow_forward</span>
                         </div>
                     </div>
                 @endif
             @empty
                 <!-- State Kosong -->
                 <div
-                    class="col-span-12 bg-white p-12 rounded-[32px] border border-dashed border-brand-teal/20 text-center flex flex-col items-center justify-center h-64">
-                    <div class="w-16 h-16 rounded-full bg-brand-surface flex items-center justify-center mb-4">
-                        <span class="material-symbols-outlined text-brand-slate text-[32px]">folder_off</span>
+                    class="col-span-12 bg-white dark:bg-slate-800 p-12 rounded-[32px] border border-dashed border-brand-teal/20 dark:border-brand-teal/30 text-center flex flex-col items-center justify-center h-64">
+                    <div class="w-16 h-16 rounded-full bg-brand-surface dark:bg-slate-900 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-brand-slate dark:text-slate-300 text-[32px]">folder_off</span>
                     </div>
-                    <h3 class="font-outfit text-xl font-medium text-brand-dark mb-2">No Projects Found</h3>
-                    <p class="text-sm font-light text-brand-slate mb-6 max-w-sm mx-auto">Start your architectural journey by
+                    <h3 class="font-outfit text-xl font-medium text-brand-dark dark:text-white mb-2">No Projects Found</h3>
+                    <p class="text-sm font-light text-brand-slate dark:text-slate-300 mb-6 max-w-sm mx-auto">Start your architectural journey by
                         creating a new project inside your workspace.</p>
                 </div>
             @endforelse
