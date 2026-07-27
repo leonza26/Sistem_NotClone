@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\Global_Configurations\SystemConfigController;
 use App\Http\Controllers\admin\Identity_Access\UserController;
 use App\Http\Controllers\admin\Shield_Security\SecurityController;
 use App\Http\Controllers\admin\Workspace_Ecosystem\WorkspaceController;
+use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\LandingPage\LandingPageController;
 use App\Http\Controllers\member\Activity\ActivityMainController;
 use App\Http\Controllers\member\AI\AIMainController;
@@ -175,4 +176,9 @@ Route::middleware(['auth', 'verified', 'rolemanager:member', 'workspace.active']
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
+
+Route::middleware('guest')->group(function () {
+    Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google.login');
+    Route::get('auth/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
+});
 require __DIR__ . '/auth.php';
