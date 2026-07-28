@@ -49,6 +49,16 @@ class TaskMainController extends Controller
             'due_date' => 'nullable|date',
         ]);
 
+        // --- TAMBAHAN KEAMANAN (Cek hak akses Project) ---
+        $project = Project::find($request->project_id);
+        $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
+        $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
+        $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
+
+        if (!in_array($project->workspace_id, $allWorkspaceIds)) {
+            abort(403, 'Unauthorized action. Anda bukan anggota workspace ini.');
+        }
+
         // Simpan task baru ke variabel $task
         $task = Task::create($request->all());
         // --- LOGIKA NOTIFIKASI ---
@@ -64,6 +74,15 @@ class TaskMainController extends Controller
 
     public function show(Task $task)
     {
+        // --- TAMBAHAN KEAMANAN (Cek hak akses Task) ---
+        $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
+        $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
+        $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
+
+        if (!in_array($task->project->workspace_id, $allWorkspaceIds)) {
+            abort(403, 'Unauthorized action. Anda bukan anggota workspace ini.');
+        }
+        
         // Load task beserta relasi komentar dan data usernya (biar query efisien)
         $task->load('comments.user');
         return view('member.flowral.tasks.show', compact('task'));
@@ -71,6 +90,15 @@ class TaskMainController extends Controller
 
     public function edit(Task $task)
     {
+        // --- TAMBAHAN KEAMANAN (Cek hak akses Task) ---
+        $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
+        $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
+        $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
+
+        if (!in_array($task->project->workspace_id, $allWorkspaceIds)) {
+            abort(403, 'Unauthorized action. Anda bukan anggota workspace ini.');
+        }
+
         $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
         $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
         $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
@@ -80,6 +108,15 @@ class TaskMainController extends Controller
     }
     public function update(Request $request, Task $task)
     {
+        // --- TAMBAHAN KEAMANAN (Cek hak akses Task) ---
+        $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
+        $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
+        $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
+
+        if (!in_array($task->project->workspace_id, $allWorkspaceIds)) {
+            abort(403, 'Unauthorized action. Anda bukan anggota workspace ini.');
+        }
+
         $request->validate([
             'project_id' => 'required|exists:projects,id',
             'title' => 'required|string|max:255',
@@ -104,6 +141,15 @@ class TaskMainController extends Controller
 
     public function updateStatus(Request $request, Task $task)
     {
+        // --- TAMBAHAN KEAMANAN (Cek hak akses Task) ---
+        $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
+        $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
+        $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
+
+        if (!in_array($task->project->workspace_id, $allWorkspaceIds)) {
+            abort(403, 'Unauthorized action. Anda bukan anggota workspace ini.');
+        }
+
         // Validasi status baru
         $request->validate([
             'status' => 'required|in:todo,in_progress,done'
@@ -121,6 +167,15 @@ class TaskMainController extends Controller
 
     public function destroy(Task $task)
     {
+        // --- TAMBAHAN KEAMANAN (Cek hak akses Task) ---
+        $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
+        $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
+        $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
+
+        if (!in_array($task->project->workspace_id, $allWorkspaceIds)) {
+            abort(403, 'Unauthorized action. Anda bukan anggota workspace ini.');
+        }
+
         $task->delete();
         return redirect()->route('member.tasks')->with('success', 'Task berhasil dihapus!');
     }
