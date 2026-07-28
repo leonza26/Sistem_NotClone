@@ -24,6 +24,14 @@ class NoteMainController extends Controller
     // Membuat note/sub-note baru
     public function store(Request $request)
     {
+        $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
+        $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
+        $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
+
+        if (!in_array($request->workspace_id, $allWorkspaceIds)) {
+            abort(403, 'Unauthorized action. Anda bukan anggota workspace ini.');
+        }
+
         $request->validate([
             'workspace_id' => 'required|exists:workspaces,id',
             'parent_id' => 'nullable|exists:notes,id',
@@ -41,11 +49,27 @@ class NoteMainController extends Controller
     // Mengambil data note (untuk di-load ke editor)
     public function show(Note $note)
     {
+        $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
+        $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
+        $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
+
+        if (!in_array($note->workspace_id, $allWorkspaceIds)) {
+            abort(403, 'Unauthorized action. Anda bukan anggota workspace ini.');
+        }
+
         return response()->json($note);
     }
     // Menyimpan perubahan (Auto-save content / Update title)
     public function update(Request $request, Note $note)
     {
+        $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
+        $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
+        $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
+
+        if (!in_array($note->workspace_id, $allWorkspaceIds)) {
+            abort(403, 'Unauthorized action. Anda bukan anggota workspace ini.');
+        }
+        
         $validated = $request->validate([
             'title' => 'nullable|string|max:255',
             'content' => 'nullable|string',

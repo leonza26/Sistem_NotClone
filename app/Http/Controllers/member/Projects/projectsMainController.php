@@ -35,6 +35,15 @@ class projectsMainController extends Controller
     }
     public function store(Request $request)
     {
+        // Tambah Keamanan
+        $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
+        $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
+        $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
+
+        if (!in_array($request->workspace_id, $allWorkspaceIds)) {
+            abort(403, 'Unauthorized action. Anda bukan anggota workspace ini.');
+        }
+
         $request->validate([
             'workspace_id' => 'required|exists:workspaces,id',
             'name' => 'required|string|max:255',
@@ -49,6 +58,14 @@ class projectsMainController extends Controller
     }
     public function edit(Project $project)
     {
+        $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
+        $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
+        $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
+        
+        if (!in_array($project->workspace_id, $allWorkspaceIds)) {
+            abort(403, 'Unauthorized action. Anda bukan anggota workspace ini.');
+        }
+
         $ownedWorkspaces = Auth::user()->ownedWorkspaces;
         $memberWorkspaces = Auth::user()->workspaces;
         $workspaces = $ownedWorkspaces->merge($memberWorkspaces);
@@ -56,6 +73,14 @@ class projectsMainController extends Controller
     }
     public function update(Request $request, Project $project)
     {
+        $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
+        $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
+        $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
+        
+        if (!in_array($project->workspace_id, $allWorkspaceIds)) {
+            abort(403, 'Unauthorized action. Anda bukan anggota workspace ini.');
+        }
+
         $request->validate([
             'workspace_id' => 'required|exists:workspaces,id',
             'name' => 'required|string|max:255',
@@ -70,6 +95,14 @@ class projectsMainController extends Controller
     }
     public function destroy(Project $project)
     {
+        $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
+        $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
+        $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
+        
+        if (!in_array($project->workspace_id, $allWorkspaceIds)) {
+            abort(403, 'Unauthorized action. Anda bukan anggota workspace ini.');
+        }
+        
         $project->delete();
         return redirect()->route('member.projects')->with('success', 'Project berhasil dihapus!');
     }
