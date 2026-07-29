@@ -7,7 +7,8 @@
     <title>@lang('auth_page.login_title_page')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Material Symbols for Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
     <style>
         .material-symbols-outlined {
             font-family: 'Material Symbols Outlined';
@@ -16,7 +17,8 @@
 
     <!-- Dark Mode Initializer -->
     <script>
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia(
+                '(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
             document.documentElement.classList.remove('dark');
@@ -61,16 +63,18 @@
                 </div>
 
                 <!-- Dark Mode Toggle Button -->
-                <button x-data="{ isDark: document.documentElement.classList.contains('dark') }" @click="
-                isDark = !isDark; 
-                if(isDark) { 
-                    document.documentElement.classList.add('dark'); 
-                    localStorage.theme = 'dark'; 
-                } else { 
-                    document.documentElement.classList.remove('dark'); 
-                    localStorage.theme = 'light'; 
+                <button x-data="{ isDark: document.documentElement.classList.contains('dark') }"
+                    @click="
+                isDark = !isDark;
+                if(isDark) {
+                    document.documentElement.classList.add('dark');
+                    localStorage.theme = 'dark';
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.theme = 'light';
                 }
-            " class="relative p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 focus:outline-none"
+            "
+                    class="relative p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 focus:outline-none"
                     aria-label="Toggle Dark Mode">
                     <span x-show="isDark" x-cloak class="material-symbols-outlined text-[20px]">light_mode</span>
                     <span x-show="!isDark" class="material-symbols-outlined text-[20px]">dark_mode</span>
@@ -78,7 +82,8 @@
             </div>
 
             <!-- Logo -->
-            <a href="{{ url('/') }}" class="flex items-center gap-3 mb-16 w-fit hover:opacity-80 transition-opacity">
+            <a href="{{ url('/') }}"
+                class="flex items-center gap-3 mb-16 w-fit hover:opacity-80 transition-opacity">
                 <div class="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center">
                     <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -128,8 +133,7 @@
                         autocomplete="username"
                         class="w-full px-4 py-3 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 dark:placeholder:text-slate-300 dark:text-slate-300"
                         placeholder="@lang('auth_page.email_placeholder')" />
-                    <x-input-error :messages="$errors->get('email')"
-                        class="mt-1 text-[11px] text-red-500 font-medium" />
+                    <x-input-error :messages="$errors->get('email')" class="mt-1 text-[11px] text-red-500 font-medium" />
                 </div>
 
                 <!-- Password -->
@@ -147,8 +151,7 @@
                     <input id="password" type="password" name="password" required autocomplete="current-password"
                         class="w-full px-4 py-3 bg-brand-surface dark:bg-slate-900 border border-brand-teal/20 dark:border-brand-teal/30 rounded-xl focus:ring-2 focus:ring-brand-orange/20 focus:border-brand-orange transition-all text-sm outline-none placeholder:text-brand-slate/40 dark:placeholder:text-slate-300 dark:text-slate-300"
                         placeholder="••••••••" />
-                    <x-input-error :messages="$errors->get('password')"
-                        class="mt-1 text-[11px] text-red-500 font-medium" />
+                    <x-input-error :messages="$errors->get('password')" class="mt-1 text-[11px] text-red-500 font-medium" />
                 </div>
 
                 <!-- Remember Me -->
@@ -207,7 +210,7 @@
     <!-- Bagian Kanan: Visual Premium -->
     <div class="hidden lg:flex lg:w-1/2 relative bg-brand-dark items-end p-12 overflow-hidden">
         <!-- Gambar Cover yang Elegan -->
-        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop"
+        <img src="{{ asset('img/login.jpg') }}"
             class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity"
             alt="Modern Architecture">
         <!-- Gradien Lembut -->
