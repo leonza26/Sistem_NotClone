@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title', 'Dashboard') | Flowral</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/Logo_Flowral.png') }}">
 
     <!-- PENTING: Link Material Symbols yang tadi tertinggal -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />

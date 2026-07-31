@@ -138,21 +138,21 @@
             <!-- Panel -->
             <div x-show="renameModalOpen" x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
-                class="relative bg-white dark:bg-slate-800 border border-gray-200 rounded-3xl shadow-2xl dark:shadow-none w-full max-w-md p-8">
+                class="relative bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-3xl shadow-2xl dark:shadow-none w-full max-w-md p-8">
                 <div
-                    class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center mb-5 border border-orange-100">
+                    class="w-12 h-12 rounded-full bg-orange-50 dark:bg-orange-500/10 flex items-center justify-center mb-5 border border-orange-100 dark:border-orange-500/20">
                     <span class="material-symbols-outlined text-orange-500 text-2xl">edit_document</span>
                 </div>
-                <h3 class="text-xl font-outfit font-medium text-gray-900 mb-2">Rename Document</h3>
-                <p class="text-gray-500 text-sm font-light mb-6">Enter a new name for this document.</p>
+                <h3 class="text-xl font-outfit font-medium text-gray-900 dark:text-white mb-2">Rename Document</h3>
+                <p class="text-gray-500 dark:text-slate-400 text-sm font-light mb-6">Enter a new name for this document.</p>
 
                 <input type="text" x-model="renameTitle" @keydown.enter="submitRename()"
-                    class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all text-sm mb-8 outline-none"
+                    class="w-full border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 dark:text-white rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all text-sm mb-8 outline-none"
                     placeholder="Document Title...">
 
                 <div class="flex gap-3 justify-end">
                     <button @click="renameModalOpen = false"
-                        class="px-5 py-2.5 rounded-xl text-gray-500 font-medium text-sm hover:bg-gray-50 transition-colors">Cancel</button>
+                        class="px-5 py-2.5 rounded-xl text-gray-500 dark:text-slate-400 font-medium text-sm hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">Cancel</button>
                     <button @click="submitRename()"
                         class="px-5 py-2.5 rounded-xl bg-orange-500 text-white font-medium text-sm shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all flex items-center gap-2">
                         <span class="material-symbols-outlined text-sm" x-show="isRenaming" class="animate-spin"

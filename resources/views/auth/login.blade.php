@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@lang('auth_page.login_title_page')</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/Logo_Flowral.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Material Symbols for Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"

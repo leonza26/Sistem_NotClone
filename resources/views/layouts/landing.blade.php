@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'home') | Flowral — The Elegant Workspace for Modern Teams</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/Logo_Flowral.png') }}">
     <!-- PENTING: Link Material Symbols -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
@@ -55,12 +56,7 @@
         class="fixed w-full z-50 top-0 transition-all duration-500 bg-brand-surface/60 dark:bg-slate-900/80 backdrop-blur-xl border-b border-brand-teal/10 dark:border-brand-teal/20">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center">
-                    <svg class="w-4 h-4 text-brand-surface" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                </div>
+                <img src="{{ asset('img/Logo_Flowral.png') }}" alt="Flowral Logo" class="w-8 h-8 object-contain">
                 <span
                     class="font-outfit font-semibold text-xl tracking-wide text-brand-dark dark:text-white">Flowral.</span>
             </div>
@@ -139,12 +135,7 @@
             class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center border-t border-brand-teal/10 dark:border-brand-teal/20 pt-8">
             <div class="flex flex-col md:flex-row items-center gap-3 md:gap-4 mb-6 md:mb-0">
                 <div class="flex items-center gap-2">
-                    <div class="w-6 h-6 rounded bg-brand-dark flex items-center justify-center">
-                        <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
+                    <img src="{{ asset('img/Logo_Flowral.png') }}" alt="Flowral Logo" class="w-6 h-6 object-contain">
                     <span class="font-outfit font-medium text-lg text-brand-dark dark:text-white">Flowral</span>
                 </div>
                 <span class="hidden md:block text-brand-slate/40 dark:text-slate-300">|</span>
