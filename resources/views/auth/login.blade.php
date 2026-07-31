@@ -85,12 +85,7 @@
             <!-- Logo -->
             <a href="{{ url('/') }}"
                 class="flex items-center gap-3 mb-16 w-fit hover:opacity-80 transition-opacity">
-                <div class="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center">
-                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                </div>
+                <img src="{{ asset('img/Logo_Flowral.png') }}" alt="Flowral Logo" class="w-8 h-8 object-contain">
                 <span
                     class="font-outfit font-semibold text-xl tracking-wide text-brand-dark dark:text-white">Flowral.</span>
             </a>

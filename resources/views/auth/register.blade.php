@@ -40,13 +40,7 @@
 
         <!-- Callout Banner -->
         <div class="relative z-10 max-w-sm mb-10">
-            <div
-                class="w-10 h-10 rounded-full bg-brand-orange/20 flex items-center justify-center mb-6 border border-brand-orange/30">
-                <svg class="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-            </div>
+            <img src="{{ asset('img/Logo_Flowral.png') }}" alt="Flowral Logo" class="w-10 h-10 object-contain mb-6">
             <h2 class="font-outfit text-4xl font-medium text-white mb-4 leading-tight">@lang('auth_page.start_building_1')
                 <br />@lang('auth_page.start_building_2')
             </h2>
@@ -109,12 +103,7 @@
             <!-- Logo Mobile Only -->
             <a href="{{ url('/') }}"
                 class="flex lg:hidden items-center gap-3 mb-12 w-fit hover:opacity-80 transition-opacity">
-                <div class="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center">
-                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                </div>
+                <img src="{{ asset('img/Logo_Flowral.png') }}" alt="Flowral Logo" class="w-8 h-8 object-contain">
                 <span
                     class="font-outfit font-semibold text-xl tracking-wide text-brand-dark dark:text-white">Flowral.</span>
             </a>

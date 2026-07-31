@@ -2,10 +2,7 @@
     <!-- Logo & Badge -->
     <div class="mb-10 px-2 flex flex-col gap-1">
         <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center shadow-md">
-                <!-- Icon Code/Terminal -->
-                <span class="material-symbols-outlined text-slate-900 text-[18px]">terminal</span>
-            </div>
+            <img src="{{ asset('img/Logo_Flowral.png') }}" alt="Flowral Logo" class="w-8 h-8 object-contain">
             <div>
                 <h1 class="text-lg font-outfit font-semibold tracking-wide text-white">Flowral.</h1>
             </div>

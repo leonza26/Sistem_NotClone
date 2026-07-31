@@ -2,11 +2,7 @@
     class="h-screen w-64 fixed left-0 top-0 bg-brand-surface dark:bg-slate-900 border-r border-brand-teal/10 dark:border-brand-teal/20 flex flex-col py-6 px-4 z-50">
     <!-- Logo -->
     <div class="mb-12 px-2 flex items-center gap-3">
-        <div class="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center shadow-md">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-        </div>
+        <img src="{{ asset('img/Logo_Flowral.png') }}" alt="Flowral Logo" class="w-8 h-8 object-contain">
         <div>
             <h1 class="text-lg font-outfit font-medium tracking-wide text-brand-dark dark:text-white">Flowral.</h1>
         </div>
