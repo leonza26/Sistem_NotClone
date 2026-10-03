@@ -3,9 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>@yield('title', 'home') | Flowral — The Elegant Workspace for Modern Teams</title>
     <link rel="icon" type="image/png" href="{{ asset('img/Logo_Flowral.png') }}">
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
+    <meta name="theme-color" content="#282B2A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Flowral">
+    <link rel="apple-touch-icon" href="{{ asset('img/Logo_Flowral.png') }}">
+
     <!-- PENTING: Link Material Symbols -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
@@ -327,6 +337,8 @@
             }, 100);
         });
     </script>
+
+    @include('components.pwa-install-banner')
 </body>
 
 </html>
