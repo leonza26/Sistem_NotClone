@@ -1,0 +1,31 @@
+{
+  "name": "Flowral — Private AI Project Management",
+  "short_name": "Flowral",
+  "description": "Private, AI-powered project management and knowledge system",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F5FAFB",
+  "theme_color": "#282B2A",
+  "icons": [
+    {
+      "src": "/img/Logo_Flowral.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/Logo_Flowral.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/Logo_Flowral.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
