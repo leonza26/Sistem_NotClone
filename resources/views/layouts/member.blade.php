@@ -3,9 +3,18 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>@yield('title', 'Dashboard') | Flowral</title>
     <link rel="icon" type="image/png" href="{{ asset('img/Logo_Flowral.png') }}">
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
+    <meta name="theme-color" content="#282B2A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Flowral">
+    <link rel="apple-touch-icon" href="{{ asset('img/Logo_Flowral.png') }}">
 
     <!-- PENTING: Link Material Symbols yang tadi tertinggal -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -71,7 +80,7 @@
     @include('components.member.header')
 
     <!-- Main Content -->
-    <main class="ml-64 pt-20 min-h-screen">
+    <main class="ml-0 md:ml-64 pt-16 md:pt-20 min-h-screen pb-28 md:pb-8">
         @yield('content')
     </main>
 
@@ -191,6 +200,12 @@
             </div>
         @endif
     </div>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    @include('components.member.bottom-nav')
+
+    <!-- PWA Install Banner -->
+    @include('components.pwa-install-banner')
 </body>
 
 </html>

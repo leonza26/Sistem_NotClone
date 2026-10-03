@@ -1,5 +1,5 @@
 <aside
-    class="h-screen w-64 fixed left-0 top-0 bg-brand-surface dark:bg-slate-900 border-r border-brand-teal/10 dark:border-brand-teal/20 flex flex-col py-6 px-4 z-50">
+    class="h-screen w-64 fixed left-0 top-0 bg-brand-surface dark:bg-slate-900 border-r border-brand-teal/10 dark:border-brand-teal/20 hidden md:flex flex-col py-6 px-4 z-50">
     <!-- Logo -->
     <div class="mb-12 px-2 flex items-center gap-3">
         <img src="{{ asset('img/Logo_Flowral.png') }}" alt="Flowral Logo" class="w-8 h-8 object-contain">
