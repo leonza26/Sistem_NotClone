@@ -37,7 +37,7 @@
 
                             <!-- Panggil Fungsi Modal Rename -->
                             <button
-                                @click="menuOpen = false; openRenameModal({{ $note->id }}, '{{ addslashes($note->title) }}')"
+                                @click="menuOpen = false; openRenameModal({{ $note->id }}, @js($note->title))"
                                 class="w-full text-left px-4 py-2 text-xs font-medium text-gray-800 dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors">
                                 <span class="material-symbols-outlined text-sm">edit</span> Rename
                             </button>
@@ -46,7 +46,7 @@
 
                             <!-- Panggil Global Delete Modal dari member.layout -->
                             <button
-                                @click="menuOpen = false; $dispatch('open-delete-modal', { url: '/member/notes/{{ $note->id }}', message: 'Are you sure you want to delete the document \'{{ addslashes($note->title) }}\' and all its sub-documents permanently?' })"
+                                @click="menuOpen = false; $dispatch('open-delete-modal', { url: '/member/notes/{{ $note->id }}', message: @js('Are you sure you want to delete the document \'' . $note->title . '\' and all its sub-documents permanently?') })"
                                 class="w-full text-left px-4 py-2 text-xs font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 flex items-center gap-2 transition-colors">
                                 <span class="material-symbols-outlined text-sm">delete</span> Delete
                             </button>

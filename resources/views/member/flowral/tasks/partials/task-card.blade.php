@@ -53,7 +53,7 @@
                 <div class="border-t border-brand-teal/10 dark:border-brand-teal/20 my-1"></div>
 
                 <button type="button"
-                    @click="$dispatch('open-delete-modal', { url: '{{ route('member.tasks.destroy', $task) }}', message: 'Yakin hapus task \'{{ $task->title }}\'?' })"
+                    @click="$dispatch('open-delete-modal', { url: '{{ route('member.tasks.destroy', $task) }}', message: @js('Yakin hapus task \'' . $task->title . '\'?') })"
                     class="w-full flex items-center gap-2 px-4 py-2 text-[13px] text-red-500 hover:bg-red-50 dark:hover:bg-red-900/50 dark:hover:text-red-400 font-medium transition-colors">
                     <span class="material-symbols-outlined text-[16px]">delete</span> Delete
                 </button>
