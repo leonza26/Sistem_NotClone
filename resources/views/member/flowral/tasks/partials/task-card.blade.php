@@ -10,7 +10,7 @@
         <!-- Action Menu (Alpine.js) -->
         <div x-data="{ openMenu: false }" class="relative z-10">
             <button @click="openMenu = !openMenu" @click.away="openMenu = false"
-                class="w-6 h-6 flex items-center justify-center rounded-lg text-brand-slate dark:text-slate-300 hover:bg-brand-surface dark:hover:bg-slate-700 hover:text-brand-dark dark:hover:text-white transition-colors opacity-0 group-hover:opacity-100">
+                class="w-7 h-7 flex items-center justify-center rounded-lg text-brand-slate dark:text-slate-300 hover:bg-brand-surface dark:hover:bg-slate-700 hover:text-brand-dark dark:hover:text-white transition-colors opacity-100 sm:opacity-0 sm:group-hover:opacity-100">
                 <span class="material-symbols-outlined text-[18px]">more_horiz</span>
             </button>
 
@@ -21,11 +21,37 @@
                 x-transition:leave="transition ease-in duration-75"
                 x-transition:leave-start="transform opacity-100 scale-100"
                 x-transition:leave-end="transform opacity-0 scale-95"
-                class="absolute right-0 mt-2 w-32 bg-white dark:bg-slate-800 rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-brand-teal/10 dark:border-brand-teal/20 py-1.5 overflow-hidden z-20">
+                class="absolute right-0 mt-2 w-44 bg-white dark:bg-slate-800 rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-brand-teal/10 dark:border-brand-teal/20 py-1.5 overflow-hidden z-20">
                 <a href="{{ route('member.tasks.edit', $task) }}"
                     class="flex items-center gap-2 px-4 py-2 text-[13px] text-brand-dark dark:text-white hover:bg-brand-surface dark:hover:bg-slate-700 font-medium transition-colors">
                     <span class="material-symbols-outlined text-[16px]">edit</span> Edit
                 </a>
+
+                <!-- Quick Status Move (Touch / Mobile Friendly) -->
+                <div class="px-3 pt-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-brand-slate/60 dark:text-slate-400 border-t border-brand-teal/10 dark:border-brand-teal/20">
+                    Pindah Status
+                </div>
+                @if ($task->status !== 'todo')
+                    <button type="button" @click="openMenu = false; window.moveTaskStatus && window.moveTaskStatus({{ $task->id }}, 'todo')"
+                        class="w-full flex items-center gap-2 px-4 py-1.5 text-[12px] text-brand-dark dark:text-slate-200 hover:bg-brand-surface dark:hover:bg-slate-700 font-medium transition-colors text-left">
+                        <span class="w-2 h-2 rounded-full bg-brand-slate/40"></span> Ke To Do
+                    </button>
+                @endif
+                @if ($task->status !== 'in_progress')
+                    <button type="button" @click="openMenu = false; window.moveTaskStatus && window.moveTaskStatus({{ $task->id }}, 'in_progress')"
+                        class="w-full flex items-center gap-2 px-4 py-1.5 text-[12px] text-brand-orange hover:bg-brand-surface dark:hover:bg-slate-700 font-medium transition-colors text-left">
+                        <span class="w-2 h-2 rounded-full bg-brand-orange"></span> Ke In Progress
+                    </button>
+                @endif
+                @if ($task->status !== 'done')
+                    <button type="button" @click="openMenu = false; window.moveTaskStatus && window.moveTaskStatus({{ $task->id }}, 'done')"
+                        class="w-full flex items-center gap-2 px-4 py-1.5 text-[12px] text-brand-teal hover:bg-brand-surface dark:hover:bg-slate-700 font-medium transition-colors text-left">
+                        <span class="w-2 h-2 rounded-full bg-brand-teal"></span> Ke Done
+                    </button>
+                @endif
+
+                <div class="border-t border-brand-teal/10 dark:border-brand-teal/20 my-1"></div>
+
                 <button type="button"
                     @click="$dispatch('open-delete-modal', { url: '{{ route('member.tasks.destroy', $task) }}', message: 'Yakin hapus task \'{{ $task->title }}\'?' })"
                     class="w-full flex items-center gap-2 px-4 py-2 text-[13px] text-red-500 hover:bg-red-50 dark:hover:bg-red-900/50 dark:hover:text-red-400 font-medium transition-colors">
