@@ -18,9 +18,9 @@
                     </span>
                 </div>
 
-                <div class="flex items-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <div class="flex items-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                     <button @click.stop="createNote({{ $workspaceId }}, {{ $note->id }})"
-                        class="hover:bg-gray-200 p-1 rounded-md text-gray-500 hover:text-gray-900 transition-all"
+                        class="hover:bg-gray-200 dark:hover:bg-slate-700 p-1 rounded-md text-gray-500 dark:text-slate-400 hover:text-gray-900 dark:hover:text-white transition-all"
                         title="Add Sub-Document">
                         <span class="material-symbols-outlined text-base">add</span>
                     </button>

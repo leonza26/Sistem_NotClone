@@ -3,41 +3,45 @@
 @section('title', 'Documents')
 
 @section('content')
-    <div class="px-8 lg:px-10 pb-12 pt-4" x-data="notesApp()">
+    <div class="px-4 sm:px-8 lg:px-10 pb-12 pt-4" x-data="notesApp()">
         <!-- HEADER -->
-        <header class="max-w-6xl mb-8">
+        <header class="max-w-6xl mb-6 sm:mb-8">
             <div class="flex items-center gap-2 text-gray-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-widest mb-3">
                 <span>Workspace</span>
                 <span class="w-1 h-1 rounded-full bg-orange-500"></span>
                 <span class="text-orange-500 font-bold">Documents</span>
             </div>
-            <h2 class="font-outfit text-4xl lg:text-5xl font-medium text-gray-900 dark:text-white leading-tight tracking-tight">
+            <h2 class="font-outfit text-3xl sm:text-4xl lg:text-5xl font-medium text-gray-900 dark:text-white leading-tight tracking-tight">
                 Your <span class="text-orange-500">Knowledge Base.</span>
             </h2>
         </header>
 
         <!-- CONTAINER UTAMA -->
-        <div class="bg-white dark:bg-slate-800 rounded-3xl border border-gray-200 overflow-hidden flex"
-            style="height: 75vh; min-height: 600px; box-shadow: 0 4px 20px -10px rgba(0,0,0,0.1);">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl border border-gray-200 dark:border-slate-700 overflow-hidden flex relative h-[calc(100vh-220px)] sm:h-[75vh] min-h-[520px] sm:min-h-[600px]"
+            style="box-shadow: 0 4px 20px -10px rgba(0,0,0,0.1);">
 
-            <!-- SIDEBAR KIRI (Bisa di Minimize) -->
+            <!-- SIDEBAR KIRI -->
             <div x-show="sidebarOpen" x-transition:enter="transition-all ease-out duration-300"
                 x-transition:enter-start="opacity-0 -ml-72" x-transition:enter-end="opacity-100 ml-0"
                 x-transition:leave="transition-all ease-in duration-300" x-transition:leave-start="opacity-100 ml-0"
                 x-transition:leave-end="opacity-0 -ml-72"
-                class="w-72 flex-shrink-0 border-r border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 flex flex-col relative z-20">
-                <div class="p-6 border-b border-gray-200 dark:border-slate-700 flex justify-between items-center bg-gray-50 dark:bg-slate-800">
+                :class="{ 'hidden lg:flex': mobileView === 'editor', 'flex': mobileView === 'list' }"
+                class="w-full lg:w-72 flex-shrink-0 border-r border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 flex-col relative z-20">
+                <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-slate-700 flex justify-between items-center bg-gray-50 dark:bg-slate-800">
                     <span class="font-outfit font-medium text-gray-800 dark:text-white text-lg">Documents</span>
+                    <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 lg:hidden">
+                        List View
+                    </span>
                 </div>
 
-                <div class="overflow-y-auto flex-1 py-4 space-y-8 custom-scrollbar">
+                <div class="overflow-y-auto flex-1 py-4 space-y-6 sm:space-y-8 custom-scrollbar">
                     @foreach ($workspaces as $workspace)
                         <div>
                             <div
                                 class="text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-widest mb-3 px-6 flex justify-between items-center group">
                                 <span>{{ $workspace->name }}</span>
                                 <button @click="createNote({{ $workspace->id }}, null)"
-                                    class="opacity-0 group-hover:opacity-100 hover:bg-gray-200 text-gray-500 hover:text-orange-500 p-1 rounded transition-colors"
+                                    class="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-500 dark:text-slate-400 hover:text-orange-500 p-1 rounded transition-colors"
                                     title="Add Document">
                                     <span class="material-symbols-outlined text-base">add</span>
                                 </button>
@@ -54,72 +58,87 @@
                 </div>
             </div>
 
-            <!-- AREA KANAN -->
-            <div class="flex-1 flex flex-col relative bg-white dark:bg-slate-800">
+            <!-- AREA KANAN (Editor & Preview) -->
+            <div :class="{ 'hidden lg:flex': mobileView === 'list', 'flex': mobileView === 'editor' }"
+                class="flex-1 flex-col relative bg-white dark:bg-slate-800 w-full overflow-hidden">
 
                 <!-- State: Kosong -->
-                <div x-show="!activeNote" class="flex-1 flex flex-col items-center justify-center text-gray-400 dark:text-slate-400 bg-white dark:bg-slate-800">
+                <div x-show="!activeNote" class="flex-1 flex flex-col items-center justify-center text-gray-400 dark:text-slate-400 bg-white dark:bg-slate-800 p-6 text-center">
                     <div
-                        class="w-24 h-24 rounded-full bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-gray-300 dark:text-slate-500 text-5xl">edit_document</span>
+                        class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 flex items-center justify-center mb-4 sm:mb-6">
+                        <span class="material-symbols-outlined text-gray-300 dark:text-slate-500 text-4xl sm:text-5xl">edit_document</span>
                     </div>
-                    <h4 class="font-outfit text-xl font-medium text-gray-900 dark:text-white mb-2">No Document Selected</h4>
-                    <p class="text-sm font-light">Choose a document from the sidebar or create a new one.</p>
+                    <h4 class="font-outfit text-lg sm:text-xl font-medium text-gray-900 dark:text-white mb-2">No Document Selected</h4>
+                    <p class="text-xs sm:text-sm font-light max-w-xs sm:max-w-none">Choose a document from the sidebar or create a new one.</p>
+                    <button @click="mobileView = 'list'" type="button" class="mt-4 px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-200 rounded-xl text-xs font-semibold lg:hidden">
+                        ← Buka Daftar Dokumen
+                    </button>
                 </div>
 
-                <!-- State: Aktif (Diubah dari x-if ke x-show agar DOM tidak hancur) -->
+                <!-- State: Aktif -->
                 <div x-show="activeNote" style="display: none;" class="flex-1 flex flex-col h-full overflow-hidden">
 
                     <!-- Header Editor & Tombol Save -->
                     <div
-                        class="border-b border-gray-200 p-4 px-6 flex justify-between items-center bg-white dark:bg-slate-800 z-20 shadow-sm dark:shadow-none">
-                        <div class="flex items-center gap-4 flex-1">
+                        class="border-b border-gray-200 dark:border-slate-700 p-3 sm:p-4 px-4 sm:px-6 flex justify-between items-center bg-white dark:bg-slate-800 z-20 shadow-sm dark:shadow-none gap-2 sm:gap-4">
+                        <div class="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
+                            <!-- Mobile Back Button (< lg) -->
+                            <button @click="mobileView = 'list'" type="button"
+                                class="lg:hidden p-1.5 -ml-1 text-gray-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg flex items-center gap-1 text-xs font-semibold flex-shrink-0"
+                                title="Kembali ke Daftar">
+                                <span class="material-symbols-outlined text-xl">arrow_back</span>
+                                <span class="hidden sm:inline">Daftar</span>
+                            </button>
+
+                            <!-- Desktop Sidebar Toggle -->
                             <button @click="sidebarOpen = !sidebarOpen"
-                                class="p-1.5 hover:bg-gray-100 rounded-md text-gray-500 transition-colors"
+                                class="hidden lg:flex p-1.5 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-md text-gray-500 dark:text-slate-400 transition-colors flex-shrink-0"
                                 title="Toggle Sidebar">
                                 <span class="material-symbols-outlined text-xl"
                                     x-text="sidebarOpen ? 'menu_open' : 'menu'"></span>
                             </button>
 
                             <input type="text" x-model="activeNote?.title" @input="markDirty()"
-                                class="w-full max-w-xl text-2xl font-outfit font-medium text-gray-900 dark:text-white border-none focus:ring-0 p-0 placeholder-gray-300 dark:placeholder-slate-500 bg-transparent"
+                                class="w-full max-w-xl text-base sm:text-2xl font-outfit font-medium text-gray-900 dark:text-white border-none focus:ring-0 p-0 placeholder-gray-300 dark:placeholder-slate-500 bg-transparent truncate"
                                 placeholder="Document Title...">
                         </div>
 
                         <!-- Indikator Save & Tombol -->
-                        <div class="flex items-center gap-5">
-                            <span x-show="isDirty" class="text-xs font-medium text-orange-500 flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span> Unsaved changes
+                        <div class="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+                            <span x-show="isDirty" class="text-xs font-medium text-orange-500 flex items-center gap-1 sm:gap-2">
+                                <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                                <span class="hidden md:inline">Unsaved</span>
                             </span>
                             <span x-show="!isDirty && lastSavedTime"
-                                class="text-xs text-gray-500 font-medium flex items-center gap-1.5">
+                                class="text-xs text-gray-500 dark:text-slate-400 font-medium hidden md:flex items-center gap-1.5">
                                 <span class="material-symbols-outlined text-base text-green-500">check_circle</span> Saved
                             </span>
 
                             <button @click="generateSummary()"
-                                class="bg-orange-50 text-orange-600 hover:bg-orange-100 hover:text-orange-700 px-4 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-widest transition-all flex items-center gap-2 border border-orange-200 shadow-sm dark:shadow-none">
-                                <span class="material-symbols-outlined text-lg"
+                                class="bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 hover:bg-orange-100 dark:hover:bg-orange-500/20 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs font-semibold uppercase tracking-widest transition-all flex items-center gap-1.5 border border-orange-200 dark:border-orange-500/20 shadow-sm dark:shadow-none"
+                                title="AI Summarize">
+                                <span class="material-symbols-outlined text-base sm:text-lg"
                                     :class="isSummarizing ? 'animate-spin' : ''">
                                     auto_awesome
                                 </span>
-                                <span x-text="isSummarizing ? 'Thinking...' : 'AI Summarize'"></span>
+                                <span class="hidden sm:inline" x-text="isSummarizing ? 'Thinking...' : 'AI Summary'"></span>
                             </button>
 
                             <button @click="saveNote()"
-                                class="bg-gray-900 hover:bg-orange-500 text-white px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-widest transition-all flex items-center gap-2 border-none"
-                                style="box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                                <span class="material-symbols-outlined text-lg" :class="isSaving ? 'animate-spin' : ''">
+                                class="bg-gray-900 hover:bg-orange-500 dark:bg-orange-500 dark:hover:bg-orange-600 text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-semibold uppercase tracking-widest transition-all flex items-center gap-1.5 border-none shadow-sm"
+                                title="Simpan Dokumen">
+                                <span class="material-symbols-outlined text-base sm:text-lg" :class="isSaving ? 'animate-spin' : ''">
                                     <template x-if="isSaving">sync</template>
                                     <template x-if="!isSaving">save</template>
                                 </span>
-                                <span x-text="isSaving ? 'Saving...' : 'Save'"></span>
+                                <span class="hidden sm:inline" x-text="isSaving ? 'Saving...' : 'Save'"></span>
                             </button>
                         </div>
                     </div>
 
                     <!-- Kertas Dokumen (Area Mengetik TinyMCE) -->
                     <!-- KUNCI RAHASIA: Atribut x-ignore ini mencegah Alpine mengganggu/merusak isi Editor -->
-                    <div class="flex-1 p-0 relative bg-slate-50 dark:bg-slate-900" x-ignore>
+                    <div class="flex-1 p-0 relative bg-slate-50 dark:bg-slate-900 h-full overflow-hidden" x-ignore>
                         <div class="w-full h-full border-none">
                             <textarea id="tinymce-editor"></textarea>
                         </div>
@@ -171,25 +190,25 @@
 
             <div x-show="summaryModalOpen" x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
-                class="relative bg-white dark:bg-slate-800 border border-gray-200 rounded-3xl shadow-2xl dark:shadow-none w-full max-w-2xl p-8 max-h-[80vh] flex flex-col mx-4">
+                class="relative bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-3xl shadow-2xl dark:shadow-none w-full max-w-2xl p-6 sm:p-8 max-h-[85vh] flex flex-col mx-4">
                 <div class="flex items-center gap-4 mb-6">
                     <div
-                        class="w-12 h-12 rounded-full bg-gray-900 flex items-center justify-center shadow-lg shadow-gray-900/20 flex-shrink-0">
-                        <span class="material-symbols-outlined text-white text-[24px]">smart_toy</span>
+                        class="w-12 h-12 rounded-full bg-gray-900 dark:bg-orange-500/10 flex items-center justify-center shadow-lg shadow-gray-900/20 flex-shrink-0">
+                        <span class="material-symbols-outlined text-white dark:text-orange-500 text-[24px]">smart_toy</span>
                     </div>
                     <div>
-                        <h3 class="text-xl font-outfit font-medium text-gray-900">AI Summary</h3>
-                        <p class="text-gray-500 text-sm font-light">Ringkasan otomatis dari dokumen ini.</p>
+                        <h3 class="text-xl font-outfit font-medium text-gray-900 dark:text-white">AI Summary</h3>
+                        <p class="text-gray-500 dark:text-slate-400 text-sm font-light">Ringkasan otomatis dari dokumen ini.</p>
                     </div>
                 </div>
 
                 <div class="flex-1 overflow-y-auto custom-scrollbar pr-2 mb-6">
-                    <div class="bg-gray-50 rounded-2xl p-6 text-sm text-gray-800 font-light leading-relaxed border border-gray-100"
+                    <div class="bg-gray-50 dark:bg-slate-900 rounded-2xl p-6 text-sm text-gray-800 dark:text-slate-200 font-light leading-relaxed border border-gray-100 dark:border-slate-800"
                         x-html="aiSummaryResult">
                     </div>
                 </div>
 
-                <div class="flex justify-end pt-2 border-t border-gray-100">
+                <div class="flex justify-end pt-2 border-t border-gray-100 dark:border-slate-700">
                     <button @click="summaryModalOpen = false"
                         class="px-5 py-2.5 rounded-xl bg-orange-500 text-white font-medium text-sm shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all">
                         Tutup Ringkasan
@@ -209,6 +228,7 @@
                     isDirty: false,
                     sidebarOpen: true,
                     lastSavedTime: '',
+                    mobileView: (new URLSearchParams(window.location.search).get('note') ? 'editor' : 'list'),
 
                     // STATE UNTUK RENAME MODAL
                     renameModalOpen: false,
@@ -225,6 +245,7 @@
                     },
 
                     async createNote(workspaceId, parentId = null) {
+                        this.mobileView = 'editor';
                         try {
                             const response = await fetch('{{ route('member.notes.store') }}', {
                                 method: 'POST',
@@ -246,6 +267,7 @@
                     },
 
                     async openNote(id) {
+                        this.mobileView = 'editor';
                         try {
                             if (this.activeNote && this.activeNote.id === id) return;
 
@@ -289,14 +311,14 @@
                             skin: isDark ? 'oxide-dark' : 'oxide',
                             content_css: isDark ? 'dark' : 'default',
                             height: '100%',
-                            menubar: 'file edit view insert format tools table',
+                            menubar: window.innerWidth > 768 ? 'file edit view insert format tools table' : false,
+                            toolbar_mode: 'sliding',
                             plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table wordcount',
                             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image table | removeformat | fullscreen',
                             content_style: isDark ? darkStyle : lightStyle,
                             resize: false,
                             branding: false,
                             promotion: false,
-                            skin: 'oxide',
                             setup: (editor) => {
                                 editor.on('init', () => {
                                     let html = this.activeNote ? (this.activeNote
