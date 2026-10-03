@@ -64,41 +64,41 @@
     <!-- 1. Navbar (Floating Glass) -->
     <nav
         class="fixed w-full z-50 top-0 transition-all duration-500 bg-brand-surface/60 dark:bg-slate-900/80 backdrop-blur-xl border-b border-brand-teal/10 dark:border-brand-teal/20">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <img src="{{ asset('img/Logo_Flowral.png') }}" alt="Flowral Logo" class="w-8 h-8 object-contain">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex justify-between items-center">
+            <a href="{{ url('/') }}" class="flex items-center gap-2.5 sm:gap-3">
+                <img src="{{ asset('img/Logo_Flowral.png') }}" alt="Flowral Logo" class="w-7 h-7 sm:w-8 sm:h-8 object-contain">
                 <span
-                    class="font-outfit font-semibold text-xl tracking-wide text-brand-dark dark:text-white">Flowral.</span>
-            </div>
+                    class="font-outfit font-semibold text-lg sm:text-xl tracking-wide text-brand-dark dark:text-white">Flowral.</span>
+            </a>
 
             @if(request()->routeIs('landing.page'))
-                <div class="hidden md:flex gap-10 font-inter font-light text-sm text-brand-slate dark:text-slate-300">
+                <div class="hidden md:flex gap-8 lg:gap-10 font-inter font-light text-sm text-brand-slate dark:text-slate-300">
                     <a href="#features" class="hover:text-brand-orange transition-colors">@lang('landing.features')</a>
                     <a href="#testimonials" class="hover:text-brand-orange transition-colors">@lang('landing.testimonials')</a>
                     <a href="#pricing" class="hover:text-brand-orange transition-colors">@lang('landing.pricing')</a>
                 </div>
             @endif
 
-            <div class="flex items-center gap-5">
+            <div class="flex items-center gap-2 sm:gap-4">
                 @auth
                     <a href="{{ route('member') }}"
-                        class="px-5 py-2.5 text-sm font-medium bg-brand-orange text-white rounded-full shadow-[0_4px_14px_0_rgba(229,117,0,0.39)] hover:shadow-[0_6px_20px_rgba(229,117,0,0.23)] hover:-translate-y-0.5 transition-all">
+                        class="px-3.5 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-medium bg-brand-orange text-white rounded-full shadow-[0_4px_14px_0_rgba(229,117,0,0.39)] hover:shadow-[0_6px_20px_rgba(229,117,0,0.23)] hover:-translate-y-0.5 transition-all">
                         @lang('landing.dashboard')
                     </a>
                 @else
                     <a href="{{ route('login') }}"
-                        class="font-inter font-medium text-sm text-brand-slate dark:text-slate-300 hover:text-brand-dark dark:hover:text-white transition-colors">@lang('landing.sign_in')</a>
+                        class="hidden sm:inline-block font-inter font-medium text-xs sm:text-sm text-brand-slate dark:text-slate-300 hover:text-brand-dark dark:hover:text-white transition-colors">@lang('landing.sign_in')</a>
                     <a href="{{ route('register') }}"
-                        class="px-5 py-2.5 text-sm font-medium bg-brand-orange text-white rounded-full shadow-[0_4px_14px_0_rgba(229,117,0,0.39)] hover:shadow-[0_6px_20px_rgba(229,117,0,0.23)] hover:-translate-y-0.5 transition-all">
+                        class="px-3.5 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-medium bg-brand-orange text-white rounded-full shadow-[0_4px_14px_0_rgba(229,117,0,0.39)] hover:shadow-[0_6px_20px_rgba(229,117,0,0.23)] hover:-translate-y-0.5 transition-all">
                         @lang('landing.get_started')
                     </a>
                 @endauth
 
                 <!-- Language Toggle Button -->
-                <div x-data="{ openLang: false }" class="relative z-50 mt-1">
-                    <button @click="openLang = !openLang" @click.away="openLang = false" class="flex items-center gap-1 px-3 py-1.5 text-[12px] font-bold text-brand-slate dark:text-slate-300 hover:text-brand-dark dark:hover:text-white transition-colors rounded-full uppercase focus:outline-none tracking-widest border border-transparent hover:border-brand-teal/10 dark:hover:border-brand-teal/20">
+                <div x-data="{ openLang: false }" class="relative z-50">
+                    <button @click="openLang = !openLang" @click.away="openLang = false" class="flex items-center gap-0.5 sm:gap-1 px-2 sm:px-3 py-1.5 text-[11px] sm:text-[12px] font-bold text-brand-slate dark:text-slate-300 hover:text-brand-dark dark:hover:text-white transition-colors rounded-full uppercase focus:outline-none tracking-wider sm:tracking-widest border border-transparent hover:border-brand-teal/10 dark:hover:border-brand-teal/20">
                         {{ app()->getLocale() }}
-                        <span class="material-symbols-outlined text-[16px] transition-transform duration-200" :class="openLang ? 'rotate-180' : ''">expand_more</span>
+                        <span class="material-symbols-outlined text-[14px] sm:text-[16px] transition-transform duration-200" :class="openLang ? 'rotate-180' : ''">expand_more</span>
                     </button>
                     
                     <div x-show="openLang" x-transition.opacity.duration.200ms
@@ -118,10 +118,10 @@
                     document.documentElement.classList.remove('dark'); 
                     localStorage.theme = 'light'; 
                 }
-            " class="relative p-2 text-slate-400 hover:text-slate-600 transition-colors rounded-full hover:bg-slate-100 focus:outline-none"
+            " class="relative p-1.5 sm:p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none"
                     aria-label="Toggle Dark Mode">
-                    <span x-show="isDark" x-cloak class="material-symbols-outlined text-[20px]">light_mode</span>
-                    <span x-show="!isDark" class="material-symbols-outlined text-[20px]">dark_mode</span>
+                    <span x-show="isDark" x-cloak class="material-symbols-outlined text-[18px] sm:text-[20px]">light_mode</span>
+                    <span x-show="!isDark" class="material-symbols-outlined text-[18px] sm:text-[20px]">dark_mode</span>
                 </button>
             </div>
 
@@ -131,12 +131,12 @@
     @yield('content')
 
     <!-- 7. Bottom CTA & Footer -->
-    <footer class="bg-white dark:bg-slate-800 border-t border-brand-teal/10 dark:border-brand-teal/20 pt-32 pb-12">
-        <div class="max-w-4xl mx-auto px-6 text-center mb-32 cta-section gsap-hidden">
-            <h2 class="font-outfit text-5xl md:text-6xl font-medium text-brand-dark dark:text-white mb-8">@lang('landing.cta_title')</h2>
-            <p class="text-brand-slate dark:text-slate-300 text-xl font-light mb-12">@lang('landing.cta_desc')</p>
+    <footer class="bg-white dark:bg-slate-800 border-t border-brand-teal/10 dark:border-brand-teal/20 pt-16 sm:pt-32 pb-8 sm:pb-12">
+        <div class="max-w-4xl mx-auto px-6 text-center mb-16 sm:mb-32 cta-section gsap-hidden">
+            <h2 class="font-outfit text-3xl sm:text-5xl md:text-6xl font-medium text-brand-dark dark:text-white mb-6 sm:mb-8">@lang('landing.cta_title')</h2>
+            <p class="text-brand-slate dark:text-slate-300 text-base sm:text-xl font-light mb-8 sm:mb-12">@lang('landing.cta_desc')</p>
             <a href="{{ route('register') }}"
-                class="inline-block px-10 py-5 text-lg font-medium bg-brand-dark text-white rounded-full hover:bg-brand-slate shadow-xl dark:shadow-none hover:shadow-2xl hover:-translate-y-1 transition-all">
+                class="inline-block px-8 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-medium bg-brand-dark text-white rounded-full hover:bg-brand-slate shadow-xl dark:shadow-none hover:shadow-2xl hover:-translate-y-1 transition-all">
                 @lang('landing.cta_btn')
             </a>
         </div>

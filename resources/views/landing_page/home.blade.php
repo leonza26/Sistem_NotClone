@@ -5,7 +5,7 @@
 
     <!-- 2. Hero Section -->
     <section
-        class="relative pt-40 pb-20 lg:pt-52 lg:pb-32 overflow-hidden flex flex-col items-center justify-center min-h-[90vh]">
+        class="relative pt-28 pb-16 sm:pt-40 sm:pb-20 lg:pt-52 lg:pb-32 overflow-hidden flex flex-col items-center justify-center min-h-[85vh] sm:min-h-[90vh]">
         <!-- Glow Orbs -->
         <div
             class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-brand-teal/10 blur-[100px] rounded-full mix-blend-multiply -z-10 animate-blob">
@@ -14,34 +14,34 @@
             class="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-brand-orange/5 blur-[100px] rounded-full mix-blend-multiply -z-10 animate-blob animation-delay-2000">
         </div>
 
-        <div class="max-w-4xl mx-auto px-6 text-center z-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center z-10">
             <div
-                class="hero-anim gsap-hidden inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-brand-teal/20 dark:border-brand-teal/30 text-brand-slate dark:text-slate-300 text-[11px] font-semibold tracking-widest uppercase mb-8 shadow-sm dark:shadow-none">
+                class="hero-anim gsap-hidden inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-brand-teal/20 dark:border-brand-teal/30 text-brand-slate dark:text-slate-300 text-[10px] sm:text-[11px] font-semibold tracking-widest uppercase mb-6 sm:mb-8 shadow-sm dark:shadow-none">
                 <span>@lang('landing.hero_badge')</span>
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></span>
             </div>
 
             <h1
-                class="hero-anim gsap-hidden font-outfit text-6xl md:text-8xl font-medium text-brand-dark dark:text-white leading-[1.05] tracking-tight mb-8">
+                class="hero-anim gsap-hidden font-outfit text-4xl sm:text-6xl md:text-8xl font-medium text-brand-dark dark:text-white leading-[1.1] sm:leading-[1.05] tracking-tight mb-6 sm:mb-8">
                 @lang('landing.hero_title_1') <br />
                 <span class="text-gradient font-semibold">@lang('landing.hero_title_2')</span>
             </h1>
 
             <p
-                class="hero-anim gsap-hidden text-xl md:text-2xl text-brand-slate dark:text-slate-300 font-light max-w-2xl mx-auto mb-12 leading-relaxed">
+                class="hero-anim gsap-hidden text-base sm:text-xl md:text-2xl text-brand-slate dark:text-slate-300 font-light max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed">
                 @lang('landing.hero_desc')
             </p>
 
             <div class="hero-anim gsap-hidden flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a href="{{ route('register') }}"
-                    class="px-8 py-4 text-base font-medium bg-brand-dark text-white rounded-full hover:bg-brand-slate transition-all w-full sm:w-auto shadow-lg hover:shadow-xl hover:-translate-y-1">
+                    class="px-8 py-3.5 sm:py-4 text-sm sm:text-base font-medium bg-brand-dark text-white rounded-full hover:bg-brand-slate transition-all w-full sm:w-auto shadow-lg hover:shadow-xl hover:-translate-y-1">
                     @lang('landing.hero_btn')
                 </a>
             </div>
         </div>
 
         <!-- Hero App Mockup Image -->
-        <div class="hero-img-wrap gsap-hidden w-full max-w-6xl mx-auto px-6 mt-24 relative z-20 perspective-1000">
+        <div class="hero-img-wrap gsap-hidden w-full max-w-6xl mx-auto px-4 sm:px-6 mt-12 sm:mt-24 relative z-20 perspective-1000">
             <div
                 class="relative rounded-2xl md:rounded-[32px] p-2 bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_20px_80px_-20px_rgba(48,71,78,0.2)]">
                 <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2000&auto=format&fit=crop"
@@ -80,17 +80,17 @@
     </section>
 
     <!-- 4. Feature Showcase (Left-Right Alternating) -->
-    <section id="features" class="py-32 bg-brand-surface dark:bg-slate-900 relative">
-        <div class="max-w-7xl mx-auto px-6">
+    <section id="features" class="py-16 sm:py-32 bg-brand-surface dark:bg-slate-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
             <!-- Feature 1 -->
-            <div class="flex flex-col lg:flex-row items-center gap-16 mb-40 showcase-row">
+            <div class="flex flex-col lg:flex-row items-center gap-10 sm:gap-16 mb-20 sm:mb-40 showcase-row">
                 <div class="w-full lg:w-1/2 showcase-text">
                     <h2
-                        class="font-outfit text-4xl lg:text-5xl font-medium text-brand-dark dark:text-white mb-6 leading-tight">
+                        class="font-outfit text-3xl sm:text-4xl lg:text-5xl font-medium text-brand-dark dark:text-white mb-6 leading-tight">
                         @lang('landing.feat1_title_1') <br /><span class="text-brand-slate dark:text-slate-300">@lang('landing.feat1_title_2')</span>
                     </h2>
-                    <p class="text-brand-slate dark:text-slate-300 text-lg font-light leading-relaxed mb-8">
+                    <p class="text-brand-slate dark:text-slate-300 text-base sm:text-lg font-light leading-relaxed mb-8">
                         @lang('landing.feat1_desc')
                     </p>
                     <ul class="space-y-4">
@@ -113,13 +113,13 @@
             </div>
 
             <!-- Feature 2 -->
-            <div class="flex flex-col lg:flex-row-reverse items-center gap-16 showcase-row">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-10 sm:gap-16 showcase-row">
                 <div class="w-full lg:w-1/2 showcase-text">
                     <h2
-                        class="font-outfit text-4xl lg:text-5xl font-medium text-brand-dark dark:text-white mb-6 leading-tight">
+                        class="font-outfit text-3xl sm:text-4xl lg:text-5xl font-medium text-brand-dark dark:text-white mb-6 leading-tight">
                         @lang('landing.feat2_title_1') <br /><span
                             class="text-brand-slate dark:text-slate-300">@lang('landing.feat2_title_2')</span></h2>
-                    <p class="text-brand-slate dark:text-slate-300 text-lg font-light leading-relaxed mb-8">
+                    <p class="text-brand-slate dark:text-slate-300 text-base sm:text-lg font-light leading-relaxed mb-8">
                         @lang('landing.feat2_desc')
                     </p>
                     <a href="{{ route('register') }}"
@@ -142,18 +142,18 @@
     </section>
 
     <!-- 5. Bento Grid Deep Features -->
-    <section class="py-32 bg-white dark:bg-slate-800 border-t border-brand-teal/10 dark:border-brand-teal/20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20 bento-header gsap-hidden">
-                <h2 class="font-outfit text-4xl md:text-5xl font-medium text-brand-dark dark:text-white mb-6">
+    <section class="py-16 sm:py-32 bg-white dark:bg-slate-800 border-t border-brand-teal/10 dark:border-brand-teal/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 sm:mb-20 bento-header gsap-hidden">
+                <h2 class="font-outfit text-3xl sm:text-4xl md:text-5xl font-medium text-brand-dark dark:text-white mb-4 sm:mb-6">
                     @lang('landing.bento_header')</h2>
-                <p class="text-brand-slate dark:text-slate-300 text-xl font-light max-w-2xl mx-auto">@lang('landing.bento_desc')</p>
+                <p class="text-brand-slate dark:text-slate-300 text-base sm:text-xl font-light max-w-2xl mx-auto">@lang('landing.bento_desc')</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[320px]">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-auto md:auto-rows-[320px]">
                 <!-- Large Card -->
                 <div
-                    class="md:col-span-2 bg-brand-surface dark:bg-slate-900 rounded-[32px] p-10 border border-brand-teal/10 dark:border-brand-teal/20 hover:border-brand-teal/30 transition-colors flex flex-col justify-between relative overflow-hidden bento-item gsap-hidden">
+                    class="md:col-span-2 bg-brand-surface dark:bg-slate-900 rounded-2xl sm:rounded-[32px] p-6 sm:p-10 border border-brand-teal/10 dark:border-brand-teal/20 hover:border-brand-teal/30 transition-colors flex flex-col justify-between relative overflow-hidden bento-item gsap-hidden">
                     <div>
                         <div
                             class="w-10 h-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center mb-6 shadow-sm dark:shadow-none border border-brand-teal/10 dark:border-brand-teal/20">
@@ -173,7 +173,7 @@
                 </div>
 
                 <!-- Small Card -->
-                <div class="bg-brand-dark rounded-[32px] p-10 flex flex-col justify-between bento-item gsap-hidden">
+                <div class="bg-brand-dark rounded-2xl sm:rounded-[32px] p-6 sm:p-10 flex flex-col justify-between bento-item gsap-hidden">
                     <div>
                         <div class="w-10 h-10 rounded-full bg-brand-slate flex items-center justify-center mb-6">
                             <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -188,7 +188,7 @@
 
                 <!-- Small Card AI -->
                 <div
-                    class="md:col-span-3 lg:col-span-1 bg-gradient-to-br from-brand-orange to-[#ff9838] rounded-[32px] p-10 flex flex-col justify-between relative overflow-hidden bento-item gsap-hidden">
+                    class="md:col-span-3 lg:col-span-1 bg-gradient-to-br from-brand-orange to-[#ff9838] rounded-2xl sm:rounded-[32px] p-6 sm:p-10 flex flex-col justify-between relative overflow-hidden bento-item gsap-hidden">
                     <div class="relative z-10">
                         <div
                             class="inline-block px-3 py-1 bg-white/20 text-white text-xs font-bold rounded-full backdrop-blur-md mb-6">
@@ -200,8 +200,8 @@
 
                 <!-- Medium Card -->
                 <div
-                    class="md:col-span-3 lg:col-span-2 bg-brand-surface dark:bg-slate-900 rounded-[32px] p-10 border border-brand-teal/10 dark:border-brand-teal/20 flex flex-col justify-center items-center text-center bento-item gsap-hidden">
-                    <h3 class="font-outfit text-3xl font-medium text-brand-dark dark:text-white mb-4">@lang('landing.bento_4_title')
+                    class="md:col-span-3 lg:col-span-2 bg-brand-surface dark:bg-slate-900 rounded-2xl sm:rounded-[32px] p-6 sm:p-10 border border-brand-teal/10 dark:border-brand-teal/20 flex flex-col justify-center items-center text-center bento-item gsap-hidden">
+                    <h3 class="font-outfit text-2xl sm:text-3xl font-medium text-brand-dark dark:text-white mb-4">@lang('landing.bento_4_title')
                     </h3>
                     <p class="text-brand-slate dark:text-slate-300 font-light max-w-md">@lang('landing.bento_4_desc')</p>
                 </div>
@@ -210,24 +210,24 @@
     </section>
 
     <!-- 6. Pricing Section -->
-    <section id="pricing" class="py-32 bg-brand-surface dark:bg-slate-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20">
-                <h2 class="font-outfit text-4xl md:text-5xl font-medium text-brand-dark dark:text-white mb-6">
+    <section id="pricing" class="py-16 sm:py-32 bg-brand-surface dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 sm:mb-20">
+                <h2 class="font-outfit text-3xl sm:text-4xl md:text-5xl font-medium text-brand-dark dark:text-white mb-4 sm:mb-6">
                     @lang('landing.pricing_header')</h2>
-                <p class="text-brand-slate dark:text-slate-300 text-xl font-light">@lang('landing.pricing_desc')</p>
+                <p class="text-brand-slate dark:text-slate-300 text-base sm:text-xl font-light">@lang('landing.pricing_desc')</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Free Plan -->
                 <div
-                    class="bg-white dark:bg-slate-800 rounded-[32px] p-10 border border-brand-teal/10 dark:border-brand-teal/20 shadow-lg pricing-card gsap-hidden">
+                    class="bg-white dark:bg-slate-800 rounded-2xl sm:rounded-[32px] p-6 sm:p-10 border border-brand-teal/10 dark:border-brand-teal/20 shadow-lg pricing-card gsap-hidden">
                     <h3 class="font-outfit text-2xl font-medium text-brand-dark dark:text-white mb-2">@lang('landing.pricing_free')
                     </h3>
                     <p class="text-brand-slate dark:text-slate-300 font-light text-sm mb-6">@lang('landing.pricing_free_desc')</p>
                     <div class="mb-8">
                         <span
-                            class="font-outfit text-5xl font-bold text-brand-dark dark:text-white">@lang('landing.pricing_free_price')</span>
+                            class="font-outfit text-4xl sm:text-5xl font-bold text-brand-dark dark:text-white">@lang('landing.pricing_free_price')</span>
                         <span class="text-brand-slate dark:text-slate-300">@lang('landing.pricing_free_period')</span>
                     </div>
                     <ul class="space-y-4 mb-10">
@@ -258,14 +258,14 @@
 
                 <!-- Pro Plan -->
                 <div
-                    class="bg-brand-dark rounded-[32px] p-10 shadow-2xl dark:shadow-none relative overflow-hidden pricing-card gsap-hidden">
+                    class="bg-brand-dark rounded-2xl sm:rounded-[32px] p-6 sm:p-10 shadow-2xl dark:shadow-none relative overflow-hidden pricing-card gsap-hidden">
                     <div
                         class="absolute top-0 right-0 px-4 py-1 bg-brand-orange text-white text-xs font-bold rounded-bl-xl">
                         @lang('landing.pricing_pro_badge')</div>
                     <h3 class="font-outfit text-2xl font-medium text-white mb-2">@lang('landing.pricing_pro')</h3>
                     <p class="text-brand-surface/70 font-light text-sm mb-6">@lang('landing.pricing_pro_desc')</p>
                     <div class="mb-8">
-                        <span class="font-outfit text-5xl font-bold text-white">@lang('landing.pricing_pro_price')</span>
+                        <span class="font-outfit text-4xl sm:text-5xl font-bold text-white">@lang('landing.pricing_pro_price')</span>
                         <span class="text-brand-surface/70">@lang('landing.pricing_pro_period')</span>
                     </div>
                     <ul class="space-y-4 mb-10">
