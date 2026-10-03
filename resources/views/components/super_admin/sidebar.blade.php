@@ -1,4 +1,4 @@
-<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-900 border-r border-slate-800 flex flex-col py-6 px-4 z-50">
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-900 border-r border-slate-800 hidden md:flex flex-col py-6 px-4 z-50">
     <!-- Logo & Badge -->
     <div class="mb-10 px-2 flex flex-col gap-1">
         <div class="flex items-center gap-3">

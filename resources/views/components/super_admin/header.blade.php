@@ -1,15 +1,21 @@
 <header
-    class="h-20 fixed top-0 right-0 left-64 bg-brand-surface/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-10 z-40">
+    class="h-16 md:h-20 fixed top-0 right-0 left-0 md:left-64 bg-brand-surface/80 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-4 md:px-10 z-40 transition-all">
 
     <!-- Left: Page Title / Breadcrumbs -->
-    <div class="flex items-center gap-4">
-        <h2 class="text-xl font-outfit font-medium text-slate-800 dark:text-white">
+    <div class="flex items-center gap-3 md:gap-4">
+        <!-- Mini Logo (Mobile Only) -->
+        <a href="{{ route('admin') }}" class="flex items-center gap-1.5 md:hidden shrink-0">
+            <img src="{{ asset('img/Logo_Flowral.png') }}" alt="Flowral Logo" class="w-7 h-7 object-contain">
+            <span class="px-1.5 py-0.5 rounded text-[9px] font-bold tracking-widest bg-red-500/20 text-red-400 uppercase border border-red-500/20">Core</span>
+        </a>
+
+        <h2 class="text-sm sm:text-base md:text-xl font-outfit font-medium text-slate-800 dark:text-white truncate max-w-[140px] sm:max-w-xs md:max-w-none">
             @yield('header_title', 'Command Center')
         </h2>
-        <div class="h-5 w-px bg-slate-300"></div>
-        <span class="text-sm text-slate-500 dark:text-slate-400 font-light flex items-center gap-1">
+        <div class="hidden sm:block h-5 w-px bg-slate-300 dark:bg-slate-700"></div>
+        <span class="hidden sm:flex text-xs md:text-sm text-slate-500 dark:text-slate-400 font-light items-center gap-1">
             <span class="material-symbols-outlined text-[16px] text-green-500">check_circle</span>
-            System Operational
+            Operational
         </span>
     </div>
 
