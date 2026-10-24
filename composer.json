@@ -9,10 +9,10 @@
         "php": "^8.3",
         "jenssegers/agent": "^2.6",
         "lab404/laravel-impersonate": "^1.7",
-        "laravel/framework": "^13.0",
+        "laravel/framework": "^13.30",
         "laravel/socialite": "^5.29",
         "laravel/tinker": "^3.0",
-        "maatwebsite/excel": "^3.1",
+        "maatwebsite/excel": "^3.1.70",
         "stevebauman/location": "^7.6"
     },
     "require-dev": {
@@ -67,9 +67,6 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
-        ],
-        "pre-package-uninstall": [
-            "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
         ]
     },
     "extra": {
