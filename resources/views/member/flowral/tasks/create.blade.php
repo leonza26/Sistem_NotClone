@@ -23,7 +23,7 @@
             class="bg-white dark:bg-slate-800 p-8 sm:p-10 rounded-[32px] border border-brand-teal/10 dark:border-brand-teal/20 shadow-[0_4px_20px_-10px_rgba(48,71,78,0.05)]">
             <form action="{{ route('member.tasks.store') }}" method="POST" x-data="{
                 projects: {{ $projects->toJson() }},
-                selectedProjectId: '{{ old('project_id') }}',
+                selectedProjectId: '{{ old('project_id', $defaultProjectId ?? '') }}',
                 assignedTo: '{{ old('assigned_to') }}',
                 taskTitle: '{{ old('title') }}',
                 taskDesc: `{{ old('description') }}`,

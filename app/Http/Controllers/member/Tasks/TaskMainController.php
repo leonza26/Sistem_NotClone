@@ -11,21 +11,59 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskMainController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         // 1. Dapatkan semua Workspace ID dari user
         $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
         $memberWorkspaceIds = Auth::user()->workspaces()->pluck('workspaces.id')->toArray();
         $allWorkspaceIds = array_unique(array_merge($ownedWorkspaceIds, $memberWorkspaceIds));
-        // 2. Dapatkan Project ID dari workspace-workspace tersebut
-        $projectIds = Project::whereIn('workspace_id', $allWorkspaceIds)->pluck('id')->toArray();
-        // 3. Ambil Task dan langsung pisahkan sesuai status untuk masing-masing kolom Kanban
-        $todoTasks = Task::whereIn('project_id', $projectIds)->where('status', 'todo')->get();
-        $inProgressTasks = Task::whereIn('project_id', $projectIds)->where('status', 'in_progress')->get();
-        $doneTasks = Task::whereIn('project_id', $projectIds)->where('status', 'done')->get();
-        return view('member.flowral.tasks.index', compact('todoTasks', 'inProgressTasks', 'doneTasks'));
+
+        // 2. Dapatkan Project dari workspace-workspace tersebut beserta jumlah task
+        $projects = Project::whereIn('workspace_id', $allWorkspaceIds)
+            ->withCount('tasks')
+            ->orderBy('name', 'asc')
+            ->get();
+        $allProjectIds = $projects->pluck('id')->toArray();
+        $totalTasksCount = $projects->sum('tasks_count');
+
+        // 3. Filter berdasarkan Project (jika ada)
+        $selectedProjectId = $request->query('project_id');
+        if ($selectedProjectId && $selectedProjectId !== 'all' && in_array($selectedProjectId, $allProjectIds)) {
+            $filteredProjectIds = [(int)$selectedProjectId];
+            $currentProject = $projects->firstWhere('id', (int)$selectedProjectId);
+        } else {
+            $filteredProjectIds = $allProjectIds;
+            $currentProject = null;
+            $selectedProjectId = 'all';
+        }
+
+        // 4. Filter berdasarkan Assignee (My Tasks)
+        $filterAssignedMe = $request->query('assigned') === 'me';
+
+        // 5. Query Task dengan Eager Loading (Project & Assignee) untuk eliminasi N+1
+        $taskQuery = Task::with(['project', 'assignee'])
+            ->whereIn('project_id', $filteredProjectIds);
+
+        if ($filterAssignedMe) {
+            $taskQuery->where('assigned_to', Auth::id());
+        }
+
+        $todoTasks = (clone $taskQuery)->where('status', 'todo')->get();
+        $inProgressTasks = (clone $taskQuery)->where('status', 'in_progress')->get();
+        $doneTasks = (clone $taskQuery)->where('status', 'done')->get();
+
+        return view('member.flowral.tasks.index', compact(
+            'todoTasks',
+            'inProgressTasks',
+            'doneTasks',
+            'projects',
+            'selectedProjectId',
+            'currentProject',
+            'filterAssignedMe',
+            'totalTasksCount'
+        ));
     }
-    public function create()
+    public function create(Request $request)
     {
         // Untuk membuat Task, user butuh list Project (di dalam workspacenya)
         $ownedWorkspaceIds = Auth::user()->ownedWorkspaces()->pluck('id')->toArray();
@@ -36,7 +74,10 @@ class TaskMainController extends Controller
         if ($projects->isEmpty()) {
             return redirect()->route('member.projects')->with('error', 'Silakan buat Project terlebih dahulu sebelum membuat Task.');
         }
-        return view('member.flowral.tasks.create', compact('projects'));
+
+        $defaultProjectId = $request->query('project_id');
+
+        return view('member.flowral.tasks.create', compact('projects', 'defaultProjectId'));
     }
     public function store(Request $request)
     {
