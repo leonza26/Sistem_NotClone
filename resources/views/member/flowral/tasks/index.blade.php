@@ -26,24 +26,153 @@
 
     <div class="px-4 sm:px-6 lg:px-10 pb-12 pt-4 max-w-[1600px]" x-data="{ activeTab: 'todo' }">
         <!-- Header -->
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 md:mb-10">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 md:mb-8">
             <div>
+                <!-- Dynamic Breadcrumb -->
                 <div
                     class="flex items-center gap-2 text-brand-slate/60 dark:text-slate-300 text-[11px] font-semibold uppercase tracking-widest mb-2 md:mb-3">
                     <span>Workspace</span>
                     <span class="w-1 h-1 rounded-full bg-brand-orange"></span>
-                    <span class="text-brand-orange font-bold">All Projects</span>
+                    <span class="text-brand-orange font-bold truncate max-w-[200px]">{{ $currentProject ? $currentProject->name : 'All Projects' }}</span>
+                    @if($filterAssignedMe)
+                        <span class="w-1 h-1 rounded-full bg-brand-orange"></span>
+                        <span class="text-brand-orange font-bold">Assigned to Me</span>
+                    @endif
                 </div>
-                <h2 class="font-outfit text-2xl sm:text-3xl font-medium text-brand-dark dark:text-white leading-tight tracking-tight">
-                    Kanban <span class="text-brand-orange">Board.</span>
-                </h2>
+
+                <!-- Title & Project Selector Dropdown -->
+                <div class="flex items-center gap-3 sm:gap-4 flex-wrap">
+                    <h2 class="font-outfit text-2xl sm:text-3xl font-medium text-brand-dark dark:text-white leading-tight tracking-tight">
+                        Kanban <span class="text-brand-orange">Board.</span>
+                    </h2>
+
+                    <!-- Project Filter Dropdown (Alpine.js) -->
+                    <div x-data="{ openProjectMenu: false, searchProject: '' }" class="relative z-30">
+                        <button @click="openProjectMenu = !openProjectMenu" @click.away="openProjectMenu = false" type="button"
+                            class="px-3.5 py-1.5 sm:py-2 bg-white dark:bg-slate-800 border border-brand-teal/20 dark:border-slate-700 hover:border-brand-orange/50 dark:hover:border-brand-orange/50 rounded-xl flex items-center gap-2 text-xs sm:text-sm font-medium text-brand-dark dark:text-white shadow-sm transition-all focus:outline-none">
+                            <span class="material-symbols-outlined text-[18px] text-brand-orange">folder_open</span>
+                            <span class="max-w-[130px] sm:max-w-[200px] truncate">{{ $currentProject ? $currentProject->name : 'All Projects' }}</span>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-brand-orange/10 text-brand-orange border border-brand-orange/20">
+                                {{ $currentProject ? $currentProject->tasks_count : $totalTasksCount }}
+                            </span>
+                            <span class="material-symbols-outlined text-[16px] text-brand-slate/60 dark:text-slate-400 transition-transform duration-200"
+                                :class="openProjectMenu ? 'rotate-180' : ''">expand_more</span>
+                        </button>
+
+                        <!-- Dropdown Menu -->
+                        <div x-show="openProjectMenu" x-cloak
+                            x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="transform opacity-0 scale-95"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-75"
+                            x-transition:leave-start="transform opacity-100 scale-100"
+                            x-transition:leave-end="transform opacity-0 scale-95"
+                            class="absolute left-0 mt-2 w-72 sm:w-80 bg-white dark:bg-slate-800 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-brand-teal/15 dark:border-slate-700 p-2 z-40">
+                            
+                            <!-- Search Input (jika project > 3) -->
+                            @if($projects->count() > 3)
+                                <div class="relative mb-2 px-1">
+                                    <span class="material-symbols-outlined absolute left-3 top-2.5 text-[16px] text-brand-slate/50 dark:text-slate-400">search</span>
+                                    <input type="text" x-model="searchProject" placeholder="Cari project..."
+                                        class="w-full pl-8 pr-3 py-1.5 text-xs bg-brand-surface dark:bg-slate-900 border border-brand-teal/10 dark:border-slate-700 rounded-lg text-brand-dark dark:text-white placeholder-brand-slate/40 focus:outline-none focus:border-brand-orange">
+                                </div>
+                            @endif
+
+                            <!-- List Options -->
+                            <div class="max-h-64 overflow-y-auto custom-scrollbar space-y-1">
+                                <!-- Option: All Projects -->
+                                <a href="{{ route('member.tasks', array_merge(request()->except('project_id'), ['project_id' => 'all'])) }}"
+                                    class="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all {{ $selectedProjectId === 'all' ? 'bg-brand-orange/10 text-brand-orange font-bold' : 'text-brand-dark dark:text-slate-200 hover:bg-brand-surface dark:hover:bg-slate-700' }}">
+                                    <div class="flex items-center gap-2 min-w-0">
+                                        <span class="material-symbols-outlined text-[16px] {{ $selectedProjectId === 'all' ? 'text-brand-orange' : 'text-brand-slate/50 dark:text-slate-400' }}">grid_view</span>
+                                        <span class="truncate">All Projects</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 flex-shrink-0">
+                                        <span class="px-2 py-0.5 rounded-md text-[10px] {{ $selectedProjectId === 'all' ? 'bg-brand-orange text-white' : 'bg-brand-surface dark:bg-slate-900 text-brand-slate dark:text-slate-300' }}">
+                                            {{ $totalTasksCount }}
+                                        </span>
+                                        @if($selectedProjectId === 'all')
+                                            <span class="material-symbols-outlined text-[16px] text-brand-orange">check</span>
+                                        @endif
+                                    </div>
+                                </a>
+
+                                <div class="h-px bg-brand-teal/10 dark:bg-slate-700 my-1"></div>
+
+                                <!-- Options: Individual Projects -->
+                                @forelse($projects as $project)
+                                    <a href="{{ route('member.tasks', array_merge(request()->except('project_id'), ['project_id' => $project->id])) }}"
+                                        x-show="!searchProject || {{ json_encode(strtolower($project->name)) }}.includes(searchProject.toLowerCase())"
+                                        class="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all {{ $selectedProjectId == $project->id ? 'bg-brand-orange/10 text-brand-orange font-bold' : 'text-brand-dark dark:text-slate-200 hover:bg-brand-surface dark:hover:bg-slate-700' }}">
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="w-2 h-2 rounded-full flex-shrink-0 {{ $selectedProjectId == $project->id ? 'bg-brand-orange' : 'bg-brand-slate/40 dark:bg-slate-500' }}"></span>
+                                            <span class="truncate">{{ $project->name }}</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 flex-shrink-0">
+                                            <span class="px-2 py-0.5 rounded-md text-[10px] {{ $selectedProjectId == $project->id ? 'bg-brand-orange text-white' : 'bg-brand-surface dark:bg-slate-900 text-brand-slate dark:text-slate-300' }}">
+                                                {{ $project->tasks_count }}
+                                            </span>
+                                            @if($selectedProjectId == $project->id)
+                                                <span class="material-symbols-outlined text-[16px] text-brand-orange">check</span>
+                                            @endif
+                                        </div>
+                                    </a>
+                                @empty
+                                    <div class="px-3 py-2 text-center text-xs text-brand-slate/50 dark:text-slate-400">
+                                        Belum ada project
+                                    </div>
+                                @endforelse
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a href="{{ route('member.tasks.create') }}"
-                class="px-4 py-2 sm:px-5 sm:py-2.5 bg-brand-orange text-white text-xs sm:text-sm font-medium rounded-xl shadow-[0_4px_14px_0_rgba(229,117,0,0.39)] hover:shadow-[0_6px_20px_rgba(229,117,0,0.23)] hover:-translate-y-0.5 transition-all flex items-center gap-2 w-fit">
-                <span class="material-symbols-outlined text-[18px]">add</span>
-                New Task
-            </a>
+
+            <!-- Action Buttons: My Tasks Filter & New Task -->
+            <div class="flex items-center gap-2.5 sm:gap-3 flex-wrap">
+                <!-- My Tasks Toggle Button -->
+                <a href="{{ route('member.tasks', array_merge(request()->all(), ['assigned' => $filterAssignedMe ? null : 'me'])) }}"
+                    class="px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-medium rounded-xl border transition-all flex items-center gap-1.5 {{ $filterAssignedMe ? 'bg-brand-orange text-white border-brand-orange shadow-[0_4px_14px_0_rgba(229,117,0,0.39)]' : 'bg-white dark:bg-slate-800 border-brand-teal/20 dark:border-slate-700 text-brand-slate dark:text-slate-300 hover:text-brand-dark dark:hover:text-white shadow-sm' }}"
+                    title="{{ $filterAssignedMe ? 'Tampilkan semua task' : 'Hanya tampilkan task saya' }}">
+                    <span class="material-symbols-outlined text-[16px]">person</span>
+                    <span>My Tasks</span>
+                    @if($filterAssignedMe)
+                        <span class="w-1.5 h-1.5 rounded-full bg-white ml-0.5"></span>
+                    @endif
+                </a>
+
+                <!-- New Task Button -->
+                <a href="{{ route('member.tasks.create', $selectedProjectId !== 'all' ? ['project_id' => $selectedProjectId] : []) }}"
+                    class="px-3.5 py-2 sm:px-5 sm:py-2.5 bg-brand-orange text-white text-xs sm:text-sm font-medium rounded-xl shadow-[0_4px_14px_0_rgba(229,117,0,0.39)] hover:shadow-[0_6px_20px_rgba(229,117,0,0.23)] hover:-translate-y-0.5 transition-all flex items-center gap-1.5 sm:gap-2 w-fit">
+                    <span class="material-symbols-outlined text-[18px]">add</span>
+                    <span>New Task</span>
+                </a>
+            </div>
         </div>
+
+        <!-- Filter Active Feedback Indicators -->
+        @if($selectedProjectId !== 'all' || $filterAssignedMe)
+            <div class="flex items-center gap-2 mb-6 text-xs text-brand-slate dark:text-slate-400 flex-wrap">
+                <span class="font-medium">Filter Aktif:</span>
+                @if($currentProject)
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-brand-teal/15 dark:border-slate-700 text-brand-dark dark:text-white font-medium shadow-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-brand-orange"></span>
+                        <span>Project: {{ $currentProject->name }}</span>
+                        <a href="{{ route('member.tasks', array_merge(request()->except('project_id'), ['project_id' => 'all'])) }}"
+                            class="hover:text-brand-orange ml-1 text-sm leading-none font-bold text-slate-400" title="Hapus filter project">&times;</a>
+                    </span>
+                @endif
+                @if($filterAssignedMe)
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-brand-teal/15 dark:border-slate-700 text-brand-dark dark:text-white font-medium shadow-sm">
+                        <span class="material-symbols-outlined text-[14px] text-brand-orange">person</span>
+                        <span>Ditugaskan ke Saya</span>
+                        <a href="{{ route('member.tasks', request()->except('assigned')) }}"
+                            class="hover:text-brand-orange ml-1 text-sm leading-none font-bold text-slate-400" title="Hapus filter task saya">&times;</a>
+                    </span>
+                @endif
+                <a href="{{ route('member.tasks') }}" class="text-brand-orange hover:underline ml-1 font-medium">Reset Semua Filter</a>
+            </div>
+        @endif
 
         <!-- Mobile Segmented Tabs (< lg) -->
         <div class="flex lg:hidden bg-brand-surface dark:bg-slate-900 p-1.5 rounded-2xl border border-brand-teal/20 dark:border-slate-800 mb-6 shadow-sm">
